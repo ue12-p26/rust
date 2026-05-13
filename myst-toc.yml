@@ -1,0 +1,29 @@
+version: 1
+
+project:
+  toc:
+
+    - file: index.md
+
+    - title: Introduction
+      children:
+        - file: intro_cea.md
+        - file: about_rust.md
+        - file: why_rust.md
+        - file: pros_n_cons.md
+        - file: resources.md
+
+    - title: Environment
+      children:
+        - file: env_intro.md
+        - file: env_install.md
+        - file: env_compiler.md
+        - file: env_cargo.md
+
+    - title: Variables & constants
+      children:
+        - file: var_def.md
+        - file: var_immut.md
+        - file: var_mut.md
+        - file: var_unused.md
+        - file: const.md

@@ -1,34 +1,56 @@
+# See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
   title: Introduction to the Rust language
+  # I suspect the intention was maybe to use this for the title tooltip ?
+  # in any case as of now 2024 june the title is used for the tooltip too (a bit silly)
+  # and I can't see where this is used
   description: "CIC 1A - Mines Paris PSL - Rust"
+  # this one causes additional buttons to be shown
+  # in the upper right area (close to the github button)
+  license: CC-BY-NC-SA-4.0
+  # inserted under the title
   authors:
-    - name: Pierrick Roger
-  github: git@gitlab.com:cnrgh/teaching/rust-class.git
-  toc:
-    - file: index.md
-    - title: Introduction
-      children:
-        - file: intro_cea.md
-        - file: about_rust.md
-        - file: why_rust.md
-        - file: pros_n_cons.md
-        - file: resources.md
-    - title: Environment
-      children:
-        - file: env_intro.md
-        - file: env_install.md
-        - file: env_compiler.md
-        - file: env_cargo.md
-    - title: Variables & constants
-      children:
-        - file: var_def.md
-        - file: var_immut.md
-        - file: var_mut.md
-        - file: var_unused.md
-        - file: const.md
+    - Pierrick Roger
+  github: https://gitlab.com/cnrgh/teaching/rust-class
+  keywords:
+    - Informatique
+    - MinesParis
+    - PSL
+    - UE12
+    - Rust
+    - Cargo
+    - Jupyter
+  date: 2026-05-13
+  jupyter:
+    lite: false
+  # bibliography: []
+  plugins:
+    - https://raw.githubusercontent.com/choldgraf/myst-lightbox/main/src/index.mjs
 
 site:
   template: book-theme
+  #template: https://github.com/flotpython/myst-theme/releases/download/custom/book-theme.zip
+  # used in the tab name
+  title: rust-course
+  # this would be for the horizontal header bar - not used here (yet)
+  # nav: []
+  # actions:
+  #   - title: Learn More
+  #     url: https://mystmd.org/guide
+  domains: []
   options:
-    style: style.css
+    # workaround for https://github.com/jupyter-book/mystmd/issues/1985#issuecomment-3232330240
+    # we have converted the svg to ico
+    # for that in Inkscape: set size as a square 72x72
+    # and use Path -> Object to Path to convert the text to a path
+    # and so, remove the dependency to font
+    # favicon: media/favicon-rust.svg.ico
+    # logo: media/logo-rust.svg
+    # very visible in the header
+    logo_text: "Rust course"
+    style: "style.css"
+    folders: true
+
+extends:
+  - myst-toc.yml
