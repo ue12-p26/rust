@@ -12,7 +12,7 @@ project:
   # inserted under the title
   authors:
     - Pierrick Roger
-  github: https://gitlab.com/cnrgh/teaching/rust-class
+  gitlab: https://gitlab.com/cnrgh/teaching/rust-class
   keywords:
     - Informatique
     - MinesParis

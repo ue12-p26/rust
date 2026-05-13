@@ -5,25 +5,66 @@ project:
 
     - file: index.md
 
-    - title: Introduction
+    - title: Preliminaries
       children:
-        - file: intro_cea.md
-        - file: about_rust.md
-        - file: why_rust.md
-        - file: pros_n_cons.md
-        - file: resources.md
 
-    - title: Environment
-      children:
-        - file: env_intro.md
-        - file: env_install.md
-        - file: env_compiler.md
-        - file: env_cargo.md
+        - title: Introduction
+          children:
+            - file: intro_cea.md
+            - file: about_rust.md
+            - file: why_rust.md
+            - file: pros_n_cons.md
+            - file: resources.md
 
-    - title: Variables & constants
+        - title: Environment
+          children:
+            - file: env_intro.md
+            - file: env_install.md
+            - file: env_compiler.md
+            - file: env_cargo.md
+
+    - title: Basics
       children:
-        - file: var_def.md
-        - file: var_immut.md
-        - file: var_mut.md
-        - file: var_unused.md
-        - file: const.md
+
+        - title: Variables & constants
+          children:
+            - file: var_def.md
+            - file: var_immut.md
+            - file: var_mut.md
+            - file: var_unused.md
+            - file: const.md
+
+        - title: Atomic types
+          children:
+            - file: int.md
+            - file: float.md
+            - file: bool.md
+            - file: char.md
+
+        - title: Memory - Part I
+          children:
+            - file: memory.md
+            - file: var_scope.md
+            - file: var_shadowing.md
+
+        - title: Complex types
+          children:
+            - file: tuple.md
+            - file: array.md
+            - file: str_literals.md
+
+        - title: Syntax & control flow
+          children:
+            - file: comments.md
+            - file: expr.md
+            - file: ranges.md
+            - file: if.md
+            - file: loop.md
+            - file: while.md
+            - file: for.md
+
+        - title: Functions - Part I
+          children:
+            - file: fct_def.md
+            - file: fct_call.md
+            - file: fct_main.md
