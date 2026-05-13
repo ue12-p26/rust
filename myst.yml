@@ -1,0 +1,25 @@
+version: 1
+project:
+  title: Introduction to the Rust language
+  # authors:
+  #   - name: Pierrick Roger
+  toc:
+    - file: index.md
+    - title: Environment
+      children:
+        - file: env_intro.md
+        - file: env_install.md
+        - file: env_compiler.md
+        - file: env_cargo.md
+    - title: Variables & constants
+      children:
+        - file: var_def.md
+        - file: var_immut.md
+        - file: var_mut.md
+        - file: var_unused.md
+        - file: const.md
+
+site:
+  template: book-theme
+  options:
+    style: style.css
