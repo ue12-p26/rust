@@ -200,7 +200,7 @@ as well as compilation, before running:
 cargo run
 ```
 
-:::{important} Installing features for dependencies
+:::{warning} Installing features for dependencies
 Some packages offer optional features. By default they are not installed, and
 we cannot use them in our code. To enable them, we need to specify them
 explicitly when adding the dependency. This is done with the `-F` flag.
@@ -212,7 +212,7 @@ cargo add -F derive clap
 ```
 :::
 
-:::{important} Adding development dependencies
+:::{warning} Adding development dependencies
 Some dependencies may be needed when running tests or building the
 documentation.
 These dependencies must not be added to the main `dependencies` section, but
@@ -420,7 +420,7 @@ The `mut` keyword has been removed:
 bat src/main.rs
 ```
 
-:::{important}
+:::{warning}
 The `fix` sub-command will refuse to correct a code that is not managed by
 Git or if some modifications have not been committed. This is because it may
 damage permanently our code.
