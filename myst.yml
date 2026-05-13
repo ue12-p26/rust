@@ -1,10 +1,19 @@
 version: 1
 project:
   title: Introduction to the Rust language
-  # authors:
-  #   - name: Pierrick Roger
+  description: "CIC 1A - Mines Paris PSL - Rust"
+  authors:
+    - name: Pierrick Roger
+  github: git@gitlab.com:cnrgh/teaching/rust-class.git
   toc:
     - file: index.md
+    - title: Introduction
+      children:
+        - file: intro_cea.md
+        - file: about_rust.md
+        - file: why_rust.md
+        - file: pros_n_cons.md
+        - file: resources.md
     - title: Environment
       children:
         - file: env_intro.md
