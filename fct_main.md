@@ -14,7 +14,7 @@ kernelspec:
 # The `main` function
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 source bash-setup.sh
 ```
 

@@ -14,7 +14,7 @@ kernelspec:
 # Rust compiler
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 source bash-setup.sh
 ```
 
@@ -25,7 +25,7 @@ examples), we mainly use it in practice through `cargo`.
 ## Compiling with `rustc`
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 
 cat >hello.rs <<EOF
 fn main() {
@@ -58,7 +58,7 @@ This command produces the binary `hello` that we can run:
 ## Handling error messages
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 
 cat >hello.rs <<EOF
 struct A {

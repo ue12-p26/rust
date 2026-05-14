@@ -14,7 +14,7 @@ kernelspec:
 # Cargo
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 source bash-setup.sh
 ```
 
@@ -162,7 +162,7 @@ To use external dependencies (e.g.: packages from
 `colour` package, we need first to declare it with `cargo`:
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 cat >src/main.rs <<EOF
 use colour::*;
 
@@ -230,7 +230,7 @@ cargo add --dev glob
 We suppose we have implemented some test inside the `tests` folder:
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 mkdir tests
 cat >tests/my_test.rs <<EOF
 #[test]
@@ -282,7 +282,7 @@ correct them. It helps us improve the quality of our code.
 In the following example, we define a `Book` structure:
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 cat >src/main.rs <<EOF
 struct Book {
   title: String,
@@ -329,7 +329,7 @@ cargo clippy
 In this other example, plain `clippy` misses the possible style improvement:
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 cat >src/main.rs <<EOF
 fn main() {
   let array = ["abc", "def", "ghi"];
@@ -378,7 +378,7 @@ In the following example we have introduced a useless `mut` (mutable)
 specifier:
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 cat >src/main.rs <<EOF
 fn main() {
   let mut s = "ABC".to_string();
@@ -402,7 +402,7 @@ cargo check
 Running the `fix` sub-command will solve the issue for us:
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 git init .
 git add Cargo.* src tests .gitignore
 git commit -m Init
@@ -429,6 +429,6 @@ Git database.
 :::
 
 ```{code-cell} bash
-:tags: [remove-input, remove-output]
+:tags: [remove-cell]
 popd
 ```
