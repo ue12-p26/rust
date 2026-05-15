@@ -18,8 +18,11 @@ Porting paused at the end of **Part 2 (*Basics*)** — i.e. through chapter 8
   5 *Memory — Part I*, 6 *Complex types*, 7 *Syntax & control flow*,
   8 *Functions — Part I*
 
-Chapters 9+ (*Fundamentals*, *Proficiency*, *Expertise*, *Mastery*,
-*Appendices*) are not yet ported.
+Chapters 9+ (*Fundamentals*, *Proficiency*, *Expertise*, *Mastery*) are
+not yet ported.
+
+Of the *Appendices* part, **Tables** is fully ported and **Solutions**
+contains only the *First program* entry corresponding to chapter 8.
 
 ## Upstream reference
 
@@ -124,16 +127,43 @@ version executes it; in evcxr that would SIGSEGV the kernel and break the
 rest of the page. `:tags: [raises-exception]` doesn't help because a
 native stack overflow is a kernel death, not a recoverable error.
 
-### 5. Cross-references to appendix tables — dropped
+### 5. Cross-references to appendix tables — restored after Tables port
 
-`\autoref{table:ArithOp}` / `\ref{tab:CargoSubCmds}` / etc. were removed
-from `env_cargo.md`, `int.md`, `float.md`, `bool.md`, `array.md`. The
-appendix chapters (`cargo_cmds`, `rust_apps`, `*_methods`, etc.) are not
-yet ported.
+All references that were dropped during chapters 4–8 (in `int.md`,
+`float.md`, `bool.md`, `array.md`, `env_cargo.md`) were restored as
+`{numref}` directives once the *Tables* appendix was ported. Mapping
+of original LaTeX labels to MyST names:
+
+| LaTeX label            | MyST `:name:`        | File                |
+|------------------------|----------------------|---------------------|
+| `tab:CargoSubCmds`     | `tab-cargo-subcmds`  | `cargo_cmds.md`     |
+| `tab:RustApps`         | `tab-rust-apps`      | `rust_apps.md`      |
+| `table:ArrayMethods`   | `tab-array-methods`  | `array_methods.md`  |
+| `table:VecMethods`     | `tab-vec-methods`    | `vec_methods.md`    |
+| `table:StrSliceMethods`| `tab-str-methods`    | `str_methods.md`    |
+| `table:StringMethods`  | `tab-string-methods` | `string_methods.md` |
+| `table:SliceMethods`   | `tab-slice-methods`  | `slice_methods.md`  |
+| `table:OptionMethods`  | `tab-option-methods` | `option_methods.md` |
+| `tab:MacroFctLike`     | `tab-macro-fct-like` | `macro_fct_list.md` |
+| `table:LogicalOp`      | `tab-logical-op`     | `bool_ops.md`       |
+| `table:CompOp`         | `tab-comp-op`        | `bool_ops.md`       |
+| `table:ArithOp`        | `tab-arith-op`       | `int_ops.md`        |
+| `table:BitwiseOp`      | `tab-bitwise-op`     | `int_ops.md`        |
+| `table:FloatOp`        | `tab-float-op`       | `float_ops.md`      |
 
 In-file table refs (`\autoref{table:CharEsc}` in `char.tex`,
-`\autoref{tab:RangeSyntax}` in `ranges.tex`) **were** kept and converted to
-MyST `{numref}` against `{list-table}` blocks in the same file.
+`\autoref{tab:RangeSyntax}` in `ranges.tex`) were always kept and
+converted to MyST `{numref}` against `{list-table}` blocks in the same
+file.
+
+**On merge:** when porting a new LaTeX file that references one of the
+appendix tables, use the corresponding `{numref}` name from the table
+above. When porting a new appendix table, add a row to this table and
+restore any dangling references in the body chapters.
+
+**Two appendix tables still marked `\INPROGRESS` upstream**
+(`array_methods.tex`, `slice_methods.tex`) are rendered with a
+`:::{warning} In progress` admonition at the top of the MyST page.
 
 ### 6. Bibliography citations — inlined
 
@@ -178,12 +208,13 @@ LaTeX `\begin{exercise}{Title} ... Solution in \autoref{sol:Foo}.
 with a matching `sol_xxx.md` page in the *Appendices > Solutions* chapter
 that contains an empty solution anchor:
 
-````md
-````{solution} <slug>
+```md
+:::{solution} <slug>
 :label: <slug>-solution
-````
+:::
+
 ...solution body lives as plain content below the directive...
-````
+```
 
 Keeping the body **outside** the `{solution}` directive matters: if the
 content were inside the directive, hovering the cross-reference link in
@@ -220,3 +251,19 @@ the port use `../img/...`, `../gen_img/...` or `../common/...`. The
 
 **On merge:** new figures need their paths rewritten with the `../`
 prefix and pointed at the same source assets.
+
+### 12. Directive fence convention: `:::` not `` ``` ``
+
+Every directive other than `{code-cell}` uses colon fences (`:::{...}` /
+`:::`) rather than backtick fences (`` ```{...} `` / `` ``` ``).
+Backtick-fenced directives whose **title or body contains backticked
+code** (e.g. `` ```{list-table} Some methods of `Vec` ``) render
+unreliably with the stock `book-theme` parser; colon fences are
+consistent.
+
+Reserved for backticks:
+
+- `{code-cell}` — required by the jupytext/jupyter-cache pipeline.
+
+**On merge:** new directives ported from upstream LaTeX should default to
+`:::` fences. Bump to `::::` (four colons) when nesting directives.
