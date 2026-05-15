@@ -24,13 +24,13 @@ several segments (see {numref}`fig-process-memory`):
 - The *Stack* stores *function calls* and *local variables*.
 - The *Heap* stores *dynamic memory allocation*.
 
-```{figure} ../gen_img/process_memory.png
+:::{figure} ../gen_img/process_memory.png
 :name: fig-process-memory
 :alt: Process memory layout
 :width: 80%
 
 Process memory
-```
+:::
 
 ## Text (Code)
 
@@ -183,13 +183,13 @@ fn foo_a(n: i32) -> i32 {
 foo_a(10)
 ```
 
-```{figure} ../gen_img/memory_stack.png
+:::{figure} ../gen_img/memory_stack.png
 :name: fig-memory-stack
 :alt: Memory stack
 :width: 100%
 
 Memory stack
-```
+:::
 
 ### Stack overflow
 
@@ -198,13 +198,13 @@ calls and/or heavy usage of local variables, it can lead to a stack overflow
 error, causing the program to crash, as show in
 {numref}`fig-stack-overflow`.
 
-```{figure} ../gen_img/memory_stack_overflow.png
+:::{figure} ../gen_img/memory_stack_overflow.png
 :name: fig-stack-overflow
 :alt: Stack overflow
 :width: 100%
 
 Stack overflow
-```
+:::
 
 In the following example we push a huge array on the *stack* that would
 generate an *overflow* at runtime (not executed here to avoid crashing the
@@ -222,13 +222,13 @@ any given point during program execution. It shows the sequence of function
 calls that led to the current point in the program, with the most recent
 call at the top (see {numref}`fig-call-stack`).
 
-```{figure} ../gen_img/call_stack.png
+:::{figure} ../gen_img/call_stack.png
 :name: fig-call-stack
 :alt: Call stack
 :width: 50%
 
 Call stack
-```
+:::
 
 ## Heap
 
@@ -239,13 +239,13 @@ the heap allows for flexible memory allocation and deallocation. Objects in
 the heap can be created and destroyed in any order, and their lifetimes are
 not directly tied to function calls.
 
-```{figure} ../gen_img/memory_heap.png
+:::{figure} ../gen_img/memory_heap.png
 :name: fig-memory-heap
 :alt: Memory heap
 :width: 50%
 
 Memory heap
-```
+:::
 
 :::{warning} Heap size
 Inside a process the *heap* memory is shared among all its *threads*.

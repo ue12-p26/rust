@@ -46,7 +46,7 @@ The `from()` method permits to convert an integer into a character:
 char::from(0x30u8)
 ```
 
-```{list-table} Character escapes
+:::{list-table} Character escapes
 :name: tab-char-esc
 :header-rows: 1
 :align: center
@@ -91,4 +91,4 @@ char::from(0x30u8)
   -
   -
   - 24-bit Unicode character code (up to 6 hex digits)
-```
+:::

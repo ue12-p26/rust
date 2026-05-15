@@ -12,7 +12,7 @@ for `match`, *slices* and *for*.
 For the moment, we just present in {numref}`tab-range-syntax` the syntax to
 use when defining a range.
 
-```{list-table} Range syntax
+:::{list-table} Range syntax
 :name: tab-range-syntax
 :header-rows: 1
 :align: center
@@ -31,7 +31,7 @@ use when defining a range.
   - From 3 included to end of object.
 * - `..` [^b]
   - All indices of the whole object.
-```
+:::
 
 [^a]: Only allowed in a *slice* or a *match*.
 [^b]: Only allowed in a *slice*.

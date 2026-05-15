@@ -2,11 +2,11 @@
 
 ## CEA
 
-```{image} ../common/cea_logo.png
+:::{image} ../common/cea_logo.png
 :alt: CEA logo
 :align: right
 :height: 120px
-```
+:::
 
 The French Alternative Energies and Atomic Energy Commission
 ([Commissariat à l'énergie atomique et aux énergies alternatives](https://www.cea.fr/))
@@ -25,20 +25,20 @@ and is spread across several centers (see {numref}`fig-centers`):
 - Matter and universe.
 - Climate and environment.
 
-```{figure} ../common/CEA_carte-des-centres.jpg
+:::{figure} ../common/CEA_carte-des-centres.jpg
 :name: fig-centers
 :alt: CEA research centers map
 
 Research centers
-```
+:::
 
 ## CNRGH
 
-```{image} ../common/cnrgh_logo.png
+:::{image} ../common/cnrgh_logo.png
 :alt: CNRGH logo
 :align: right
 :height: 120px
-```
+:::
 
 The French National Center of Human Genomics Research
 ([Centre National de Recherche en Génomique Humaine](https://jacob.cea.fr/drf/ifrancoisjacob/english/Pages/Departments/CNRGH.aspx))

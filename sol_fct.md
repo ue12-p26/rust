@@ -20,9 +20,9 @@ source bash-setup.sh
 
 ## First program
 
-````{solution} first-program
+:::{solution} first-program
 :label: first-program-solution
-````
+:::
 
 We first create the binary project using `cargo`:
 

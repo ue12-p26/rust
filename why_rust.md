@@ -7,14 +7,14 @@ on which is added an excellent memory checking layer, and takes advantage of a
 *high level of acceptability* by the computer system teams when passing
 from research to production.
 
-```{figure} ../img/pypl_rust_python_julia_r.png
+:::{figure} ../img/pypl_rust_python_julia_r.png
 :name: fig-popularity
 :alt: Popularity of Python, R, Julia and Rust
 :width: 100%
 
 Comparison of popularity of Python, R, Julia and Rust
 ([PYPL](https://pypl.github.io/PYPL.html)).
-```
+:::
 
 These are already some good reasons to choose Rust as a language, but not
 enough.
@@ -41,14 +41,14 @@ answer on common issues related to the language itself or its main packages.
 Numerous packages exist to solve standard programming problems, and many are
 created each day as seen in {numref}`fig-nbpkgs`.
 
-```{figure} ../img/Perkel_2020_nb_pkgs.png
+:::{figure} ../img/Perkel_2020_nb_pkgs.png
 :name: fig-nbpkgs
 :alt: Number of packages over time for R, Python and Rust
 :width: 50%
 
 Number of packages over time for R, Python and Rust
 ([Perkel 2020](http://dx.doi.org/10.1038/d41586-020-03382-2)).
-```
+:::
 
 However it may be not as easy to develop a scientific application in a
 specific field. It would be a long task to look at available packages for all
@@ -62,7 +62,7 @@ research community, perfectly adapter for the biology field
 ([Roesch et al. 2023](http://dx.doi.org/10.1038/s41592-023-01832-z)),
 does not seem to attract as much attention as Rust.
 
-```{list-table} Rough number of biology related packages for Rust and some concurrent languages
+:::{list-table} Rough number of biology related packages for Rust and some concurrent languages
 :name: tab-biopkgs
 :header-rows: 1
 :align: center
@@ -77,7 +77,7 @@ does not seem to attract as much attention as Rust.
   - 1105
 * - Julia [^d]
   - 258
-```
+:::
 
 [^a]: Obtained by searching the text "bio biology" inside the
       [official package repository](https://pypi.org/).
