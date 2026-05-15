@@ -29,8 +29,7 @@ project:
     - https://raw.githubusercontent.com/choldgraf/myst-lightbox/main/src/index.mjs
 
 site:
-  template: book-theme
-  #template: https://github.com/flotpython/myst-theme/releases/download/custom/book-theme.zip
+  template: https://github.com/flotpython/myst-theme/releases/download/custom/book-theme.zip
   # used in the tab name
   title: rust-course
   # this would be for the horizontal header bar - not used here (yet)
