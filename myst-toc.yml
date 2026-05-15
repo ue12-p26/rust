@@ -68,3 +68,10 @@ project:
             - file: fct_def.md
             - file: fct_call.md
             - file: fct_main.md
+
+    - title: Appendices
+      children:
+
+        - title: Solutions
+          children:
+            - file: sol_fct.md

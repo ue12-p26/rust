@@ -159,12 +159,49 @@ inside a Git repository}` became `### Creating a new project from scratch`
 and `### Initializing a project inside a Git repository`. This gives them
 visible structure in the sidebar instead of inline bold.
 
-### 9. Exercise admonition (`fct_main.md`)
+### 9. Exercise / solution pattern
 
-LaTeX `\begin{exercise}{First program} ... \end{exercise}` rendered as
-`:::{admonition} Exercise — First program / :class: tip`. The
-`\autoref{sol:FirstProg}` solution pointer was dropped (solutions chapter
-not yet ported).
+LaTeX `\begin{exercise}{Title} ... Solution in \autoref{sol:Foo}.
+\end{exercise}` becomes the pair:
+
+```md
+:::{exercise} Title
+:label: <slug>
+:enumerated: true
+
+...prompt body...
+:::
+
+[see solution](#<slug>-solution)
+```
+
+with a matching `sol_xxx.md` page in the *Appendices > Solutions* chapter
+that contains an empty solution anchor:
+
+````md
+````{solution} <slug>
+:label: <slug>-solution
+````
+...solution body lives as plain content below the directive...
+````
+
+Keeping the body **outside** the `{solution}` directive matters: if the
+content were inside the directive, hovering the cross-reference link in
+the exercise would preview the solution, defeating the purpose.
+
+**Status of solution files:**
+
+- `sol_fct.md` — ported (just the *First program* entry; matches the
+  upstream `sol_fct.tex` 1:1).
+- `sol_enum.md` — not yet ported (corresponds to *Variable price* exercise
+  in `match.tex`, chapter 11, also not yet ported).
+- `sol_int.md` — not yet ported (corresponds to *Overflow in hash
+  function* exercise in `int_overflow.tex`, chapter 24, also not yet
+  ported).
+
+**On merge:** when a new `\begin{exercise}{X}` appears with `\autoref{sol:Y}`,
+port the prompt with the directive form above and append the solution
+subsection to the matching `sol_*.md` (create the file if needed).
 
 ### 10. LaTeX text macros → plain text
 

@@ -70,10 +70,14 @@ We may have launched only the `run` sub-command since it automatically
 executes the *build* step if needed.
 :::
 
-:::{admonition} Exercise — First program
-:class: tip
-Create a new Cargo project named *factorial* and write a program that
+:::{exercise} First program
+:label: first-program
+:enumerated: true
+
+Create a new Cargo project named `factorial` and write a program that
 computes the factorial of 20, using a recursive function.
 Print the result on the standard output stream (i.e.: using the
 `println!()` macro).
 :::
+
+[see solution](#first-program-solution)
