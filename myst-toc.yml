@@ -72,6 +72,21 @@ project:
     - title: Appendices
       children:
 
+        - title: Tables
+          children:
+            - file: cargo_cmds.md
+            - file: rust_apps.md
+            - file: array_methods.md
+            - file: vec_methods.md
+            - file: str_methods.md
+            - file: string_methods.md
+            - file: slice_methods.md
+            - file: option_methods.md
+            - file: macro_fct_list.md
+            - file: bool_ops.md
+            - file: int_ops.md
+            - file: float_ops.md
+
         - title: Solutions
           children:
             - file: sol_fct.md

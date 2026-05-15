@@ -25,7 +25,8 @@ let b = false;
 
 ## Logical operators
 
-*Logical operators* combine boolean values to give a new boolean value.
+*Logical operators* (see {numref}`tab-logical-op`) combine boolean values
+to give a new boolean value.
 
 The NOT operator `!` negates the value:
 
@@ -114,8 +115,8 @@ println!("{b}");
 
 ## Comparison operators
 
-*Comparison operators* compare values of various types and return a boolean
-value.
+*Comparison operators* (see {numref}`tab-comp-op`) compare values of
+various types and return a boolean value.
 
 The *equality* operator returns `true` if two values are equal:
 

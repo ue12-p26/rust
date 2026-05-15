@@ -18,8 +18,9 @@ In Rust, an
 is defined with a type and a fixed size.
 It is defined on the *stack* memory, and thus must be used with *reasonable
 sizes*.
-It provides few methods, but can be coerced to *slices*, which provide most
-of the interesting methods.
+It provides few methods (see {numref}`tab-array-methods`), but can be
+coerced to *slices*, which provide most of the interesting methods (see
+{numref}`tab-slice-methods`).
 
 Here is an array of four `i32` integers:
 

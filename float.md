@@ -17,6 +17,8 @@ The
 [Floating-Point Types](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html#floating-point-types)
 are available in 32 (`f32`) and 64 bits (`f64`).
 
+{numref}`tab-float-op` presents the available floating-point operators.
+
 ## Default type
 
 The default type for floats is `f64`:

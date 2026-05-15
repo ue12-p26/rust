@@ -18,6 +18,8 @@ are available in **signed** and **unsigned** flavours, from 8 bits to 128
 bits. The **unsigned** versions are: `u8`, `u16`, `u32`, `u64` and `u128`.
 The **signed** versions are: `i8`, `i16`, `i32`, `i64` and `i128`.
 
+{numref}`tab-arith-op` provides a list of available operators.
+
 ## Default type
 
 If unspecified, an integer is of type `i32`:

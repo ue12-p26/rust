@@ -22,6 +22,7 @@ source bash-setup.sh
 project as to install applications (crates) from the official repository.
 
 The different actions provided by `cargo` are accessed through a set of
+sub-commands. See {numref}`tab-cargo-subcmds` for a list of the main
 sub-commands.
 To get the full list of sub-commands, run the following command:
 
@@ -31,8 +32,10 @@ cargo --list
 
 ## Installing an application
 
-Standard Unix tools have an interesting re-implementation in Rust, usually with
-nicer output and greater processing speed.
+We present in {numref}`tab-rust-apps` a list of some useful Rust
+applications.
+For instance, standard Unix tools have an interesting re-implementation in
+Rust, usually with nicer output and greater processing speed.
 
 Here is an example with the installation of the `bat` application/package:
 
