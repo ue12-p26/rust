@@ -8,8 +8,7 @@ The following parts have been ported so far:
 - *Preliminaries*: chapters 1 (Introduction) and 2 (Environment).
 - *Basics*: chapters 3 (Variables & constants) through 8 (Functions —
   Part I).
-- *Appendices > Tables*: full chapter (cargo commands, notable Rust
-  applications, container/string/option methods, function-like macros,
-  boolean / integer / floating-point operator tables).
-- *Appendices > Solutions*: only the *First program* solution so far
-  (chapter 8).
+- *Fundamentals*: chapters 9 (Macros introduction) through 14 (Slices).
+- *Appendices > Tables*: full chapter.
+- *Appendices > Solutions*: *First program* (chapter 8) and *Nuts price*
+  (chapter 12) so far.

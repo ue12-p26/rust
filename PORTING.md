@@ -10,19 +10,29 @@ would lose a deliberate local choice.
 
 ## Status
 
-Porting paused at the end of **Part 2 (*Basics*)** — i.e. through chapter 8
-*Functions — Part I* inclusive. Chapters covered:
+Porting paused at the end of **Part 3 (*Fundamentals*)** — i.e. through
+chapter 14 *Slices* inclusive. Chapters covered:
 
 - Part 1 (*Preliminaries*): 1 *Introduction*, 2 *Environment*
 - Part 2 (*Basics*): 3 *Variables & constants*, 4 *Atomic types*,
   5 *Memory — Part I*, 6 *Complex types*, 7 *Syntax & control flow*,
   8 *Functions — Part I*
+- Part 3 (*Fundamentals*): 9 *Macros introduction*, 10 *Dynamic types —
+  Part I*, 11 *Memory — Part II*, 12 *Enum type*, 13 *Dynamic types —
+  Part II*, 14 *Slices*
 
-Chapters 9+ (*Fundamentals*, *Proficiency*, *Expertise*, *Mastery*) are
-not yet ported.
+Chapters 15+ (*Proficiency*, *Expertise*, *Mastery*) are not yet ported.
 
 Of the *Appendices* part, **Tables** is fully ported and **Solutions**
-contains only the *First program* entry corresponding to chapter 8.
+contains the *First program* (chapter 8) and *Nuts price* (chapter 12)
+entries. The remaining *Overflow in hash function* solution is still
+pending (chapter 24, not yet ported).
+
+Three chapters in Part 3 carry an upstream `\DRAFT` / `\TODO` marker
+that has been preserved as a `:::{warning} Draft` admonition at the top
+of the corresponding MyST page: *More about Vec* (`vec_bis.md`),
+*Slices* (`slices_intro.md`), *String slices* (`str.md`), and *Array
+slices* (`arr_slices.md` — essentially a stub).
 
 ## Upstream reference
 
@@ -252,7 +262,42 @@ the port use `../img/...`, `../gen_img/...` or `../common/...`. The
 **On merge:** new figures need their paths rewritten with the `../`
 prefix and pointed at the same source assets.
 
-### 12. Directive fence convention: `:::` not `` ``` ``
+### 13. evcxr can't store top-level lets that hold non-static references
+
+evcxr wraps each cell so top-level `let` bindings persist across cells
+via a struct stored between executions. That struct cannot hold values
+whose type carries a non-static reference (e.g. `&i32`, `&mut String`,
+`std::slice::Iter<'_, T>`, `Option<&i32>`). The kernel error reads
+roughly:
+
+```
+Error: The variable `b` contains a reference with a non-static lifetime so
+```
+
+This happens with pedagogically *correct* Rust that compiles fine under
+`rustc` — the LaTeX build wraps every snippet in `fn main()`, where the
+reference's lifetime is the function body, so it's a non-issue there.
+
+**Workaround applied:** affected cells carry `:tags: [raises-exception]`
+so the build keeps going. The rendered page will show an error for
+demos that are not actually wrong — accept this UX trade-off, or rewrite
+the cell to avoid storing the reference at top level (e.g. wrap the body
+in a `{ ... }` block, or use a helper `fn`).
+
+**Cells currently affected** (Part 3):
+- `vec.md` — the explicit `iter()` walkthrough (`let mut i = v.iter()`).
+- `vec_bis.md` — `let a = &v[1]` indexing demo, `let elem = v.get(0)`
+  (`Option<&i32>`) demo.
+- `ref.md` — five cells (every "happy path" demo that ends with a
+  top-level `let b = &a` / `let t = &s` / `let u = &mut s`).
+
+**On merge:** every time a new chapter introduces a snippet of the form
+`let r = &something;` or `let it = something.iter();` where `r`/`it` is
+the trailing top-level binding, expect to need `:tags: [raises-exception]`
+in evcxr. Function-wrap or block-wrap if you want the demo to actually
+succeed.
+
+### 14. Directive fence convention: `:::` not `` ``` ``
 
 Every directive other than `{code-cell}` uses colon fences (`:::{...}` /
 `:::`) rather than backtick fences (`` ```{...} `` / `` ``` ``).

@@ -69,6 +69,47 @@ project:
             - file: fct_call.md
             - file: fct_main.md
 
+    - title: Fundamentals
+      children:
+
+        - title: Macros introduction
+          children:
+            - file: macros_intro.md
+            - file: macro_decl.md
+            - file: macro_fct.md
+            - file: macro_derive.md
+            - file: macro_attr.md
+
+        - title: Dynamic types - Part I
+          children:
+            - file: vec.md
+            - file: string.md
+
+        - title: Memory - Part II
+          children:
+            - file: ownership.md
+            - file: ref.md
+
+        - title: Enum type
+          children:
+            - file: enum.md
+            - file: match.md
+            - file: enum_methods.md
+            - file: gen_enum.md
+            - file: option.md
+            - file: if_let.md
+            - file: while_let.md
+
+        - title: Dynamic types - Part II
+          children:
+            - file: vec_bis.md
+
+        - title: Slices
+          children:
+            - file: slices_intro.md
+            - file: str.md
+            - file: arr_slices.md
+
     - title: Appendices
       children:
 
@@ -89,4 +130,5 @@ project:
 
         - title: Solutions
           children:
+            - file: sol_enum.md
             - file: sol_fct.md
