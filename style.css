@@ -1,13 +1,17 @@
 /* light mode value */
 :root {
-    --my-pink: #fae2e8;
+    --my-pink: #fcedf1;
     --my-dark: #2d2d2d;
+    --my-green: #e1f8ef;
+    --my-blue: #e2edf8;
 }
 
 /* dark mode value */
 html.dark {
-    --my-pink: #8c2f56;
+    --my-pink: #9c476b;
     --my-dark: #474545;
+    --my-green: #4a7c6b;
+    --my-blue: #4a5da7;
 }
 
 .dark-background>div[data-name="outputs-container"] {
@@ -59,4 +63,19 @@ div[data-name="outputs-container"]:has(div[data-name="safe-output-text"]) {
     padding: 8px;
     border-radius: 6px;
     background-color: var(--my-pink);
+}
+
+/* not catching up apparently */
+.turlututu {
+    background-color: var(--my-pink);
+    border-radius: 6px;
+    padding: 8px;
+}
+
+.myst-exercise {
+    border-radius: 6px;
+
+    .myst-exercise-header {
+        background-color: var(--my-green);
+    }
 }
