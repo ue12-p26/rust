@@ -22,6 +22,11 @@ It provides few methods (see {numref}`tab-array-methods`), but can be
 coerced to *slices*, which provide most of the interesting methods (see
 {numref}`tab-slice-methods`).
 
+:::{warning} Rust indices
+In Rust, the indices of arrays, ranges, vectors, etc, start all at
+index `0`. Thus the first element is always at index `0`.
+:::
+
 Here is an array of four `i32` integers:
 
 ```{code-cell} rust

@@ -63,8 +63,8 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   c75f034bf2c139a6a172e15ef14541c9e51d09d9
-subject:  Resolve "Review raw string explanations"
+commit:   b4f6100c20134b8d6fc6051ff7143d88a3715fb2
+subject:  Resolve "Explain that indices start at 0 in Rust"
 date:     2026-05-13
 ```
 

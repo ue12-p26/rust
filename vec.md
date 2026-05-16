@@ -13,8 +13,17 @@ kernelspec:
 
 # `Vec` type
 
-[Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html) is a generic type
-for allocating a growable array in the heap memory.
+[Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html) is a *generic*
+type for allocating a growable array in the heap memory.
+
+:::{note} Generic types
+Generic types are defined using one or more parameter types, allowing
+to define one type that can be specialized for one or more types.
+Containers like `Vec` are all generic types. This allows to construct,
+using a single type, containers of `f32`, of `f64`, of `i16`, of a
+custom type, etc.
+Later, we will see more about generics inside a dedicated chapter.
+:::
 
 We present here the basics of the `Vec` type and some of its methods. See
 {numref}`tab-vec-methods` for a more complete list of its methods.
@@ -69,6 +78,10 @@ We can access individual elements using the indexing operator (`[]`):
 let v = vec![1, 2, 3];
 v[1]
 ```
+
+:::{warning} Indices start at `0`
+As for *arrays*, the first element of a `vec` is at index `0`.
+:::
 
 With this operator, if the index is out of bounds, an unrecoverable error
 is raised:
