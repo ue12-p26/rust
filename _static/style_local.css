@@ -1,0 +1,90 @@
+/* light mode value */
+:root {
+    --my-pink: #fcedf1;
+    --my-dark: #2d2d2d;
+    --my-green: #e1f8ef;
+    --my-blue: #e2edf8;
+}
+
+/* dark mode value */
+html.dark {
+    --my-pink: #9c476b;
+    --my-dark: #474545;
+    --my-green: #4a7c6b;
+    --my-blue: #4a5da7;
+}
+
+.dark-background>div[data-name="outputs-container"] {
+   background-color: var(--my-dark);
+   color: white;
+   border-radius: 6px;
+}
+
+.dark-background :where(.jupyter-output, .jupyter-error) {
+    --ansi-bright-black:          rgb(40 40 40);
+    --ansi-bright-red:            rgb(255 100 100);
+    --ansi-bright-green:          rgb(120 220 120);
+    --ansi-bright-yellow:         rgb(230 200 80);
+    --ansi-bright-blue:           rgb(120 160 255);
+    --ansi-bright-magenta:        rgb(220 140 220);
+    --ansi-bright-cyan:           rgb(120 220 220);
+    --ansi-bright-white:          rgb(230 230 230);
+    --ansi-black:   rgb(110 110 110);
+    --ansi-red:     rgb(255 130 130);
+    --ansi-green:   rgb(150 240 150);
+    --ansi-yellow:  rgb(255 230 100);
+    --ansi-blue:    rgb(140 180 255);
+    --ansi-magenta: rgb(240 160 240);
+    --ansi-cyan:    rgb(150 240 240);
+    --ansi-white:   rgb(255 255 255);
+}
+
+/* handling bash_kernel's output style, i.e. one stream chunk per line */
+
+/* applies to the div whose immediate left sibling is another such div */
+div[data-name^="safe-output-"] + div[data-name^="safe-output-"] {
+    &>div>pre {
+        padding-top: 0px;
+    }
+}
+
+/* applies to the div whose immediate right sibling is another such div */
+div[data-name^="safe-output-"]:has(+ div[data-name^="safe-output-"]) {
+    &>div>pre {
+        padding-bottom: 0px;
+    }
+}
+
+div[data-name^="safe-output-"]>div>pre:has(code:empty) {
+    display: none;
+}
+
+div[data-name="outputs-container"]:has(div[data-name="safe-output-text"]) {
+    padding: 8px;
+    border-radius: 6px;
+    background-color: var(--my-pink);
+}
+
+/* not catching up apparently */
+.turlututu {
+    background-color: var(--my-pink);
+    border-radius: 6px;
+    padding: 8px;
+}
+
+.myst-exercise {
+    border-radius: 6px;
+
+    .myst-exercise-header {
+        background-color: var(--my-green);
+    }
+}
+
+body {
+    /* background-image: url("./draft.excalidraw.svg"); */
+    background-image: url("https://gist.githubusercontent.com/parmentelat/dc3728ade93f6917eff1b7d38ae38c0a/raw/438d43c4f571123c9a4fcafeb45c4f27b952e9aa/draft.excalidraw.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}

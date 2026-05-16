@@ -48,7 +48,7 @@ site:
     # logo: media/logo-rust.svg
     # very visible in the header
     logo_text: "Rust course"
-    style: "style.css"
+    style: "_static/style.css"
     folders: true
 
 extends:
