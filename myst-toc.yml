@@ -164,6 +164,7 @@ project:
 
         - title: Traits
           children:
+            - file: trait_intro.md
             - file: trait_def.md
             - file: trait_impl.md
             - file: trait_bounds.md

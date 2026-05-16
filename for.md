@@ -29,16 +29,16 @@ for n in a {
 A range being an iterator, we can use the `for` statement on it:
 
 ```{code-cell} rust
-for i in 1..10 {
+for i in 1..=10 {
   print!("{i}, ");
 }
 ```
 
-And we can also apply available `Iterator` trait's methods like the `rev()`
-method that reverses the elements in the range:
+We may also reverse the range to iterate from higher values to lower
+values:
 
 ```{code-cell} rust
-for i in (1..10).rev() {
+for i in 10..=1 {
   print!("{i}, ");
 }
 ```

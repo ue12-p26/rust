@@ -103,8 +103,9 @@ s
 ```
 
 :::{note} Format trait
-As long as a type define the required *format trait*, we can use it inside
-a `format!()` macro.
+As long as a type define the required *format trait* (see
+[Traits chapter](#chp-traits)), we can use it inside a `format!()`
+macro.
 Examples of *format traits*: `Display`, `Debug`, `Binary`, ...
 We will see later how to define a *format trait* for a custom type.
 :::

@@ -23,8 +23,9 @@ In this section we will look at what happens when:
 
 ## Cloning
 
-The `Clone` trait, when implemeted by a type, allows the explicit *copy*
-of an object through the use of the `clone()` method.
+The `Clone` trait (see [Traits chapter](#chp-traits)), when implemented
+by a type, allows the explicit *copy* of an object through the use of
+the `clone()` method.
 
 Depending on the implementation of the `clone()` method, the *copy* may be
 done:
@@ -37,7 +38,7 @@ done:
   - Allocated heap memory.
   - Opened resources (file handles, sockets, …).
   - Complex structures: lists, trees, graphs, …
-  - Reseting of specific fields that must not be copied.
+  - Resetting of specific fields that must not be copied.
 
 Here is an example in which we clone a `String` object (the `String` type
 allocates heap memory for storing a character string):

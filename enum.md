@@ -37,9 +37,9 @@ for x in [Suit::Diamond, Suit::Club, Suit::Heart, Suit::Spade] {
 ```
 
 :::{note} Debug formatting
-The `Debug` trait defines automatically a debug formatting for a type.
-The `?` formatting mode enables *debug* formatting (i.e.: using `Debug`
-trait for formatting).
+The `Debug` trait (see [Traits chapter](#chp-traits)) defines
+automatically a debug formatting for a type. The `?` formatting mode
+enables *debug* formatting (i.e.: using `Debug` trait for formatting).
 :::
 
 The `enum` keyword can also define a *tagged union*, which can be viewed

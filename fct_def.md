@@ -19,7 +19,7 @@ various scopes:
 - At global level.
 - Inside another function.
 - Inside an `impl` (implementation) block of a `struct` (structure).
-- Inside a `trait` definition.
+- Inside a `trait` definition (see [Traits chapter](#chp-traits)).
 
 Here is a function that takes no argument and returns nothing:
 
