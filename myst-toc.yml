@@ -110,6 +110,55 @@ project:
             - file: str.md
             - file: arr_slices.md
 
+    - title: Proficiency
+      children:
+
+        - title: Functions - Part II
+          children:
+            - file: memory_passing_value.md
+            - file: closures.md
+
+        - title: Memory
+          children:
+            - file: lifetimes.md
+
+        - title: Project
+          children:
+            - file: project.md
+            - file: project_toml.md
+
+        - title: Defining custom types
+          children:
+            - file: struct.md
+
+        - title: Error handling - Part I
+          children:
+            - file: err_intro.md
+            - file: err_unrec.md
+            - file: err_rec.md
+            - file: result.md
+            - file: question_mark.md
+
+        - title: File system
+          children:
+            - file: pathbuf.md
+            - file: path.md
+            - file: osstring.md
+            - file: osstr.md
+
+        - title: Input & output
+          children:
+            - file: io.md
+            - file: args.md
+            - file: logs.md
+
+        - title: Testing
+          children:
+            - file: test_intro.md
+            - file: test_unit.md
+            - file: test_running.md
+            - file: test_integration.md
+
     - title: Appendices
       children:
 

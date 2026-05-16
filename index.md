@@ -9,6 +9,8 @@ The following parts have been ported so far:
 - *Basics*: chapters 3 (Variables & constants) through 8 (Functions —
   Part I).
 - *Fundamentals*: chapters 9 (Macros introduction) through 14 (Slices).
+- *Proficiency*: chapters 15 (Functions — Part II) through 22
+  (Testing).
 - *Appendices > Tables*: full chapter.
-- *Appendices > Solutions*: *First program* (chapter 8) and *Nuts price*
-  (chapter 12) so far.
+- *Appendices > Solutions*: *First program* (chapter 8) and *Nuts
+  price* (chapter 12) so far.
