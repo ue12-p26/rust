@@ -63,8 +63,8 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   70182b1168bb6f5a60b94d186e69b07d39d6e6bc
-subject:  Resolve "Review example in 8.4.2"
+commit:   949c9636ca9087370a5b53d9da5d8047c29d11d5
+subject:  Bump version
 date:     2026-05-13
 ```
 
