@@ -63,9 +63,9 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   a23b9f88719067bc26ce7b57ccc0192bd979ba4b
-subject:  Resolve "Change admonition colors"
-date:     2026-05-12
+commit:   c75f034bf2c139a6a172e15ef14541c9e51d09d9
+subject:  Resolve "Review raw string explanations"
+date:     2026-05-13
 ```
 
 When resuming, fetch upstream and use

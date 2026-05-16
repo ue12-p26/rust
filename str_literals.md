@@ -70,21 +70,41 @@ are not interpreted (much like Python's raw strings):
 r"My string with any char\n \x3f.'abc'"
 ```
 
-Since escape characters are not interpreted inside a raw string, it is not
-possible to insert quote characters this way. For this reason, a sharp
-(`#`) notation is also available. With this method we add an equal number
-of sharp characters before the start quote and after the end quote.
-Example with one sharp character:
+:::{tip} How to insert a quote character inside a raw string?
+However the quote character `"` being the closing symbol, and escape
+characters being not interpreted, we cannot insert a quote character
+as-is inside a raw string:
+
+```rust
+r"Some string with a quote \" inside."
+```
+
+In order to be able to insert quote characters, Rust proposes an
+additional notation where `#"` and `"#` become the start and stop
+sequences of the raw string:
 
 ```{code-cell} rust
 r#"Some string with a quote " inside."#
 ```
 
-Example with two sharp characters:
+This solution, however, does not allow to insert a `"#` sequence as it
+the closing symbol:
+
+```rust
+r#"Some string with a quote " inside and some symbols "# at the end."#
+```
+
+To solve this limitation, Rust proposes in fact to use as many sharp
+symbols `#` as necessary for the opening sequence, and as much for the
+closing sequence. Thus we may use `##"` & `"##` for the start and stop
+sequences, or `###"` & `"###`, or any number of sharp symbols.
+Using this feature in the following example, we are able to insert the
+sequence `"#` inside our raw string:
 
 ```{code-cell} rust
-r##"Some string with a quote " and sharp # inside."##
+r##"Some string with a quote " inside and some symbols: "# at the end."##
 ```
+:::
 
 ## Byte string
 
