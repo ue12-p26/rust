@@ -11,6 +11,7 @@ The following parts have been ported so far:
 - *Fundamentals*: chapters 9 (Macros introduction) through 14 (Slices).
 - *Proficiency*: chapters 15 (Functions — Part II) through 22
   (Testing).
+- *Expertise*: chapters 23 (Traits) through 25 (Collections).
 - *Appendices > Tables*: full chapter.
 - *Appendices > Solutions*: *First program* (chapter 8) and *Nuts
   price* (chapter 12) so far.

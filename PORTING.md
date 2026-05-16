@@ -10,8 +10,8 @@ would lose a deliberate local choice.
 
 ## Status
 
-Porting paused at the end of **Part 4 (*Proficiency*)** — i.e. through
-chapter 22 *Testing* inclusive. Chapters covered:
+Porting paused at the end of **Part 5 (*Expertise*)** — i.e. through
+chapter 25 *Collections* inclusive. Chapters covered:
 
 - Part 1 (*Preliminaries*): 1 *Introduction*, 2 *Environment*
 - Part 2 (*Basics*): 3 *Variables & constants*, 4 *Atomic types*,
@@ -23,8 +23,9 @@ chapter 22 *Testing* inclusive. Chapters covered:
 - Part 4 (*Proficiency*): 15 *Functions — Part II*, 16 *Memory*,
   17 *Project*, 18 *Defining custom types*, 19 *Error handling —
   Part I*, 20 *File system*, 21 *Input & output*, 22 *Testing*
+- Part 5 (*Expertise*): 23 *Traits*, 24 *Generics*, 25 *Collections*
 
-Chapters 23+ (*Expertise*, *Mastery*) are not yet ported.
+Chapters 26+ (*Mastery*) are not yet ported.
 
 Of the *Appendices* part, **Tables** is fully ported and **Solutions**
 contains the *First program* (chapter 8) and *Nuts price* (chapter 12)

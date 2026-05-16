@@ -159,6 +159,25 @@ project:
             - file: test_running.md
             - file: test_integration.md
 
+    - title: Expertise
+      children:
+
+        - title: Traits
+          children:
+            - file: trait_def.md
+            - file: trait_impl.md
+            - file: trait_bounds.md
+
+        - title: Generics
+          children:
+            - file: gen_fct.md
+            - file: gen_struct.md
+            - file: gen_methods.md
+
+        - title: Collections
+          children:
+            - file: hashmap.md
+
     - title: Appendices
       children:
 
