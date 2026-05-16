@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.19.2
+kernelspec:
+  name: rust
+  display_name: Rust
+  language: rust
+---
+
 # Slices
 
 :::{warning} Draft
@@ -10,7 +23,8 @@ A slice is a kind of reference.
 
 String slices:
 
-```rust
+```{code-cell} rust
+:tags: [raises-exception]
 let s = String::from("Hello");
 let slice = &s[0..2]; // from start to index 2 excluded
 let slice = &s[..2]; // from start to index 2 excluded
@@ -22,7 +36,8 @@ let slice = &s[..]; // whole string
 
 Function returning a string slice:
 
-```rust
+```{code-cell} rust
+:tags: [raises-exception]
 fn foo(s: &String) -> &str {
   // ...
 }
@@ -31,7 +46,8 @@ fn foo(s: &String) -> &str {
 String literals are slices, their type is `&str`.
 A more generic function would take a `&str` instead of a `&String`:
 
-```rust
+```{code-cell} rust
+:tags: [raises-exception]
 fn foo(s: &str) -> &str {
   // ...
 }
@@ -39,7 +55,8 @@ fn foo(s: &str) -> &str {
 
 Array slice:
 
-```rust
+```{code-cell} rust
+:tags: [raises-exception]
 let a = [1, 2, 3, 4];
 let slice = &a[1..3];
 ```

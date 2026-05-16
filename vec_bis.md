@@ -58,7 +58,8 @@ let a = &v[1];
 
 We cannot modify a vector once we have a reference on it:
 
-```rust
+```{code-cell} rust
+:tags: [raises-exception]
 let elem = &v[i]; // immutable borrow
 v.push(10); // mutable borrow ==> COMPILER ERROR!
 ```
@@ -79,7 +80,8 @@ match elem {
 
 Iterating over elements:
 
-```rust
+```{code-cell} rust
+:tags: [raises-exception]
 for e in &v { // immutable iteration
 }
 
@@ -90,7 +92,7 @@ for e in &mut v{ // mutable iteration (i.e.: we can modify the elements)
 We can store miscellaneous types inside a vector, using an enum.
 This works because an enum defines all its values as variants.
 
-```rust
+```{code-cell} rust
 enum MyEnum {
   AnInt(i8),
   ABool(bool),
