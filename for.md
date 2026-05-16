@@ -22,7 +22,7 @@ array:
 ```{code-cell} rust
 let a = [1, 2, 3, 4];
 for n in a {
-  print!("{n}, ");
+  print!("{n} ");
 }
 ```
 
@@ -30,16 +30,16 @@ A range being an iterator, we can use the `for` statement on it:
 
 ```{code-cell} rust
 for i in 1..=10 {
-  print!("{i}, ");
+  print!("{i} ");
 }
 ```
 
 We may also reverse the range to iterate from higher values to lower
-values:
+values, using the `rev()` method on a range:
 
 ```{code-cell} rust
-for i in 10..=1 {
-  print!("{i}, ");
+for i in (1..=10).rev() {
+  print!("{i} ");
 }
 ```
 

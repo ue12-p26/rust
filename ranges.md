@@ -12,6 +12,9 @@ for `match`, *slices* and *for*.
 For the moment, we just present in {numref}`tab-range-syntax` the syntax to
 use when defining a range.
 
+A *range* being also an `Iterator`, we may use `Iterator` methods on it
+like `rev()`. See [Iterator methods](#chp-iter-methods).
+
 :::{list-table} Range syntax
 :name: tab-range-syntax
 :header-rows: 1

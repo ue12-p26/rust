@@ -63,8 +63,8 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   6ff1ddaff3810097300aa983deb38ccc8addc043
-subject:  Resolve "Move chapter 10 'Dynamic types'"
+commit:   403a237e819246005a50ee97e8116dbb285cf481
+subject:  Resolve "Correct reverse iterating error"
 date:     2026-05-13
 ```
 

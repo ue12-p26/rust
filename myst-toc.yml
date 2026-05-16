@@ -220,6 +220,7 @@ project:
             - file: vec_methods.md
             - file: str_methods.md
             - file: string_methods.md
+            - file: iter_methods.md
             - file: slice_methods.md
             - file: option_methods.md
             - file: macro_fct_list.md
