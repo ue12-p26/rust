@@ -14,8 +14,21 @@ kernelspec:
 # String
 
 The [String](https://doc.rust-lang.org/std/string/struct.String.html) type
-is a wrapper around `Vec<u8>` that handles *UTF-8* strings allocated inside
+is a wrapper around `Vec<u8>` that handles UTF-8 strings allocated inside
 the heap memory.
+
+:::{note} UTF-8 encoding
+UTF-8 is a common encoding scheme of Unicode characters on plain byte
+(i.e.: 8 bits) values. In UTF-8, each Unicode character is encoded on
+one or more bytes. Not all combinations of bytes give a legitimate
+UTF-8 encoding.
+`String` instances, like string literals and string slices as we will
+see later, store sequences of plain bytes in a `Vec<u8>` vector, and
+add a layer of UTF-8 checking, thus ensuring that a valid UTF-8 string
+is stored.
+We will see more, later, about character encoding inside a dedicated
+chapter.
+:::
 
 We present here the basics of the `String` type and some of its methods.
 See {numref}`tab-string-methods` for a more complete list of its methods.
