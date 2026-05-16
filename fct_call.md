@@ -110,7 +110,7 @@ inside the function's scope:
 
 ```{code-cell} rust
 fn foo(n: i8) {
-  if n < 10 {
+  if n < 5 {
     return;
   }
   println!("The number is {n}.");
@@ -129,22 +129,4 @@ fn foo() -> u8 {
 }
 
 foo()
-```
-
-This can be used to return a value prematurely:
-
-```{code-cell} rust
-fn foo(mut n: i8) -> i8 {
-  if n < 10 {
-    return -1;
-  }
-  n /= 3;
-  if n < 5 {
-    n * 2
-  } else {
-    n
-  }
-}
-
-foo(6)
 ```

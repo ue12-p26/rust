@@ -63,8 +63,8 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   403a237e819246005a50ee97e8116dbb285cf481
-subject:  Resolve "Correct reverse iterating error"
+commit:   70182b1168bb6f5a60b94d186e69b07d39d6e6bc
+subject:  Resolve "Review example in 8.4.2"
 date:     2026-05-13
 ```
 
