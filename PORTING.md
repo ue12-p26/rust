@@ -63,8 +63,8 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   f047dfe078888b128cbb9f9c658f41159954228f
-subject:  Resolve "Add a licence"
+commit:   f9d2e0d20e99cd151c605b55986482ae0b94b41c
+subject:  Resolve "Allow to build any TeX subfile individually"
 date:     2026-05-13
 ```
 
