@@ -178,6 +178,36 @@ project:
           children:
             - file: hashmap.md
 
+    - title: Mastery
+      children:
+
+        - title: Advanced projects
+          children:
+            - file: folder_mod.md
+            - file: sub_mod.md
+            - file: repub_mod.md
+            - file: mult_crates.md
+
+        - title: Bitwise operations
+          children:
+            - file: bitwise_intro.md
+            - file: int_repr.md
+            - file: bitwise_and.md
+            - file: bitwise_shift.md
+
+        - title: Error handling - Part II
+          children:
+            - file: err_msg_alloc.md
+            - file: int_overflow.md
+
+        - title: Character encoding
+          children:
+            - file: unicode.md
+
+        - title: Documenting
+          children:
+            - file: doc.md
+
     - title: Appendices
       children:
 
@@ -199,4 +229,5 @@ project:
         - title: Solutions
           children:
             - file: sol_enum.md
+            - file: sol_int.md
             - file: sol_fct.md

@@ -10,8 +10,8 @@ would lose a deliberate local choice.
 
 ## Status
 
-Porting paused at the end of **Part 5 (*Expertise*)** — i.e. through
-chapter 25 *Collections* inclusive. Chapters covered:
+**Full port complete** — every chapter from `main.tex` is now in the
+MyST output. Parts covered:
 
 - Part 1 (*Preliminaries*): 1 *Introduction*, 2 *Environment*
 - Part 2 (*Basics*): 3 *Variables & constants*, 4 *Atomic types*,
@@ -24,13 +24,25 @@ chapter 25 *Collections* inclusive. Chapters covered:
   17 *Project*, 18 *Defining custom types*, 19 *Error handling —
   Part I*, 20 *File system*, 21 *Input & output*, 22 *Testing*
 - Part 5 (*Expertise*): 23 *Traits*, 24 *Generics*, 25 *Collections*
+- Part 6 (*Mastery*): 26 *Advanced projects*, 27 *Defining Macros*
+  (skipped — empty upstream), 28 *Bitwise operations*, 29 *Error
+  handling — Part II*, 30 *Character encoding*, 31 *Documenting*
 
-Chapters 26+ (*Mastery*) are not yet ported.
+Of the *Appendices*, **Tables** is fully ported and **Solutions**
+contains all three entries: *First program* (chapter 8), *Nuts price*
+(chapter 12), and *Overflow in hash function* (chapter 29).
 
-Of the *Appendices* part, **Tables** is fully ported and **Solutions**
-contains the *First program* (chapter 8) and *Nuts price* (chapter 12)
-entries. The remaining *Overflow in hash function* solution is still
-pending (chapter 29, not yet ported).
+**Chapter 27 *Defining Macros* is omitted from the TOC** because
+`main.tex` declares the `\chapter{Defining Macros}` heading but lists
+no subfiles. There is no upstream source for it, so no `.md` was
+created. When a `.tex` is added upstream, port it and re-add the
+chapter entry to `myst-toc.yml`.
+
+**`folder_mod.md` carries a local fix vs. upstream**: `folder_mod.tex`
+references `src/...` paths after `cargo new --bin foo` without a
+`pushd foo`, so its hidden setup cell would fail in a fresh kernel.
+The MyST port adds a hidden `pushd foo` cell after the `cargo new`
+step. Easy to remove once upstream patches.
 
 **Part 4 is heavy on `\DRAFT` / `\TODO` upstream**: every chapter except
 *Functions — Part II* carries draft markers, and the *File system*
