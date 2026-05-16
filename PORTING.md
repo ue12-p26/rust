@@ -63,9 +63,9 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   f9d2e0d20e99cd151c605b55986482ae0b94b41c
-subject:  Resolve "Allow to build any TeX subfile individually"
-date:     2026-05-13
+commit:   eb235e424a87ceed62b2bcfb83b9f5752e9a8061
+subject:  Resolve "syntax: semi-colon at end of line"
+date:     2026-05-16
 ```
 
 When resuming, fetch upstream and use

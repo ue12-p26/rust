@@ -6,11 +6,10 @@ Pierrick Roger.
 All six parts of the upstream course have been ported:
 
 - *Preliminaries*: chapters 1 (Introduction) and 2 (Environment).
-- *Basics*: chapters 3 (Variables & constants) through 8 (Functions —
-  Segment I).
+- *Basics*: chapters 3 (Syntax I) through 9 (Functions I).
 - *Fundamentals*: chapters 9 (Macros introduction) through 14 (Slices).
-- *Proficiency*: chapters 15 (Functions — Segment II) through 22
-  (Testing).
+- *Proficiency*: chapters from *Attributes & Macros I* through
+  *Testing*.
 - *Expertise*: chapters 23 (Traits) through 25 (Collections).
 - *Mastery*: chapters 26 (Advanced projects) through 31 (Documenting).
 - *Appendices > Tables*: full chapter.

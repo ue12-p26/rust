@@ -31,6 +31,13 @@ project:
     - title: Basics
       children:
 
+        - title: Syntax I
+          children:
+            - file: syntax.md
+            - file: comments.md
+            - file: expr.md
+            - file: ranges.md
+
         - title: Variables & constants
           children:
             - file: var_def.md
@@ -46,7 +53,7 @@ project:
             - file: bool.md
             - file: char.md
 
-        - title: Memory - Segment I
+        - title: Memory I
           children:
             - file: memory.md
             - file: var_scope.md
@@ -58,17 +65,14 @@ project:
             - file: array.md
             - file: str_literals.md
 
-        - title: Syntax & control flow
+        - title: Syntax II - Control flow
           children:
-            - file: comments.md
-            - file: expr.md
-            - file: ranges.md
             - file: if.md
             - file: loop.md
             - file: while.md
             - file: for.md
 
-        - title: Functions - Segment I
+        - title: Functions I
           children:
             - file: fct_def.md
             - file: fct_call.md
@@ -77,12 +81,12 @@ project:
     - title: Fundamentals
       children:
 
-        - title: Dynamic types - Segment I
+        - title: Dynamic types I
           children:
             - file: vec.md
             - file: string.md
 
-        - title: Memory - Segment II
+        - title: Memory II
           children:
             - file: ownership.md
             - file: ref.md
@@ -97,7 +101,7 @@ project:
             - file: if_let.md
             - file: while_let.md
 
-        - title: Dynamic types - Segment II
+        - title: Dynamic types II
           children:
             - file: vec_bis.md
 
@@ -110,7 +114,7 @@ project:
     - title: Proficiency
       children:
 
-        - title: Attributes & Macros - Segment I
+        - title: Attributes & Macros I
           children:
             - file: macros_intro.md
             - file: macro_decl.md
@@ -118,7 +122,7 @@ project:
             - file: macro_derive.md
             - file: macro_attr.md
 
-        - title: Functions - Segment II
+        - title: Functions II
           children:
             - file: memory_passing_value.md
             - file: closures.md
@@ -136,7 +140,7 @@ project:
           children:
             - file: struct.md
 
-        - title: Error handling - Segment I
+        - title: Error handling I
           children:
             - file: err_intro.md
             - file: err_unrec.md
@@ -201,7 +205,7 @@ project:
             - file: bitwise_and.md
             - file: bitwise_shift.md
 
-        - title: Error handling - Segment II
+        - title: Error handling II
           children:
             - file: err_msg_alloc.md
             - file: int_overflow.md
