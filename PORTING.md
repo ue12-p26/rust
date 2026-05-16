@@ -63,8 +63,8 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   b4f6100c20134b8d6fc6051ff7143d88a3715fb2
-subject:  Resolve "Explain that indices start at 0 in Rust"
+commit:   910eb5eb82775a9a5499334a45e28af3c0e5e8c3
+subject:  Resolve "In chapter 10.1.6, explain better iterator & Some"
 date:     2026-05-13
 ```
 
