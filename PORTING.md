@@ -63,8 +63,8 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   949c9636ca9087370a5b53d9da5d8047c29d11d5
-subject:  Bump version
+commit:   ced68c02485ae191b2f988e64fcac511a4d2517e
+subject:  Resolve "cannot run code on .bss"
 date:     2026-05-13
 ```
 

@@ -7,9 +7,9 @@ All six parts of the upstream course have been ported:
 
 - *Preliminaries*: chapters 1 (Introduction) and 2 (Environment).
 - *Basics*: chapters 3 (Variables & constants) through 8 (Functions —
-  Part I).
+  Segment I).
 - *Fundamentals*: chapters 9 (Macros introduction) through 14 (Slices).
-- *Proficiency*: chapters 15 (Functions — Part II) through 22
+- *Proficiency*: chapters 15 (Functions — Segment II) through 22
   (Testing).
 - *Expertise*: chapters 23 (Traits) through 25 (Collections).
 - *Mastery*: chapters 26 (Advanced projects) through 31 (Documenting).

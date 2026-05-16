@@ -16,6 +16,11 @@ project:
             - file: pros_n_cons.md
             - file: resources.md
 
+        - title: Course presentation
+          children:
+            - file: course_org.md
+            - file: course_ex.md
+
         - title: Environment
           children:
             - file: env_intro.md
@@ -41,7 +46,7 @@ project:
             - file: bool.md
             - file: char.md
 
-        - title: Memory - Part I
+        - title: Memory - Segment I
           children:
             - file: memory.md
             - file: var_scope.md
@@ -63,7 +68,7 @@ project:
             - file: while.md
             - file: for.md
 
-        - title: Functions - Part I
+        - title: Functions - Segment I
           children:
             - file: fct_def.md
             - file: fct_call.md
@@ -72,12 +77,12 @@ project:
     - title: Fundamentals
       children:
 
-        - title: Dynamic types - Part I
+        - title: Dynamic types - Segment I
           children:
             - file: vec.md
             - file: string.md
 
-        - title: Memory - Part II
+        - title: Memory - Segment II
           children:
             - file: ownership.md
             - file: ref.md
@@ -92,7 +97,7 @@ project:
             - file: if_let.md
             - file: while_let.md
 
-        - title: Dynamic types - Part II
+        - title: Dynamic types - Segment II
           children:
             - file: vec_bis.md
 
@@ -105,7 +110,7 @@ project:
     - title: Proficiency
       children:
 
-        - title: Attributes & Macros - Part I
+        - title: Attributes & Macros - Segment I
           children:
             - file: macros_intro.md
             - file: macro_decl.md
@@ -113,7 +118,7 @@ project:
             - file: macro_derive.md
             - file: macro_attr.md
 
-        - title: Functions - Part II
+        - title: Functions - Segment II
           children:
             - file: memory_passing_value.md
             - file: closures.md
@@ -131,7 +136,7 @@ project:
           children:
             - file: struct.md
 
-        - title: Error handling - Part I
+        - title: Error handling - Segment I
           children:
             - file: err_intro.md
             - file: err_unrec.md
@@ -196,7 +201,7 @@ project:
             - file: bitwise_and.md
             - file: bitwise_shift.md
 
-        - title: Error handling - Part II
+        - title: Error handling - Segment II
           children:
             - file: err_msg_alloc.md
             - file: int_overflow.md
