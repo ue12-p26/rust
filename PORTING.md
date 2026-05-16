@@ -29,7 +29,7 @@ entries. The remaining *Overflow in hash function* solution is still
 pending (chapter 24, not yet ported).
 
 Three chapters in Part 3 carry an upstream `\DRAFT` / `\TODO` marker
-that has been preserved as a `:::{warning} Draft` admonition at the top
+that has been preserved as a `:::{danger} Draft` admonition at the top
 of the corresponding MyST page: *More about Vec* (`vec_bis.md`),
 *Slices* (`slices_intro.md`), *String slices* (`str.md`), and *Array
 slices* (`arr_slices.md` — essentially a stub).
@@ -173,7 +173,7 @@ restore any dangling references in the body chapters.
 
 **Two appendix tables still marked `\INPROGRESS` upstream**
 (`array_methods.tex`, `slice_methods.tex`) are rendered with a
-`:::{warning} In progress` admonition at the top of the MyST page.
+`:::{danger} In progress` admonition at the top of the MyST page.
 
 ### 6. Bibliography citations — inlined
 

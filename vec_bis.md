@@ -13,7 +13,7 @@ kernelspec:
 
 # More about `Vec`
 
-:::{warning} Draft
+:::{danger} Draft
 This section is still being written.
 :::
 
@@ -48,12 +48,14 @@ v
 
 ```{code-cell} rust
 :tags: [raises-exception]
-let mut v: Vec<String> = Vec::new();
-v.push(String::from("abc"));
-v.push(String::from("def"));
-v.push(String::from("ghi"));
-let a = &v[1];
-(v, a)
+{
+  let mut v: Vec<String> = Vec::new();
+  v.push(String::from("abc"));
+  v.push(String::from("def"));
+  v.push(String::from("ghi"));
+  let a = &v[1];
+  (v, a)
+}
 ```
 
 We cannot modify a vector once we have a reference on it:

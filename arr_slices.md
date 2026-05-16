@@ -1,6 +1,6 @@
 # Array slices
 
-:::{warning} Draft
+:::{danger} Draft
 This section is still being written.
 
 - TODO: explain array slices `&[T]`.

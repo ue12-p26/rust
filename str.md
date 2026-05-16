@@ -13,7 +13,7 @@ kernelspec:
 
 # String slices
 
-:::{warning} Draft
+:::{danger} Draft
 This section is still being written.
 :::
 

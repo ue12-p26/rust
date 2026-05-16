@@ -1,6 +1,6 @@
 # `array` methods
 
-:::{warning} In progress
+:::{danger} In progress
 This section is still being written.
 :::
 

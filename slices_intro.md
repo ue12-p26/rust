@@ -13,7 +13,7 @@ kernelspec:
 
 # Slices
 
-:::{warning} Draft
+:::{danger} Draft
 This section is still being written.
 
 TODO: What are slices.
