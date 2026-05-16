@@ -79,3 +79,12 @@ div[data-name="outputs-container"]:has(div[data-name="safe-output-text"]) {
         background-color: var(--my-green);
     }
 }
+
+body {
+    /* background-image: url("./draft.excalidraw.svg"); */
+    background-image: url("https://gist.githubusercontent.com/parmentelat/dc3728ade93f6917eff1b7d38ae38c0a/raw/438d43c4f571123c9a4fcafeb45c4f27b952e9aa/draft.excalidraw.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
