@@ -51,19 +51,20 @@ v.push(10);
 v
 ```
 
-## `vec!()` macro
+## `vec!` macro
 
-The `vec!()` macro allows to initialize a `Vec` instance with values as it
-is done with standard arrays.
+The [vec!](https://doc.rust-lang.org/std/macro.vec.html) macro allows to
+initialize a `Vec` instance with values as it is done with standard
+arrays.
 
-The first form of `vec!()` takes a list of values:
+The first form of `vec!` takes a list of values:
 
 ```{code-cell} rust
 let v = vec![1, 2, 3];
 v
 ```
 
-The second form of `vec!()` takes a value and a number of repetitions:
+The second form of `vec!` takes a value and a number of repetitions:
 
 ```{code-cell} rust
 let v = vec![5; 10];
@@ -113,7 +114,9 @@ for e in v {
 }
 ```
 
-The same can be done by obtaining an iterator explicitly:
+The same can be done by obtaining an iterator explicitly using the `iter()`
+method. The `Iterator` object can then be iterated over thanks to the
+`next()` method, which returns an `Option<T>`:
 
 ```{code-cell} rust
 :tags: [raises-exception]
@@ -123,3 +126,11 @@ while let Some(e) = i.next() {
   print!("{e}, ");
 }
 ```
+
+:::{note} `loop`, `while` & `for`
+In Rust, both `while` and `for` are wrappers around the `loop` statement.
+We can see with these two examples, that `while` only adds a convenient
+*condition* of continuation, and `for` is a higher level loop that
+handles also the iterator creation, iteration and unwrapping of the
+`Option<T>` object.
+:::

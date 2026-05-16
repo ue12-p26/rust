@@ -77,6 +77,7 @@ to see them as a sort of sub-strings that are defined by a *start* and a
 *length*.
 :::
 
+(chp-format)=
 ## `format!()` macro
 
 The [format macro](https://doc.rust-lang.org/std/macro.format.html) allows

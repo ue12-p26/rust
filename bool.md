@@ -58,7 +58,8 @@ The XOR operator is represented by `^`:
 When combining boolean functions with the AND or OR operator, all functions
 are always evaluated.
 
-Here are three boolean functions:
+Here are three boolean functions that we will use for demonstrating the
+way the operators work:
 
 ```{code-cell} rust
 fn foo1() -> bool {
@@ -76,6 +77,20 @@ fn foo3() -> bool {
   true
 }
 ```
+
+:::{note} `println!()` macro
+The `print!()` and `println!()` macros (see
+[Macro print](https://doc.rust-lang.org/std/macro.print.html)) are
+*function-like macros* used for displaying text on the console. It
+takes a string, with possibly some formatters inside (expressions
+inside curly brackets `{}`), and zero or more argument values to insert
+inside the string. The `format!()` macro uses the same formatting
+system. See [the `format!()` macro section](#chp-format) for a
+presentation of the formatters.
+The `println!()` macro works the same as the `print!()` macro, but adds
+a *new line* character at the end of the string.
+We will see more, later, about macros inside a dedicated chapter.
+:::
 
 Doing an OR operation between them results in the calling of the three
 function, despise the fact that he first function `foo1()` returns `true`:

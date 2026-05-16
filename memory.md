@@ -101,6 +101,14 @@ The function needs to be declared *const* in order to be used for static
 initialization.
 :::
 
+:::{note} Attributes `derive` and `allow`
+[Attributes](#chp-attr) are metadata attached to an object for the
+compiler. The `allow` attribute is a compiler directive in order to
+silence some warning. The `derive` is an *attribute-like* macro that
+adds a feature, here the `Debug` trait, to a type using a default
+implementation.
+:::
+
 ## .bss
 
 The *.bss* segment (Block Started by Symbol) is where are stored

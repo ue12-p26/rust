@@ -72,14 +72,6 @@ project:
     - title: Fundamentals
       children:
 
-        - title: Macros introduction
-          children:
-            - file: macros_intro.md
-            - file: macro_decl.md
-            - file: macro_fct.md
-            - file: macro_derive.md
-            - file: macro_attr.md
-
         - title: Dynamic types - Part I
           children:
             - file: vec.md
@@ -112,6 +104,14 @@ project:
 
     - title: Proficiency
       children:
+
+        - title: Attributes & Macros - Part I
+          children:
+            - file: macros_intro.md
+            - file: macro_decl.md
+            - file: macro_fct.md
+            - file: macro_derive.md
+            - file: macro_attr.md
 
         - title: Functions - Part II
           children:
