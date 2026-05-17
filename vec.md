@@ -22,7 +22,7 @@ to define one type that can be specialized for one or more types.
 Containers like `Vec` are all generic types. This allows to construct,
 using a single type, containers of `f32`, of `f64`, of `i16`, of a
 custom type, etc.
-Later, we will see more about generics inside a dedicated chapter.
+To know more about *generics*, see [Generics chapter](#chp-generics).
 :::
 
 We present here the basics of the `Vec` type and some of its methods. See

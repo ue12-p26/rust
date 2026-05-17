@@ -11,6 +11,7 @@ kernelspec:
   language: rust
 ---
 
+(chp-generics)=
 # Generic function
 
 :::{danger} Draft

@@ -11,6 +11,7 @@ kernelspec:
   language: rust
 ---
 
+(chp-match)=
 # Match
 
 The [match](https://doc.rust-lang.org/book/ch06-02-match.html) statement

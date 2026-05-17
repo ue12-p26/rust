@@ -63,8 +63,8 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   eb235e424a87ceed62b2bcfb83b9f5752e9a8061
-subject:  Resolve "syntax: semi-colon at end of line"
+commit:   19ae1af4c5070a905b791c7ea23b67433e3930a3
+subject:  Resolve "Add real references to later chapters"
 date:     2026-05-16
 ```
 

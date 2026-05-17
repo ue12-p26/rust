@@ -11,6 +11,7 @@ kernelspec:
   language: rust
 ---
 
+(chp-for)=
 # `for`
 
 The `for` statement is a shortcut to loop on an iterator. When run on a

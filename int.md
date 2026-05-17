@@ -91,9 +91,11 @@ n
 The type of `n` will be `u8`.
 
 :::{note} Character byte
-Character bytes are used to define character strings, either UTF-8 character
-strings (`str` and `String`) or raw byte character strings (`&[u8]`).
-We will see more about that later.
+Character bytes are used to define character strings, either UTF-8
+character strings (`str` and `String`) or raw byte character strings
+(`&[u8]`).
+See [String slices](#chp-str-slices) and [String](#chp-string) to know
+more about strings.
 :::
 
 ## Operations

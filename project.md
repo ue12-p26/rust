@@ -43,8 +43,7 @@ needed:
 3. Module: An group of one or more files of code.
 4. Path: The exact identification of a code element.
 
-We will see now in more details those definitions in the following
-chapters.
+The following chapters present in more details those definitions.
 
 ## Package
 

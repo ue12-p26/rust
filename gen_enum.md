@@ -16,8 +16,8 @@ kernelspec:
 A *generic* type is a type that is defined using a parametric type instead
 of a fixed one. In Rust, the *generic* notation uses the bracket
 characters `<>`. One or more parametric types can be declared inside the
-brackets. We will see more about *generic* types inside a dedicated
-chapter.
+brackets.
+To know more about *generics*, see [Generics chapter](#chp-generics).
 
 In the following example we use a parametric type `T` to define a
 *generic* enum type to represent colors. The possible levels of grey or

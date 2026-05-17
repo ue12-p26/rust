@@ -89,7 +89,7 @@ system. See [the `format!()` macro section](#chp-format) for a
 presentation of the formatters.
 The `println!()` macro works the same as the `print!()` macro, but adds
 a *new line* character at the end of the string.
-We will see more, later, about macros inside a dedicated chapter.
+See [Print macros](#chp-print) to know more about *printing* functions.
 :::
 
 Doing an OR operation between them results in the calling of the three

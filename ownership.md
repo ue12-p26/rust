@@ -239,6 +239,7 @@ s
 
 :::{warning} Builder Pattern
 This pattern, where the received parameter is modified before returning
-it, is very common in Rust with structures' initialization, as we will
-see later.
+it, is the center of the *builder pattern* (see
+[Builder pattern](#chp-builder-pattern)) used for structures'
+initialization.
 :::

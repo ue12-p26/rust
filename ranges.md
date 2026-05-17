@@ -7,8 +7,8 @@ allows to define integer ranges that can used:
 - To take a *slice* of an object (array, string, ...).
 - To match a value inside a `match` statement.
 
-We will see later practical usage of *ranges* inside the dedicated chapters
-for `match`, *slices* and *for*.
+See [Match](#chp-match), [Slices](#chp-slices) and [`for`](#chp-for)
+for practical usages of *ranges*.
 For the moment, we just present in {numref}`tab-range-syntax` the syntax to
 use when defining a range.
 

@@ -1,3 +1,4 @@
+(chp-chr-enc)=
 # Unicode
 
 Unicode strings can be either seen as:

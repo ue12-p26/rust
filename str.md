@@ -11,6 +11,7 @@ kernelspec:
   language: rust
 ---
 
+(chp-str-slices)=
 # String slices
 
 :::{danger} Draft

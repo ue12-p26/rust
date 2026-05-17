@@ -11,6 +11,7 @@ kernelspec:
   language: rust
 ---
 
+(chp-string)=
 # String
 
 The [String](https://doc.rust-lang.org/std/string/struct.String.html) type
@@ -22,12 +23,12 @@ UTF-8 is a common encoding scheme of Unicode characters on plain byte
 (i.e.: 8 bits) values. In UTF-8, each Unicode character is encoded on
 one or more bytes. Not all combinations of bytes give a legitimate
 UTF-8 encoding.
-`String` instances, like string literals and string slices as we will
-see later, store sequences of plain bytes in a `Vec<u8>` vector, and
-add a layer of UTF-8 checking, thus ensuring that a valid UTF-8 string
-is stored.
-We will see more, later, about character encoding inside a dedicated
-chapter.
+`String` instances, like string literals and string slices (see
+[String slices](#chp-str-slices) and [String](#chp-string)), store
+sequences of plain bytes in a `Vec<u8>` vector, and add a layer of
+UTF-8 checking, thus ensuring that a valid UTF-8 string is stored.
+To know more about *character encoding*, see
+[Character encoding](#chp-chr-enc).
 :::
 
 We present here the basics of the `String` type and some of its methods.
@@ -107,7 +108,8 @@ As long as a type define the required *format trait* (see
 [Traits chapter](#chp-traits)), we can use it inside a `format!()`
 macro.
 Examples of *format traits*: `Display`, `Debug`, `Binary`, ...
-We will see later how to define a *format trait* for a custom type.
+See [Traits chapter](#chp-traits) about traits, and
+[Format traits](#chp-format-traits) for *format traits*.
 :::
 
 In the following example, we use `format!()` to concatenate two strings:
