@@ -91,6 +91,17 @@ project:
     - title: Fundamentals
       children:
 
+        - title: Enum type
+          file: chap_enum_type.md
+          children:
+            - file: enum.md
+            - file: match.md
+            - file: enum_methods.md
+            - file: gen_enum.md
+            - file: option.md
+            - file: if_let.md
+            - file: while_let.md
+
         - title: Dynamic types I
           file: chap_dynamic_types_i.md
           children:
@@ -102,17 +113,6 @@ project:
           children:
             - file: ownership.md
             - file: ref.md
-
-        - title: Enum type
-          file: chap_enum_type.md
-          children:
-            - file: enum.md
-            - file: match.md
-            - file: enum_methods.md
-            - file: gen_enum.md
-            - file: option.md
-            - file: if_let.md
-            - file: while_let.md
 
         - title: Dynamic types II
           file: chap_dynamic_types_ii.md
