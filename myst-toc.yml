@@ -9,6 +9,7 @@ project:
       children:
 
         - title: Introduction
+          file: chap_introduction.md
           children:
             - file: intro_cea.md
             - file: about_rust.md
@@ -17,11 +18,13 @@ project:
             - file: resources.md
 
         - title: Course presentation
+          file: chap_course_presentation.md
           children:
             - file: course_org.md
             - file: course_ex.md
 
         - title: Environment
+          file: chap_environment.md
           children:
             - file: env_intro.md
             - file: env_install.md
@@ -32,6 +35,7 @@ project:
       children:
 
         - title: Syntax I
+          file: chap_syntax_i.md
           children:
             - file: syntax.md
             - file: comments.md
@@ -39,6 +43,7 @@ project:
             - file: ranges.md
 
         - title: Variables & constants
+          file: chap_variables_constants.md
           children:
             - file: var_def.md
             - file: var_immut.md
@@ -47,6 +52,7 @@ project:
             - file: const.md
 
         - title: Atomic types
+          file: chap_atomic_types.md
           children:
             - file: int.md
             - file: float.md
@@ -54,18 +60,21 @@ project:
             - file: char.md
 
         - title: Memory I
+          file: chap_memory_i.md
           children:
             - file: memory.md
             - file: var_scope.md
             - file: var_shadowing.md
 
         - title: Complex types
+          file: chap_complex_types.md
           children:
             - file: tuple.md
             - file: array.md
             - file: str_literals.md
 
         - title: Syntax II - Control flow
+          file: chap_syntax_ii.md
           children:
             - file: if.md
             - file: loop.md
@@ -73,6 +82,7 @@ project:
             - file: for.md
 
         - title: Functions I
+          file: chap_functions_i.md
           children:
             - file: fct_def.md
             - file: fct_call.md
@@ -82,16 +92,19 @@ project:
       children:
 
         - title: Dynamic types I
+          file: chap_dynamic_types_i.md
           children:
             - file: vec.md
             - file: string.md
 
         - title: Memory II
+          file: chap_memory_ii.md
           children:
             - file: ownership.md
             - file: ref.md
 
         - title: Enum type
+          file: chap_enum_type.md
           children:
             - file: enum.md
             - file: match.md
@@ -102,10 +115,12 @@ project:
             - file: while_let.md
 
         - title: Dynamic types II
+          file: chap_dynamic_types_ii.md
           children:
             - file: vec_bis.md
 
         - title: Slices
+          file: chap_slices.md
           children:
             - file: slices_intro.md
             - file: str.md
@@ -115,6 +130,7 @@ project:
       children:
 
         - title: Attributes & Macros I
+          file: chap_attributes_macros_i.md
           children:
             - file: macros_intro.md
             - file: macro_decl.md
@@ -123,24 +139,29 @@ project:
             - file: macro_attr.md
 
         - title: Functions II
+          file: chap_functions_ii.md
           children:
             - file: memory_passing_value.md
             - file: closures.md
 
         - title: Memory
+          file: chap_memory.md
           children:
             - file: lifetimes.md
 
         - title: Project
+          file: chap_project.md
           children:
             - file: project.md
             - file: project_toml.md
 
         - title: Defining custom types
+          file: chap_custom_types.md
           children:
             - file: struct.md
 
         - title: Error handling I
+          file: chap_error_handling_i.md
           children:
             - file: err_intro.md
             - file: err_unrec.md
@@ -149,6 +170,7 @@ project:
             - file: question_mark.md
 
         - title: File system
+          file: chap_file_system.md
           children:
             - file: pathbuf.md
             - file: path.md
@@ -156,6 +178,7 @@ project:
             - file: osstr.md
 
         - title: Input & output
+          file: chap_input_output.md
           children:
             - file: print.md
             - file: io.md
@@ -163,6 +186,7 @@ project:
             - file: logs.md
 
         - title: Testing
+          file: chap_testing.md
           children:
             - file: test_intro.md
             - file: test_unit.md
@@ -173,6 +197,7 @@ project:
       children:
 
         - title: Traits
+          file: chap_traits.md
           children:
             - file: trait_intro.md
             - file: trait_def.md
@@ -181,12 +206,14 @@ project:
             - file: format_traits.md
 
         - title: Generics
+          file: chap_generics.md
           children:
             - file: gen_fct.md
             - file: gen_struct.md
             - file: gen_methods.md
 
         - title: Collections
+          file: chap_collections.md
           children:
             - file: vec_deque.md
             - file: linked_list.md
@@ -200,6 +227,7 @@ project:
       children:
 
         - title: Advanced projects
+          file: chap_advanced_projects.md
           children:
             - file: folder_mod.md
             - file: sub_mod.md
@@ -207,6 +235,7 @@ project:
             - file: mult_crates.md
 
         - title: Bitwise operations
+          file: chap_bitwise_operations.md
           children:
             - file: bitwise_intro.md
             - file: int_repr.md
@@ -214,19 +243,23 @@ project:
             - file: bitwise_shift.md
 
         - title: Error handling II
+          file: chap_error_handling_ii.md
           children:
             - file: err_msg_alloc.md
             - file: int_overflow.md
 
         - title: Character encoding
+          file: chap_character_encoding.md
           children:
             - file: unicode.md
 
         - title: Documenting
+          file: chap_documenting.md
           children:
             - file: doc.md
 
         - title: Design
+          file: chap_design.md
           children:
             - file: builder_pattern.md
 
@@ -234,6 +267,7 @@ project:
       children:
 
         - title: Tables
+          file: chap_tables.md
           children:
             - file: cargo_cmds.md
             - file: rust_apps.md
@@ -250,6 +284,7 @@ project:
             - file: float_ops.md
 
         - title: Solutions
+          file: chap_solutions.md
           children:
             - file: sol_enum.md
             - file: sol_int.md
