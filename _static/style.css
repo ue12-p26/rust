@@ -317,43 +317,64 @@ as the code cell is then part of the list item, in markdown, and is no longer de
 }
 /* light mode value */
 :root {
-    --my-pink: #fcedf1;
+    /* --my-pink: #fcedf1;
     --my-dark: #2d2d2d;
-    --my-green: #e1f8ef;
-    --my-blue: #e2edf8;
+    --my-blue: #e2edf8; */
+    --exercise-color: #e1f8ef;
 }
 
 /* dark mode value */
 html.dark {
-    --my-pink: #9c476b;
+    /* --my-pink: #9c476b;
     --my-dark: #474545;
-    --my-green: #4a7c6b;
-    --my-blue: #4a5da7;
+    --my-blue: #4a5da7; */
+    --exercise-color: #4a7c6b;
 }
 
-.dark-background>div[data-name="outputs-container"] {
-   background-color: var(--my-dark);
-   color: white;
-   border-radius: 6px;
-}
-
-.dark-background :where(.jupyter-output, .jupyter-error) {
+/*
+ * treat all {code-cell} with a dark background
+ * no longer require an explicit class:dark-background
+*/
+.myst-jp-nb-block > div[data-name="outputs-container"], .jupyter-output, .jupyter-error {
     --ansi-bright-black:          rgb(40 40 40);
+    --ansi-black:                 rgb(40 40 40);
+    --ansi-black-fg:              rgb(40 40 40);
     --ansi-bright-red:            rgb(255 100 100);
+    --ansi-red:                   rgb(255 100 100);
+    --ansi-red-fg:                rgb(255 100 100);
     --ansi-bright-green:          rgb(120 220 120);
+    --ansi-green:                 rgb(120 220 120);
+    --ansi-green-fg:              rgb(120 220 120);
     --ansi-bright-yellow:         rgb(230 200 80);
+    --ansi-yellow:                rgb(230 200 80);
+    --ansi-yellow-fg:             rgb(230 200 80);
     --ansi-bright-blue:           rgb(120 160 255);
+    --ansi-blue:                  rgb(120 160 255);
+    --ansi-blue-fg:               rgb(120 160 255);
     --ansi-bright-magenta:        rgb(220 140 220);
+    --ansi-magenta:               rgb(220 140 220);
+    --ansi-magenta-fg:            rgb(220 140 220);
     --ansi-bright-cyan:           rgb(120 220 220);
+    --ansi-cyan:                  rgb(120 220 220);
+    --ansi-cyan-fg:               rgb(120 220 220);
     --ansi-bright-white:          rgb(230 230 230);
-    --ansi-black:   rgb(110 110 110);
-    --ansi-red:     rgb(255 130 130);
-    --ansi-green:   rgb(150 240 150);
-    --ansi-yellow:  rgb(255 230 100);
-    --ansi-blue:    rgb(140 180 255);
-    --ansi-magenta: rgb(240 160 240);
-    --ansi-cyan:    rgb(150 240 240);
-    --ansi-white:   rgb(255 255 255);
+    --ansi-white:                 rgb(230 230 230);
+    --ansi-white-fg:              rgb(230 230 230);
+    /* --ansi-black:                 rgb(110 110 110);
+    --ansi-red:                   rgb(255 130 130);
+    --ansi-green:                 rgb(150 240 150);
+    --ansi-yellow:                rgb(255 230 100);
+    --ansi-blue:                  rgb(140 180 255);
+    --ansi-magenta:               rgb(240 160 240);
+    --ansi-cyan:                  rgb(150 240 240);
+    --ansi-white:                 rgb(255 255 255); */
+
+    background-color: var(--ansi-bright-black);
+    border-radius: 6px;
+
+    & > div[data-name^="safe-output-"] {
+        color: white;
+    }
 }
 
 /* handling bash_kernel's output style, i.e. one stream chunk per line */
@@ -376,27 +397,22 @@ div[data-name^="safe-output-"]>div>pre:has(code:empty) {
     display: none;
 }
 
-div[data-name="outputs-container"]:has(div[data-name="safe-output-text"]) {
+/* div[data-name="outputs-container"]:has(div[data-name="safe-output-text"]) { */
+div[data-name="outputs-container"]:has(div[data-name^="safe-output-"]) {
     padding: 8px;
     border-radius: 6px;
-    background-color: var(--my-pink);
-}
-
-/* not catching up apparently */
-.turlututu {
-    background-color: var(--my-pink);
-    border-radius: 6px;
-    padding: 8px;
+    background-color: var(--ansi-bright-black);
 }
 
 .myst-exercise {
     border-radius: 6px;
 
     .myst-exercise-header {
-        background-color: var(--my-green);
+        background-color: var(--exercise-color);
     }
 }
 
+/* the big 'draft' background image */
 body {
     /* background-image: url("./draft.excalidraw.svg"); */
     background-image: url("https://gist.githubusercontent.com/parmentelat/dc3728ade93f6917eff1b7d38ae38c0a/raw/438d43c4f571123c9a4fcafeb45c4f27b952e9aa/draft.excalidraw.svg");
@@ -405,3 +421,7 @@ body {
     background-attachment: fixed;
     background-size: 100% 100%;
 }
+
+/* .jupyter-error {
+    background-color: inherit;
+} */
