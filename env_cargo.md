@@ -30,22 +30,22 @@ To get the full list of sub-commands, run the following command:
 cargo --list
 ```
 
+(chp-app-inst)=
 ## Installing an application
 
-We present in {numref}`tab-rust-apps` a list of some useful Rust
-applications.
-For instance, standard Unix tools have an interesting re-implementation in
-Rust, usually with nicer output and greater processing speed.
+:::{warning} To review
+:::
 
-Here is an example with the installation of the `bat` application/package:
-
-```bash
-cargo install bat
-```
-
-The `bat` binary will be installed by default in `$HOME/cargo/bin`, thus we
-need make sure that this path is defined inside our `$PATH` environment
-variable.
+Rust public packages are called *crates* and provide binaries as well
+as libraries. Very useful Rust applications are available today on
+the official crate repository
+([https://crates.io/](https://crates.io/)).
+We present in {numref}`tab-rust-apps` a list of some of them.
+For instance, there are several re-implementations of standard Unix
+tools (e.g.: `ls`, `find`, `cat`, `tree`) in Rust, usually with a
+nicer output and greater processing speed.
+See [Install a crate with Cargo](#chp-howto-cargo-inst-crate) to
+learn how to *search* for a crate and how to *install* it.
 
 ## Initializing a project
 

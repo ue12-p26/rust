@@ -110,14 +110,17 @@ after the *reference's scope* termination will we get back full access to
 the original variable.
 
 When a *mutable* variable is *immutably* borrowed, we may access its
-value:
+value and use it:
 
 ```{code-cell} rust
-:tags: [raises-exception]
 let mut a = 16;
-let b = &a;
-let c = a + 5;
-(b, c)
+{
+  let b = &a;
+  let c = a + 5;
+  println!("(b, c)={:?}", (*b, c));
+}
+a = 8;
+a
 ```
 
 But we cannot modify it:

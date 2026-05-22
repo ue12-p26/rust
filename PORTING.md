@@ -63,9 +63,10 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   19ae1af4c5070a905b791c7ea23b67433e3930a3
-subject:  Resolve "Add real references to later chapters"
-date:     2026-05-16
+commit:   952d74ea338d7265e5974dda88c4853199ae92d2
+subject:  Catch up 4 upstream commits (content only; cell-sequence
+          markers deferred)
+date:     2026-05-22
 ```
 
 When resuming, fetch upstream and use

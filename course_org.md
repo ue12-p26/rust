@@ -1,5 +1,9 @@
 # Organisation
 
+This book has been primarily written for an oral presentation, though
+we have tried to make it as usable as possible for a standalone
+reading.
+
 The course starts with a presentation of the Rust environment, which
 explains how to install Rust, how to use the compiler `rustc`, and how
 to use `cargo`, the Rust project manager application.

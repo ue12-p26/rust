@@ -21,7 +21,10 @@ project:
           file: chap_course_presentation.md
           children:
             - file: course_org.md
+            - file: course_readiness.md
             - file: course_ex.md
+            - file: course_bash_ex.md
+            - file: course_rust_ex.md
 
         - title: Environment
           file: chap_environment.md
@@ -266,22 +269,29 @@ project:
     - title: Appendices
       children:
 
+        - title: How to
+          file: chap_howto.md
+          children:
+            - file: howto_path.md
+            - file: howto_missing_tools.md
+            - file: howto_cargo_inst_crate.md
+
         - title: Tables
           file: chap_tables.md
           children:
             - file: cargo_cmds.md
             - file: rust_apps.md
-            - file: array_methods.md
-            - file: vec_methods.md
-            - file: str_methods.md
-            - file: string_methods.md
-            - file: iter_methods.md
-            - file: slice_methods.md
-            - file: option_methods.md
             - file: macro_fct_list.md
             - file: bool_ops.md
             - file: int_ops.md
             - file: float_ops.md
+            - file: array_methods.md
+            - file: iter_methods.md
+            - file: option_methods.md
+            - file: slice_methods.md
+            - file: str_methods.md
+            - file: string_methods.md
+            - file: vec_methods.md
 
         - title: Solutions
           file: chap_solutions.md

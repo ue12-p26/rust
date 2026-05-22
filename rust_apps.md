@@ -21,8 +21,8 @@ Most of them are replacement for standard Unix commands that run *faster*.
 * - `dust`
   - `dust`
   - Replacement for `du` and `ncdu`.
-* - `exa`
-  - `exa`
+* - `eza`
+  - `eza` / `exa`
   - Replacement for `ls`.
 * - `fd-find`
   - `fd`
