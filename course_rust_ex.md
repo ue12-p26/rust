@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.19.2
+kernelspec:
+  name: rust
+  display_name: Rust
+  language: rust
+---
+
 # Rust examples
 
 Most of the Rust examples of the book are written in a *simplified*
@@ -65,21 +78,29 @@ could be an expression without a semicolon.
 
 Here is the first part of an example:
 
-```rust
+```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
 let a = 10;
 a
 ```
 
 The second part:
 
-```rust
+```{code-cell} rust
+:class: seq-cont badges border
 let b = 8;
 b
 ```
 
 And the last part:
 
-```rust
+```{code-cell} rust
+:class: seq-stop badges border
 a + b
 ```
 

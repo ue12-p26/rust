@@ -25,7 +25,7 @@ source bash-setup.sh
 Let us create a project with a binary crate:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-start badges border
 cargo new --bin foo
 ```
 
@@ -58,7 +58,7 @@ EOF
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/math/mod.rs
 ```
 
@@ -76,21 +76,21 @@ EOF
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/main.rs
 ```
 
 The program still compiles:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo build
 ```
 
 And we can run it:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-stop badges border
 cargo run
 ```
 

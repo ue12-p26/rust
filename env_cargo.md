@@ -55,7 +55,7 @@ This is easily done with Cargo.
 To initialize a new project inside a new directory named `foo`, we run:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-start badges border
 cargo init --bin foo
 ```
 
@@ -63,7 +63,7 @@ This will create a project file `Cargo.toml` and a source file `src/main.rs`
 that contains a default `main()` function:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 exa -T foo
 ```
 
@@ -71,7 +71,7 @@ The project file defines a *project name*, a *project version* and the
 *edition year* of the `cargo` tool to use for managing this project:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat foo/Cargo.toml
 ```
 
@@ -80,21 +80,21 @@ bat foo/Cargo.toml
 Let us a create an empty Git repository first:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 git init foo2
 ```
 
 Then let we run Cargo to initialize a Rust project:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo init --bin foo2
 ```
 
 Cargo created the same files as before:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 exa -T foo2
 ```
 
@@ -102,7 +102,7 @@ But also a `.gitignore` file that contains a single line in order to ignore
 the `target` folder which is used by Cargo for compiling:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat foo2/.gitignore
 ```
 
@@ -123,7 +123,7 @@ To generate a library project, we would use the `--lib` argument.
 To compile a whole project, we use the `build` sub-command:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 pushd foo2
 cargo build
 ```
@@ -131,7 +131,7 @@ cargo build
 To build in *release* (i.e.: no debug information) mode:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo build -r
 ```
 
@@ -140,7 +140,7 @@ cargo build -r
 To run the application, we use the `run` sub-command:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo run
 ```
 
@@ -148,7 +148,7 @@ If there are multiple binaries in the project, we use the `--bin` option to
 set the binary to run:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo run --bin foo2
 ```
 
@@ -176,14 +176,14 @@ EOF
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/main.rs
 ```
 
 To declare the dependency, we use the `add` sub-command:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo add colour
 ```
 
@@ -191,7 +191,7 @@ The `dependencies` section now contains a line for the `colour` package with
 a version requirement:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat Cargo.toml
 ```
 
@@ -199,7 +199,7 @@ Running the application, will trigger the installation of the dependencies,
 as well as compilation, before running:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo run
 ```
 
@@ -244,7 +244,7 @@ EOF
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 exa -T tests
 ```
 
@@ -253,7 +253,7 @@ Compiling of both the application and the tests will be triggered prior to
 running the tests:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo test
 ```
 
@@ -273,7 +273,7 @@ all. However, it performs faster that the `build` sub-command, and thus is
 interesting for quick error checking:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo check
 ```
 
@@ -311,21 +311,21 @@ EOF
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/main.rs
 ```
 
 The program compiles perfectly:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo build
 ```
 
 However, `clippy` finds some issues in it:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo clippy
 ```
 
@@ -344,21 +344,21 @@ EOF
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/main.rs
 ```
 
 Nothing is pointed out by `clippy`:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo clippy
 ```
 
 To get the hint, we need to use the *pedantic* mode:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo clippy -- -W clippy::pedantic
 ```
 
@@ -367,7 +367,7 @@ By default, `clippy` does not check test code.
 The `--tests` flag enables the checking of test code:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo clippy --tests
 ```
 :::
@@ -391,14 +391,14 @@ EOF
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/main.rs
 ```
 
 The `check` sub-command catches the mistake:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo check
 ```
 
@@ -412,14 +412,14 @@ git commit -m Init
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo fix
 ```
 
 The `mut` keyword has been removed:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-stop badges border
 bat src/main.rs
 ```
 

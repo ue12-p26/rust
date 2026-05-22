@@ -51,6 +51,12 @@ outlive the data it refers to.
 Example:
 
 ```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
 fn borrow_example<'a>(s: &'a str) -> &'a str {
     s // The returned reference has the same lifetime as the input
 }
@@ -60,6 +66,7 @@ Let us see it in action:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+:class: seq-stop badges border
 let s = "abc";
 let t = borrow_example(s);
 (s, t)
@@ -105,6 +112,12 @@ need to annotate them explicitly:
 Example:
 
 ```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
 fn first_word(s: &str) -> &str { // Lifetimes are elided here
     s.split_whitespace().next().unwrap()
 }
@@ -114,6 +127,7 @@ Let us see it in action:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+:class: seq-stop badges border
 let s = "abc def ghi";
 let t = first_word(s);
 (s, t)
@@ -132,6 +146,12 @@ When the compiler can't infer lifetimes, you must annotate them
 explicitly:
 
 ```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
 fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() { x } else { y }
 }
@@ -143,6 +163,7 @@ output.
 An example of running the function:
 
 ```{code-cell} rust
+:class: seq-stop badges border
 longest("abc", "abcdef")
 ```
 

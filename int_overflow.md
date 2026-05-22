@@ -23,6 +23,12 @@ We define two 16 bit numbers such that their addition will provoke an
 overflow:
 
 ```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
 let i: u16 = 0xff00;
 let j: u16 = 0x0100;
 ```
@@ -31,6 +37,7 @@ And we add them:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+:class: seq-stop badges border
 i + j
 ```
 

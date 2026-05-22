@@ -75,6 +75,39 @@ the deltas to port into the matching `<foo>.md`.
 
 ## Local divergences from upstream
 
+### 0. Multi-cell sequence styling (cross-cutting)
+
+Upstream LaTeX flags multi-cell sequences with `\begin{minted}[start]{...}`
+/ `[cont]` / `[stop]` and renders small badges on the right of each cell
+(from `common/newminted.sty`).
+
+In the MyST port, cells inside a sequence carry one of the role classes
+`seq-start`, `seq-cont`, `seq-stop` on `:class:`, plus the two
+composable style modifiers `badges border`. For **rust kernel pages**, a
+hidden `{code-cell} rust` containing `:clear` (the evcxr magic) is
+inserted immediately before each `seq-start` to drop persisted state
+between sequences. Bash kernel pages do not get a `:clear` cell
+(bash_kernel has no equivalent magic and the bash session state at the
+top of a page is already empty).
+
+The CSS that drives the badges and border lives in `_static/style_local.css`
+(never edit `style.css` directly — it's regenerated).
+
+**Affected files (1 sequence each unless noted):** `bool.md`, `enum.md`,
+`enum_methods.md`, `gen_enum.md`, `int_overflow.md`, `macro_derive.md`,
+`match.md` (2), `lifetimes.md` (3), `ownership.md`, `sol_int.md`,
+`env_compiler.md`, `fct_main.md`, `folder_mod.md`, `sol_fct.md`,
+`env_cargo.md`, `project.md`, `course_ex.md`, `course_bash_ex.md`,
+`course_rust_ex.md`.
+
+**Not covered (intentional):** upstream's first `[start,disable]` cells
+in `env_cargo.md` (`cargo --list`) remain plain `bash` fences in our
+port — converting them to executable cells would change the
+disabled-cell convention without much visual gain. The visible
+seq-start lands on the next cell. Same for the *use std::time::Duration*
+rust snippets at the end of `project.md` which are plain rust fences
+(the page is bash-kernel; those cells stayed non-executable).
+
 ### 1. `.bss` example wrapped in a function (`memory.md`)
 
 Upstream LaTeX:

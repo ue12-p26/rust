@@ -24,6 +24,12 @@ to the intrinsic wrapping multiplication. This has the effect to never
 overflow:
 
 ```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
 fn hash(key: u64) -> u32
 {
   let mut h = key;
@@ -40,6 +46,7 @@ fn hash(key: u64) -> u32
 Here are the results for three integers:
 
 ```{code-cell} rust
+:class: seq-stop badges border
 for i in [128u64, 367u64, 1056u64] {
   println!("hash({i}): {}", hash(i));
 }

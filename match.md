@@ -79,6 +79,12 @@ array:
 :::
 
 ```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start seq-stop badges border
 let mass_prices = [(0.3, 3.4), (1.2, 2.7), (2.0, 2.9), (4.0, 3.2)];
 mass_prices
 ```
@@ -124,6 +130,12 @@ Here is an `enum` type `Color` that defines two variants. One for grey
 levels, and another for RGB colors:
 
 ```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
 enum Color {
   Grey(u8),
   Rgb(u8, u8, u8),
@@ -133,6 +145,7 @@ enum Color {
 The following `match` statement extracts variants' data in both cases:
 
 ```{code-cell} rust
+:class: seq-stop badges border
 for c in [Color::Grey(99), Color::Rgb(10, 30, 60)] {
   match c {
     Color::Grey(n)    => println!("Grey level {n}."),

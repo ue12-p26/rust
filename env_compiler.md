@@ -37,21 +37,21 @@ EOF
 To compile the following rust file:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-start badges border
 bat hello.rs
 ```
 
 We have to run the following command:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 rustc hello.rs
 ```
 
 This command produces the binary `hello` that we can run:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 ./hello
 ```
 
@@ -76,14 +76,14 @@ In the following code, we have introduced an error. The `i` variable is
 defined twice in the same scope. Plus another error a bit below.
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat hello.rs
 ```
 
 If we try to compile this code:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 :tags: [raises-exception]
 rustc hello.rs
 ```
@@ -102,7 +102,7 @@ Here is the output given by `rustc` when asking for informations about the
 first error:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-stop badges border
 rustc --explain E0124
 ```
 

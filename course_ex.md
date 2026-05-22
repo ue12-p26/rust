@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.19.2
+kernelspec:
+  name: bash
+  display_name: Bash
+  language: bash
+---
+
 # Examples
 
 Many examples are found throughout this book.
@@ -8,7 +21,8 @@ or syntax of the example.
 The following example uses the Bash shell as stated by the tag `bash`
 placed on the right:
 
-```bash
+```{code-cell} bash
+:class: dark-background full-color-output
 echo "Hello!"
 ```
 
@@ -31,14 +45,17 @@ example. The first snippet is tagged with **start**, the last one with
 
 Example:
 
-```bash
+```{code-cell} bash
+:class: dark-background full-color-output seq-start badges border
 echo "First cell"
 ```
 
-```bash
+```{code-cell} bash
+:class: dark-background full-color-output seq-cont badges border
 echo "Second cell"
 ```
 
-```bash
+```{code-cell} bash
+:class: dark-background full-color-output seq-stop badges border
 echo "Third cell"
 ```

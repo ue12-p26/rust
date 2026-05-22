@@ -20,6 +20,12 @@ In the following example, both `Debug` and `Clone` are implemented for `User`
 with generated default implementations:
 
 ```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
 #[derive(Debug, Clone)]
 struct User {
   id: u32,
@@ -31,6 +37,7 @@ The `Clone` trait allows us to make an explicit copy of an existing
 instance:
 
 ```{code-cell} rust
+:class: seq-cont badges border
 let u = User { id: 12, name: String::from("John"), };
 let v = u.clone();
 println!("id={}, name={}", v.id, v.name);
@@ -40,5 +47,6 @@ And the `Debug` trait allows to automatically convert an instance into a
 string and print it:
 
 ```{code-cell} rust
+:class: seq-stop badges border
 v
 ```

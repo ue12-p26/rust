@@ -425,3 +425,72 @@ body {
 /* .jupyter-error {
     background-color: inherit;
 } */
+
+
+/* ============================================================
+ * Multi-cell sequence styling
+ *
+ * Per-cell role classes:
+ *   .seq-start   first cell of a group
+ *   .seq-cont    middle cell(s) of a group
+ *   .seq-stop    last cell of a group
+ *
+ * Per-cell visual modifiers (composable):
+ *   .badges   small label in the top-right of each cell
+ *             (start / cont / stop with upstream PDF colors)
+ *   .border   continuous left border bracketing the group
+ *
+ * The two modifiers can be combined (.badges .border) on the
+ * same cell to get both effects at once.
+ * ============================================================ */
+
+/* --- Badges variant -------------------------------------------- */
+.myst-jp-nb-block.badges {
+    position: relative;
+}
+.myst-jp-nb-block.badges::after {
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    z-index: 5;
+    pointer-events: none;
+}
+.myst-jp-nb-block.seq-start.badges::after {
+    content: "start";
+    background: #125c09;
+    color: #dbbd72;
+}
+.myst-jp-nb-block.seq-cont.badges::after {
+    content: "cont";
+    background: #56a0d3;
+    color: #000;
+}
+.myst-jp-nb-block.seq-stop.badges::after {
+    content: "stop";
+    background: #cb4338;
+    color: #dbbd72;
+}
+
+/* --- Border variant -------------------------------------------- */
+.myst-jp-nb-block.seq-start.border,
+.myst-jp-nb-block.seq-cont.border,
+.myst-jp-nb-block.seq-stop.border {
+    border-left: 6px solid #147817;
+    padding-left: 10px;
+    margin-left: 0;
+}
+.myst-jp-nb-block.seq-start.border {
+    border-top-left-radius: 10px;
+    padding-top: 4px;
+}
+.myst-jp-nb-block.seq-stop.border {
+    border-bottom-left-radius: 10px;
+    padding-bottom: 4px;
+}

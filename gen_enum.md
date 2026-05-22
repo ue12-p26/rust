@@ -25,6 +25,12 @@ each color component (i.e.: red, green, blue) is stored as a value of the
 specified type:
 
 ```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
 #[derive(Debug)]
 enum Color<T> {
   Grey(T),
@@ -35,6 +41,7 @@ enum Color<T> {
 To use the `Color<T>` enum type, we must specify what is `T`:
 
 ```{code-cell} rust
+:class: seq-stop badges border
 let c1 = Color::<u8>::Grey(0xa0);
 let c2 = Color::<u16>::Grey(0xff00);
 let c3 = Color::<u8>::Rgb(0x00, 0xa0, 0x57);

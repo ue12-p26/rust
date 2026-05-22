@@ -61,7 +61,7 @@ With the following command, we create a project named `foo` with a binary
 crate:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-start badges border
 cargo new --bin foo
 ```
 
@@ -69,21 +69,21 @@ The project file `Cargo.toml` does not contain any information on the
 fact that the project is a binary executable project:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 exa -T foo
 ```
 
 However we see that a `main.rs` code file has been created:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat foo/Cargo.toml
 ```
 
 The content of the `main.rs` is simply a single `main()` function:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat foo/src/main.rs
 ```
 
@@ -91,14 +91,14 @@ On the other hand, if we define a library crate with the `--lib`
 argument:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo new --lib foo2
 ```
 
 We get a `lib.rs` inside the `src` folder:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 exa -T foo2
 ```
 
@@ -106,7 +106,7 @@ The content of the `Cargo.toml` file still convey no information on the
 crate type:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat foo2/Cargo.toml
 ```
 
@@ -114,7 +114,7 @@ The `lib.rs` the code file contains a public function example and its
 test function:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat foo2/src/lib.rs
 ```
 
@@ -158,14 +158,14 @@ EOF
 Let us enter the `foo` project to do some experiment with modules:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 pushd foo
 ```
 
 Here is the binary crate rewritten with an internal module:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/main.rs
 ```
 
@@ -173,7 +173,7 @@ If we build this project, we get an error about `math::add()` being
 private:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 :tags: [raises-exception]
 cargo build
 ```
@@ -200,21 +200,21 @@ EOF
 Here the corrected code with the `pub` keyword:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/main.rs
 ```
 
 And now the program compiles:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo build
 ```
 
 We can run it:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo run
 ```
 
@@ -236,7 +236,7 @@ EOF
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/math.rs
 ```
 
@@ -253,14 +253,14 @@ EOF
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/main.rs
 ```
 
 If we compiled, this we get an error:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 :tags: [raises-exception]
 cargo build
 ```
@@ -287,14 +287,14 @@ EOF
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/main.rs
 ```
 
 Now the program compiles and we can run it:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cargo run
 ```
 
@@ -320,14 +320,14 @@ EOF
 ```
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/main.rs
 ```
 
 The program still compile and run:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-stop badges border
 cargo run
 ```
 

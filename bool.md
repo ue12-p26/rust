@@ -62,6 +62,12 @@ Here are three boolean functions that we will use for demonstrating the
 way the operators work:
 
 ```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
 fn foo1() -> bool {
   println!("foo1()");
   true
@@ -96,6 +102,7 @@ Doing an OR operation between them results in the calling of the three
 function, despise the fact that he first function `foo1()` returns `true`:
 
 ```{code-cell} rust
+:class: seq-cont badges border
 let b = foo1() | foo2() | foo3();
 println!("{b}");
 ```
@@ -104,6 +111,7 @@ Similarly, an AND operation between the same functions triggers the calling
 of the three functions while the second one returns `false`:
 
 ```{code-cell} rust
+:class: seq-cont badges border
 let b = foo1() & foo2() & foo3();
 println!("{b}");
 ```
@@ -117,6 +125,7 @@ are available. They are called *short-circuiting* operators:
 Using the `||` operator, we that only the first function is evaluated:
 
 ```{code-cell} rust
+:class: seq-cont badges border
 let b = foo1() || foo2() || foo3();
 println!("{b}");
 ```
@@ -124,6 +133,7 @@ println!("{b}");
 With the `&&` operator, the last function is not evaluated:
 
 ```{code-cell} rust
+:class: seq-stop badges border
 let b = foo1() && foo2() && foo3();
 println!("{b}");
 ```

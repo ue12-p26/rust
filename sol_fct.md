@@ -27,14 +27,14 @@ source bash-setup.sh
 We first create the binary project using `cargo`:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-start badges border
 cargo init factorial
 ```
 
 Then we enter the folder:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 cd factorial
 ```
 
@@ -59,13 +59,13 @@ And modify the main code file as follow, with a function `fact()` called by
 the `main()` function:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-cont badges border
 bat src/main.rs
 ```
 
 Finally, we build & execute:
 
 ```{code-cell} bash
-:class: dark-background full-color-output
+:class: dark-background full-color-output seq-stop badges border
 cargo run
 ```

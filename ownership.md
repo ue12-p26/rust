@@ -182,6 +182,12 @@ computes a new value, returns it, and use it to set a new value to our
 variable:
 
 ```{code-cell} rust
+:tags: [remove-cell]
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
 fn inc(n: i16) -> i16 {
   n + 1
 }
@@ -205,6 +211,7 @@ a new variable of the same name. Both version of the variable `a` are
 Making the variable *mutable*, we can reset its value:
 
 ```{code-cell} rust
+:class: seq-stop badges border
 let mut b = 7;
 b = inc(b);
 b

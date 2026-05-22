@@ -23,6 +23,7 @@ MobaXterm, ...), and just copy & paste the commands.
 The bash version used to run the examples for this book was:
 
 ```{code-cell} bash
+:class: dark-background full-color-output
 echo $BASH_VERSION
 ```
 
@@ -38,16 +39,19 @@ for the cells in between.
 Example:
 
 ```{code-cell} bash
+:class: dark-background full-color-output seq-start badges border
 mkdir foo
 ```
 
 ```{code-cell} bash
+:class: dark-background full-color-output seq-cont badges border
 pushd foo
 touch a.txt
 ls
 ```
 
 ```{code-cell} bash
+:class: dark-background full-color-output seq-stop badges border
 popd
 ```
 
