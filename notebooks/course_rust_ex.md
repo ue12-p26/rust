@@ -25,14 +25,14 @@ The first important thing is that they do no contain the `main()`
 function that is compulsory for compiling and running.
 Example:
 
-```rust
+```{code-cell} rust
 println!("Hello!");
 ```
 
 Such an example cannot be compiled *as-is*.
 It needs to be wrapped inside a `main()` function, as following:
 
-```rust
+```{code-cell} rust
 fn main() {
   println!("Hello!");
 }
@@ -44,7 +44,7 @@ The second particularity is that many examples print one or more
 values at the end of the code snippet, with an expression that does
 not end with a semicolon:
 
-```rust
+```{code-cell} rust
 let a = 10;
 let b = 8;
 a + b
@@ -58,7 +58,7 @@ error.
 To run such an example we must wrap the last line's expression into a
 `println!()` macro as following:
 
-```rust
+```{code-cell} rust
 fn main() {
   let a = 10;
   let b = 8;
