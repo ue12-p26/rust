@@ -62,6 +62,9 @@ Array slice:
 ```{code-cell} rust
 :tags: [raises-exception]
 
-let a = [1, 2, 3, 4];
-let slice = &a[1..3];
+{
+  let a = [1, 2, 3, 4];
+  let slice = &a[1..3];
+  println!("{:?}", slice);
+}
 ```
