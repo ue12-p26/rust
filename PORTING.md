@@ -498,3 +498,33 @@ stray rust samples.
 - `course_rust_ex.md` — wrapping examples.
 - `trait_impl.md` line 35 — `use foo::{...}` snippet (not strictly
   `[disable]` upstream).
+
+### 16. Wrap-in-brackets workaround for evcxr persistence
+
+Several cells in `ref.md`, `slices_intro.md`, `vec_bis.md` have their
+body wrapped in an extra `{ … }` block, with the final trailing
+expression replaced by `println!("…", …);`. This is a workaround for
+evcxr-specific quirks that the LaTeX source does not have to deal
+with:
+
+- Top-level `let` bindings whose value is (or contains) a reference
+  with a non-static lifetime cannot be persisted across cells. The
+  kernel reports either *"The variable `x` contains a reference with
+  a non-static lifetime so can't be persisted"* or *"Couldn't
+  automatically determine type of variable `x`"*. Examples: cells
+  defining `let b = &a;`, `let b = &mut a;`, `let slice = &a[1..3]`,
+  `let a = &v[1]`, or passing `&mut s` to a function.
+- Wrapping in `{ … }` makes every binding block-local, so nothing
+  needs persisting; trailing expressions are switched to `println!`
+  because a block-returning expression of the same type would
+  reintroduce the persistence attempt.
+
+The equivalent change has been proposed upstream (in the `.tex`
+sources) so the next pass-through-upstream-commits cycle should not
+re-introduce drift between this repo and the LaTeX source. If a
+future upstream commit lands LaTeX cells that read like our
+pre-workaround form, port them with the wrap-in-brackets shape
+rather than the raw shape.
+
+Commits applying this pass: `e735519` (`ref.md`), `3766e81`
+(`slices_intro.md`), `98262ac` (`vec_bis.md`, partial).
