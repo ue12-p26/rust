@@ -35,6 +35,7 @@ folder in which exercises will be written:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 cargo install rustlings
 rustlings init
 cd rustlings

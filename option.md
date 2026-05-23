@@ -32,6 +32,7 @@ Here the definition of `Option<T>` inside the standard library:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 enum Option<T> {
     Some(T),
     None,
@@ -73,6 +74,7 @@ Otherwise, we get a *panic*:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let x: Option::<u8> = None;
 x.unwrap()
 ```
@@ -82,6 +84,7 @@ custom *panic* message:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let x: Option::<u8> = None;
 x.expect("A value is required !")
 ```
@@ -98,6 +101,7 @@ case of no match. Its declaration is as follow:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 fn find<P>(&self, pat: P) -> Option<usize> {
   ...
 }

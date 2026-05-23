@@ -24,6 +24,7 @@ explicitly:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 fn main() {
   panic!("Error!");
 }

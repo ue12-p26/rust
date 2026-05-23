@@ -27,6 +27,7 @@ with generated default implementations:
 
 ```{code-cell} rust
 :class: seq-start badges border
+
 #[derive(Debug, Clone)]
 struct User {
   id: u32,
@@ -39,6 +40,7 @@ instance:
 
 ```{code-cell} rust
 :class: seq-cont badges border
+
 let u = User { id: 12, name: String::from("John"), };
 let v = u.clone();
 println!("id={}, name={}", v.id, v.name);
@@ -49,5 +51,6 @@ string and print it:
 
 ```{code-cell} rust
 :class: seq-stop badges border
+
 v
 ```

@@ -38,6 +38,7 @@ Example:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 fn example() {
     let x = 5; // x is valid from this point forward
     // ... use x ...
@@ -60,6 +61,7 @@ Example:
 
 ```{code-cell} rust
 :class: seq-start badges border
+
 fn borrow_example<'a>(s: &'a str) -> &'a str {
     s // The returned reference has the same lifetime as the input
 }
@@ -70,6 +72,7 @@ Let us see it in action:
 ```{code-cell} rust
 :tags: [raises-exception]
 :class: seq-stop badges border
+
 let s = "abc";
 let t = borrow_example(s);
 (s, t)
@@ -122,6 +125,7 @@ Example:
 
 ```{code-cell} rust
 :class: seq-start badges border
+
 fn first_word(s: &str) -> &str { // Lifetimes are elided here
     s.split_whitespace().next().unwrap()
 }
@@ -132,6 +136,7 @@ Let us see it in action:
 ```{code-cell} rust
 :tags: [raises-exception]
 :class: seq-stop badges border
+
 let s = "abc def ghi";
 let t = first_word(s);
 (s, t)
@@ -141,6 +146,7 @@ let t = first_word(s);
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 fn longest(x: &str, y: &str) -> &str {
     if x.len() > y.len() { x } else { y }
 }
@@ -157,6 +163,7 @@ explicitly:
 
 ```{code-cell} rust
 :class: seq-start badges border
+
 fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() { x } else { y }
 }
@@ -169,6 +176,7 @@ An example of running the function:
 
 ```{code-cell} rust
 :class: seq-stop badges border
+
 longest("abc", "abcdef")
 ```
 
@@ -184,6 +192,7 @@ is linked to `x` or `y`, thus it cannot set its lifetime:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 fn longest(x: &str, y: &str) -> &str {
     if x.len() > y.len() { x } else { y }
 }
@@ -202,6 +211,7 @@ If there is no ambiguity, the lifetime can be inferred by the compiler:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 fn foo(s: &str) -> &str {
   // ...
 }

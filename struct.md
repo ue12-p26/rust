@@ -34,6 +34,7 @@ x.a
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 mod foo {
   struct Foo {
     a: i16
@@ -46,6 +47,7 @@ x.a
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 mod foo {
   pub struct Foo {
     a: i16
@@ -150,6 +152,7 @@ println!("red={}, green={}, blue={}", yellow.0, yellow.1, yellow.2)
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 struct Rect {
   witdh: u32;
   height: u32;
@@ -160,6 +163,7 @@ Defining a method:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 impl Rect {
   fn area(&self) -> u32 {
     self.width * self.height
@@ -171,6 +175,7 @@ Associated method (i.e.: *static* method):
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 impl Rect {
   fn square(sz: u32) -> Self {
     Self(width: sz, height: sz)

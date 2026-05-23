@@ -22,6 +22,7 @@ Getting all arguments:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 use std::env;
 
 fn main() {

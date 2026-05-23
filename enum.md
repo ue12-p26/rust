@@ -28,6 +28,7 @@ Here is an example that define the card suits:
 
 ```{code-cell} rust
 :class: seq-start badges border
+
 #[derive(Debug)]
 enum Suit {
   Club,
@@ -39,6 +40,7 @@ enum Suit {
 
 ```{code-cell} rust
 :class: seq-stop badges border
+
 for x in [Suit::Diamond, Suit::Club, Suit::Heart, Suit::Spade] {
   println!("{x:?}");
 }
@@ -63,6 +65,7 @@ variants with nothing in common:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 enum MyError {
   ProcessingFailure(String),
   UnknownPath(std::path::PathBuf),

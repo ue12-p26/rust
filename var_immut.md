@@ -18,6 +18,7 @@ Trying to modify an immutable variable in Rust leads to a compiler error:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let x = 1;
 x += 2;
 x

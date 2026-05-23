@@ -19,6 +19,7 @@ This section is still being written.
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 source bash-setup.sh
 ```
 
@@ -26,11 +27,13 @@ Let us create a project with a binary crate:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-start badges border
+
 cargo new --bin foo
 ```
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 pushd foo
 cat >src/math.rs <<EOF
 pub fn add(a: i16, b: i16) -> i16 {
@@ -48,6 +51,7 @@ Here is the content of our file:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 rm src/math.rs
 mkdir src/math
 cat >src/math/mod.rs <<EOF
@@ -59,6 +63,7 @@ EOF
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/math/mod.rs
 ```
 
@@ -66,6 +71,7 @@ The main code file is written to use the `math` module:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >src/main.rs <<EOF
 mod math;
 
@@ -77,6 +83,7 @@ EOF
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -84,6 +91,7 @@ The program still compiles:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo build
 ```
 
@@ -91,6 +99,7 @@ And we can run it:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-stop badges border
+
 cargo run
 ```
 
@@ -99,5 +108,6 @@ The advantage of using a *folder* module is that we can define file
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 popd
 ```

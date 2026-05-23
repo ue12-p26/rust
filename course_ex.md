@@ -23,6 +23,7 @@ placed on the right:
 
 ```{code-cell} bash
 :class: dark-background full-color-output
+
 echo "Hello!"
 ```
 
@@ -43,6 +44,7 @@ Example of a *disabled* cell:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 # this command is not actually executed when building the book
 echo "this command is not actually executed..."
 ```
@@ -56,15 +58,18 @@ Example:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-start badges border
+
 echo "First cell"
 ```
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 echo "Second cell"
 ```
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-stop badges border
+
 echo "Third cell"
 ```

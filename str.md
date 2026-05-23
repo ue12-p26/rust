@@ -114,6 +114,7 @@ Getting byte slices:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let my_string = "abcdef"; // ASCII
 let s = &my_string[0..4]; // A &str slice (=> u8 values).
 let hello = "Здравствуйте"; // UTF-8

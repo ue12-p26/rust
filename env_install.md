@@ -41,6 +41,7 @@ Once installed, we install the stable version or Rust:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 rustup default stable
 ```
 

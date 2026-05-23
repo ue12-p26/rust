@@ -26,6 +26,7 @@ Here is the definition of a reference on an integer variable:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let a = 16;
 let b = &a;
 b
@@ -39,6 +40,7 @@ We can see it if we make `b` mutable and try to modify its value:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let a = 16;
 let mut b = &a;
 b = 20;
@@ -78,6 +80,7 @@ order to be able to modify the value:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let mut a = 16;
 let b = &mut a;
 *b = 20;
@@ -127,6 +130,7 @@ But we cannot modify it:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let mut a = 16;
 let b = &a;
 a = 8;
@@ -138,6 +142,7 @@ nor modify its value:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let mut a = 16;
 let b = &mut a;
 let c = a + 5;
@@ -151,6 +156,7 @@ are allowed:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let s = 8;
 let t = &s;
 let u = &s;
@@ -162,6 +168,7 @@ same variable:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let mut s = 8;
 let t = &mut s;
 let u = &mut s;
@@ -173,6 +180,7 @@ reference exists:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let mut s = 8;
 let t = &s;
 let u = &mut s; // t is still valid since it is used on the line after
@@ -184,6 +192,7 @@ code (i.e.: before `u` is created):
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let mut s = 8;
 let t = &s;
 println!("{t}"); // End of t's scope
@@ -201,6 +210,7 @@ In the following example, `s` cannot be moved, because the reference
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let s = String::from("abc");
 let t = &s;
 (s, t)

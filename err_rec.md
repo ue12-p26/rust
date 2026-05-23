@@ -30,6 +30,7 @@ Example of usage:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 use std::fs::File;
 
 fn main() {
@@ -45,6 +46,7 @@ Check the error type:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let f = match result {
   Ok(file) => file,
   Err(error) => match error.kind() {
@@ -65,6 +67,7 @@ Using `unwrap()` to get the wanted value:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let f = File::open("hello.txt").unwrap();
 ```
 
@@ -75,6 +78,7 @@ Using `expect()` to customize the error message:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let f = File::open("hello.txt")
   .expect("hello.txt should be included in this project");
 ```
@@ -87,6 +91,7 @@ let f = File::open("hello.txt")
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 use std::fs::File;
 use std::io::ErrorKind;
 
@@ -110,6 +115,7 @@ Detailed version:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 use std::fs::File;
 use std::io::{self, Read};
 
@@ -135,6 +141,7 @@ Using the `?` operator:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 use std::fs::File;
 use std::io::{self, Read};
 
@@ -151,6 +158,7 @@ One-liner:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 use std::fs::File;
 use std::io::{self, Read};
 
@@ -166,5 +174,6 @@ Note that this function is already in the standard library:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 std::fs::read_to_string("hello.txt"); // Returns a Result<String, io::Error>
 ```

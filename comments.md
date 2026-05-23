@@ -20,6 +20,7 @@ Example with `//`:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 // A C++ style comment.
 ```
 
@@ -28,6 +29,7 @@ Example with `/* ... */`:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 /* A C style comment. */
 
 /* A C style comment

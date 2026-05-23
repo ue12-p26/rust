@@ -93,6 +93,7 @@ scores.entry(String::from("Blue")).or_insert(25);
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let count = map.entry(my_key).or_insert(0); // Set count to 0 if my_key is not defined.
 *count += 1; // Increment the value associated with my_key.
 ```

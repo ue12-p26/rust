@@ -71,6 +71,7 @@ let n = 5;
 foo(n);
 println!("The original number is {n}.");
 ```
+
 :::
 
 ## Returning a value

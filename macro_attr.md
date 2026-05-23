@@ -22,6 +22,7 @@ to a particular route at compile time:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 #[get("/users")]
 async fn list_users() -> impl Responder {
     ...

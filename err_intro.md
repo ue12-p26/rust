@@ -25,6 +25,7 @@ Returning an error from the `main()` function:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 use std::error::Error;
 use std::fs::File;
 

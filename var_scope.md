@@ -21,6 +21,7 @@ braces:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 {
   let x = 1;
 }
@@ -30,6 +31,7 @@ Outside of the scope, the variable does not exist:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 {
   let x = 1;
 }

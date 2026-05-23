@@ -19,6 +19,7 @@ This section is still being written.
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 source bash-setup.sh
 ```
 
@@ -62,6 +63,7 @@ crate:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-start badges border
+
 cargo new --bin foo
 ```
 
@@ -70,6 +72,7 @@ fact that the project is a binary executable project:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 exa -T foo
 ```
 
@@ -77,6 +80,7 @@ However we see that a `main.rs` code file has been created:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat foo/Cargo.toml
 ```
 
@@ -84,6 +88,7 @@ The content of the `main.rs` is simply a single `main()` function:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat foo/src/main.rs
 ```
 
@@ -92,6 +97,7 @@ argument:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo new --lib foo2
 ```
 
@@ -99,6 +105,7 @@ We get a `lib.rs` inside the `src` folder:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 exa -T foo2
 ```
 
@@ -107,6 +114,7 @@ crate type:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat foo2/Cargo.toml
 ```
 
@@ -115,6 +123,7 @@ test function:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat foo2/src/lib.rs
 ```
 
@@ -142,6 +151,7 @@ They are part of a crate, and can be declared:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >foo/src/main.rs <<EOF
 mod math {
   fn add(a: i16, b: i16) -> i16 {
@@ -159,6 +169,7 @@ Let us enter the `foo` project to do some experiment with modules:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 pushd foo
 ```
 
@@ -166,6 +177,7 @@ Here is the binary crate rewritten with an internal module:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -175,6 +187,7 @@ private:
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 :tags: [raises-exception]
+
 cargo build
 ```
 
@@ -184,6 +197,7 @@ accessible from outside (i.e.: make it **public**), we need to use the
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >src/main.rs <<EOF
 mod math {
   pub fn add(a: i16, b: i16) -> i16 {
@@ -201,6 +215,7 @@ Here the corrected code with the `pub` keyword:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -208,6 +223,7 @@ And now the program compiles:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo build
 ```
 
@@ -215,6 +231,7 @@ We can run it:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo run
 ```
 
@@ -228,6 +245,7 @@ Here we create the file `math.rs` that defines a module:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >src/math.rs <<EOF
 pub fn add(a: i16, b: i16) -> i16 {
   a + b
@@ -237,6 +255,7 @@ EOF
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/math.rs
 ```
 
@@ -245,6 +264,7 @@ function calls the `math::add()` function:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >src/main.rs <<EOF
 fn main () {
   println!("{}", math::add(2, 6));
@@ -254,6 +274,7 @@ EOF
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -262,6 +283,7 @@ If we compiled, this we get an error:
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 :tags: [raises-exception]
+
 cargo build
 ```
 
@@ -277,6 +299,7 @@ Let us declare the `math` module with the `mod` keyword:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >src/main.rs <<EOF
 mod math;
 
@@ -288,6 +311,7 @@ EOF
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -295,6 +319,7 @@ Now the program compiles and we can run it:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo run
 ```
 
@@ -308,6 +333,7 @@ directly accessible with the `use` keyword:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >src/main.rs <<EOF
 mod math;
 
@@ -321,6 +347,7 @@ EOF
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -328,11 +355,13 @@ The program still compile and run:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-stop badges border
+
 cargo run
 ```
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 popd
 ```
 

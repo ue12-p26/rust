@@ -56,4 +56,5 @@ return type:
 ```{code-cell} rust
 ()
 ```
+
 :::

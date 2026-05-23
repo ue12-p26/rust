@@ -22,6 +22,7 @@ Read a whole text file:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 use std::fs;
 
 let content = fs::read_to_string(my_file_path)

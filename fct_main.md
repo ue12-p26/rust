@@ -15,6 +15,7 @@ kernelspec:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 source bash-setup.sh
 ```
 
@@ -26,6 +27,7 @@ initialized as a Cargo binary (i.e.: program, not library) project:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-start badges border
+
 cargo init my_program
 ```
 
@@ -33,6 +35,7 @@ We enter the folder:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cd my_program
 ```
 
@@ -40,6 +43,7 @@ And look at its content:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 exa -T
 ```
 
@@ -48,6 +52,7 @@ function `main()` with a default implementation that prints a message:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -55,6 +60,7 @@ We may build the program:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo build
 ```
 
@@ -62,6 +68,7 @@ And run it through Cargo:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-stop badges border
+
 cargo run
 ```
 

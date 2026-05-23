@@ -23,6 +23,7 @@ The `///` is used to document the item that comes after the comments:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 /// Divides by 100.
 ///
 /// # Examples
@@ -42,6 +43,7 @@ file:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 //! # My crate foo
 //!
 //! The `foo` crate has been created to show to use of the //! comments.

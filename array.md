@@ -90,6 +90,7 @@ of elements), otherwise compilation will fail:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let a = [(1, 4), (-10, 18, 4)];
 a
 ```

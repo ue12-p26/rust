@@ -15,6 +15,7 @@ kernelspec:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 source bash-setup.sh
 ```
 
@@ -29,6 +30,7 @@ To get the full list of sub-commands, run the following command:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 cargo --list
 ```
 
@@ -58,6 +60,7 @@ To initialize a new project inside a new directory named `foo`, we run:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-start badges border
+
 cargo init --bin foo
 ```
 
@@ -66,6 +69,7 @@ that contains a default `main()` function:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 exa -T foo
 ```
 
@@ -74,6 +78,7 @@ The project file defines a *project name*, a *project version* and the
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat foo/Cargo.toml
 ```
 
@@ -83,6 +88,7 @@ Let us a create an empty Git repository first:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 git init foo2
 ```
 
@@ -90,6 +96,7 @@ Then let we run Cargo to initialize a Rust project:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo init --bin foo2
 ```
 
@@ -97,6 +104,7 @@ Cargo created the same files as before:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 exa -T foo2
 ```
 
@@ -105,6 +113,7 @@ the `target` folder which is used by Cargo for compiling:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat foo2/.gitignore
 ```
 
@@ -126,6 +135,7 @@ To compile a whole project, we use the `build` sub-command:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 pushd foo2
 cargo build
 ```
@@ -134,6 +144,7 @@ To build in *release* (i.e.: no debug information) mode:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo build -r
 ```
 
@@ -143,6 +154,7 @@ To run the application, we use the `run` sub-command:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo run
 ```
 
@@ -151,6 +163,7 @@ set the binary to run:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo run --bin foo2
 ```
 
@@ -159,6 +172,7 @@ To pass, argument to our binary, we would set them after a double dash `--`:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 cargo run --bin foo2 -- arg1 arg2 arg3 ...
 ```
 
@@ -170,6 +184,7 @@ To use external dependencies (e.g.: packages from
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >src/main.rs <<EOF
 use colour::*;
 
@@ -181,6 +196,7 @@ EOF
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -188,6 +204,7 @@ To declare the dependency, we use the `add` sub-command:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo add colour
 ```
 
@@ -196,6 +213,7 @@ a version requirement:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat Cargo.toml
 ```
 
@@ -204,6 +222,7 @@ as well as compilation, before running:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo run
 ```
 
@@ -217,8 +236,10 @@ would run:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 cargo add -F derive clap
 ```
+
 :::
 
 :::{warning} Adding development dependencies
@@ -232,8 +253,10 @@ The following command install the `glob` package for development purposes:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 cargo add --dev glob
 ```
+
 :::
 
 ## Running tests
@@ -242,6 +265,7 @@ We suppose we have implemented some test inside the `tests` folder:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 mkdir tests
 cat >tests/my_test.rs <<EOF
 #[test]
@@ -253,6 +277,7 @@ EOF
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 exa -T tests
 ```
 
@@ -262,6 +287,7 @@ running the tests:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo test
 ```
 
@@ -282,6 +308,7 @@ interesting for quick error checking:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo check
 ```
 
@@ -294,6 +321,7 @@ In the following example, we define a `Book` structure:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >src/main.rs <<EOF
 struct Book {
   title: String,
@@ -320,6 +348,7 @@ EOF
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -327,6 +356,7 @@ The program compiles perfectly:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo build
 ```
 
@@ -334,6 +364,7 @@ However, `clippy` finds some issues in it:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo clippy
 ```
 
@@ -341,6 +372,7 @@ In this other example, plain `clippy` misses the possible style improvement:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >src/main.rs <<EOF
 fn main() {
   let array = ["abc", "def", "ghi"];
@@ -353,6 +385,7 @@ EOF
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -360,6 +393,7 @@ Nothing is pointed out by `clippy`:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo clippy
 ```
 
@@ -367,6 +401,7 @@ To get the hint, we need to use the *pedantic* mode:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo clippy -- -W clippy::pedantic
 ```
 
@@ -376,8 +411,10 @@ The `--tests` flag enables the checking of test code:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo clippy --tests
 ```
+
 :::
 
 ## Fixing automatically linting issues
@@ -390,6 +427,7 @@ specifier:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >src/main.rs <<EOF
 fn main() {
   let mut s = "ABC".to_string();
@@ -400,6 +438,7 @@ EOF
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -407,6 +446,7 @@ The `check` sub-command catches the mistake:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo check
 ```
 
@@ -414,6 +454,7 @@ Running the `fix` sub-command will solve the issue for us:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 git init .
 git add Cargo.* src tests .gitignore
 git commit -m Init
@@ -421,6 +462,7 @@ git commit -m Init
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cargo fix
 ```
 
@@ -428,6 +470,7 @@ The `mut` keyword has been removed:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-stop badges border
+
 bat src/main.rs
 ```
 
@@ -441,5 +484,6 @@ Git database.
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 popd
 ```

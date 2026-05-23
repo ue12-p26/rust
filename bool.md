@@ -69,6 +69,7 @@ way the operators work:
 
 ```{code-cell} rust
 :class: seq-start badges border
+
 fn foo1() -> bool {
   println!("foo1()");
   true
@@ -104,6 +105,7 @@ function, despise the fact that he first function `foo1()` returns `true`:
 
 ```{code-cell} rust
 :class: seq-cont badges border
+
 let b = foo1() | foo2() | foo3();
 println!("{b}");
 ```
@@ -113,6 +115,7 @@ of the three functions while the second one returns `false`:
 
 ```{code-cell} rust
 :class: seq-cont badges border
+
 let b = foo1() & foo2() & foo3();
 println!("{b}");
 ```
@@ -127,6 +130,7 @@ Using the `||` operator, we that only the first function is evaluated:
 
 ```{code-cell} rust
 :class: seq-cont badges border
+
 let b = foo1() || foo2() || foo3();
 println!("{b}");
 ```
@@ -135,6 +139,7 @@ With the `&&` operator, the last function is not evaluated:
 
 ```{code-cell} rust
 :class: seq-stop badges border
+
 let b = foo1() && foo2() && foo3();
 println!("{b}");
 ```

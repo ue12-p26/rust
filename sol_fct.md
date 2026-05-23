@@ -15,6 +15,7 @@ kernelspec:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 source bash-setup.sh
 ```
 
@@ -28,6 +29,7 @@ We first create the binary project using `cargo`:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-start badges border
+
 cargo init factorial
 ```
 
@@ -35,11 +37,13 @@ Then we enter the folder:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 cd factorial
 ```
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 cat >src/main.rs <<EOF
 fn fact(n: u64) -> u64 {
   if n > 1 {
@@ -60,6 +64,7 @@ the `main()` function:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
+
 bat src/main.rs
 ```
 
@@ -67,5 +72,6 @@ Finally, we build & execute:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-stop badges border
+
 cargo run
 ```

@@ -27,6 +27,7 @@ be *moved* instead of *copied*, and thus will be removed from the vector.
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let mut v: Vec<String> = Vec::new();
 v.push(String::from("abc"));
 let a = v[0];
@@ -34,6 +35,7 @@ let a = v[0];
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let mut v: Vec<String> = Vec::new();
 v.push(String::from("abc"));
 v.push(String::from("def"));
@@ -48,6 +50,7 @@ v
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 {
   let mut v: Vec<String> = Vec::new();
   v.push(String::from("abc"));
@@ -62,6 +65,7 @@ We cannot modify a vector once we have a reference on it:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let elem = &v[i]; // immutable borrow
 v.push(10); // mutable borrow ==> COMPILER ERROR!
 ```
@@ -70,6 +74,7 @@ Securely accessing an element with `get()`:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let v = vec![1, 2, 3];
 let elem = v.get(0); // elem is a Option<&i32>
 match elem {
@@ -84,6 +89,7 @@ Iterating over elements:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 for e in &v { // immutable iteration
 }
 

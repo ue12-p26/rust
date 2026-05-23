@@ -23,6 +23,7 @@ They are placed in a module named `tests` and annotated with
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 // ... some code
 
 #[cfg(test)]
@@ -39,6 +40,7 @@ Testing of private functions is allowed in unit tests:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 fn foo(...) -> ... {
   // ...
 }
@@ -57,6 +59,7 @@ A function with its test:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }

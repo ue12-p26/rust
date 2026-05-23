@@ -30,6 +30,7 @@ overflow:
 
 ```{code-cell} rust
 :class: seq-start badges border
+
 let i: u16 = 0xff00;
 let j: u16 = 0x0100;
 ```
@@ -39,6 +40,7 @@ And we add them:
 ```{code-cell} rust
 :tags: [raises-exception]
 :class: seq-stop badges border
+
 i + j
 ```
 
@@ -53,6 +55,7 @@ The following code compiles without error, but fails at execution:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 fn foo(i: u16, j: u16) -> u16 {
   i + j
 }
@@ -106,6 +109,7 @@ the compiler will not detect:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 fn hash(key: u64) -> u32
 {
   let mut h = key;

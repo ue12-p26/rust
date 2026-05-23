@@ -78,6 +78,7 @@ as-is inside a raw string:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 r"Some string with a quote \" inside."
 ```
 
@@ -95,6 +96,7 @@ the closing symbol:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 r#"Some string with a quote " inside and some symbols "# at the end."#
 ```
 
@@ -108,6 +110,7 @@ sequence `"#` inside our raw string:
 ```{code-cell} rust
 r##"Some string with a quote " inside and some symbols: "# at the end."##
 ```
+
 :::
 
 ## Byte string

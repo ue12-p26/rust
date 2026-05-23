@@ -33,6 +33,7 @@ following example, since it will produce an *infinite* loop:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 while let _ = 5 {
   println!("Irrefutable patterns are always true");
 }

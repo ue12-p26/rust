@@ -19,6 +19,7 @@ This section is still being written.
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 pub struct MyStruct {
   // Some attributes
 }

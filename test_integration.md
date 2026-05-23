@@ -32,6 +32,7 @@ Example of test file content:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 use mypkg::my_fct;
 
 #[test]

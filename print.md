@@ -22,6 +22,7 @@ Print a string:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 println!("{s}");
 ```
 

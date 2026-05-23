@@ -89,6 +89,7 @@ is raised:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let v = vec![1, 2, 3];
 v[5]
 ```
@@ -120,6 +121,7 @@ method. The `Iterator` object can then be iterated over thanks to the
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let v = vec![1, 2, 3];
 let mut i = v.iter();
 while let Some(e) = i.next() {

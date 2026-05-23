@@ -37,6 +37,7 @@ match x {
     _     => (),
 }
 ```
+
 :::
 
 ## `let`/`else`
@@ -75,8 +76,10 @@ the compiler will fail:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let x = Some(10u8);
 let y = if let Some(v) = x { 2 * v } else { None };
 y
 ```
+
 :::

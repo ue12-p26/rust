@@ -19,6 +19,7 @@ kernelspec:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 source bash-setup.sh
 ```
 
@@ -27,6 +28,7 @@ which to look for executables:
 
 ```{code-cell} bash
 :class: dark-background full-color-output
+
 echo $PATH
 ```
 
@@ -40,6 +42,7 @@ Here is the creation of the sub-folder:
 
 ```{code-cell} bash
 :class: dark-background full-color-output
+
 mkdir -p my/sub/folder
 ```
 
@@ -47,6 +50,7 @@ And the script creation:
 
 ```{code-cell} bash
 :tags: [remove-cell]
+
 bat >my/sub/folder/a_script.sh <<EOF
 #!/bin/bash
 echo "Hello!"
@@ -57,6 +61,7 @@ We now make the script executable:
 
 ```{code-cell} bash
 :class: dark-background full-color-output
+
 chmod u+x my/sub/folder/a_script.sh
 ```
 
@@ -64,6 +69,7 @@ The script is in the following location:
 
 ```{code-cell} bash
 :class: dark-background full-color-output
+
 exa -T my
 ```
 
@@ -71,6 +77,7 @@ And its content is correct:
 
 ```{code-cell} bash
 :class: dark-background full-color-output
+
 bat my/sub/folder/a_script.sh
 ```
 
@@ -80,6 +87,7 @@ it cannot find it:
 ```{code-cell} bash
 :class: dark-background full-color-output
 :tags: [raises-exception]
+
 a_script.sh
 ```
 
@@ -88,6 +96,7 @@ We can only run it if we specify explicitly the path to find it:
 
 ```{code-cell} bash
 :class: dark-background full-color-output
+
 my/sub/folder/a_script.sh
 ```
 
@@ -96,6 +105,7 @@ To make it findable by the shell, we need to add its folder to the
 
 ```{code-cell} bash
 :class: dark-background full-color-output
+
 PATH="$PATH:my/sub/folder"
 ```
 
@@ -104,6 +114,7 @@ the shell is able to find the script:
 
 ```{code-cell} bash
 :class: dark-background full-color-output
+
 a_script.sh
 ```
 
@@ -118,6 +129,7 @@ following line:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 PATH="$PATH:my/sub/folder"
 ```
 
@@ -129,5 +141,6 @@ get the modification:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 source $HOME/.bash_profile
 ```

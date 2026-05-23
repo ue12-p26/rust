@@ -69,6 +69,7 @@ However, they cannot be accessed outside their definition's scope:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 fn foo() {
 
   fn my_nested_fct() {
@@ -100,6 +101,7 @@ the compiler:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 fn foo() {
   println!("Function with no parameter.");
 }

@@ -110,6 +110,7 @@ passed to `t`:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let s = String::from("abc");
 let t = s;
 (s, t)
@@ -127,6 +128,7 @@ Here is an example with a `String` value that is passed to a function:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 fn foo(s: String) {
   println!("{} world!", s);
 }
@@ -189,6 +191,7 @@ variable:
 
 ```{code-cell} rust
 :class: seq-start badges border
+
 fn inc(n: i16) -> i16 {
   n + 1
 }
@@ -213,6 +216,7 @@ Making the variable *mutable*, we can reset its value:
 
 ```{code-cell} rust
 :class: seq-stop badges border
+
 let mut b = 7;
 b = inc(b);
 b

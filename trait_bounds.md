@@ -21,6 +21,7 @@ Function parameters can be typed using traits:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 pub fn foo(x: &impl MyTrait) {
   // ...
 }
@@ -31,6 +32,7 @@ syntax:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 pub fn foo<T: MyTrait>(x: &T) {
   // ...
 }
@@ -41,6 +43,7 @@ with the same concrete type:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 pub fn foo<T: MyTrait>(x: &T, y: &T) {
   // ...
 }
@@ -50,6 +53,7 @@ We can specify multiple traits on the same parameter:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 pub fn notify(item: &(impl Summary + Display)) {
   // ...
 }
@@ -59,6 +63,7 @@ or
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 pub fn notify<T: Summary + Display>(item: &T) {
   // ...
 }
@@ -70,6 +75,7 @@ The `where` clause allows for clearer declarations:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 fn some_function<T, U>(t: &T, u: &U) -> i32
 where
     T: Display + Clone,
@@ -83,6 +89,7 @@ where
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 fn foo() -> impl MyTrait {
   // ...
 }
@@ -93,6 +100,7 @@ fn foo() -> impl MyTrait {
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 impl<T: MyTrait> MyStruct<T> {
   fn foo(&self) {
     // ...

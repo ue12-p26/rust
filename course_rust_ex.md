@@ -86,6 +86,7 @@ Here is the first part of an example:
 
 ```{code-cell} rust
 :class: seq-start badges border
+
 let a = 10;
 a
 ```
@@ -94,6 +95,7 @@ The second part:
 
 ```{code-cell} rust
 :class: seq-cont badges border
+
 let b = 8;
 b
 ```
@@ -102,6 +104,7 @@ And the last part:
 
 ```{code-cell} rust
 :class: seq-stop badges border
+
 a + b
 ```
 

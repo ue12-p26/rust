@@ -26,6 +26,7 @@ String slices:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let s = String::from("Hello");
 let slice = &s[0..2]; // from start to index 2 excluded
 let slice = &s[..2]; // from start to index 2 excluded
@@ -39,6 +40,7 @@ Function returning a string slice:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 fn foo(s: &String) -> &str {
   // ...
 }
@@ -49,6 +51,7 @@ A more generic function would take a `&str` instead of a `&String`:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 fn foo(s: &str) -> &str {
   // ...
 }
@@ -58,6 +61,7 @@ Array slice:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let a = [1, 2, 3, 4];
 let slice = &a[1..3];
 ```

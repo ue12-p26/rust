@@ -86,6 +86,7 @@ array:
 
 ```{code-cell} rust
 :class: seq-start seq-stop badges border
+
 let mass_prices = [(0.3, 3.4), (1.2, 2.7), (2.0, 2.9), (4.0, 3.2)];
 mass_prices
 ```
@@ -99,6 +100,7 @@ will raise an error:
 
 ```{code-cell} rust
 :tags: [raises-exception]
+
 let n = 1111;
 match n {
   -100..100 => println!("My single case.")
@@ -138,6 +140,7 @@ levels, and another for RGB colors:
 
 ```{code-cell} rust
 :class: seq-start badges border
+
 enum Color {
   Grey(u8),
   Rgb(u8, u8, u8),
@@ -148,6 +151,7 @@ The following `match` statement extracts variants' data in both cases:
 
 ```{code-cell} rust
 :class: seq-stop badges border
+
 for c in [Color::Grey(99), Color::Rgb(10, 30, 60)] {
   match c {
     Color::Grey(n)    => println!("Grey level {n}."),

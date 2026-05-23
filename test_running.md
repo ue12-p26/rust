@@ -22,6 +22,7 @@ Plain run:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 cargo test
 ```
 
@@ -31,6 +32,7 @@ test application:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 cargo test --help    # Help text of the cargo test subcommand
 cargo test -- --help # Help text of the test application
 ```
@@ -41,6 +43,7 @@ To disable parallelism, set the number of threads to one:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 cargo test -- --test-threads=1
 ```
 
@@ -49,6 +52,7 @@ Print stdout also for passed tests:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 cargo test -- --show-output
 ```
 
@@ -57,6 +61,7 @@ Run a subset of tests by name:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 cargo test my_text
 ```
 
@@ -67,6 +72,7 @@ Ignore some tests by default:
 ```{code-cell} rust
 :tags: [skip-execution]
 :class: disabled
+
 #[cfg(test)]
 mod tests {
 
@@ -83,5 +89,6 @@ To run ignored tests:
 ```{code-cell} bash
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
+
 cargo test -- --ignored
 ```
