@@ -57,7 +57,7 @@ v
   v.push(String::from("def"));
   v.push(String::from("ghi"));
   let a = &v[1];
-  (v, a)
+  println!("{:?}", (v, a));
 }
 ```
 
