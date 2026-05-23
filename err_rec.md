@@ -19,7 +19,7 @@ This section is still being written.
 
 The definition of `Result<T, E>` is:
 
-```rust
+```{code-cell} rust
 enum Result<T, E> {
   Ok(T),
   Err(E),

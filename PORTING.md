@@ -468,8 +468,5 @@ stray rust samples.
 - `project.md` — illustrative `std::time::Duration` cells on a
   bash-kernel page.
 - `course_rust_ex.md` — wrapping examples.
-- `result.md` line 11, `err_rec.md` line 22 — `enum Result<T, E>`
-  definition is not `[disable]` upstream; it's documentation of the
-  stdlib type signature, kept as plain syntax-highlighted code.
 - `trait_impl.md` line 35 — `use foo::{...}` snippet (not strictly
   `[disable]` upstream).

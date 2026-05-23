@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.19.2
+kernelspec:
+  name: rust
+  display_name: Rust
+  language: rust
+---
+
 # Result
 
 :::{danger} Draft
@@ -8,7 +21,7 @@ TODO: explain `Result`.
 
 The standard library `Result<T, E>`:
 
-```rust
+```{code-cell} rust
 enum Result<T, E> {
     Ok(T),
     Err(E),
