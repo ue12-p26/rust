@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="143.99135mm"
+   height="83.349815mm"
+   viewBox="0 0 143.99134 83.349816"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="call_stack.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.95"
+     inkscape:cx="270.76923"
+     inkscape:cy="150"
+     inkscape:window-width="1914"
+     inkscape:window-height="1040"
+     inkscape:window-x="1920"
+     inkscape:window-y="37"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showgrid="false" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-28.218759,-11.470879)">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.42023;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-1-8"
+       width="139.69089"
+       height="7.461556"
+       x="30.411293"
+       y="85.356598" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.151423;stroke-dasharray:none;stroke-opacity:1"
+       x="31.062067"
+       y="94.088989"
+       id="text2-06-7"
+       transform="scale(1.0420556,0.95964169)"><tspan
+         sodipodi:role="line"
+         id="tspan2-3-17"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#000000;stroke-width:0.151423;stroke-opacity:1"
+         x="31.062067"
+         y="94.088989">fct_a(arg1, arg2, ...) / filename / line number</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.42023;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-1-8-8"
+       width="139.69089"
+       height="7.461556"
+       x="30.411293"
+       y="77.797203" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.151423;stroke-dasharray:none;stroke-opacity:1"
+       x="31.062067"
+       y="86.211678"
+       id="text2-06-7-2"
+       transform="scale(1.0420556,0.95964169)"><tspan
+         sodipodi:role="line"
+         id="tspan2-3-17-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#000000;stroke-width:0.151423;stroke-opacity:1"
+         x="31.062067"
+         y="86.211678">fct_b(arg1, arg2, ...) / filename / line number</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.42023;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-1-8-7"
+       width="139.69089"
+       height="7.461556"
+       x="30.411293"
+       y="70.237801" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.151423;stroke-dasharray:none;stroke-opacity:1"
+       x="31.062067"
+       y="78.334358"
+       id="text2-06-7-6"
+       transform="scale(1.0420556,0.95964169)"><tspan
+         sodipodi:role="line"
+         id="tspan2-3-17-1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#000000;stroke-width:0.151423;stroke-opacity:1"
+         x="31.062067"
+         y="78.334358">fct_c(arg1, arg2, ...) / filename / line number</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.42023;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-1-8-9"
+       width="139.69089"
+       height="7.461556"
+       x="30.411293"
+       y="62.678406" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.151423;stroke-dasharray:none;stroke-opacity:1"
+       x="31.062067"
+       y="70.457047"
+       id="text2-06-7-9"
+       transform="scale(1.0420556,0.95964169)"><tspan
+         sodipodi:role="line"
+         id="tspan2-3-17-14"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#000000;stroke-width:0.151423;stroke-opacity:1"
+         x="31.062067"
+         y="70.457047">fct_d(arg1, arg2, ...) / filename / line number</tspan></text>
+    <path
+       style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:2, 1;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 100.25004,60.702884 0.0135,-47.351604"
+       id="path29" />
+  </g>
+</svg>

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="135.12202mm"
+   height="164.68735mm"
+   viewBox="0 0 135.12202 164.68734"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="memory_heap.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.1875571"
+     inkscape:cx="136.83552"
+     inkscape:cy="306.93261"
+     inkscape:window-width="1914"
+     inkscape:window-height="1040"
+     inkscape:window-x="0"
+     inkscape:window-y="37"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showgrid="false" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path39788" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker1"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path39788-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker5"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path5" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-2.47435,-58.754481)">
+    <g
+       id="g3">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1-8"
+         width="30.494093"
+         height="15.08879"
+         x="94.214294"
+         y="120.68799" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         x="97.571625"
+         y="131.29163"
+         id="text1-6"><tspan
+           sodipodi:role="line"
+           id="tspan1-8"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.5;stroke-dasharray:none"
+           x="97.571625"
+           y="131.29163">&quot;abc&quot;</tspan></text>
+    </g>
+    <g
+       id="g1">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.614143;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect846"
+         width="15.385858"
+         height="7.8153505"
+         x="46.053761"
+         y="139.02498"
+         ry="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+         x="49.702423"
+         y="147.1226"
+         id="text4310"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan4308"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+           x="49.702423"
+           y="147.1226">-12</tspan></text>
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.616635;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect846-2"
+         width="15.383365"
+         height="7.880197"
+         x="46.055008"
+         y="146.92886"
+         ry="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+         x="56.15715"
+         y="155.14857"
+         id="text4310-8"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan4308-9"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+           x="56.15715"
+           y="155.14857">5</tspan></text>
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.614143;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect846-7"
+         width="15.385858"
+         height="7.8153505"
+         x="46.053761"
+         y="154.83026"
+         ry="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+         x="49.724472"
+         y="163.17455"
+         id="text4310-0"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan4308-1"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+           x="49.724472"
+           y="163.17455">134</tspan></text>
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.616352;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect846-1"
+         width="15.383648"
+         height="7.8728094"
+         x="46.054867"
+         y="162.73401"
+         ry="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+         x="46.499866"
+         y="171.20052"
+         id="text4310-3"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan4308-7"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+           x="46.499866"
+           y="171.20052">4500</tspan></text>
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.616635;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect846-26"
+         width="15.383365"
+         height="7.880197"
+         x="46.055008"
+         y="170.56946"
+         ry="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+         x="46.527424"
+         y="179.22649"
+         id="text4310-4"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan4308-5"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+           x="46.527424"
+           y="179.22649">-837</tspan></text>
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.616352;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect846-0"
+         width="15.383648"
+         height="7.8728094"
+         x="46.054867"
+         y="178.47963"
+         ry="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+         x="52.893955"
+         y="187.25247"
+         id="text4310-2"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan4308-90"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#000000;stroke-width:0.52685;stroke-dasharray:none;stroke-opacity:1"
+           x="52.893955"
+           y="187.25247">-4</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:5.55913px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.139396;stroke-dasharray:none;stroke-opacity:1"
+         x="39.326069"
+         y="147.1869"
+         id="text14650"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan14648"
+           style="stroke:#000000;stroke-width:0.139396;stroke-dasharray:none;stroke-opacity:1"
+           x="39.326069"
+           y="147.1869">0</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.55913px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.139396;stroke-dasharray:none;stroke-opacity:1"
+         x="39.469933"
+         y="155.21559"
+         id="text14650-1"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan18839"
+           x="39.469933"
+           y="155.21559"
+           style="stroke-width:0.139396;stroke-dasharray:none">1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.55913px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.139396;stroke-dasharray:none;stroke-opacity:1"
+         x="39.513363"
+         y="163.2782"
+         id="text14650-1-7"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan18886"
+           x="39.513363"
+           y="163.2782"
+           style="stroke-width:0.139396;stroke-dasharray:none">2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.55913px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.139396;stroke-dasharray:none;stroke-opacity:1"
+         x="39.402073"
+         y="171.26482"
+         id="text14650-1-0"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan18923"
+           x="39.402073"
+           y="171.26482"
+           style="stroke-width:0.139396;stroke-dasharray:none">3</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.55913px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.139396;stroke-dasharray:none;stroke-opacity:1"
+         x="39.269066"
+         y="179.2935"
+         id="text14650-1-5"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan18960"
+           x="39.269066"
+           y="179.2935"
+           style="stroke-width:0.139396;stroke-dasharray:none">4</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.55913px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.139396;stroke-dasharray:none;stroke-opacity:1"
+         x="39.442787"
+         y="187.28012"
+         id="text14650-1-6"
+         transform="scale(1.0156062,0.98463362)"><tspan
+           sodipodi:role="line"
+           id="tspan18997"
+           x="39.442787"
+           y="187.28012"
+           style="stroke-width:0.139396;stroke-dasharray:none">5</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.276;stroke-dasharray:none;stroke-opacity:1"
+       x="22.673008"
+       y="134.40329"
+       id="text2"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#007eff;fill-opacity:1;stroke:#007ffd;stroke-width:0.276;stroke-dasharray:none;stroke-opacity:1"
+         x="22.673008"
+         y="134.40329">Vec&lt;i16&gt;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.276;stroke-dasharray:none;stroke-opacity:1"
+       x="87.5588"
+       y="116.45006"
+       id="text2-6-4"><tspan
+         sodipodi:role="line"
+         id="tspan2-8-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#007eff;fill-opacity:1;stroke:#007ffd;stroke-width:0.276;stroke-dasharray:none;stroke-opacity:1"
+         x="87.5588"
+         y="116.45006">String</tspan></text>
+    <g
+       id="g2">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.723912;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1-8-9"
+         width="122.2298"
+         height="13.695648"
+         x="6.2141056"
+         y="82.820969" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         x="7.8969493"
+         y="91.777191"
+         id="text1-6-2"><tspan
+           sodipodi:role="line"
+           id="tspan1-8-2"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.5;stroke-dasharray:none"
+           x="7.8969493"
+           y="91.777191">&quot;/home/john/prj002/a.csv&quot;</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.276;stroke-dasharray:none;stroke-opacity:1"
+       x="42.307278"
+       y="79.89164"
+       id="text2-6-4-8"><tspan
+         sodipodi:role="line"
+         id="tspan2-8-9-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#007eff;fill-opacity:1;stroke:#007ffd;stroke-width:0.276;stroke-dasharray:none;stroke-opacity:1"
+         x="42.307278"
+         y="79.89164">PathBuf</tspan></text>
+  </g>
+</svg>

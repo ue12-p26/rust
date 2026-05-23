@@ -7,7 +7,7 @@ on which is added an excellent memory checking layer, and takes advantage of a
 *high level of acceptability* by the computer system teams when passing
 from research to production.
 
-:::{figure} ../img/pypl_rust_python_julia_r.png
+:::{figure} media/pypl_rust_python_julia_r.png
 :name: fig-popularity
 :alt: Popularity of Python, R, Julia and Rust
 :width: 100%
@@ -41,7 +41,7 @@ answer on common issues related to the language itself or its main packages.
 Numerous packages exist to solve standard programming problems, and many are
 created each day as seen in {numref}`fig-nbpkgs`.
 
-:::{figure} ../img/Perkel_2020_nb_pkgs.png
+:::{figure} media/Perkel_2020_nb_pkgs.png
 :name: fig-nbpkgs
 :alt: Number of packages over time for R, Python and Rust
 :width: 50%
