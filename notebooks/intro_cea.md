@@ -2,7 +2,7 @@
 
 ## CEA
 
-:::{image} ../common/cea_logo.png
+:::{image} media/cea_logo.svg
 :alt: CEA logo
 :align: right
 :height: 120px
@@ -25,7 +25,7 @@ and is spread across several centers (see {numref}`fig-centers`):
 - Matter and universe.
 - Climate and environment.
 
-:::{figure} ../common/CEA_carte-des-centres.jpg
+:::{figure} media/CEA_carte-des-centres.jpg
 :name: fig-centers
 :alt: CEA research centers map
 
@@ -34,7 +34,7 @@ Research centers
 
 ## CNRGH
 
-:::{image} ../common/cnrgh_logo.png
+:::{image} media/cnrgh_logo.png
 :alt: CNRGH logo
 :align: right
 :height: 120px
