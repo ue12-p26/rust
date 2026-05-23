@@ -412,20 +412,25 @@ div[data-name="outputs-container"]:has(div[data-name^="safe-output-"]) {
     }
 }
 
-/* the big 'draft' background image */
-body {
-    /* background-image: url("./draft.excalidraw.svg"); */
-    background-image: url("https://gist.githubusercontent.com/parmentelat/dc3728ade93f6917eff1b7d38ae38c0a/raw/438d43c4f571123c9a4fcafeb45c4f27b952e9aa/draft.excalidraw.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: 100% 100%;
+/* draft */
+
+body::before {
+    content: "Draft";
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font: 700 20vw/1 'Comic Sans MS', cursive;
+    color: currentColor;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: -1;
+    white-space: nowrap;
+  /* no z-index — let it sit in normal flow above the body background */
 }
-
-/* .jupyter-error {
-    background-color: inherit;
-} */
-
+html.dark body::before {
+    color: #c0c0c0;
+    opacity: 0.2;   /* white on dark needs more to be perceived equally */
+}
 
 /* ============================================================
  * Multi-cell sequence styling
