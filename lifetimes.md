@@ -35,7 +35,9 @@ valid only within that scope. Their lifetime ends when the scope ends.
 
 Example:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 fn example() {
     let x = 5; // x is valid from this point forward
     // ... use x ...

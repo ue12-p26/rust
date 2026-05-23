@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.19.2
+kernelspec:
+  name: bash
+  display_name: Bash
+  language: bash
+---
+
 # Resources
 
 Various sources are available to learn the Rust language.
@@ -19,7 +32,9 @@ language through exercises.
 To install it, run the following commands that will create a `rustlings`
 folder in which exercises will be written:
 
-```bash
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
 cargo install rustlings
 rustlings init
 cd rustlings

@@ -29,7 +29,9 @@ that represents a value.
 
 Here the definition of `Option<T>` inside the standard library:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 enum Option<T> {
     Some(T),
     None,
@@ -93,7 +95,9 @@ For instance the `find()` method of the `str` type that searches for a
 patter inside a string returns a `Option<usize>` in order to handle the
 case of no match. Its declaration is as follow:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 fn find<P>(&self, pat: P) -> Option<usize> {
   ...
 }

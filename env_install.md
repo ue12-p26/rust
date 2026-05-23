@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.19.2
+kernelspec:
+  name: bash
+  display_name: Bash
+  language: bash
+---
+
 # Installing
 
 To get access to Rust, one may install a system package on \*nix platforms
@@ -25,7 +38,9 @@ page.
 
 Once installed, we install the stable version or Rust:
 
-```bash
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
 rustup default stable
 ```
 

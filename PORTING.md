@@ -75,6 +75,47 @@ the deltas to port into the matching `<foo>.md`.
 
 ## Local divergences from upstream
 
+### -1. Language and "disabled" badges (cross-cutting)
+
+Every bash cell automatically gets a small `bash` tag in its top-right
+corner because the CSS keys off the existing `dark-background` class.
+Rust cells do **not** get a `rust` tag (upstream LaTeX does, but we
+haven't ported that yet — would need a `rust`-equivalent class
+applied to every rust code-cell).
+
+For cells we want to **display but not execute** (the upstream
+`\begin{minted}[disable]{...}` convention), the MyST equivalent is
+the standard `skip-execution` cell tag, combined with a `disabled`
+class for the badge:
+
+````md
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
+some command that should be shown but not run
+```
+````
+
+- `:tags: [skip-execution]` tells the jupyter-cache pipeline not to
+  send the cell to the kernel.
+- `:class: ... disabled` causes the `disabled` badge to appear in
+  place of the language tag (the two share the right edge via the
+  CSS `::after` pseudo-element).
+
+The `disabled` cell can still combine with sequence classes
+(`seq-start` / `seq-cont` / `seq-stop` + `badges` modifier) — the
+sequence tag uses `::before` and the language/disabled tag uses
+`::after`, so they coexist.
+
+A demo cell is in `course_ex.md` right after the paragraph that
+explains the *disabled* convention.
+
+The old plain-fence convention (a ` ```bash ` block with no
+`{code-cell}` directive) is still acceptable for one-off display-only
+snippets where you don't want the dark-background styling either,
+but `skip-execution` + `disabled` is now preferred when you want
+the bash-cell look-and-feel without execution.
+
 ### 0. Multi-cell sequence styling (cross-cutting)
 
 Upstream LaTeX flags multi-cell sequences with `\begin{minted}[start]{...}`
@@ -387,3 +428,48 @@ Reserved for backticks:
 
 **On merge:** new directives ported from upstream LaTeX should default to
 `:::` fences. Bump to `::::` (four colons) when nesting directives.
+
+### 15. Upstream `[disable]` cells → `skip-execution` + `disabled` class
+
+Upstream LaTeX marks non-executable code samples with `[disable]` on
+`\begin{minted}`. Ported to MyST as executable cells that the kernel
+skips, with a visual badge:
+
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
+// example code that won't actually run
+```
+
+For bash on a bash-kernel page, add the dark theme + language tag
+classes:
+
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
+some command that won't actually run
+```
+
+CSS in `style_local.css` emits a grey `disabled` badge in place of the
+`bash` language tag (`.dark-background::after` vs `.disabled::after`
+share the same slot).
+
+**Mixed-kernel pages:** jupyter notebooks have exactly one kernel. If
+a page is on the rust kernel but upstream had a `[disable]` bash cell
+(e.g. `args.md`, `test_integration.md`), the bash cell stays as a
+plain `` ```bash `` fence — no `{code-cell}`, no badge — because using
+`{code-cell} bash` on a rust-kernel page would either be rejected or
+sent to the wrong kernel. Same in reverse for bash-kernel pages with
+stray rust samples.
+
+**Exceptions kept as plain fences (intentional):**
+
+- `memory.md` line 221 — stack-overflow demo (safety: must not run).
+- `project.md` — illustrative `std::time::Duration` cells on a
+  bash-kernel page.
+- `course_rust_ex.md` — wrapping examples.
+- `result.md` line 11, `err_rec.md` line 22 — `enum Result<T, E>`
+  definition is not `[disable]` upstream; it's documentation of the
+  stdlib type signature, kept as plain syntax-highlighted code.
+- `trait_impl.md` line 35 — `use foo::{...}` snippet (not strictly
+  `[disable]` upstream).

@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.19.2
+kernelspec:
+  name: rust
+  display_name: Rust
+  language: rust
+---
+
 # Unrecoverable errors
 
 :::{danger} Draft
@@ -8,7 +21,9 @@ The `panic!` macro is called by the system when a fatal error occurs
 (e.g.: reading/writing an array past the end). But we can also call it
 explicitly:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 fn main() {
   panic!("Error!");
 }

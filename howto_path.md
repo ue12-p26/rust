@@ -115,7 +115,9 @@ To avoid this, we need to set the `PATH` modification inside the
 Edit or create the file `$HOME/.bash_profile` and append the
 following line:
 
-```bash
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
 PATH="$PATH:my/sub/folder"
 ```
 
@@ -124,6 +126,8 @@ modified.
 For now, we only have to *source* the file explicitly in order to
 get the modification:
 
-```bash
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
 source $HOME/.bash_profile
 ```

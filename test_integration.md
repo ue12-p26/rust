@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.19.2
+kernelspec:
+  name: rust
+  display_name: Rust
+  language: rust
+---
+
 # Integration tests
 
 :::{danger} Draft
@@ -16,7 +29,9 @@ root
 
 Example of test file content:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 use mypkg::my_fct;
 
 #[test]

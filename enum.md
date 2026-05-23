@@ -59,7 +59,9 @@ various & heterogeneous error types for an application.
 For instance the following code defines an error type and several error
 variants with nothing in common:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 enum MyError {
   ProcessingFailure(String),
   UnknownPath(std::path::PathBuf),

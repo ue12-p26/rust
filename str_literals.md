@@ -75,7 +75,9 @@ However the quote character `"` being the closing symbol, and escape
 characters being not interpreted, we cannot insert a quote character
 as-is inside a raw string:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 r"Some string with a quote \" inside."
 ```
 
@@ -90,7 +92,9 @@ r#"Some string with a quote " inside."#
 This solution, however, does not allow to insert a `"#` sequence as it
 the closing symbol:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 r#"Some string with a quote " inside and some symbols "# at the end."#
 ```
 

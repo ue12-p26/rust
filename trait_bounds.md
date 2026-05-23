@@ -90,7 +90,9 @@ fn foo() -> impl MyTrait {
 
 ## Implement a generic method only for some type
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 impl<T: MyTrait> MyStruct<T> {
   fn foo(&self) {
     // ...

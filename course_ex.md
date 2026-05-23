@@ -38,6 +38,15 @@ are indicated with a *disabled* tag. This does not mean that you should
 not run the command. This just means that it was not possible to execute
 and test this particular code snippet while generating the book.
 
+Example of a *disabled* cell:
+
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
+# this command is not actually executed when building the book
+echo "this command is not actually executed..."
+```
+
 Some examples are divided in multiple *snippets* (a.k.a: *cells*). In
 that cases, a set of tags indicate the *beginning* and the *end* of the
 example. The first snippet is tagged with **start**, the last one with

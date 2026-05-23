@@ -102,7 +102,9 @@ implementing the
 [MurmurHash](https://en.wikipedia.org/wiki/MurmurHash) algorithm, that
 the compiler will not detect:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 fn hash(key: u64) -> u32
 {
   let mut h = key;

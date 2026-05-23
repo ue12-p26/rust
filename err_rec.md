@@ -84,7 +84,9 @@ let f = File::open("hello.txt")
 
 ## Using closures
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 use std::fs::File;
 use std::io::ErrorKind;
 
@@ -105,7 +107,9 @@ fn main() {
 
 Detailed version:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 use std::fs::File;
 use std::io::{self, Read};
 
@@ -128,7 +132,9 @@ fn read_username_from_file() -> Result<String, io::Error> {
 
 Using the `?` operator:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 use std::fs::File;
 use std::io::{self, Read};
 
@@ -142,7 +148,9 @@ fn read_username_from_file() -> Result<String, io::Error> {
 
 One-liner:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 use std::fs::File;
 use std::io::{self, Read};
 
@@ -155,6 +163,8 @@ fn read_username_from_file() -> Result<String, io::Error> {
 
 Note that this function is already in the standard library:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 std::fs::read_to_string("hello.txt"); // Returns a Result<String, io::Error>
 ```

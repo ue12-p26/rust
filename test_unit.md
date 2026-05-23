@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.19.2
+kernelspec:
+  name: rust
+  display_name: Rust
+  language: rust
+---
+
 # Unit tests
 
 :::{danger} Draft
@@ -7,7 +20,9 @@ This section is still being written.
 They are placed in a module named `tests` and annotated with
 `cfg(test)` in each source file:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 // ... some code
 
 #[cfg(test)]
@@ -21,7 +36,9 @@ the named configuration (i.e.: `test`) is used.
 
 Testing of private functions is allowed in unit tests:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 fn foo(...) -> ... {
   // ...
 }
@@ -37,7 +54,9 @@ mod tests {
 
 A function with its test:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }

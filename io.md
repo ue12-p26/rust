@@ -19,7 +19,9 @@ This section is still being written.
 
 Read a whole text file:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 use std::fs;
 
 let content = fs::read_to_string(my_file_path)

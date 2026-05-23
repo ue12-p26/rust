@@ -444,14 +444,18 @@ body {
  * same cell to get both effects at once.
  * ============================================================ */
 
-/* --- Badges variant -------------------------------------------- */
-.myst-jp-nb-block.badges {
+/* --- Common positioning for every cell ----------------------- */
+/*  every code-cell becomes a positioning context for any badge */
+.myst-jp-nb-block {
     position: relative;
 }
-.myst-jp-nb-block.badges::after {
+
+/* --- Shared badge style -------------------------------------- */
+.myst-jp-nb-block.badges::before,
+.myst-jp-nb-block.dark-background::after,
+.myst-jp-nb-block.disabled::after {
     position: absolute;
     top: -8px;
-    right: 10px;
     font-family: ui-sans-serif, system-ui, sans-serif;
     font-size: 0.65rem;
     font-weight: 700;
@@ -462,17 +466,40 @@ body {
     z-index: 5;
     pointer-events: none;
 }
-.myst-jp-nb-block.seq-start.badges::after {
+
+/* --- Language / disabled badge (right edge, via ::after) ----- */
+.myst-jp-nb-block.dark-background::after,
+.myst-jp-nb-block.disabled::after {
+    right: 10px;
+}
+/* every bash cell carries the "bash" tag — unless it is .disabled */
+.myst-jp-nb-block.dark-background:not(.disabled)::after {
+    content: "bash";
+    background: #000;
+    color: #ddd;
+}
+/* a .disabled cell shows the "disabled" tag instead */
+.myst-jp-nb-block.disabled::after {
+    content: "disabled";
+    background: #999;
+    color: #222;
+}
+
+/* --- Sequence badge (left of language tag, via ::before) ----- */
+.myst-jp-nb-block.badges::before {
+    right: 60px;
+}
+.myst-jp-nb-block.seq-start.badges::before {
     content: "start";
     background: #125c09;
     color: #dbbd72;
 }
-.myst-jp-nb-block.seq-cont.badges::after {
+.myst-jp-nb-block.seq-cont.badges::before {
     content: "cont";
     background: #56a0d3;
     color: #000;
 }
-.myst-jp-nb-block.seq-stop.badges::after {
+.myst-jp-nb-block.seq-stop.badges::before {
     content: "stop";
     background: #cb4338;
     color: #dbbd72;

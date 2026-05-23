@@ -18,7 +18,9 @@ the variable's value is freed at the end of the scope.
 In the following example, the *scope* is explicitly represented by curly
 braces:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 {
   let x = 1;
 }

@@ -30,7 +30,9 @@ while let Some(n) = i.next() {
 We must be careful to do not write a pattern that always match, as in the
 following example, since it will produce an *infinite* loop:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 while let _ = 5 {
   println!("Irrefutable patterns are always true");
 }

@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.19.2
+kernelspec:
+  name: rust
+  display_name: Rust
+  language: rust
+---
+
 # Documenting items
 
 A special style comment exists, the **Documentation Comments**.
@@ -7,7 +20,9 @@ They start with `///` or `//!`.
 
 The `///` is used to document the item that comes after the comments:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 /// Divides by 100.
 ///
 /// # Examples
@@ -24,7 +39,9 @@ The `//!` is used to document the item inside which the comments is
 written. It is usually used to document a crate, at the start of a
 file:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 //! # My crate foo
 //!
 //! The `foo` crate has been created to show to use of the //! comments.

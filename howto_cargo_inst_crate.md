@@ -39,7 +39,9 @@ cargo search bat
 
 To install a crate, use the `install` sub-command:
 
-```bash
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
 cargo install bat
 ```
 

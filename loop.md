@@ -18,7 +18,9 @@ defines an *infinite* loop.
 
 As an example, the following loop would never end:
 
-```rust
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
 loop {
   println!("Hello!");
 }

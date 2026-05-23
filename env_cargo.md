@@ -26,7 +26,9 @@ sub-commands. See {numref}`tab-cargo-subcmds` for a list of the main
 sub-commands.
 To get the full list of sub-commands, run the following command:
 
-```bash
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
 cargo --list
 ```
 
@@ -154,7 +156,9 @@ cargo run --bin foo2
 
 To pass, argument to our binary, we would set them after a double dash `--`:
 
-```bash
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
 cargo run --bin foo2 -- arg1 arg2 arg3 ...
 ```
 
@@ -210,7 +214,9 @@ explicitly when adding the dependency. This is done with the `-F` flag.
 For instance, to install the `clap` package with the `derive` feature, we
 would run:
 
-```bash
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
 cargo add -F derive clap
 ```
 :::
@@ -223,7 +229,9 @@ to a specific `dev-dependencies` section.
 To do that, we must run the `add` sub-command with the `--dev` flag.
 The following command install the `glob` package for development purposes:
 
-```bash
+```{code-cell} bash
+:tags: [skip-execution]
+:class: dark-background full-color-output disabled
 cargo add --dev glob
 ```
 :::
