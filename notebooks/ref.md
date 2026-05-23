@@ -3,8 +3,6 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.19.2
 kernelspec:
   name: rust
   display_name: Rust
@@ -25,7 +23,6 @@ we give a *reference* to it. We may give:
 Here is the definition of a reference on an integer variable:
 
 ```{code-cell} rust
-
 {
   let a = 16;
   let b = &a;
@@ -80,7 +77,6 @@ If a variable is *mutable*, we may define a *mutable* reference on it in
 order to be able to modify the value:
 
 ```{code-cell} rust
-
 {
   let mut a = 16;
   let b = &mut a;
