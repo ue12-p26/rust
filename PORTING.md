@@ -134,21 +134,33 @@ top of a page is already empty).
 The CSS that drives the badges and border lives in `_static/style_local.css`
 (never edit `style.css` directly — it's regenerated).
 
-**Gotcha — `:clear` cell formatting.** The hidden state-reset cell must
-have a blank line between the `:tags:` directive line and the `:clear`
-magic, otherwise jupyter lab parses the cell incorrectly:
+**Gotcha — blank line after directive options.** Every `{code-cell}`
+must have a blank line between its option lines (`:tags:`, `:class:`,
+etc.) and the cell body. This applies to *all* code cells, not just
+`:clear` resets:
 
 ````markdown
 ```{code-cell} rust
-:tags: [remove-cell]
+:tags: [raises-exception]
 
-:clear
+use std::error::Error;
+use std::fs::File;
+// ... body
 ```
 ````
 
-The form *without* the blank line (`:tags:` directly followed by
-`:clear`) breaks parsing in jupyter lab — always keep the blank
-separator.
+Two reasons:
+
+1. The compact form (body directly under `:tags:`) breaks parsing in
+   jupyter lab — most visibly for cells whose body itself starts with
+   a `:` (e.g. the `:clear` magic), which the parser misreads as
+   another option.
+2. Jupytext normalises every cell to the blank-line form on
+   round-trip. Authoring without the blank line guarantees phantom
+   diffs the next time anyone opens the file in jupyter lab and saves
+   it back.
+
+Always emit the blank line — this is the canonical form.
 
 **Affected files (1 sequence each unless noted):** `bool.md`, `enum.md`,
 `enum_methods.md`, `gen_enum.md`, `int_overflow.md`, `macro_derive.md`,
