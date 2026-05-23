@@ -24,6 +24,7 @@ overflow:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 

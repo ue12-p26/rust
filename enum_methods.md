@@ -19,6 +19,7 @@ Let us define a `Suit` enum for representing card suits:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 

@@ -21,6 +21,7 @@ with generated default implementations:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 

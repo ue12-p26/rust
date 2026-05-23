@@ -14,7 +14,7 @@ kernelspec:
 # Recoverable errors
 
 :::{danger} Draft
-This section is still being written.
+This section is still being written...
 :::
 
 The definition of `Result<T, E>` is:

@@ -80,6 +80,7 @@ Here is the first part of an example:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 

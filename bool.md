@@ -63,6 +63,7 @@ way the operators work:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 

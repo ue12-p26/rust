@@ -134,6 +134,22 @@ top of a page is already empty).
 The CSS that drives the badges and border lives in `_static/style_local.css`
 (never edit `style.css` directly — it's regenerated).
 
+**Gotcha — `:clear` cell formatting.** The hidden state-reset cell must
+have a blank line between the `:tags:` directive line and the `:clear`
+magic, otherwise jupyter lab parses the cell incorrectly:
+
+````markdown
+```{code-cell} rust
+:tags: [remove-cell]
+
+:clear
+```
+````
+
+The form *without* the blank line (`:tags:` directly followed by
+`:clear`) breaks parsing in jupyter lab — always keep the blank
+separator.
+
 **Affected files (1 sequence each unless noted):** `bool.md`, `enum.md`,
 `enum_methods.md`, `gen_enum.md`, `int_overflow.md`, `macro_derive.md`,
 `match.md` (2), `lifetimes.md` (3), `ownership.md`, `sol_int.md`,

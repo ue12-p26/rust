@@ -54,6 +54,7 @@ Example:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 
@@ -115,6 +116,7 @@ Example:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 
@@ -149,6 +151,7 @@ explicitly:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 

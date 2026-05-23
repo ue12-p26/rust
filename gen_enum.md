@@ -26,6 +26,7 @@ specified type:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 

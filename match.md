@@ -80,6 +80,7 @@ array:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 
@@ -131,6 +132,7 @@ levels, and another for RGB colors:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 

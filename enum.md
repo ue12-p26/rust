@@ -22,6 +22,7 @@ Here is an example that define the card suits:
 
 ```{code-cell} rust
 :tags: [remove-cell]
+
 :clear
 ```
 
