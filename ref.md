@@ -25,11 +25,12 @@ we give a *reference* to it. We may give:
 Here is the definition of a reference on an integer variable:
 
 ```{code-cell} rust
-:tags: [raises-exception]
 
-let a = 16;
-let b = &a;
-b
+{
+  let a = 16;
+  let b = &a;
+  println!("{b}");
+}
 ```
 
 ## Type of a reference
@@ -79,12 +80,13 @@ If a variable is *mutable*, we may define a *mutable* reference on it in
 order to be able to modify the value:
 
 ```{code-cell} rust
-:tags: [raises-exception]
 
-let mut a = 16;
-let b = &mut a;
-*b = 20;
-b
+{
+  let mut a = 16;
+  let b = &mut a;
+  *b = 20;
+  println!("{b}");
+}
 ```
 
 :::{note} Dereferencing
@@ -101,9 +103,11 @@ fn foo(s: &mut String) {
   s.push_str("def");
 }
 
-let mut s = String::from("abc");
-foo(&mut s);
-s
+{
+  let mut s = String::from("abc");
+  foo(&mut s);
+  s
+}
 ```
 
 ## Borrowed mutable variable
@@ -157,10 +161,12 @@ are allowed:
 ```{code-cell} rust
 :tags: [raises-exception]
 
-let s = 8;
-let t = &s;
-let u = &s;
-(s, t, u)
+{
+  let s = 8;
+  let t = &s;
+  let u = &s;
+  println!("{:?}", (s, t, u));
+}
 ```
 
 However it is forbidden to define multiple `mutable` references on the
@@ -181,10 +187,12 @@ reference exists:
 ```{code-cell} rust
 :tags: [raises-exception]
 
-let mut s = 8;
-let t = &s;
-let u = &mut s; // t is still valid since it is used on the line after
-(t, u)
+{
+  let mut s = 8;
+  let t = &s;
+  let u = &mut s; // t is still valid since it is used on the line after
+  println!("{:?}", (t, u));
+}
 ```
 
 To solve the issue we need to terminate the scope of `t` earlier in the
@@ -193,11 +201,13 @@ code (i.e.: before `u` is created):
 ```{code-cell} rust
 :tags: [raises-exception]
 
-let mut s = 8;
-let t = &s;
-println!("{t}"); // End of t's scope
-let u = &mut s;
-u
+{
+  let mut s = 8;
+  let t = &s;
+  println!("{t}"); // End of t's scope
+  let u = &mut s;
+  println!("{u}");
+}
 ```
 
 ## Borrowing blocks moving
@@ -211,7 +221,9 @@ In the following example, `s` cannot be moved, because the reference
 ```{code-cell} rust
 :tags: [raises-exception]
 
-let s = String::from("abc");
-let t = &s;
-(s, t)
+{
+  let s = String::from("abc");
+  let t = &s;
+  println!("{:?}", (s, t));
+}
 ```
