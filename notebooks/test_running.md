@@ -67,10 +67,7 @@ Only function whose name matches `.*my_text.*` will be run.
 
 Ignore some tests by default:
 
-```{code-cell} bash
-:tags: [skip-execution]
-:class: disabled
-
+```rust
 #[cfg(test)]
 mod tests {
 

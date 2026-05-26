@@ -63,8 +63,8 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   0e913c8
-subject:  "How to" → "How-tos" appendix title typo fix
+commit:   fb201f2
+subject:  Micro tweaks (new coll_summary, wording fixes, test_running cell lang)
 date:     2026-05-26
 ```
 
