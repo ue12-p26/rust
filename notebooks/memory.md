@@ -112,8 +112,8 @@ implementation.
 The *.bss* segment (Block Started by Symbol) is where are stored
 *uninitialized static variables*: static variables that have **no** known
 initialization values at compile time. However, the compiler, knowing the
-sizes of those objects, stores the needed size inside the generated
-program's file. At runtime, the *Operating System* reserves the necessary
+sizes of those objects, allocates the needed size inside the generated
+program's file. At runtime, the *Operating System* provisions the necessary
 memory zone, and initialize it to *zeros*. Later on, during program's
 execution, these data will eventually receive values.
 

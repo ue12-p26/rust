@@ -74,6 +74,7 @@ project:
           children:
             - file: tuple.md
             - file: array.md
+            - file: coll_summary.md
             - file: str_literals.md
 
         - title: Syntax II - Control flow
