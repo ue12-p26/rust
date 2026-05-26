@@ -63,14 +63,15 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   952d74ea338d7265e5974dda88c4853199ae92d2
-subject:  Catch up 4 upstream commits (content only; cell-sequence
-          markers deferred)
-date:     2026-05-22
+commit:   7834f97
+subject:  course_readiness moved to common/ and intro rephrased
+date:     2026-05-26
 ```
 
+Previously caught up to 952d74ea338d7265e5974dda88c4853199ae92d2 (2026-05-22).
+
 When resuming, fetch upstream and use
-`git -C <repo> diff a23b9f88..<new-ref> -- <foo>.tex` per file to identify
+`git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
 
 ## Local divergences from upstream
