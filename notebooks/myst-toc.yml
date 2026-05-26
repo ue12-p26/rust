@@ -269,7 +269,7 @@ project:
     - title: Appendices
       children:
 
-        - title: How to
+        - title: How-tos
           file: chap_howto.md
           children:
             - file: howto_path.md
