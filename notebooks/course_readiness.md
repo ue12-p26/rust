@@ -1,8 +1,9 @@
 # Course readiness level
 
-This book being still in progress, we use colored banners to indicate
-various levels of readiness. Those banners are presented here with
-their meanings.
+We use colored banners to warn that a section or a part
+in the book is *not yet ready* for reading.
+The level of readiness is indicated by the text and the color of the
+banner. The different banners are presented here with their meanings.
 
 :::{danger} Draft
 This signals that the section is not in any readable state.
