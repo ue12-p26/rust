@@ -11,6 +11,15 @@ kernelspec:
 
 # Option
 
+```{code-cell} rust
+:tags: [remove-cell]
+
+// to prevent the stacktrace in case of panic
+std::panic::set_hook(Box::new(|info| {
+    eprintln!("{}", info);
+}));
+```
+
 The `Option<T>` (see
 [Option type](https://en.wikipedia.org/wiki/Option_type) for a general
 presentation of this concept)
