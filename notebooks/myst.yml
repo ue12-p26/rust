@@ -30,8 +30,8 @@ project:
     heading_4: true
     headings:
       continue: true
-  jupyter:
-    lite: false
+  # jupyter:
+  #   lite: false
   # bibliography: []
   plugins:
     - https://raw.githubusercontent.com/choldgraf/myst-lightbox/main/src/index.mjs
