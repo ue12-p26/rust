@@ -3,6 +3,12 @@
 This is the MyST port of the Rust course originally authored in LaTeX by
 Pierrick Roger.
 
+```{admonition} Warning
+:class: danger
+
+The translation from LaTeX to MyST has been made with the help of an AI agent, and while it has been carefully supervised, there may be errors or inaccuracies in the content. Please report any issues you find to the maintainers of this repository.
+```
+
 All six parts of the upstream course have been ported:
 
 - *Preliminaries*: chapters 1 (Introduction) and 2 (Environment).
