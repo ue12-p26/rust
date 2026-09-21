@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   9565df2
-subject:  Generic methods
+commit:   7d08cdd
+subject:  Generic traits
 date:     2026-09-20
 ```
 
-Previously caught up to 8426c9c65db380409c6efa16947e699e9ed8a4d2 (2026-09-18).
+Previously caught up to 9565df26480330ea06bbcb4049695e4c3097911d (2026-09-20).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -1086,3 +1086,13 @@ cell is sufficient — verify with a real single-line-`;`-joined evcxr
 submission (bare CLI is fine for this specific check, since the
 behavior is per-statement, not per-cell/session-transport), and reach
 for wrap-in-braces or an explicit type annotation as needed.
+
+### 29. `gen_traits.md` filled in, from `7d08cdd`
+
+Was an empty stub (just the section heading); now a full `Converter<T>`
+example (generic trait, two unit-struct implementations
+`CelsiusToFahrenheit`/`MilesToKilometers`, a `print_conversion<T:
+Display + Copy>(conv: &dyn Converter<T>, v: T)` function). Verified to
+compile/run as-is with evcxr — no adaptation needed (unit structs and
+`dyn Converter<T>` with a concrete `T` per call site are all
+persistence-friendly).
