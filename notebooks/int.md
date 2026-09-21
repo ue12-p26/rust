@@ -33,8 +33,8 @@ To set explicitly the integer type, we can either set it to the variable or
 the value:
 
 ```{code-cell} rust
-let i: u8 = 27;         //  8 bits unsigned integer
-let j     = 516i16;     // 16 bits   signed integer
+let i: u8 = 27;         //  8-bit unsigned integer
+let j     = 516i16;     // 16-bit   signed integer
 (i, j)
 ```
 
@@ -72,14 +72,14 @@ let m: usize = 8000;
 ```
 
 :::{warning} Size types
-The size of these types depend on the target architecture (32 bits or 64 bits)
+The size of these types depend on the target architecture (32-bit or 64-bit)
 for which we compile.
 :::
 
 ## Character byte
 
 A special notation exists to define a character byte, which is stored as a
-plain 8 bit integer (`u8`):
+plain 8-bit integer (`u8`):
 
 ```{code-cell} rust
 let n = b'A';

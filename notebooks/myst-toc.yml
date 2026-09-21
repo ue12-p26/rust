@@ -167,7 +167,7 @@ project:
           children:
             - file: lifetimes.md
 
-        - title: Project
+        - title: Project I - Organization & definition
           file: chap_project.md
           children:
             - file: project.md
@@ -237,7 +237,7 @@ project:
     - title: Mastery
       children:
 
-        - title: Advanced projects
+        - title: Project II - Modules
           file: chap_advanced_projects.md
           children:
             - file: folder_mod.md
@@ -311,4 +311,5 @@ project:
             - file: sol_fct.md
             - file: sol_mem.md
             - file: sol_str.md
+            - file: sol_struct.md
             - file: sol_gen.md

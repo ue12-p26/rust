@@ -13,7 +13,7 @@ kernelspec:
 
 The
 [Floating-Point Types](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html#floating-point-types)
-are available in 32 (`f32`) and 64 bits (`f64`).
+are available in 32-bit (`f32`) and 64-bit (`f64`) versions.
 
 {numref}`tab-float-op` presents the available floating-point operators.
 

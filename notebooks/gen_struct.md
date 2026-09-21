@@ -38,7 +38,7 @@ struct Point<T> {
 
 This `Point` structure may be generated for any type `T`.
 
-Here we generate the `Point` structure for 32 bits signed integers:
+Here we generate the `Point` structure for 32-bit signed integers:
 
 ```{code-cell} rust
 :class: seq-cont badges border
@@ -46,7 +46,7 @@ Here we generate the `Point` structure for 32 bits signed integers:
 let p = Point { x: 5, y: 10 };
 ```
 
-Now we generate the `Point` structure for 64 bits floats:
+Now we generate the `Point` structure for 64-bit floats:
 
 ```{code-cell} rust
 :class: seq-cont badges border

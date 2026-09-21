@@ -9,6 +9,7 @@ kernelspec:
   language: rust
 ---
 
+(chp-lifetimes)=
 # Lifetimes
 
 :::{danger} Draft

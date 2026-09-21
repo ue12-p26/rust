@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   85cca2f
-subject:  Resolve "polymorphism"
-date:     2026-08-28
+commit:   d093d28
+subject:  Resolve "Struct & impl"
+date:     2026-09-02
 ```
 
-Previously caught up to 25651b93b36411033423dec3f89e58bdf4eb8ec1 (2026-07-31).
+Previously caught up to 85cca2fef2f25d9b461240b160148da6cea3e19a (2026-08-28).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -721,3 +721,49 @@ chapters need their home chapter double-checked against `main.tex`
 before assuming a `chap_*.md` file name — this commit alone moved
 `gen_fct.md`/`gen_struct.md`/`gen_methods.md` across three different
 chapters relative to where they started this porting pass.
+
+### 21. `struct.md` full rewrite + `mod`/visibility demo moved out, from `d093d28`
+
+Upstream commit `d093d28` ("Struct & impl") replaces essentially all of
+`struct.tex`:
+
+- The old `mod foo { struct Foo { ... } }` field-visibility demonstration
+  (4 cells building up to a `new()`/`a()` accessor pair) is **moved out**
+  of `struct.tex` into `sub_mod.tex` (previously just a `TODO` stub for
+  *sub-modules*). Ported verbatim into `sub_mod.md`, same
+  `:tags: [raises-exception]` on the first two cells as before.
+- `struct.md` itself is rewritten top to bottom: intro (structs as
+  records, *Fields order* note), *Regular struct* (`Book` example, Field
+  Init Shorthand and Struct Update Syntax as `:::{tip}` boxes — kept as
+  **prose-only admonitions**, with their code examples as ordinary
+  top-level cells right after, not nested inside the `:::` fence: no
+  precedent in this repo for a `{code-cell}` nested inside a directive,
+  and nesting would risk breaking the `seq-*`/border CSS which assumes
+  sibling top-level cells), *Methods* (instance vs. static, `self` vs.
+  `Self`, `Window` example, *Builder setters* with `with_` prefix,
+  *Setter methods* with `set_` prefix, `Car` example, a worked `Book`
+  example with accessors, a `Square` example demonstrating
+  invariant-preserving constructors), *Tuple struct* (`Color`).
+- Three exercises added, all **without** an `\ExLvlN` star marker (that
+  convention started in the previous commit but isn't applied here):
+  `rect-area`, `rect-square`, `postal-mail` — solved in new
+  `sol_struct.md` (chapter *Solutions*, between `sol_str.md` and
+  `sol_gen.md`).
+- All the illustrative/incomplete snippets (`fn with_size`, `fn size`,
+  the exercise's bare `Rect` struct, the `Color::new().with_...()`
+  chain) are upstream `[disable]` cells → `skip-execution` + `disabled`
+  (item 15), same as elsewhere.
+- Wording fixes rippling into other files: "N bits" → "N-bit" in
+  `float.md`, `int.md`, `gen_struct.md`. New `(chp-lifetimes)=` anchor on
+  `lifetimes.md` (referenced by `sol_struct.md`'s note about `Mail`'s
+  `&'static str` fields).
+- Chapter renames: *Project* → **Project I - Organization & definition**
+  (`chap_project.md`, children unchanged); *Advanced projects* →
+  **Project II - Modules** (`chap_advanced_projects.md`, children
+  unchanged). The empty upstream *Defining Macros* chapter heading was
+  removed from `main.tex` — no action needed, we never had a
+  `chap_*.md` for it (see the *Status* section at the top of this file).
+
+**On merge:** if a future commit adds a real "Defining Macros" chapter
+with actual subfiles, it'll need a new `chap_defining_macros.md` created
+from scratch (currently still intentionally absent).
