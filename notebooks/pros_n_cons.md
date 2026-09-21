@@ -68,6 +68,6 @@ The main drawbacks of Rust are:
   install tons of dependency libraries. Indeed, Rust is closer to the
   spirit of languages like Python in the sense that it relies a lot on
   community packages for application development. Each application using
-  just 4 of 5 dependencies will trigger the installation of tens
+  just 4 of 5 dependencies will trigger the installation of tens of
   sub-dependencies. Rust binaries being statically compiled, this leads to
   huge binary sizes.

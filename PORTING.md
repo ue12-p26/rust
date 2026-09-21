@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   fb201f2
-subject:  Micro tweaks (new coll_summary, wording fixes, test_running cell lang)
-date:     2026-05-26
+commit:   73f1600
+subject:  Correct typo
+date:     2026-07-10
 ```
 
-Previously caught up to 952d74ea338d7265e5974dda88c4853199ae92d2 (2026-05-22).
+Previously caught up to fb201f2911363b68f6d5ef82bcaf420aae5401a0 (2026-05-26).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
