@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   7d08cdd
-subject:  Generic traits
+commit:   b16c239
+subject:  Lifetimes chapter
 date:     2026-09-20
 ```
 
-Previously caught up to 9565df26480330ea06bbcb4049695e4c3097911d (2026-09-20).
+Previously caught up to 7d08cddf28053ee1c09dac21c7c2dadf13ccbd58 (2026-09-20).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -1096,3 +1096,45 @@ Display + Copy>(conv: &dyn Converter<T>, v: T)` function). Verified to
 compile/run as-is with evcxr — no adaptation needed (unit structs and
 `dyn Converter<T>` with a concrete `T` per call site are all
 persistence-friendly).
+
+### 30. `lifetimes.md` full rewrite, from `b16c239`
+
+Upstream commit `b16c239` replaces the messy draft (duplicated
+"In functions"/"In structures & methods" sections, a stray generic
+`longest_with_an_announcement` example) with a cleaner structure:
+*What is a lifetime?*, *Function/block scope lifetimes*, *Static
+lifetimes*, *Lifetimes of borrowed objects*, *Lifetimes of returned
+objects*, *Explicit lifetime in functions*, *Struct lifetimes*, *Enum
+lifetimes* (new — `Message<'a>` enum).
+
+Each example was individually verified with evcxr (this file has more
+lifetime/reference edge cases per line than any other page so far):
+
+- `let m = { let n = 17; &n }; m` — this **is** a genuine `E0597`
+  ("`n` does not live long enough") compile error, confirmed by
+  wrapping the whole thing in `{ }` with a `println!` (which rules out
+  it being merely an evcxr persistence artifact) — kept
+  `:tags: [raises-exception]`.
+- `let s = "abc def ghi"; let t = first_word(s); (s, t)` — this
+  **does** work standalone with evcxr (verified), unlike what the
+  *previous* (now-replaced) version of this file assumed when it
+  tagged the equivalent cell `raises-exception`. No tag needed.
+- The `Book`/`title()` struct-lifetime example (`let book = ...; let
+  title = book.title(); title`) fails under evcxr with "contains a
+  reference with a non-static lifetime" — but wrapping in `{ }` with a
+  `println!` (item 16) proves it's a pure evcxr persistence artifact,
+  not a real compile error. Fixed that way rather than tagging
+  `raises-exception` (which would misrepresent perfectly valid Rust as
+  broken).
+- The enum-lifetime example (`m1.text(), m2.text()` as a trailing
+  tuple, `m1`/`m2` being concrete `Message<'static>` enum instances)
+  works fine as-is, no adaptation needed.
+
+**On merge:** don't assume a `raises-exception` tag from a previous
+version of a file still applies after a rewrite — the underlying code
+may have changed enough (or the previous tag may have been
+overcautious) that it's worth re-testing with evcxr directly. When a
+"contains a reference with a non-static lifetime" evcxr error shows up,
+always try wrap-in-braces first to check whether it's a genuine
+compile error or just an evcxr persistence artifact, before reaching
+for `raises-exception`.
