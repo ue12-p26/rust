@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   201fe34
-subject:  Chapter about attributes
+commit:   8426c9c
+subject:  closures
 date:     2026-09-18
 ```
 
-Previously caught up to 8627be0afa777078fcb6d0877e34a3a88245d310 (2026-09-18).
+Previously caught up to 201fe3409a26cb083dfef2fb46158a8dd848923a (2026-09-18).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -1006,3 +1006,40 @@ Another big restructuring, this time centered on `Polymorphism II`
 longer exists — check `main.tex` before assuming any trait-related
 file's chapter. `format_traits.md` lives in *I/O II* now, not with the
 other trait pages.
+
+### 27. `closures.md` full rewrite — closures can never survive a cell boundary in evcxr
+
+Upstream commit `8426c9c` replaces the old "Difference with functions"
+section (two small examples, dropped entirely) with a much longer
+treatment: closure syntax, passing a closure to a function (`impl
+Fn(i32) -> i32`), the `Fn`/`FnMut`/`FnOnce` note, returning a closure
+from a function (`make_closure`), then "Capturing variables"
+(borrowing, and a mutable-variable-borrowed-by-closure error case).
+
+**evcxr adaptation needed throughout:** per item 13, evcxr cannot
+persist a `let`-bound closure across a cell boundary (unnameable
+type) — and unlike the `Vec::new()` case (item 23), there is no type
+annotation that fixes this, since a closure's type is fundamentally
+anonymous/unnameable. Concretely this means every one of upstream's
+`[cont]`/`[stop]`-sequenced cells that *defines* a closure in one cell
+and *uses* it in a later cell had to be either merged into a single
+cell, or have the closure's definition duplicated in the cell that
+uses it. Applied here:
+- `let double = |x| x * 2;` + `double(5)` → merged into one cell.
+- `foo(double)` (several cells after `double`'s original definition) →
+  `double` is *redefined* right before the call, in the same cell,
+  since `foo` itself (a named `fn`, not a closure) persists fine on its
+  own across cells — only closures bound via `let` have this problem.
+- `let x = 4; let equal_to_x = |z| z == x;` + `equal_to_x(5)` → merged
+  into one cell.
+- The final mutable-borrow example was already a single un-sequenced
+  snippet upstream; wrapped in `{ }` and tagged
+  `:tags: [raises-exception]` — verified with evcxr directly that it
+  reproduces the intended `E0506`-class borrow error (`x is assigned to
+  here but it was already borrowed`), not an evcxr artifact.
+
+**On merge:** any future closures-related content needs the same
+treatment — a closure bound with `let` must be defined and used within
+the *same* cell (or have its definition duplicated across cells);
+functions (including ones returning `impl Fn`) don't have this problem
+and can be split across cells freely.
