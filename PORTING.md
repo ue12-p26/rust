@@ -63,12 +63,16 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   7f1bd8d
-subject:  Project organisation
-date:     2026-09-20
+commit:   eb55b74
+subject:  Packaging / Project definition
+date:     2026-09-21
 ```
 
-Previously caught up to b16c2392043497e9eaa6723788c80682b3571f55 (2026-09-20).
+Previously caught up to 7f1bd8d3f897165bf7c8d13be76c444e7e9ed0b5 (2026-09-20).
+
+This is the last commit on the `myst` branch of upstream at the time of
+this porting pass; `myst` and `origin/main` point to the same commit
+(`eb55b74`), so the MyST port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -1203,3 +1207,22 @@ active.
 **On merge:** if a future commit adds more `eza` invocations, always
 pass an explicit path (`.` for the current directory) — don't rely on
 `eza`'s bare/no-argument default in this environment.
+
+### 32. `project_toml.md` filled in, from `eb55b74`
+
+Was a bare `TODO` stub; now explains the `Cargo.toml` sections
+(`package`/`dependencies`/`lib`/`bin`), a `{list-table}` of the
+`package` section's fields (`tab-package-fields`), and a full example
+`Cargo.toml` as a numbered, captioned listing. This is the **first use
+in this repo of a plain (non-`{code-cell}`) numbered/captioned
+listing**: MyST's `{code-block}` directive with `:name:`/`:caption:`,
+cross-referenced via `{numref}`, same as `{list-table}`/`{figure}` — no
+kernel/frontmatter needed since it's a `toml` listing, never executed.
+Verified with a link-check build that both the table and the listing
+get real enumerators (`1`) and their `{numref}` refs resolve as
+`crossReference` nodes, not dangling text.
+
+This is the last upstream commit ported in this pass — `myst` and
+`origin/main` (upstream) point to the same commit as of this session;
+see the *Upstream reference* block at the top of this file for
+whatever the next porting pass should resume from.
