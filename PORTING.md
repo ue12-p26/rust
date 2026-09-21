@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   23585c6
-subject:  Check \0 inside string
-date:     2026-09-11
+commit:   8627be0
+subject:  dyn and impl for Traits - runtime polymorphism
+date:     2026-09-18
 ```
 
-Previously caught up to a87100a42a9e6b5f1edb0dba39f4ae6f73fce649 (2026-09-11).
+Previously caught up to 23585c6ca7581d2ade255e418e7b675391e70ad9 (2026-09-11).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -944,3 +944,65 @@ file kept). *Polymorphism I - Generics* is unaffected (sits between
 **On merge:** `enum.md`, `match.md`, `enum_methods.md`, `struct.md` are
 now each the sole child of their own chapter — don't assume they're
 still grouped together.
+
+### 26. Traits overhaul, from `8627be0` ("dyn and impl for Traits - runtime polymorphism")
+
+Another big restructuring, this time centered on `Polymorphism II`
+(Proficiency part) and the old Expertise `Traits` chapter:
+
+- **Old `trait_intro.md`/`trait_def.md`/`trait_impl.md` deleted**
+  entirely (were thin `MyTrait`/`MyStruct` drafts) and superseded by
+  two much richer new files: `traits.md` (new — merges what was
+  upstream's *two* `\section`s in one `traits.tex` subfile,
+  "Traits" + "Defining a trait", into one page with the second demoted
+  to `##`; carries the `(chp-traits)=` anchor moved off the deleted
+  `trait_intro.md`) and `trait_default_impl.md` (new). Both use a
+  `Surface`/`Rectangle`/`Circle` running example.
+- **`trait_poly.md` completely rewritten**, dropping the old
+  `Shape`/`describe()` example for the same `Surface` example, with
+  new subsections *Compile-time polymorphism*, *Runtime polymorphism*
+  (`dyn`, vtable explanation with an ASCII-art diagram rendered as a
+  plain ` ```text ` fence — no image asset upstream, just a LaTeX
+  `verbatim` block) and *Runtime polymorphism in collections*
+  (`Vec<&dyn Surface>`).
+- **New chapter Polymorphism III - Enum** (`chap_polymorphism_enum.md`):
+  `enum_poly.md` moved out of the old "Polymorphism II" chapter (which
+  is retitled **Polymorphism II - Traits**, `chap_polymorphism_i.md`
+  kept, now holds `traits.md`/`trait_poly.md`/`trait_default_impl.md`).
+- **Polymorphism III - Generic traits & methods** → **Polymorphism IV**
+  (`chap_polymorphism_traits.md` kept, children unchanged). Gains the
+  "Complex bound" illustrative snippet (`fn foo<T>(x: T) where T: Shape
+  + Clone { ... }`) moved here from the old `trait_poly.md`, still
+  `skip-execution`/`disabled` (references an undefined `Shape`).
+- **New chapter Types VI - Pointers** (`chap_types_pointers.md`):
+  `box.md` (new, Draft). Its only code sample references `Shape`,
+  `Circle`, `Rectangle`, `.describe()` — none defined in the file
+  (leftover from before `Shape` was retired in favour of `Surface`);
+  kept `skip-execution`/`disabled`, matching its upstream Draft state —
+  **do not** "fix" it to compile by inventing a `Shape` trait, that
+  would be scope creep not present upstream.
+- **Old Expertise "Traits" chapter deleted**
+  (`chap_traits.md`, was `trait_intro`/`trait_def`/`trait_impl`/
+  `trait_bounds`/`format_traits`) and replaced with:
+  - `format_traits.md` **moved** to the *I/O II* chapter
+    (`chap_input_output.md`, after `logs.md`) — it's referenced from
+    `string.md`'s format! note, nothing else changes.
+  - New **Polymorphism V - Traits** chapter (`chap_polymorphism_fields.md`,
+    under Expertise): `traits_in_fields.md` (new, Draft,
+    `&'a (dyn MyTrait + 'a)` field example, `skip-execution`/`disabled`
+    since `MyTrait` is undefined) + `trait_bounds.md` (unchanged,
+    relocated).
+- **New `std_traits.md`** (Appendices > Tables, between
+  `slice_methods.md` and `str_methods.md`): table of common std traits
+  (`Clone`, `Copy`, `Debug`, `Display`, `Default`, `Eq`, `Ord`,
+  `PartialEq`, `PartialOrd`), anchor `(chp-std-traits)=`, referenced
+  from `traits.md`.
+- `gen_methods.md`, `array_methods.md` (heading recapitalized to
+  "Array methods"), `rust_apps.md` (crate names become crates.io
+  hyperlinks, new `hexler` row, "and propose *colourful* outputs"
+  wording) get minor additions/tweaks.
+
+**On merge:** the Expertise "Traits" chapter (`chap_traits.md`) no
+longer exists — check `main.tex` before assuming any trait-related
+file's chapter. `format_traits.md` lives in *I/O II* now, not with the
+other trait pages.

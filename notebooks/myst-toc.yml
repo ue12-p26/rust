@@ -153,10 +153,16 @@ project:
     - title: Proficiency
       children:
 
-        - title: Polymorphism II - Runtime polymorphism
+        - title: Polymorphism II - Traits
           file: chap_polymorphism_i.md
           children:
+            - file: traits.md
             - file: trait_poly.md
+            - file: trait_default_impl.md
+
+        - title: Polymorphism III - Enum
+          file: chap_polymorphism_enum.md
+          children:
             - file: enum_poly.md
 
         - title: Attributes & Macros I
@@ -174,7 +180,7 @@ project:
             - file: memory_passing_value.md
             - file: closures.md
 
-        - title: Polymorphism III - Generic traits & methods
+        - title: Polymorphism IV - Generic traits & methods
           file: chap_polymorphism_traits.md
           children:
             - file: gen_methods.md
@@ -195,6 +201,11 @@ project:
           file: chap_collections_i.md
           children:
             - file: coll.md
+
+        - title: Types VI - Pointers
+          file: chap_types_pointers.md
+          children:
+            - file: box.md
 
         - title: Error handling I
           file: chap_error_handling_i.md
@@ -219,6 +230,7 @@ project:
             - file: io.md
             - file: args.md
             - file: logs.md
+            - file: format_traits.md
 
         - title: Testing
           file: chap_testing.md
@@ -231,14 +243,11 @@ project:
     - title: Expertise
       children:
 
-        - title: Traits
-          file: chap_traits.md
+        - title: Polymorphism V - Traits
+          file: chap_polymorphism_fields.md
           children:
-            - file: trait_intro.md
-            - file: trait_def.md
-            - file: trait_impl.md
+            - file: traits_in_fields.md
             - file: trait_bounds.md
-            - file: format_traits.md
 
         - title: Collections
           file: chap_collections.md
@@ -316,6 +325,7 @@ project:
             - file: iter_methods.md
             - file: option_methods.md
             - file: slice_methods.md
+            - file: std_traits.md
             - file: str_methods.md
             - file: string_methods.md
             - file: vec_methods.md

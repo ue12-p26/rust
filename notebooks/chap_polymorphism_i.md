@@ -1,1 +1,1 @@
-# Polymorphism II - Runtime polymorphism
+# Polymorphism II - Traits

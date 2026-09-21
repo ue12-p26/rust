@@ -41,3 +41,12 @@ impl Point<f32> {
   }
 }
 ```
+
+Complex bound (multiple constraints):
+
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
+
+fn foo<T>(x: T) where T: Shape + Clone { ... }
+```
