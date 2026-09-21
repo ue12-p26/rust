@@ -3,13 +3,13 @@
 # Introduction
 
 [Attributes](https://doc.rust-lang.org/rust-by-example/attribute.html)
+(see also
+[Attributes](https://doc.rust-lang.org/rust-by-example/attribute.html)
+in
+[Rust by Example](https://doc.rust-lang.org/rust-by-example/index.html))
 are metadata attached to objects and processed by the compiler for
 different purposes. Some attributes are macros, called *attribute-like
 macros*.
-
-:::{danger} TODO
-Finish this intro.
-:::
 
 [Macros](https://doc.rust-lang.org/book/ch20-05-macros.html) are a
 *metaprogramming* feature of a language.
@@ -18,6 +18,7 @@ Macros are not part of the language itself, they are processed by the
 *pre-processor* which expands them into language code *before* the *real*
 parsing of the code.
 Macros allow us to define a block and repeat it wherever we need it.
+
 In Rust, macros are devided into:
 
 - *Declarative* macros.

@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   8627be0
-subject:  dyn and impl for Traits - runtime polymorphism
+commit:   201fe34
+subject:  Chapter about attributes
 date:     2026-09-18
 ```
 
-Previously caught up to 23585c6ca7581d2ade255e418e7b675391e70ad9 (2026-09-11).
+Previously caught up to 8627be0afa777078fcb6d0877e34a3a88245d310 (2026-09-18).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
