@@ -67,6 +67,16 @@ pub fn notify<T: Summary + Display>(item: &T) {
 }
 ```
 
+## Returning a trait
+
+```{code-cell} rust
+:tags: [raises-exception]
+
+fn foo() -> impl MyTrait {
+  // ...
+}
+```
+
 ## Using where clauses
 
 The `where` clause allows for clearer declarations:
@@ -83,16 +93,6 @@ where
 }
 ```
 
-## Returning a trait
-
-```{code-cell} rust
-:tags: [raises-exception]
-
-fn foo() -> impl MyTrait {
-  // ...
-}
-```
-
 ## Implement a generic method only for some type
 
 ```{code-cell} rust
@@ -104,4 +104,45 @@ impl<T: MyTrait> MyStruct<T> {
     // ...
   }
 }
+```
+
+## Trait bound
+
+:::{danger} TODO
+Implement a function for only T that implements a trait ...
+:::
+
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
+
+impl<T: ...> Point<T> {
+}
+```
+
+It is possible to implement a method only for one realisation of a
+generic:
+
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
+
+impl Point<f32> {
+  fn distance_from_origin(&self) -> f32 {
+    (self.x.powi(2) + self.y.powi(2)).sqrt()
+  }
+}
+```
+
+## Where clause
+
+## Complex bound
+
+Multiple constraints:
+
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
+
+fn foo<T>(x: T) where T: Shape + Clone { ... }
 ```

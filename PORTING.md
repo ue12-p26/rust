@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   8426c9c
-subject:  closures
-date:     2026-09-18
+commit:   9565df2
+subject:  Generic methods
+date:     2026-09-20
 ```
 
-Previously caught up to 201fe3409a26cb083dfef2fb46158a8dd848923a (2026-09-18).
+Previously caught up to 8426c9c65db380409c6efa16947e699e9ed8a4d2 (2026-09-18).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -1043,3 +1043,46 @@ treatment — a closure bound with `let` must be defined and used within
 the *same* cell (or have its definition duplicated across cells);
 functions (including ones returning `impl Fn`) don't have this problem
 and can be split across cells freely.
+
+### 28. `gen_methods.md` rewrite + content reshuffled into `trait_bounds.md`, from `9565df2`; evcxr persistence probing is per-statement, not per-cell
+
+Upstream commit `9565df2` rewrites `gen_methods.md` around a single
+`Point<T>` running example (`Constructor (T as argument)`, `Returning a
+T`), dropping the old `distance_from_origin`/"Complex bound" examples,
+which move into `trait_bounds.md` as three new subsections at the end
+(`Trait bound`, an empty `Where clause` stub, `Complex bound`) — all
+kept `skip-execution`/`disabled` since they reference undefined
+types/traits (`Point<T>` isn't defined in `trait_bounds.md`, `Shape` is
+retired). `trait_bounds.md`'s pre-existing "Returning a trait" section
+also moves up, right after the intro examples, ahead of "Using where
+clauses".
+
+**Important correction to the mental model from item 23:** testing
+`gen_methods.md`'s final example (`let (x, y) = (p.x(), p.y()); (x,
+y)`) exposed that evcxr's persisted-`let`-type resolution happens
+**immediately at each `let` statement**, not deferred to "end of cell"
+or "end of submission" — i.e. it is *per-statement*, not *per-cell*.
+Bundling a problematic `let` and its use into the same cell/submission
+does **not**, by itself, avoid a persistence failure; item 23's
+"same-cell" framing was imprecise. What actually matters:
+- A `let` binding whose type is a non-`'static` reference (here: `&T`
+  borrowed from a local `Point<T>`) **always** fails to persist,
+  regardless of grouping — confirmed by testing the exact same
+  single-line submission both split across "cells" and joined with
+  `;` on one line; both failed identically with "contains a reference
+  with a non-static lifetime so can't be persisted."
+- The fix is item 16's wrap-in-braces: `{ let (x, y) = (...); println!(...); }`
+  — the block's return type is `()`, so nothing escapes for evcxr to
+  try to persist. Applied here.
+- Item 23's `Vec::new()`/closure cases still stand, but for a
+  different, related reason: an *unresolved generic* or *unnameable*
+  type also can't persist, whether alone in a cell or followed by
+  clarifying statements in the same submission.
+
+**On merge:** when a `[cont]`/`[stop]`-sequenced example ends with a
+`let` binding of a non-`'static` reference, generic-still-unresolved,
+or unnameable type, don't assume grouping it with its usage in one
+cell is sufficient — verify with a real single-line-`;`-joined evcxr
+submission (bare CLI is fine for this specific check, since the
+behavior is per-statement, not per-cell/session-transport), and reach
+for wrap-in-braces or an explicit type annotation as needed.
