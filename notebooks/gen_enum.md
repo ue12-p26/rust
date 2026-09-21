@@ -9,13 +9,8 @@ kernelspec:
   language: rust
 ---
 
+(chp-gen-enum)=
 # Generic enum
-
-A *generic* type is a type that is defined using a parametric type instead
-of a fixed one. In Rust, the *generic* notation uses the bracket
-characters `<>`. One or more parametric types can be declared inside the
-brackets.
-To know more about *generics*, see [Generics chapter](#chp-generics).
 
 In the following example we use a parametric type `T` to define a
 *generic* enum type to represent colors. The possible levels of grey or
@@ -49,17 +44,13 @@ let c3 = Color::<u8>::Rgb(0x00, 0xa0, 0x57);
 (c1, c2, c3)
 ```
 
-We may also use two parameter types to differentiate between the capacity
-of RGB colors and the number of levels of greys:
+:::{exercise} Using two parameters in a generic (★☆☆☆☆)
+:label: gen-enum
+:enumerated: true
 
-```{code-cell} rust
-#[derive(Debug)]
-enum Color<C, G> {
-  Grey(G),
-  Rgb(C, C, C),
-}
+Modify the `Color` enum to accept a different type for `Grey` and `Rgb`.
+Create a `u16` `Grey` value and a `Rgb` value with `u8` using the same
+`Color` realisation and print them.
+:::
 
-let c1 = Color::<u8, u16>::Grey(0xa0b4);
-let c2 = Color::<u8, u16>::Rgb(0x60, 0x70, 0x80);
-(c1, c2)
-```
+[see solution](#gen-enum-solution)

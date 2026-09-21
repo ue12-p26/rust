@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   25651b9
-subject:  Resolve "Write slices chapter"
-date:     2026-07-31
+commit:   85cca2f
+subject:  Resolve "polymorphism"
+date:     2026-08-28
 ```
 
-Previously caught up to 095fbc082e6d892c43ff3f6f6b0e8c742d5860f0 (2026-07-30).
+Previously caught up to 25651b93b36411033423dec3f89e58bdf4eb8ec1 (2026-07-31).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -627,3 +627,97 @@ Content-wise this commit also:
 
 **On merge:** `slices.md` is a child of `chap_memory_ii.md`, not its own
 chapter — don't recreate `chap_slices.md`.
+
+**Bugfix folded in:** while verifying this commit with `myst build
+--execute` (actually running every cell, not just checking for broken
+links), the `## Getting a slice from a UTF-8 string` example added to
+`utf8.md` in this same commit turned out to hit the evcxr
+non-nameable-type issue below (item 13): `let s = String::from(...)` /
+`s.get(...)` — wrapped in `{ ... }` to fix, no upstream-visible change.
+
+### 19. Exercise difficulty levels — `\ExLvlOne`..`\ExLvlFive` → star rating
+
+Starting with upstream commit `85cca2f`, some exercise titles carry a
+LaTeX difficulty marker, e.g. `\begin{exercise}{Some title (\ExLvlOne)}`.
+`common/ex.sty` defines these as a 5-star rating (filled/open,
+`\FiveStar`/`\FiveStarOpen`): One=★☆☆☆☆, Two=★★☆☆☆, Three=★★★☆☆,
+Four=★★★★☆, Five=★★★★★. The MyST port renders this literally as unicode
+stars appended to the exercise title, e.g.:
+
+```md
+:::{exercise} Using two parameters in a generic (★☆☆☆☆)
+:label: gen-enum
+:enumerated: true
+...
+```
+
+**On merge:** apply the matching star string whenever a new/changed
+upstream exercise title carries an `\ExLvlN` marker; exercises without
+the marker keep a plain title (unchanged convention).
+
+### 20. Chapter restructuring from upstream commit `85cca2f` ("polymorphism")
+
+This is the second large chapter reshuffle (see also item 17). Summary of
+the moves — file names are chosen to stay stable/descriptive rather than
+mirror upstream's shifting roman numerals (as already established for
+"Types I".."IV" in item 17):
+
+- *Types III* chapter (`chap_enum_type.md`) renamed "Enums & structs"
+  (was "Enumerates/Variants") and gains `struct.md` as a 4th child.
+  `struct.tex` itself is untouched by this commit — only its chapter
+  changed.
+- NEW chapter **Polymorphism I - Generics** (`chap_polymorphism_gen.md`),
+  inserted right after *Types III*, before *Syntax III*: `poly.md` (new,
+  "What is polymorphism?", 2 figures `media/param_poly.svg` /
+  `media/runtime_poly.svg` copied from upstream's `gen_img/*.svg`),
+  `generics.md` (new, "Generics" — **carries the `(chp-generics)=` anchor,
+  moved off of `gen_fct.md`, which had it by accident from the old
+  Expertise/Generics chapter grouping**), `gen_enum.md`, `gen_fct.md`,
+  `gen_struct.md` (all three moved in from elsewhere, see below).
+- NEW chapter **Syntax III - Option** (`chap_syntax_iii.md`): `option.md`,
+  `if_let.md`, `while_let.md` — split out of the old *Types III* chapter.
+- *Memory II* renamed "Ownership & references" (children unchanged).
+- *Polymorphism I* chapter (`chap_polymorphism_i.md`, was just
+  `enum_poly.md`) renamed **Polymorphism II - Runtime polymorphism**,
+  gains new `trait_poly.md` (Draft, "Polymorphism with traits") as first
+  child. `enum_poly.md` itself is rewritten (no longer Draft, "Polymorphism
+  with enums", new `HashMap<String, Value>` dictionary example — needed
+  an explicit type annotation on `dict` to dodge an evcxr
+  "can't automatically determine type" error, see item 13).
+- NEW chapter **Polymorphism III - Generic traits & methods**
+  (`chap_polymorphism_traits.md`), inserted after *Functions II*, before
+  *Memory III*: `gen_methods.md` (moved in from Expertise/Generics,
+  4-space→2-space reformat + `(chp-gen-methods)=` anchor), `gen_traits.md`
+  (new, empty upstream stub — rendered as a bare Draft placeholder).
+- *Memory* chapter (`chap_memory.md`) renamed **Memory III - Lifetimes**.
+- *Defining custom types* chapter (`chap_custom_types.md`) **removed**;
+  its only child `struct.md` moved to *Types III* (see above).
+- *Collections* chapter under Proficiency (`chap_collections_i.md`)
+  renamed **Types V - Collections**.
+- Expertise's *Generics* chapter (`chap_generics.md`) **removed
+  entirely**: `gen_fct.md` and `gen_struct.md` moved to the new
+  *Polymorphism I - Generics* chapter, `gen_methods.md` moved to the new
+  *Polymorphism III* chapter (all above). Expertise's *Collections*
+  chapter (`chap_collections.md`, vec_deque/hashmap/...) is a different,
+  untouched chapter — don't confuse the two (see item 17's note on
+  upstream reusing bare chapter titles).
+- Appendices: `howto_env_vars.md` added to *How-tos* (new, bash-kernel,
+  `source bash-setup.sh` + `(chp-howto-env-vars)=` anchor, embeds a Rust
+  source file via heredoc/`rustc` rather than a `{code-cell} rust` —
+  not a mixed-kernel page, the Rust code is just a string written to
+  disk). `sol_gen.md` added to *Solutions* (new: "Generic enum" solving
+  `gen-enum`, "Generic function for getting env vars" solving
+  `gen-fct-env-var`).
+- `gen_struct.md`'s last two examples (`use num_traits::Float; impl<T>
+  Point<T> where T: Float {...}` and the `p1.distance(&p2)` call) use an
+  external crate not available in the evcxr kernel here — kept as
+  `skip-execution` + `disabled` (shown, not run), broken out of the
+  cell sequence's border/badge styling since they don't execute.
+- `gen_fct.md`'s `largest()` demo needed the wrap-in-braces workaround
+  (item 16) on both call sites (`result` is a non-`'static` reference).
+
+**On merge:** the two "Collections" and any future "Generics"-adjacent
+chapters need their home chapter double-checked against `main.tex`
+before assuming a `chap_*.md` file name — this commit alone moved
+`gen_fct.md`/`gen_struct.md`/`gen_methods.md` across three different
+chapters relative to where they started this porting pass.

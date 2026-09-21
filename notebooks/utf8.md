@@ -46,11 +46,13 @@ println!("s: {}", &s[0..1]);
 We use the `get()` method:
 
 ```{code-cell} rust
-let s = String::from("Салам");
-if let Some(t) = s.get(0..1) {
-  println!("s[0..1]: {t}");
-}
-if let Some(t) = s.get(0..2) {
-  println!("s[0..2]: {t}");
+{
+  let s = String::from("Салам");
+  if let Some(t) = s.get(0..1) {
+    println!("s[0..1]: {t}");
+  }
+  if let Some(t) = s.get(0..2) {
+    println!("s[0..2]: {t}");
+  }
 }
 ```

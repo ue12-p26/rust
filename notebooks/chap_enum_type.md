@@ -1,1 +1,1 @@
-# Types III - Enumerates/Variants
+# Types III - Enums & structs

@@ -95,13 +95,26 @@ project:
     - title: Fundamentals
       children:
 
-        - title: Types III - Enumerates/Variants
+        - title: Types III - Enums & structs
           file: chap_enum_type.md
           children:
             - file: enum.md
             - file: match.md
             - file: enum_methods.md
+            - file: struct.md
+
+        - title: Polymorphism I - Generics
+          file: chap_polymorphism_gen.md
+          children:
+            - file: poly.md
+            - file: generics.md
             - file: gen_enum.md
+            - file: gen_fct.md
+            - file: gen_struct.md
+
+        - title: Syntax III - Option
+          file: chap_syntax_iii.md
+          children:
             - file: option.md
             - file: if_let.md
             - file: while_let.md
@@ -112,7 +125,7 @@ project:
             - file: vec.md
             - file: string.md
 
-        - title: Memory II
+        - title: Memory II - Ownership & references
           file: chap_memory_ii.md
           children:
             - file: ownership.md
@@ -122,9 +135,10 @@ project:
     - title: Proficiency
       children:
 
-        - title: Polymorphism I
+        - title: Polymorphism II - Runtime polymorphism
           file: chap_polymorphism_i.md
           children:
+            - file: trait_poly.md
             - file: enum_poly.md
 
         - title: Attributes & Macros I
@@ -142,7 +156,13 @@ project:
             - file: memory_passing_value.md
             - file: closures.md
 
-        - title: Memory
+        - title: Polymorphism III - Generic traits & methods
+          file: chap_polymorphism_traits.md
+          children:
+            - file: gen_methods.md
+            - file: gen_traits.md
+
+        - title: Memory III - Lifetimes
           file: chap_memory.md
           children:
             - file: lifetimes.md
@@ -153,12 +173,7 @@ project:
             - file: project.md
             - file: project_toml.md
 
-        - title: Defining custom types
-          file: chap_custom_types.md
-          children:
-            - file: struct.md
-
-        - title: Collections
+        - title: Types V - Collections
           file: chap_collections_i.md
           children:
             - file: coll.md
@@ -207,13 +222,6 @@ project:
             - file: trait_impl.md
             - file: trait_bounds.md
             - file: format_traits.md
-
-        - title: Generics
-          file: chap_generics.md
-          children:
-            - file: gen_fct.md
-            - file: gen_struct.md
-            - file: gen_methods.md
 
         - title: Collections
           file: chap_collections.md
@@ -276,6 +284,7 @@ project:
             - file: howto_path.md
             - file: howto_missing_tools.md
             - file: howto_cargo_inst_crate.md
+            - file: howto_env_vars.md
 
         - title: Tables
           file: chap_tables.md
@@ -302,3 +311,4 @@ project:
             - file: sol_fct.md
             - file: sol_mem.md
             - file: sol_str.md
+            - file: sol_gen.md

@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="270mm"
+   height="200mm"
+   viewBox="0 0 270 200"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="runtime_poly.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.0469406"
+     inkscape:cx="491.90946"
+     inkscape:cy="386.36384"
+     inkscape:window-width="1914"
+     inkscape:window-height="1040"
+     inkscape:window-x="3840"
+     inkscape:window-y="37"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="DartArrow"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-1"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-39" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-39-8" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-3-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-39-8-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-5"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-39-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-5-2"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-39-6-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-5-2-6"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-39-6-9-1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-5-2-6-9"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-39-6-9-1-1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-5-2-6-5"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-39-6-9-1-8" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-5-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-39-6-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-5-0-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-39-6-2-9" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(30.812883,-94.496859)">
+    <g
+       id="g5"
+       transform="translate(122.92789,99.82692)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+         x="88.087601"
+         y="58.477242"
+         id="text1"><tspan
+           sodipodi:role="line"
+           id="tspan1"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+           x="88.087601"
+           y="58.477242">Animal</tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1"
+         width="28.384924"
+         height="12.277659"
+         x="85.198143"
+         y="49.906361" />
+    </g>
+    <g
+       id="g24"
+       transform="translate(-46.888664,2.617205)">
+      <g
+         id="g10"
+         transform="translate(161.51753,29.902017)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+           x="21.674034"
+           y="103.52042"
+           id="text1-4"><tspan
+             sodipodi:role="line"
+             id="tspan1-8"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+             x="21.674034"
+             y="103.52042">Reptile</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.966895;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1-1"
+           width="34.022522"
+           height="12.196846"
+           x="18.093027"
+           y="95.720192" />
+      </g>
+      <g
+         id="g14"
+         transform="translate(58.666064,79.717319)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+           x="130.25638"
+           y="75.923523"
+           id="text1-4-4-1"><tspan
+             sodipodi:role="line"
+             id="tspan1-8-4-2"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+             x="130.25638"
+             y="75.923523">Bird</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1-1-4-8"
+           width="23.097736"
+           height="12.35148"
+           x="126.40689"
+           y="67.315727" />
+      </g>
+      <g
+         id="g15"
+         transform="translate(72.552346,74.219706)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+           x="112.67121"
+           y="102.9046"
+           id="text1-4-4-0"><tspan
+             sodipodi:role="line"
+             id="tspan1-8-4-21"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+             x="112.67121"
+             y="102.9046">Mammal</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1-1-4-0"
+           width="29.435448"
+           height="12.25598"
+           x="109.35175"
+           y="94.395363" />
+      </g>
+    </g>
+    <g
+       id="g22"
+       transform="translate(-128.68222,-11.678822)">
+      <g
+         id="g16"
+         transform="translate(0,12.151625)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+           x="108.37089"
+           y="140.29216"
+           id="text1-4-4-7"><tspan
+             sodipodi:role="line"
+             id="tspan1-8-4-5"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+             x="108.37089"
+             y="140.29216">CanSwim</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1-1-4-9"
+           width="33.669952"
+           height="12.201678"
+           x="104.93442"
+           y="131.75926" />
+      </g>
+      <g
+         id="g17"
+         transform="translate(20.9291,2.3176367)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+           x="87.394165"
+           y="167.60078"
+           id="text1-4-4-7-8"><tspan
+             sodipodi:role="line"
+             id="tspan1-8-4-5-5"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+             x="87.394165"
+             y="167.60078">CanWalk</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1-1-4-9-7"
+           width="33.669952"
+           height="12.201678"
+           x="84.005318"
+           y="159.1187" />
+      </g>
+      <g
+         id="g18"
+         transform="translate(3.3729382)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+           x="108.80939"
+           y="186.69774"
+           id="text1-4-4-7-8-9"><tspan
+             sodipodi:role="line"
+             id="tspan1-8-4-5-5-7"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+             x="108.80939"
+             y="186.69774">CanFly</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1-1-4-9-7-5"
+           width="29.793581"
+           height="12.256713"
+           x="105.43785"
+           y="178.93427" />
+      </g>
+    </g>
+    <g
+       id="g7"
+       transform="translate(1.7690433,4.2925226)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+         x="28.86792"
+         y="247.23239"
+         id="text1-4-4-7-8-9-3"><tspan
+           sodipodi:role="line"
+           id="tspan1-8-4-5-5-7-86"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+           x="28.86792"
+           y="247.23239">make_walk(CanWalk)</tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1-1-4-9-7-5-0"
+         width="73.621277"
+         height="11.766725"
+         x="25.839304"
+         y="239.52975" />
+    </g>
+    <g
+       id="g9"
+       transform="translate(1.6113227,4.525569)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+         x="29.117229"
+         y="263.56964"
+         id="text1-4-4-7-8-9-3-9"><tspan
+           sodipodi:role="line"
+           id="tspan1-8-4-5-5-7-86-7"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+           x="29.117229"
+           y="263.56964">make_fly(CanFly)</tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1-1-4-9-7-5-0-7"
+         width="66.184448"
+         height="11.835307"
+         x="25.997025"
+         y="256.00101" />
+    </g>
+    <g
+       id="g8"
+       transform="translate(0.86541211,4.0435276)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+         x="29.417334"
+         y="280.94397"
+         id="text1-4-4-7-8-9-3-3"><tspan
+           sodipodi:role="line"
+           id="tspan1-8-4-5-5-7-86-0"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+           x="29.417334"
+           y="280.94397">make_swim(CanSwim)</tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1-1-4-9-7-5-0-9"
+         width="72.912842"
+         height="11.773087"
+         x="26.742935"
+         y="273.18735" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+       x="31.200388"
+       y="234.66438"
+       id="text1-4-4-7-8-9-1"><tspan
+         sodipodi:role="line"
+         id="tspan1-8-4-5-5-7-8"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+         x="31.200388"
+         y="234.66438">get_feather_type(Bird)</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.838865;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-1-4-9-7-5-9"
+       width="88.983643"
+       height="11.513769"
+       x="27.527779"
+       y="227.03741" />
+    <g
+       id="g20"
+       transform="translate(32.637443,75.077291)">
+      <g
+         id="g19"
+         transform="translate(-27.877256,-68.978339)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+           x="49.425106"
+           y="122.25559"
+           id="text1-4-4"><tspan
+             sodipodi:role="line"
+             id="tspan1-8-4"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+             x="49.425106"
+             y="122.25559">Crocodile</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1-1-4"
+           width="40.019947"
+           height="12.118458"
+           x="46.560139"
+           y="113.76431" />
+      </g>
+      <g
+         id="g11"
+         transform="translate(-10.532121,-75.288008)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+           x="37.683846"
+           y="148.51759"
+           id="text1-4-4-5"><tspan
+             sodipodi:role="line"
+             id="tspan1-8-4-9"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+             x="37.683846"
+             y="148.51759">Lizard</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1-1-4-4"
+           width="30.850414"
+           height="12.241345"
+           x="33.79977"
+           y="139.96487" />
+      </g>
+      <g
+         id="g13"
+         transform="translate(9.2541565,-86.735334)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+           x="21.6663"
+           y="179.75217"
+           id="text1-4-4-8"><tspan
+             sodipodi:role="line"
+             id="tspan1-8-4-50"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+             x="21.6663"
+             y="179.75217">Crow</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1-1-4-6"
+           width="22.746021"
+           height="12.357167"
+           x="18.065689"
+           y="171.30663" />
+      </g>
+      <g
+         id="g12"
+         transform="translate(-7.7614017,-86.49098)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+           x="33.135128"
+           y="198.89499"
+           id="text1-4-4-86"><tspan
+             sodipodi:role="line"
+             id="tspan1-8-4-28"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+             x="33.135128"
+             y="198.89499">Dolphin</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1-1-4-47"
+           width="33.313786"
+           height="12.202909"
+           x="29.797365"
+           y="191.09174" />
+      </g>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;marker-start:url(#DartArrow)"
+       d="m 15.477424,136.58591 36.139326,-10.716"
+       id="path24" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;marker-start:url(#DartArrow-0)"
+       d="m 16.267065,156.09505 39.546439,-9.9479"
+       id="path24-6" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;marker-start:url(#DartArrow-0-5)"
+       d="M 126.90578,130.85212 90.941462,124.91593"
+       id="path24-6-7" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.01896;stroke-dasharray:none;marker-start:url(#DartArrow-0-5-0)"
+       d="M 202.66483,150.43659 166.60817,133.73618"
+       id="path24-6-7-8" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;marker-start:url(#DartArrow-0-5-0-0)"
+       d="m 202.17283,160.8561 -37.86935,16.8371"
+       id="path24-6-7-8-6" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;marker-start:url(#DartArrow-0-5-2)"
+       d="m 126.28574,137.44919 -39.738789,6.16707"
+       id="path24-6-7-0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00349;stroke-dasharray:none;marker-start:url(#DartArrow-0-5-2-6)"
+       d="m 132.03058,157.9694 -49.34273,6.85351"
+       id="path24-6-7-0-1" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00185;stroke-dasharray:none;marker-start:url(#DartArrow-0-5-2-6-5)"
+       d="m 202.11863,155.54873 -40.77669,-0.10456"
+       id="path24-6-7-0-1-4" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.995623;stroke-dasharray:none;marker-start:url(#DartArrow-0-5-2-6-9)"
+       d="m 129.19572,177.84948 -41.071357,8.50188"
+       id="path24-6-7-0-1-1" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;marker-start:url(#DartArrow-0-3)"
+       d="M 15.683639,174.13694 60.473905,163.45295"
+       id="path24-6-6" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;marker-start:url(#DartArrow-0-3-0)"
+       d="m 14.555375,144.27728 40.362128,41.60818"
+       id="path24-6-6-2" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;marker-start:url(#DartArrow-1)"
+       d="M 14.774089,150.39074 51.668163,127.91398"
+       id="path24-0" />
+    <g
+       id="g26"
+       transform="translate(-1.7690433,5.5598504)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+         x="-19.310669"
+         y="103.87328"
+         id="text1-6"><tspan
+           sodipodi:role="line"
+           id="tspan1-1"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+           x="-19.310669"
+           y="103.87328">abilities</tspan></text>
+      <ellipse
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none"
+         id="path25"
+         cx="-2.2609107"
+         cy="101.44123"
+         rx="24.513885"
+         ry="7.9606948" />
+    </g>
+    <g
+       id="g25"
+       transform="translate(1.7690433,1.9907282)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+         x="159.19945"
+         y="106.39781"
+         id="text1-6-0"><tspan
+           sodipodi:role="line"
+           id="tspan1-1-5"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35px;font-family:'Noto Sans Mono';-inkscape-font-specification:'Noto Sans Mono Bold';stroke-width:0.264583"
+           x="159.19945"
+           y="106.39781">types</tspan></text>
+      <ellipse
+         style="fill:none;stroke:#000000;stroke-width:0.866731;stroke-dasharray:none"
+         id="path25-5"
+         cx="168.63873"
+         cy="105.01035"
+         rx="18.262508"
+         ry="8.0273294" />
+    </g>
+  </g>
+</svg>

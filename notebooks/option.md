@@ -20,7 +20,7 @@ std::panic::set_hook(Box::new(|info| {
 }));
 ```
 
-The `Option<T>` (see
+The generic enum `Option<T>` (see
 [Option type](https://en.wikipedia.org/wiki/Option_type) for a general
 presentation of this concept)
 is defined inside the standard library and is used everywhere in Rust to
@@ -30,9 +30,10 @@ possiblity of the absence of value.
 Some of the methods of `Option<T>` are presented in this chapter. See
 {numref}`tab-option-methods` for more interesting methods.
 
-The `Option<T>` type is a *generic enum type* that defines a `None`
-*variant* that represents the No-value case, and a `Some(T)` variant
-that represents a value.
+The `Option<T>` type is a *generic enum type* (see
+[Generic enum](#chp-gen-enum)) that defines a `None` *variant* that
+represents the No-value case, and a `Some(T)` variant that represents a
+value.
 
 Here the definition of `Option<T>` inside the standard library:
 
@@ -41,8 +42,8 @@ Here the definition of `Option<T>` inside the standard library:
 :class: disabled
 
 enum Option<T> {
-    Some(T),
-    None,
+  Some(T),
+  None,
 }
 ```
 
