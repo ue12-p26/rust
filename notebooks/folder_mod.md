@@ -9,6 +9,7 @@ kernelspec:
   language: bash
 ---
 
+(chp-folder-module)=
 # Folder module
 
 :::{danger} Draft

@@ -42,7 +42,7 @@ And look at its content:
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-exa -T
+eza -T .
 ```
 
 In the `src` folder is a single file named `main.rs` that contains a

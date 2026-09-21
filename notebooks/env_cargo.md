@@ -65,7 +65,7 @@ that contains a default `main()` function:
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-exa -T foo
+eza -T foo
 ```
 
 The project file defines a *project name*, a *project version* and the
@@ -100,7 +100,7 @@ Cargo created the same files as before:
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-exa -T foo2
+eza -T foo2
 ```
 
 But also a `.gitignore` file that contains a single line in order to ignore
@@ -332,7 +332,7 @@ EOF
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-exa -T tests
+eza -T tests
 ```
 
 Running this test, is as simple as running the `test` sub-command.

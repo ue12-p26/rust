@@ -9,6 +9,7 @@ kernelspec:
   language: rust
 ---
 
+(chp-sub-modules)=
 # Sub-modules
 
 :::{danger} Draft
@@ -19,6 +20,8 @@ or not?
 
 TODO: make chapter about `pub` and `mod` and explain usage of both
 together.
+
+TODO: explain `super::` and `crate::`.
 :::
 
 Inside a module:

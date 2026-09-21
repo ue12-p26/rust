@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   b16c239
-subject:  Lifetimes chapter
+commit:   7f1bd8d
+subject:  Project organisation
 date:     2026-09-20
 ```
 
-Previously caught up to 7d08cddf28053ee1c09dac21c7c2dadf13ccbd58 (2026-09-20).
+Previously caught up to b16c2392043497e9eaa6723788c80682b3571f55 (2026-09-20).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -1138,3 +1138,68 @@ overcautious) that it's worth re-testing with evcxr directly. When a
 always try wrap-in-braces first to check whether it's a genuine
 compile error or just an evcxr persistence artifact, before reaching
 for `raises-exception`.
+
+### 31. `project.md` full rewrite, `exa` → `eza`, from `7f1bd8d`
+
+Upstream commit `7f1bd8d` rewrites `project.tex` extensively:
+- **Package** section split into **Binary package** / **Library
+  package** subsections, each now `cd`s into the freshly-created
+  project (`cargo new --bin foo; cd foo`, later `cargo new --lib foo2;
+  cd foo2` — nested *inside* `foo`, verified this causes no error,
+  cargo doesn't mind a nested unrelated package) instead of always
+  prefixing paths with `foo/`. Both end by actually running the
+  project (`cargo run` / `cargo test`), which the previous version
+  never did.
+- **Crate** section reworded, references the new *Multiple crates*
+  chapter (`(chp-mult-crates)=` anchor added to `mult_crates.md`).
+- **Internal module**: the entire old bash workflow (write bogus
+  private-fn code, `cargo build` fails, warning box, fix with `pub`,
+  rebuild, run) is **dropped**, replaced by two plain (non-executed)
+  Rust snippets — matches the pre-existing "mixed kernel" convention
+  for this bash-kernel page (see the *Local divergences* entry at the
+  top of this file: rust snippets on `project.md` are plain fences, not
+  `{code-cell}`).
+- **File module**: the old "fails without `mod` declaration, here's why,
+  now fixed" demo is dropped too; goes straight from a fresh `foo4`
+  project to a working `mod math;` + `cargo run`, ending with a new
+  note box. No more `pushd`/`popd` anywhere in this file — every
+  section now creates its own fresh project and just `cd`s forward.
+- **Path** section **moved up** (was last, now right after *Module*,
+  before *Use keyword*), gains a new relative-path example (`arithmetic`
+  sub-module, `math::double()`) and a note pointing at the new `(chp-sub-modules)=`
+  anchor on `sub_mod.md` (which also gains a `TODO: explain super::/crate::`
+  line).
+- **Use keyword** promoted from a `###` under *Module* to a top-level
+  `##`, moved to be the last section, and **drops** the bash demo
+  entirely (no more `use math::add;` + `cargo run` + the final `popd`)
+  — it's now purely the plain-Rust-snippet content that already
+  existed (`Duration`, wildcard `*`, explicit/grouped imports), with
+  the single-`LinkedList`-import example removed in favour of just the
+  combined `{LinkedList, VecDeque}` one.
+- `env_cargo.md`, `fct_main.md`, `project.md`: `exa` → `eza` in every
+  executed tree-listing command (`exa` is unmaintained/archived
+  upstream; `eza` is its actively maintained fork — matches what
+  `rust_apps.md`'s table already called it, from `8627be0`).
+
+**`eza` had to actually be installed** (`brew install eza`, pulled in
+`openssl@3` as a build dependency) to test this — it wasn't present
+before. `bash-setup.sh` gained `alias eza='eza --color=always'`
+alongside the existing `exa` one.
+
+**Real bug found in `eza` (v0.23.5, this environment): bare `eza -T`
+(no path argument) after a `cd` prints nothing** (exit 0, empty
+output) — `exa -T` (bare) always worked this way, but `eza` apparently
+needs an explicit path. Verified reproducible in isolation (`cd
+/tmp/x && eza -T` → empty; `cd /tmp/x && eza -T .` → correct tree).
+Worked around by writing `eza -T .` everywhere a bare current-directory
+tree listing was intended (`project.md`, `fct_main.md`) —
+`env_cargo.md`'s calls were already using an explicit subdirectory
+name (`eza -T foo`) and needed no change. Verified the whole `project.md`
+bash flow end-to-end (`cargo new --bin/--lib`, `eza -T .`, `bat`,
+`cargo run`/`cargo test`, the `foo4` module demo) in one real shell
+session sourcing `bash-setup.sh`, and again with the `eza` alias
+active.
+
+**On merge:** if a future commit adds more `eza` invocations, always
+pass an explicit path (`.` for the current directory) — don't rely on
+`eza`'s bare/no-argument default in this environment.

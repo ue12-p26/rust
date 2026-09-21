@@ -11,8 +11,7 @@ kernelspec:
 
 # Project organisation
 
-:::{danger} Draft
-This section is still being written.
+:::{warning} To review
 :::
 
 ```{code-cell} bash
@@ -21,65 +20,73 @@ This section is still being written.
 source bash-setup.sh
 ```
 
-As we have seen earlier, a `cargo` project is defined inside a
-`Cargo.toml` file.
-Inside will be defined, among other things:
+A Rust project is made of:
 
-- The project name.
-- The dependencies.
+- A project description (i.e.: `Cargo.toml` file).
+- Code files.
+- Declarations of *code elements* (i.e.: functions, structures,
+  enumerate types, traits, ...) written inside the code files.
 
-The `Cargo.toml` file is placed at the root of the project, and under it
-we find the `src` folder where reside Rust code. This is the organisation
-of this `src` folder that interests us in this chapter.
+It is organized as a hierarchy of the following elements:
 
-To understand to what each file belongs and how to access each
-declaration (function, struct, enum), the following definitions are
-needed:
-
-1. Package: A Cargo project containing one or more crates.
-2. Crate: What are defined and distributed by packages and downloadable
-   from [crates.io](https://crates.io/).
-3. Module: An group of one or more files of code.
-4. Path: The exact identification of a code element.
+1. *Package*: A Cargo project containing one or more crates.
+2. *Crate*: What are defined and distributed by packages and
+   downloadable from [crates.io](https://crates.io/).
+3. *Module*: A group of one or more code files.
+4. *Path*: The exact identification of a code element inside a file.
 
 The following chapters present in more details those definitions.
 
 ## Package
 
-A package is what is defined by a `Cargo.toml` file.
-It can contain:
+When we start a new project/package with the `cargo` command-line
+tool, we have only the choice between two options:
 
-- At most one library crate.
-- Zero or more binary crates (i.e.: binary executables).
+- `--bin` (the default) to create a *binary* crate project.
+- `--lib` to create a *library* crate project.
 
-When we start a new project with `cargo`, we have only the choice between
-`--bin` (the default) to create a binary crate project or `--lib` to
-create a library crate project.
+### Binary package
 
-With the following command, we create a project named `foo` with a binary
-crate:
+With the following command, we create a new project named `foo`,
+containing a single binary crate:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-start badges border
 
 cargo new --bin foo
+cd foo
 ```
 
-The project file `Cargo.toml` does not contain any information on the
-fact that the project is a binary executable project:
+A Rust *package* is a folder with at its root:
+
+- A `Cargo.toml` file.
+- A `src` folder, containing the Rust code.
+- Eventually a `Cargo.lock` file, if we have added dependencies.
+- Eventually a `tests` folder.
+
+Our `foo` package contains only a `Cargo.toml` file and one source
+file `src/main.rs`:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-exa -T foo
+eza -T .
 ```
 
-However we see that a `main.rs` code file has been created:
+A package is defined by its `Cargo.toml` file. It contains (among
+other things):
+
+- The project name.
+- The dependencies.
+- At most one library crate.
+- Zero or more binary crates (i.e.: binary executables).
+
+Here is the content of your `Cargo.toml` file:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-bat foo/Cargo.toml
+bat Cargo.toml
 ```
 
 The content of the `main.rs` is simply a single `main()` function:
@@ -87,16 +94,26 @@ The content of the `main.rs` is simply a single `main()` function:
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-bat foo/src/main.rs
+bat src/main.rs
 ```
 
-On the other hand, if we define a library crate with the `--lib`
-argument:
+The default generated project compiles and runs:
 
 ```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
+:class: dark-background full-color-output seq-stop badges border
+
+cargo run
+```
+
+### Library package
+
+With the `--lib` argument, we define a library crate:
+
+```{code-cell} bash
+:class: dark-background full-color-output seq-start badges border
 
 cargo new --lib foo2
+cd foo2
 ```
 
 We get a `lib.rs` inside the `src` folder:
@@ -104,36 +121,44 @@ We get a `lib.rs` inside the `src` folder:
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-exa -T foo2
+eza -T .
 ```
 
-The content of the `Cargo.toml` file still convey no information on the
-crate type:
+The content of the `Cargo.toml` file still conveys no information on
+the crate type:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-bat foo2/Cargo.toml
+bat Cargo.toml
 ```
 
-The `lib.rs` the code file contains a public function example and its
-test function:
+The `lib.rs` file contains a public function example and its test
+function:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-bat foo2/src/lib.rs
+bat src/lib.rs
+```
+
+The default generated project compiles and passes its test:
+
+```{code-cell} bash
+:class: dark-background full-color-output seq-stop badges border
+
+cargo test
 ```
 
 ## Crate
 
-In a package, crates are defined by the main library or binary code
-files.
-In our `foo` and `foo2` examples, these are the files `src/lib.rs` and
-`src/main.rs`.
+By default a package contains only one crate, described inside the
+`Cargo.toml` file and whose code is stored inside the `src` folder.
+Multiple crates are possible in a project, see
+[Multiple crates](#chp-mult-crates).
 
-A crate contains zero or more modules defined hierarchically. Modules
-can be defined *internally*, in a *single file* or in a *folder*.
+A crate contains zero or more modules defined hierarchically inside
+the `src` folder.
 
 ## Module
 
@@ -143,94 +168,35 @@ They are part of a crate, and can be declared:
 - *Internally*: they are defined inside a file containing other code.
 - *In a single file*: the whole module is part of a single file.
 - *In a folder*: the module is divided among multiple files that all
-  belong to the same folder.
+  belong to the same folder. See [Folder module](#chp-folder-module).
 
 ### Internal module
 
-```{code-cell} bash
-:tags: [remove-cell]
+An internal module, is a module defined using the `mod` keyword. Here
+is the module `math` in which we define a single function `add()`
+(the following examples are pure Rust snippets, not executed under
+the bash kernel of this page):
 
-cat >foo/src/main.rs <<EOF
-mod math {
-  fn add(a: i16, b: i16) -> i16 {
-    a + b
-  }
-}
-
-fn main () {
-  println!("{}", math::add(2, 6));
-}
-EOF
-```
-
-Let us enter the `foo` project to do some experiment with modules:
-
-```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
-
-pushd foo
-```
-
-Here is the binary crate rewritten with an internal module:
-
-```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
-
-bat src/main.rs
-```
-
-If we build this project, we get an error about `math::add()` being
-private:
-
-```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
-:tags: [raises-exception]
-
-cargo build
-```
-
-Indeed, inside a module, every object is private by default. To make it
-accessible from outside (i.e.: make it **public**), we need to use the
-`pub` keyword.
-
-```{code-cell} bash
-:tags: [remove-cell]
-
-cat >src/main.rs <<EOF
+```rust
 mod math {
   pub fn add(a: i16, b: i16) -> i16 {
     a + b
   }
 }
-
-fn main () {
-  println!("{}", math::add(2, 6));
-}
-EOF
 ```
 
-Here the corrected code with the `pub` keyword:
+:::{warning} Public/private
+Everything inside a module is *private* by default. To make an object
+accessible from the outside of a module, we need to make it *public*
+explicitly. Hence the `pub` keyword in front of the function
+declaration.
+:::
 
-```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
+To call the `add()` function of the `math` module, we need to specify
+its *path*:
 
-bat src/main.rs
-```
-
-And now the program compiles:
-
-```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
-
-cargo build
-```
-
-We can run it:
-
-```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
-
-cargo run
+```rust
+math::add(2, 6)
 ```
 
 ### File module
@@ -239,7 +205,17 @@ A module can be defined using a file, in which case the whole file is
 dedicated to the module's content and the file name is the module's
 name.
 
-Here we create the file `math.rs` that defines a module:
+Let us create a new binary project to illustrate that:
+
+```{code-cell} bash
+:class: dark-background full-color-output seq-start badges border
+
+cargo new --bin foo4
+cd foo4
+```
+
+We create the code file `math.rs` that we will use as a module. We
+define inside a function `add()`:
 
 ```{code-cell} bash
 :tags: [remove-cell]
@@ -257,43 +233,11 @@ EOF
 bat src/math.rs
 ```
 
-Now we change the `main.rs` file so that it contains only the `main()`
-function calls the `math::add()` function:
-
-```{code-cell} bash
-:tags: [remove-cell]
-
-cat >src/main.rs <<EOF
-fn main () {
-  println!("{}", math::add(2, 6));
-}
-EOF
-```
-
-```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
-
-bat src/main.rs
-```
-
-If we compiled, this we get an error:
-
-```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
-:tags: [raises-exception]
-
-cargo build
-```
-
-The compiler knows nothing by default about external modules (*module
-files* and *module folders*).
-
-:::{warning} `mod` keyword
-External modules need to be declared with the `mod` keyword, before
-using them.
-:::
-
-Let us declare the `math` module with the `mod` keyword:
+Now we change the `main.rs` file so that it contains a `main()`
+function that calls the `math::add()` function. Note the declaration
+of the module `math` using the `mod` keyword. This declaration tells
+the compiler to look for a file `math.rs` inside the same folder as
+the `main.rs` file and to load it as a module named `math`:
 
 ```{code-cell} bash
 :tags: [remove-cell]
@@ -313,43 +257,7 @@ EOF
 bat src/main.rs
 ```
 
-Now the program compiles and we can run it:
-
-```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
-
-cargo run
-```
-
-### Shortcuts (use keyword)
-
-The `use` keyword allows to avoid repeating a full absolute localisation
-of a module or an item's module.
-
-For instance with our `math` module we can make the function `add()`
-directly accessible with the `use` keyword:
-
-```{code-cell} bash
-:tags: [remove-cell]
-
-cat >src/main.rs <<EOF
-mod math;
-
-use math::add;
-
-fn main () {
-  println!("{}", add(2, 6));
-}
-EOF
-```
-
-```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
-
-bat src/main.rs
-```
-
-The program still compile and run:
+The program compiles & runs:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-stop badges border
@@ -357,17 +265,66 @@ The program still compile and run:
 cargo run
 ```
 
-```{code-cell} bash
-:tags: [remove-cell]
+:::{note} Effect of the mod keyword
+The file `math.rs` is not a module in itself. This is the fact that we
+load it with the `mod` keyword that makes it a module named `math`.
+:::
 
-popd
+## Path
+
+The exact location of an item into a `crate` is called a *path*.
+
+If we need to access an item inside an external crate, we use an
+absolute path. Cargo will find the location of the needed crate by
+looking into its installation folders. In the following example, to
+access the `from_millis()` function inside the `std` crate, we use the
+full path of the item:
+
+```rust
+let t = std::time::Duration::from_millis(700);
+t
 ```
 
-The `use` keyword is especially useful with modules defined inside a
-deep hierarchy. For instance the `std::time::Duration::from_millis()`
-function is a bit long name. `use` can help by letting us access
-directly the `Duration` class (the following examples are pure Rust
-snippets, not executed under the bash kernel of this page):
+When referring a crate's item from inside a crate we may use
+*relative* or *absolute* path.
+
+For instance, in the following `math` module defined inside the
+current file, the `double()` function can access the `add()` function
+from the `arithmetic` sub-module relatively. We can use a relative
+path to access it:
+
+```rust
+mod math {
+
+  pub mod arithmetic {
+    pub fn add(a: i16, b: i16) -> i16 {
+      a + b
+    }
+  }
+
+  pub fn double(n: i16) -> i16 {
+    arithmetic::add(n, n)
+  }
+}
+
+math::double(5)
+```
+
+:::{note} Keywords crate and super
+The keywords `crate` and `super` allow to load modules from the
+crate's root or from the same folder, when inside a module file. We
+will see them in [Sub-modules](#chp-sub-modules).
+:::
+
+## Use keyword
+
+The `use` keyword allows to avoid repeating a full absolute
+localisation of a module or an item's module. It is especially useful
+with modules defined inside a deep hierarchy.
+
+For instance, the `std::time::Duration::from_millis()` function is a
+bit long name. `use` can help by letting us access directly the
+`Duration` structure:
 
 ```rust
 use std::time::Duration;
@@ -379,14 +336,14 @@ t
 We may also rename the `Duration` structure:
 
 ```rust
-use std::time::Duration as dur;
+use std::time::Duration as Dur;
 
-let t = dur::from_millis(300);
+let t = Dur::from_millis(300);
 t
 ```
 
-It is possible to access directly the whole public content of a module
-like in the following example:
+It is also possible to access directly the whole public content of a
+module using the `*` wildcard, like in the following example:
 
 ```rust
 use std::collections::*;
@@ -395,18 +352,8 @@ let lst = LinkedList::from([1, 2, 3]);
 lst
 ```
 
-However this is better practice to name explicitly what we need from a
-module:
-
-```rust
-use std::collections::LinkedList;
-
-let lst = LinkedList::from([1, 2, 3]);
-lst
-```
-
-And if we need more than one item, we use the curly braces to declare
-them:
+However, a better practice is to name explicitly each item we need to
+access, possibly using curly braces to group multiple items:
 
 ```rust
 use std::collections::{LinkedList, VecDeque};
@@ -414,33 +361,4 @@ use std::collections::{LinkedList, VecDeque};
 let lst = LinkedList::from([1, 2, 3]);
 let deq = VecDeque::from([-1, 0, 1]);
 (lst, deq)
-```
-
-## Path
-
-The exact location of an item into a `crate` is called a *path*.
-When referring a crate's item from inside a crate we may use *relative*
-or *absolute* path.
-
-In the following example, we use an absolute path to access the
-`from_millis()` function:
-
-```rust
-let t = std::time::Duration::from_millis(700);
-t
-```
-
-On the other hand, when accessing a module defined inside the current
-crate, we use a relative path:
-
-```rust
-mod math {
-  pub mod arithmetic {
-    pub fn add(a: i16, b: i16) -> i16 {
-      a + b
-    }
-  }
-}
-
-math::arithmetic::add(5, 10)
 ```
