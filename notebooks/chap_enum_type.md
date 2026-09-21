@@ -1,1 +1,1 @@
-# Types III - Enums & structs
+# Types III - Enums

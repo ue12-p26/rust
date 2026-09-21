@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   4d16a43
-subject:  Give access to PI constant in Shapes area example
+commit:   9be2e91
+subject:  Move match section
 date:     2026-09-11
 ```
 
-Previously caught up to d9b8ec68e7dabeaad08f118a47e16eb29b443ff8 (2026-09-10).
+Previously caught up to 4d16a43ffd926a3bba852fdb1ae228faedea0588 (2026-09-11).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -922,3 +922,25 @@ code.
 - `match.md`'s "Shapes area" exercise (from `d9b8ec6`) gets a hint
   pointing at `std::f32::consts`/`std::f64::consts` for the `PI`
   constant needed to compute a disk's area.
+
+### 25. Enum/match/methods/struct each get their own chapter, from `9be2e91`
+
+Pure `main.tex` reshuffle, no content changes. The old "Types III -
+Enums & structs" chapter (`enum.md`, `match.md`, `enum_methods.md`,
+`struct.md` all together) is split into four single-page chapters:
+
+- **Types III - Enums** (`chap_enum_type.md`, kept): `enum.md` only.
+- **Syntax III - Match** (new `chap_syntax_match.md`): `match.md` only.
+- **Types IV - Methods** (new `chap_types_methods.md`): `enum_methods.md`
+  only.
+- **Types V - Structs** (new `chap_types_structs.md`): `struct.md` only.
+
+Everything after shifts up one roman numeral: *Syntax III - Option* →
+**Syntax IV - Option** (`chap_syntax_iii.md`, file kept), *Types IV -
+Vec & String* → **Types VI - Vec & String** (`chap_dynamic_types_i.md`,
+file kept). *Polymorphism I - Generics* is unaffected (sits between
+*Types V - Structs* and *Syntax IV - Option*).
+
+**On merge:** `enum.md`, `match.md`, `enum_methods.md`, `struct.md` are
+now each the sole child of their own chapter — don't assume they're
+still grouped together.

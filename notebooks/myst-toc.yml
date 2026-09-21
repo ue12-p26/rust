@@ -101,12 +101,24 @@ project:
     - title: Fundamentals
       children:
 
-        - title: Types III - Enums & structs
+        - title: Types III - Enums
           file: chap_enum_type.md
           children:
             - file: enum.md
+
+        - title: Syntax III - Match
+          file: chap_syntax_match.md
+          children:
             - file: match.md
+
+        - title: Types IV - Methods
+          file: chap_types_methods.md
+          children:
             - file: enum_methods.md
+
+        - title: Types V - Structs
+          file: chap_types_structs.md
+          children:
             - file: struct.md
 
         - title: Polymorphism I - Generics
@@ -118,14 +130,14 @@ project:
             - file: gen_fct.md
             - file: gen_struct.md
 
-        - title: Syntax III - Option
+        - title: Syntax IV - Option
           file: chap_syntax_iii.md
           children:
             - file: option.md
             - file: if_let.md
             - file: while_let.md
 
-        - title: Types IV - Vec & String
+        - title: Types VI - Vec & String
           file: chap_dynamic_types_i.md
           children:
             - file: vec.md

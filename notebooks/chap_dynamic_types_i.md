@@ -1,1 +1,1 @@
-# Types IV - Vec & String
+# Types VI - Vec & String
