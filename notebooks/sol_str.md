@@ -112,35 +112,16 @@ while let Some(i) = t.find(char::is_lowercase) {
 
 We create an empty vector. There is no need to define the type of
 elements stored inside the vector, because the compiler will wait to
-see what we put in it to deduce this type:
+see what we put in it to deduce this type. We push the three strings
+into the vector, the compiler now knows that our vector is a vector of
+`String` instances. Then we loop on the vector's elements by references
+and print each string:
 
 ```{code-cell} rust
-:tags: [remove-cell]
-
-:clear
-```
-
-```{code-cell} rust
-:class: seq-start badges border
-
 let mut v = Vec::new();
-```
-
-We push the three strings into the vector, the compiler now knows that
-our vector is a vector of `String` instances:
-
-```{code-cell} rust
-:class: seq-cont badges border
-
 v.push(String::from("abc"));
 v.push(String::from("def"));
 v.push(String::from("ghi"));
-```
-
-We loop on the vector's elements by references and print each string:
-
-```{code-cell} rust
-:class: seq-stop badges border
 
 for s in &v {
   println!("{s}");

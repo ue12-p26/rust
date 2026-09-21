@@ -30,7 +30,7 @@ fn capitalize(s: &str) -> String {
   }
 }
 
-let fruits = vec!["banana", "strawberry", "orange"];
+let fruits: Vec<&str> = vec!["banana", "strawberry", "orange"];
 for fruit in &fruits {
   println!("{}", capitalize(fruit));
 }
