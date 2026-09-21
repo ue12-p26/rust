@@ -158,6 +158,22 @@ let s2 = s1;
 s2
 ```
 
+:::{exercise} Filling up a collection
+:label: filling-up-collection
+:enumerated: true
+
+What happens to the string `s` in the following code snippet?
+
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
+
+let mut v: Vec<String> = Vec::new();
+let s = String::from("abc");
+v.push(s);
+```
+:::
+
 ## Getting a variable from a function
 
 The return value of a function is *moved* or *copied* in the same way we

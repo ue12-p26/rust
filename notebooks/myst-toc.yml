@@ -54,7 +54,7 @@ project:
             - file: var_unused.md
             - file: const.md
 
-        - title: Atomic types
+        - title: Types I
           file: chap_atomic_types.md
           children:
             - file: int.md
@@ -69,7 +69,7 @@ project:
             - file: var_scope.md
             - file: var_shadowing.md
 
-        - title: Complex types
+        - title: Types II
           file: chap_complex_types.md
           children:
             - file: tuple.md
@@ -95,7 +95,7 @@ project:
     - title: Fundamentals
       children:
 
-        - title: Enum type
+        - title: Types III - Enumerates/Variants
           file: chap_enum_type.md
           children:
             - file: enum.md
@@ -106,7 +106,7 @@ project:
             - file: if_let.md
             - file: while_let.md
 
-        - title: Dynamic types I
+        - title: Types IV - Vec & String
           file: chap_dynamic_types_i.md
           children:
             - file: vec.md
@@ -118,20 +118,18 @@ project:
             - file: ownership.md
             - file: ref.md
 
-        - title: Dynamic types II
-          file: chap_dynamic_types_ii.md
-          children:
-            - file: vec_bis.md
-
         - title: Slices
           file: chap_slices.md
           children:
-            - file: slices_intro.md
-            - file: str.md
-            - file: arr_slices.md
+            - file: slices.md
 
     - title: Proficiency
       children:
+
+        - title: Polymorphism I
+          file: chap_polymorphism_i.md
+          children:
+            - file: enum_poly.md
 
         - title: Attributes & Macros I
           file: chap_attributes_macros_i.md
@@ -163,6 +161,11 @@ project:
           file: chap_custom_types.md
           children:
             - file: struct.md
+
+        - title: Collections
+          file: chap_collections_i.md
+          children:
+            - file: coll.md
 
         - title: Error handling I
           file: chap_error_handling_i.md
@@ -256,6 +259,7 @@ project:
           file: chap_character_encoding.md
           children:
             - file: unicode.md
+            - file: utf8.md
 
         - title: Documenting
           file: chap_documenting.md
@@ -300,3 +304,4 @@ project:
             - file: sol_enum.md
             - file: sol_int.md
             - file: sol_fct.md
+            - file: sol_mem.md

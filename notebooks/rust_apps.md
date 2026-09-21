@@ -18,7 +18,7 @@ Most of them are replacement for standard Unix commands that run *faster*.
 * - `bottom`
   - `btm`
   - Replacement for `top`.
-* - `dust`
+* - `du-dust`
   - `dust`
   - Replacement for `du` and `ncdu`.
 * - `eza`

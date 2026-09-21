@@ -1,1 +1,1 @@
-# Dynamic types I
+# Types IV - Vec & String

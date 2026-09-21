@@ -1,1 +1,1 @@
-# Enum type
+# Types III - Enumerates/Variants

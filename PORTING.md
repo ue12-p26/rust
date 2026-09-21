@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   73f1600
-subject:  Correct typo
-date:     2026-07-10
+commit:   095fbc0
+subject:  Resolve "Write chapter Dynamic types Part II"
+date:     2026-07-30
 ```
 
-Previously caught up to fb201f2911363b68f6d5ef82bcaf420aae5401a0 (2026-05-26).
+Previously caught up to 73f1600122df865a4817118ecd6ff62e75deb809 (2026-07-10).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -529,3 +529,56 @@ rather than the raw shape.
 
 Commits applying this pass: `e735519` (`ref.md`), `3766e81`
 (`slices_intro.md`), `98262ac` (`vec_bis.md`, partial).
+
+### 17. Chapter restructuring from upstream commit `095fbc0`
+
+Upstream commit `095fbc0` ("Write chapter Dynamic types Part II")
+renamed/merged several chapters. Mapping applied to the MyST port
+(file names unchanged unless noted; only `title:` in `myst-toc.yml`
+and the one-line `chap_*.md` stub changed):
+
+- *Atomic types* → **Types I** (`chap_atomic_types.md`, unchanged subfiles).
+- *Complex types* → **Types II** (`chap_complex_types.md`, unchanged subfiles).
+- *Enum type* → **Types III - Enumerates/Variants** (`chap_enum_type.md`,
+  unchanged subfiles).
+- *Dynamic types I* → **Types IV - Vec & String** (`chap_dynamic_types_i.md`,
+  unchanged subfiles).
+- *Dynamic types II* chapter (`chap_dynamic_types_ii.md` / `vec_bis.md`) is
+  **removed**. Its content was redistributed:
+  - the non-copiable-vector move/iterate demo → folded into `vec.md`'s
+    updated *Iterating over elements* section (now using `into_iter()`
+    and a new warning box) plus the new *Iterating over a vector's
+    items* exercise (solution in `sol_mem.md`, label `vec-iter`);
+  - the indexing-then-borrow demo → new *Indexing a vector* section in
+    `ref.md`, with exercise `indexing-vec` (solution in `sol_mem.md`);
+  - the borrow/`get()` demos → new chapter **Collections**
+    (`chap_collections_i.md` / `coll.md`) under *Proficiency*, right
+    after *Defining custom types*. **Careful:** there is already an
+    unrelated *Collections* chapter under *Expertise*
+    (`chap_collections.md` / `vec_deque.md`, `hashmap.md`, ...) — upstream
+    itself reuses the bare title "Collections" for both, disambiguated
+    only by their part. Do not merge the two.
+  - the `MyEnum` polymorphism demo → new chapter **Polymorphism I**
+    (`chap_polymorphism_i.md` / `enum_poly.md`) under *Proficiency*,
+    right before *Attributes & Macros I*.
+- The *Slices* chapter (previously 3 subfiles: `slices_intro.md`,
+  `str.md`, `arr_slices.md`) is **merged into a single file**,
+  `slices.md` (`str.md` renamed via `git mv`). Structure of the merged
+  page: `slices_intro` content stays at top level (no heading), then
+  `## Array slices` (ex-`arr_slices.md`, demoted one level), then
+  `## String slices` (ex-`str.md`'s own `# String slices`, demoted one
+  level — its own `##` subheadings became `###`). The chapter keeps its
+  title *Slices* and anchor `(chp-slices)=`; the `(chp-str-slices)=`
+  anchor is preserved on the `## String slices` heading so existing
+  cross-references (`int.md`, `string.md`) keep working. The chapter
+  stays a sibling of *Memory II* under *Fundamentals* (not nested inside
+  it, despite `main.tex` textually placing `\subfile{slices}` right
+  after `\subfile{ref}` — the subfile's own `\chapter{Slices}` still
+  breaks it out as its own chapter).
+- New file `utf8.md` (chapter *Character encoding*, after `unicode.md`).
+- New file `sol_mem.md` (chapter *Solutions*, after `sol_fct.md`) with
+  labels `indexing-vec-solution` and `vec-iter-solution`.
+
+**On merge:** when porting the next upstream commits, expect chapter
+titles/anchors from *this* mapping (e.g. "Types I".."IV") rather than
+the old ones ("Atomic types", "Complex types", ...).

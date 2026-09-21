@@ -9,8 +9,75 @@ kernelspec:
   language: rust
 ---
 
+(chp-slices)=
+# Slices
+
+:::{danger} Draft
+This section is still being written.
+
+TODO: What are slices.
+:::
+
+A slice is a kind of reference.
+
+String slices:
+
+```{code-cell} rust
+:tags: [raises-exception]
+
+let s = String::from("Hello");
+let slice = &s[0..2]; // from start to index 2 excluded
+let slice = &s[..2]; // from start to index 2 excluded
+let slice = &s[2..]; // from index 2 to end
+let slice = &s[2..len]; // from index 2 to end
+let slice = &s[0..len]; // whole string
+let slice = &s[..]; // whole string
+```
+
+Function returning a string slice:
+
+```{code-cell} rust
+:tags: [raises-exception]
+
+fn foo(s: &String) -> &str {
+  // ...
+}
+```
+
+String literals are slices, their type is `&str`.
+A more generic function would take a `&str` instead of a `&String`:
+
+```{code-cell} rust
+:tags: [raises-exception]
+
+fn foo(s: &str) -> &str {
+  // ...
+}
+```
+
+Array slice:
+
+```{code-cell} rust
+:tags: [raises-exception]
+
+{
+  let a = [1, 2, 3, 4];
+  let slice = &a[1..3];
+  println!("{:?}", slice);
+}
+```
+
+## Array slices
+
+:::{danger} Draft
+This section is still being written.
+
+- TODO: explain array slices `&[T]`.
+- TODO: explain we can get slices `&[T]` from `Vec` objects too.
+:::
+
 (chp-str-slices)=
-# String slices
+## String slices
 
 :::{danger} Draft
 This section is still being written.
@@ -27,7 +94,7 @@ the string and the length of the string.
 See {numref}`tab-str-methods` for a list of the main methods available
 for string slices.
 
-## Defining a string slice
+### Defining a string slice
 
 We may define a string slice using a literal string:
 
@@ -47,7 +114,7 @@ let s: &'static str = "abcdef";
 s
 ```
 
-## String length
+### String length
 
 Get length:
 
@@ -55,7 +122,7 @@ Get length:
 "abc".len()
 ```
 
-## Splitting a string
+### Splitting a string
 
 The `split_whitespace()` splits a string on white spaces and returns an
 *iterator* on the sub-strings:
@@ -77,7 +144,7 @@ for s in n.split("..") {
 }
 ```
 
-## Iterating
+### Iterating
 
 We may iterate over characters (`char` type) or bytes (`u8` type).
 Depending on the content (i.e.: if some characters are NON-ASCII, and
@@ -99,7 +166,7 @@ for b in "Зд".bytes() {
 }
 ```
 
-## Getting a slice from an UTF-8 string
+### Getting a slice from an UTF-8 string
 
 :::{note} TODO
 - Move that in Advanced part.
@@ -119,7 +186,7 @@ let hello = "Здравствуйте"; // UTF-8
 let s = &hello[0..1]; // Compiler error as the first char cannot be split.
 ```
 
-## Searching into a string
+### Searching into a string
 
 Using the methods `find()` and `rfind()` (reverse search) we can search
 for a pattern (e.g.: a string, a character, a function or a closure)

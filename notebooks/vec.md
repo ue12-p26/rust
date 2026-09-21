@@ -104,33 +104,59 @@ v
 
 ## Iterating over elements
 
-Using the `for` statement, we can iterate over the elements of a vector:
+Using the `for` statement (see [`for`](#chp-for)), we can iterate over the
+elements of a vector:
 
 ```{code-cell} rust
 let v = vec![1, 2, 3];
-for e in v {
+for e in v { // v is moved (see the warning below)
   print!("{e}, ");
 }
 ```
 
-The same can be done by obtaining an iterator explicitly using the `iter()`
-method. The `Iterator` object can then be iterated over thanks to the
-`next()` method, which returns an `Option<T>`:
+The same can be done by obtaining an iterator explicitly using the
+`into_iter()` method. The `Iterator` object can then be iterated over
+thanks to the `next()` method, which returns an `Option<T>`:
 
 ```{code-cell} rust
 :tags: [raises-exception]
 
 let v = vec![1, 2, 3];
-let mut i = v.iter();
+let mut i = v.into_iter(); // v is moved (see the warning below)
 while let Some(e) = i.next() {
   print!("{e}, ");
 }
 ```
 
-:::{note} `loop`, `while` & `for`
-In Rust, both `while` and `for` are wrappers around the `loop` statement.
-We can see with these two examples, that `while` only adds a convenient
-*condition* of continuation, and `for` is a higher level loop that
-handles also the iterator creation, iteration and unwrapping of the
-`Option<T>` object.
+:::{warning} Conversion of a vector into an iterator
+When using a `loop` to iterate over a vector's elements, be aware that the
+`Vector` type does not implement the `Copy` trait. As a consequence, a
+call to `into_iter()` will move the elements of the vector into the newly
+created iterator.
+
+To loop onto the elements of a vector without moving them, we need to
+call `into_iter()` onto a slice (see [Slices](#chp-slices)) of the vector
+(`&v`):
+
+```{code-cell} rust
+let v = vec![1, 2, 3];
+for e in &v {
+  println!("{e}");
+}
+println!("v is still accessible: {v:?}");
+```
 :::
+
+:::{exercise} Iterating over a vector's items
+:label: vec-iter
+:enumerated: true
+
+1. Create a vector of 3 `String` objects with the following values:
+   `"banana"`, `"strawberry"`, `"orange"`.
+2. Iterate over the elements of the vector *without moving* them and
+   print them on the standard output.
+3. Inside the iteration loop, put the first letter of each string into
+   uppercase before printing them.
+:::
+
+[see solution](#vec-iter-solution)

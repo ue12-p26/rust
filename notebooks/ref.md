@@ -71,6 +71,37 @@ let a = 16;
 foo(&a)
 ```
 
+## Indexing a vector
+
+When *indexing* a vector of a *non-copiable* type (i.e.: a type that does
+not implement the `Copy` trait) using the `[]` operator, the values have
+to be moved out of the collection (i.e.: the *ownership* passes from the
+collection to the caller). Hopefully, the compiler forbids this usage of
+the `[]` operator.
+
+:::{exercise} Two ways of accessing a value by index
+:label: indexing-vec
+:enumerated: true
+
+In the following example, the compiler complains about *moving a value
+out of index*:
+
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
+
+let mut v: Vec<String> = Vec::new();
+v.push(String::from("abc"));
+let a = v[0];
+a
+```
+
+Try to compile this code and find out what solutions the compiler
+suggests.
+:::
+
+[see solution](#indexing-vec-solution)
+
 ## Mutable reference
 
 If a variable is *mutable*, we may define a *mutable* reference on it in

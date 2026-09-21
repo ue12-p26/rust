@@ -71,9 +71,9 @@ s
 
 :::{note} String slice
 A *literal string* is a type of *string slice*.
-We will present *string slices* in a later chapter. For now, we only need
-to see them as a sort of sub-strings that are defined by a *start* and a
-*length*.
+We will present *string slices* in a later chapter (see
+[String slices](#chp-str-slices)). For now, we only need to see them as a
+sort of sub-strings that are defined by a *start* and a *length*.
 :::
 
 (chp-format)=

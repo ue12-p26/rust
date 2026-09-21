@@ -12,8 +12,14 @@ kernelspec:
 (chp-for)=
 # `for`
 
-The `for` statement is a shortcut to loop on an iterator. When run on a
-iterable object, it calls the `iter()` method for us.
+The `for` statement is a shortcut to iterate over an iterator object or an
+object convertible into an iterator.
+If the object on which the `loop` is applied is not an iterator but
+implements the `IntoIterator` trait, then a call to `into_iter()` is made
+for us to convert the object.
+This is what happens for instance with collections like `Vec`.
+It is implemented as a `loop` statement with a call to the `next()` method
+of the iterator at its start.
 
 In the following example, we use the `for` statement to iterate over an
 array:
@@ -33,8 +39,10 @@ for i in 1..=10 {
 }
 ```
 
-We may also reverse the range to iterate from higher values to lower
-values, using the `rev()` method on a range:
+Many methods (see [`Iterator` methods](#chp-iter-methods)) can be called
+onto the iterator to transform it.
+For instance, in the following example, we reverse the range to iterate
+from higher values to lower values, using the `rev()` iterator method:
 
 ```{code-cell} rust
 for i in (1..=10).rev() {
