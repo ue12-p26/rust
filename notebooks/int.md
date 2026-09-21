@@ -109,3 +109,39 @@ A division:
 ```{code-cell} rust
 (11 / 3, -11 / 3, 11 / -3, -11 / -3)
 ```
+
+## Type related constants
+
+Some constants are directly accessible on the primitive types:
+[i8](https://doc.rust-lang.org/std/primitive.i8.html),
+[i16](https://doc.rust-lang.org/std/primitive.i16.html),
+[i32](https://doc.rust-lang.org/std/primitive.i32.html),
+[i64](https://doc.rust-lang.org/std/primitive.i64.html),
+[u8](https://doc.rust-lang.org/std/primitive.u8.html),
+[u16](https://doc.rust-lang.org/std/primitive.u16.html),
+[u32](https://doc.rust-lang.org/std/primitive.u32.html),
+[u64](https://doc.rust-lang.org/std/primitive.u64.html).
+
+Example for 8-bit unsigned integer:
+
+```{code-cell} rust
+println!("BITS: {}", u8::BITS);
+println!("MIN: {}",  u8::MIN);
+println!("MAX: {}",  u8::MAX);
+```
+
+Example for 32-bit unsigned integer:
+
+```{code-cell} rust
+println!("BITS: {}", u32::BITS);
+println!("MIN: {}",  u32::MIN);
+println!("MAX: {}",  u32::MAX);
+```
+
+Example for 64-bit signed integer:
+
+```{code-cell} rust
+println!("BITS: {}", i64::BITS);
+println!("MIN: {}",  i64::MIN);
+println!("MAX: {}",  i64::MAX);
+```

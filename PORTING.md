@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   d9b8ec6
-subject:  Resolve "Make a review of the stable part of the course and imagine exercices"
-date:     2026-09-10
+commit:   4d16a43
+subject:  Give access to PI constant in Shapes area example
+date:     2026-09-11
 ```
 
-Previously caught up to d093d28068893c339c4b19d994d56bdf449aec9f (2026-09-02).
+Previously caught up to d9b8ec68e7dabeaad08f118a47e16eb29b443ff8 (2026-09-10).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -856,3 +856,69 @@ pure 1-line heading destyles (batch them), (b) small wording tweaks
 (quick individual edits), (c) exercises/solutions (need careful
 label/star bookkeeping), (d) anything touching `main.tex` (chapter
 moves — always check before assuming a file's current chapter).
+
+**Post-hoc bugfix note:** a *second*, cache-cleared `myst build
+--execute` run (after porting `4d16a43`) turned up two more evcxr bugs
+in this commit's `sol_str.md`/`sol_vec.md` that an earlier validation
+pass had missed, plus disproved an initial hypothesis about *why*
+(see item 23). **Lessons for future porting sessions:**
+1. `myst build --execute` can silently reuse stale/cached execution
+   results even right after an edit; when in doubt, `rm -rf
+   notebooks/_build/execute` before the pass you actually want to
+   trust.
+2. Do **not** validate multi-line/multi-statement evcxr behavior by
+   piping a heredoc to the bare `evcxr` CLI (`cat <<EOF | evcxr`) —
+   that REPL treats each *line* of stdin as its own submission, which
+   does not represent how the real Jupyter kernel (`evcxr_jupyter`,
+   what `myst build --execute` actually drives) receives a multi-line
+   `{code-cell}` fence as a single execute request. A fix that "works"
+   under line-piped CLI testing may still fail for real — the only
+   trustworthy signal is `myst build --execute`'s own log.
+
+### 23. `Vec::new()` needs an explicit type annotation for evcxr persistence, even same-cell (fixed, not part of any upstream commit)
+
+Fixed in a standalone commit (not tied to an upstream sha) right after
+`d9b8ec6`:
+
+- `sol_vec.md`: `let fruits = vec!["banana", "strawberry", "orange"];`
+  (a `Vec<&'static str>`) fails evcxr's persisted-variable type
+  detection ("Couldn't automatically determine type"). Fixed with an
+  explicit `let fruits: Vec<&str> = ...` annotation.
+- `sol_str.md`'s "Vector of strings" solution: `let mut v = Vec::new();`
+  followed by `.push(...)` calls fails with `E0282: type annotations
+  needed for Vec<_>`. The initial fix attempt merged what were 3
+  sequenced cells (`seq-start`/`seq-cont`/`seq-stop`) into one plain
+  cell, on the theory that evcxr treats a whole cell as one rustc
+  compilation unit (so trailing `.push()` calls would let it infer
+  `v`'s type) — **this did not fix it**: evcxr resolves and persists
+  the type of every new top-level `let` at the point of that
+  statement, not by looking ahead at how the binding is used later,
+  even within the same cell/submission. The prose explicitly taught
+  "there is no need to define the type... the compiler will wait to
+  see what we put in it" — true for a real rustc compilation unit,
+  false for evcxr's per-`let` persistence probing. Fixed for real with
+  an explicit `let mut v: Vec<String> = Vec::new();` annotation, and
+  the prose adjusted to say we specify the element type up front
+  rather than claiming the compiler infers it later.
+
+**On merge:** `Vec::new()` (or any other type that needs a generic
+parameter fixed, e.g. `HashMap::new()` per item 20's `enum_poly.md`
+note) assigned to a top-level `let` **always** needs an explicit type
+annotation for evcxr, regardless of whether the vector is filled in the
+same cell or a later one — evcxr cannot infer it from subsequent
+`.push()`/`.insert()` calls the way a normal Rust compilation would.
+Watch for upstream prose that emphasizes "the compiler infers the type
+later" for this pattern — it needs adjusting when ported, not just the
+code.
+
+### 24. Type-related and mathematical constants, from `4d16a43`
+
+- `float.md` / `int.md` gain a new "Type related constants" section
+  each (`f32`/`f64` and `i8`..`u64` `MIN`/`MAX`/`BITS`/etc.), plus
+  `float.md` gets a "Mathematical constants" section
+  (`std::f32::consts`: `E`, `PI`, `FRAC_1_PI`, `GOLDEN_RATIO`) — all
+  verified to compile/run with the toolchain in this environment
+  (`GOLDEN_RATIO` is stable here).
+- `match.md`'s "Shapes area" exercise (from `d9b8ec6`) gets a hint
+  pointing at `std::f32::consts`/`std::f64::consts` for the `PI`
+  constant needed to compute a disk's area.

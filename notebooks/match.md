@@ -167,7 +167,10 @@ for c in [Color::Grey(99), Color::Rgb(10, 30, 60)] {
 2. Each variant must take the necessary parameters to compute the area
    of the shape (radius, side lengths, height).
 3. Write a function `area()` that takes a `Shape`, then compute and
-   return the area.
+   return the area. The `PI` constant can be found in
+   [std::f32::consts](https://doc.rust-lang.org/std/f32/consts/index.html)
+   and
+   [std::f64::consts](https://doc.rust-lang.org/std/f64/consts/index.html).
 4. Test the computing of the area on the 4 different shapes and print
    each result.
 :::

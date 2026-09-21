@@ -49,3 +49,49 @@ A division:
 ```{code-cell} rust
 34.56 / 3.6
 ```
+
+## Type related constants
+
+Many useful constants are directly accessible on the primitive type
+[f64](https://doc.rust-lang.org/std/primitive.f64.html) or
+[f32](https://doc.rust-lang.org/std/primitive.f32.html).
+
+For 32-bit float numbers:
+
+```{code-cell} rust
+println!("Number of significant digits: {}", f32::DIGITS);
+println!("Maximum: {:.2e}", f32::MAX);
+println!("Minimum: {:.2e}", f32::MIN);
+println!("NaN: {}", f32::NAN);
+println!("Infinity: {}", f32::INFINITY);
+println!("Negative infinity: {}", f32::NEG_INFINITY);
+println!("ε: {:.2e}", f32::EPSILON);
+```
+
+For 64-bit float numbers:
+
+```{code-cell} rust
+println!("Number of significant digits: {}", f64::DIGITS);
+println!("Maximum: {:.2e}", f64::MAX);
+println!("Minimum: {:.2e}", f64::MIN);
+println!("NaN: {}", f64::NAN);
+println!("Infinity: {}", f64::INFINITY);
+println!("Negative infinity: {}", f64::NEG_INFINITY);
+println!("ε: {:.2e}", f64::EPSILON);
+```
+
+## Mathematical constants
+
+Multiple useful *mathematical* float constants can be found in
+[std::f32::consts](https://doc.rust-lang.org/std/f32/consts/index.html)
+and
+[std::f64::consts](https://doc.rust-lang.org/std/f64/consts/index.html).
+
+Here are some examples of constants for the 32-bit float type:
+
+```{code-cell} rust
+println!("e={}", std::f32::consts::E);
+println!("π={}", std::f32::consts::PI);
+println!("1/π={}", std::f32::consts::FRAC_1_PI);
+println!("φ={}", std::f32::consts::GOLDEN_RATIO);
+```
