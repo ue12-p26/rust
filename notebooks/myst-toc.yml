@@ -117,10 +117,6 @@ project:
           children:
             - file: ownership.md
             - file: ref.md
-
-        - title: Slices
-          file: chap_slices.md
-          children:
             - file: slices.md
 
     - title: Proficiency
@@ -305,3 +301,4 @@ project:
             - file: sol_int.md
             - file: sol_fct.md
             - file: sol_mem.md
+            - file: sol_str.md

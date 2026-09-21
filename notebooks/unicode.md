@@ -3,6 +3,10 @@
 
 :::{danger} Draft
 This section is still being written.
+
+- TODO: present ASCII, extended ASCII, latin-1 & co encoding, UNICODE,
+  UTF-8 encoding, character fonts, ...
+- TODO: add a chapter presenting binary, octal, hexadecimal.
 :::
 
 Unicode strings can be either seen as:

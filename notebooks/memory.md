@@ -141,6 +141,7 @@ fn fill_and_print() {
 fill_and_print();
 ```
 
+(chp-stack)=
 ## Stack
 
 The stack is a region of memory that stores local variables created by each

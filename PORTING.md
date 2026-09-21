@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   095fbc0
-subject:  Resolve "Write chapter Dynamic types Part II"
-date:     2026-07-30
+commit:   25651b9
+subject:  Resolve "Write slices chapter"
+date:     2026-07-31
 ```
 
-Previously caught up to 73f1600122df865a4817118ecd6ff62e75deb809 (2026-07-10).
+Previously caught up to 095fbc082e6d892c43ff3f6f6b0e8c742d5860f0 (2026-07-30).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -570,11 +570,11 @@ and the one-line `chap_*.md` stub changed):
   level — its own `##` subheadings became `###`). The chapter keeps its
   title *Slices* and anchor `(chp-slices)=`; the `(chp-str-slices)=`
   anchor is preserved on the `## String slices` heading so existing
-  cross-references (`int.md`, `string.md`) keep working. The chapter
-  stays a sibling of *Memory II* under *Fundamentals* (not nested inside
-  it, despite `main.tex` textually placing `\subfile{slices}` right
-  after `\subfile{ref}` — the subfile's own `\chapter{Slices}` still
-  breaks it out as its own chapter).
+  cross-references (`int.md`, `string.md`) keep working. As of this
+  commit `slices.tex` still opens with its own `\chapter{Slices}`, so
+  it stays a sibling chapter of *Memory II* rather than nested inside
+  it — **but see the update in commit `25651b9` below**, where upstream
+  demotes this to a `\section` and it folds into *Memory II* for real.
 - New file `utf8.md` (chapter *Character encoding*, after `unicode.md`).
 - New file `sol_mem.md` (chapter *Solutions*, after `sol_fct.md`) with
   labels `indexing-vec-solution` and `vec-iter-solution`.
@@ -582,3 +582,48 @@ and the one-line `chap_*.md` stub changed):
 **On merge:** when porting the next upstream commits, expect chapter
 titles/anchors from *this* mapping (e.g. "Types I".."IV") rather than
 the old ones ("Atomic types", "Complex types", ...).
+
+### 18. `slices.md` folded into *Memory II*, from upstream commit `25651b9`
+
+Upstream commit `25651b9` ("Write slices chapter") rewrites `slices.tex`
+and, in passing, changes its top command from `\chapter{Slices}` to
+`\section{Slices}`. Since `main.tex` places `\subfile{slices}` right
+after `\subfile{ref}` inside `\chapter{Memory~\rom{2}}` with no chapter
+break in between, *Slices* is no longer its own chapter: `slices.md` is
+now the third child of `chap_memory_ii.md` (after `ownership.md` and
+`ref.md`), and the now-unused `chap_slices.md` stub was deleted. The
+`(chp-slices)=` anchor on `slices.md`'s own `# Slices` heading is kept
+unchanged, so existing links (`ranges.md`, `vec.md`) still resolve.
+
+Content-wise this commit also:
+
+- Rewrites the *Array slices* subsection with real examples (was two
+  `TODO`s) and adds a new *Array and slice types* table
+  (`tab-array-slice-types`, a `{list-table}`, no upstream equivalent
+  table existed before).
+- Rewrites *String slices*: drops the *String length*, *Splitting a
+  string*, *Iterating*, *Getting a slice from a UTF-8 string* and
+  *Searching into a string* subsections in favour of a new *Passing
+  strings to functions* subsection and a *`str` methods* subsection
+  with three exercises (`str-split`, `str-iter`, `str-search`),
+  solved in a new file `sol_str.md` (chapter *Solutions*, after
+  `sol_mem.md`).
+- The dropped *Getting a slice from a UTF-8 string* content resurfaces
+  (expanded, with a `get()`-based fix) under `utf8.md` as a new
+  `### Getting a slice from a UTF-8 string` subsection — `utf8.md`
+  gained code cells and thus needed a `jupytext`/rust-kernel frontmatter
+  it didn't have before.
+- `len()`, `repeat(n)`, `get()`/`get_mut()`, `split()`,
+  `starts_with()`/`ends_with()` moved from the `str`-methods table
+  (`str_methods.md`) to the generic slice-methods table
+  (`slice_methods.md`), since they apply to any slice, not just `str`.
+- New cross-reference anchors added (all upstream `\label{...}` on
+  existing sections): `(chp-arrays)=` in `array.md`, `(chp-ranges)=` in
+  `ranges.md`, `(chp-vec)=` in `vec.md`, `(chp-stack)=` on `## Stack` in
+  `memory.md`, `(chp-utf8)=` in `utf8.md`.
+- `unicode.md`'s draft admonition gained the same two `TODO` bullets
+  that were duplicated into `utf8.md` upstream (present in both files,
+  intentionally, matching upstream's own duplication).
+
+**On merge:** `slices.md` is a child of `chap_memory_ii.md`, not its own
+chapter — don't recreate `chap_slices.md`.

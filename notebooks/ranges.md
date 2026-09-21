@@ -1,3 +1,4 @@
+(chp-ranges)=
 # Ranges
 
 [Range expressions](https://doc.rust-lang.org/reference/expressions/range-expr.html)

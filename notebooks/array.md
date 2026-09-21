@@ -9,13 +9,14 @@ kernelspec:
   language: rust
 ---
 
+(chp-arrays)=
 # Arrays
 
 In Rust, an
 [array](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html#the-array-type)
 is defined with a type and a fixed size.
-It is defined on the *stack* memory, and thus must be used with *reasonable
-sizes*.
+Arrays are stored on the *stack* memory (see [Stack](#chp-stack)), and thus
+must be used with *reasonable sizes*.
 It provides few methods (see {numref}`tab-array-methods`), but can be
 coerced to *slices*, which provide most of the interesting methods (see
 {numref}`tab-slice-methods`).

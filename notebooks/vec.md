@@ -9,6 +9,7 @@ kernelspec:
   language: rust
 ---
 
+(chp-vec)=
 # `Vec` type
 
 [Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html) is a *generic*
