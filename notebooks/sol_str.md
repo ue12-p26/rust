@@ -110,15 +110,12 @@ while let Some(i) = t.find(char::is_lowercase) {
 :label: vec-str-solution
 :::
 
-We create an empty vector. There is no need to define the type of
-elements stored inside the vector, because the compiler will wait to
-see what we put in it to deduce this type. We push the three strings
-into the vector, the compiler now knows that our vector is a vector of
-`String` instances. Then we loop on the vector's elements by references
-and print each string:
+We create an empty vector, specifying that it will hold `String`
+values. We push the three strings into the vector, then loop on its
+elements by references and print each string:
 
 ```{code-cell} rust
-let mut v = Vec::new();
+let mut v: Vec<String> = Vec::new();
 v.push(String::from("abc"));
 v.push(String::from("def"));
 v.push(String::from("ghi"));
