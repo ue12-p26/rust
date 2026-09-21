@@ -14,7 +14,26 @@ kernelspec:
 The [if](https://doc.rust-lang.org/std/keyword.if.html) statement allows
 conditional branching of code.
 
-Example:
+The expression used as the condition needs to evaluate to a *boolean*
+value. If not, the compiler issues an error:
+
+```{code-cell} rust
+:tags: [raises-exception]
+
+if 1 {
+  println!("Hi");
+}
+```
+
+Here is a correct conditional expression:
+
+```{code-cell} rust
+if 1 != 2 {
+  println!("True");
+}
+```
+
+Example of chained `if`/`else`:
 
 ```{code-cell} rust
 let n = 5;
