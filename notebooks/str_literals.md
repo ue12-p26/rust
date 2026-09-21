@@ -56,7 +56,14 @@ The escape characters we have seen for the `char` type can be used inside a
 literal string definition:
 
 ```{code-cell} rust
-"my string\n \x3f \u{211d}"
+println!("my string\n \x3f \u{211d}");
+```
+
+The *NULL* character (character ASCII `0`) is not interpreted as a
+string terminator and is printed as-is:
+
+```{code-cell} rust
+println!("abc\0def");
 ```
 
 ## Raw string

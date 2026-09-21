@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   a87100a
-subject:  Show content of Cargo.lock file
+commit:   23585c6
+subject:  Check \0 inside string
 date:     2026-09-11
 ```
 
-Previously caught up to 2ad541c8c18604b315021c59416537f4ebc09cf0 (2026-09-11).
+Previously caught up to a87100a42a9e6b5f1edb0dba39f4ae6f73fce649 (2026-09-11).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
