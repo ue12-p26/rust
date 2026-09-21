@@ -321,7 +321,7 @@ Now the program compiles and we can run it:
 cargo run
 ```
 
-### Shortcuts (`use` keyword)
+### Shortcuts (use keyword)
 
 The `use` keyword allows to avoid repeating a full absolute localisation
 of a module or an item's module.

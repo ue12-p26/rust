@@ -95,7 +95,7 @@ fn foo(i: u16, j: u16) -> u16 {
 foo(0xff00, 0x0100)
 ```
 
-:::{exercise} Overflow in hash function
+:::{exercise} Overflow in hash function (★★★★☆)
 :label: overflow-hash
 :enumerated: true
 

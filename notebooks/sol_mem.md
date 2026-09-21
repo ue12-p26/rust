@@ -34,33 +34,3 @@ v.push(String::from("abc"));
 let a = v[0];
 a
 ```
-
-## Iterating over a vector's items
-
-:::{solution} vec-iter
-:label: vec-iter-solution
-:::
-
-```{code-cell} rust
-:tags: [raises-exception]
-
-let mut v: Vec<String> = Vec::new();
-v.push(String::from("abc"));
-v.push(String::from("def"));
-v.push(String::from("ghi"));
-for e in v {
-  print!("{e}, ");
-}
-v
-```
-
-```{code-cell} rust
-:tags: [raises-exception]
-
-let mut v: Vec<String> = Vec::new();
-v.push(String::from("abc"));
-v.push(String::from("def"));
-v.push(String::from("ghi"));
-let a = &v[1];
-(v, a)
-```

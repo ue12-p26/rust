@@ -1,4 +1,4 @@
-# `array` methods
+# array methods
 
 :::{danger} In progress
 This section is still being written.

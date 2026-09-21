@@ -99,7 +99,7 @@ The function needs to be declared *const* in order to be used for static
 initialization.
 :::
 
-:::{note} Attributes `derive` and `allow`
+:::{note} Attributes derive and allow
 [Attributes](#chp-attr) are metadata attached to an object for the
 compiler. The `allow` attribute is a compiler directive in order to
 silence some warning. The `derive` is an *attribute-like* macro that

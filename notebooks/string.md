@@ -51,7 +51,7 @@ let s = String::from("abc");
 s
 ```
 
-## Appending to a `String` object
+## Appending to a String object
 
 The `push()` method appends a character to a string:
 
@@ -77,9 +77,9 @@ sort of sub-strings that are defined by a *start* and a *length*.
 :::
 
 (chp-format)=
-## `format!()` macro
+## format!() macro
 
-The [format macro](https://doc.rust-lang.org/std/macro.format.html) allows
+The [format!() macro](https://doc.rust-lang.org/std/macro.format.html) allows
 to build a `String` instance using formatting codes from
 [fmt](https://doc.rust-lang.org/std/fmt/index.html) module.
 
@@ -92,8 +92,8 @@ s
 
 However the real advantage of the `format!()` macro is the formatting
 instructions inserted with curly brackets (`{}`).
-In the following example with the curly brackets notation to insert the
-value of the variable `n`:
+In the following example we use the curly brackets notation to insert
+the value of the variable `n`:
 
 ```{code-cell} rust
 let n = 10;
@@ -153,3 +153,29 @@ Formatting a complex object using the *Debug* formatter:
 let t = (1.5, "abc", true);
 format!("{t:?}")
 ```
+
+:::{exercise} Vector of strings (★☆☆☆☆)
+:label: vec-str
+:enumerated: true
+
+1. Define a string vector and fill it with the strings `abc`, `def` and
+   `ghi`.
+2. Loop on the elements of the vector and print each value on a line.
+:::
+
+[see solution](#vec-str-solution)
+
+:::{exercise} Strings in struct (★★☆☆☆)
+:label: str-struct
+:enumerated: true
+
+1. Define a `struct` named `Book` that contains the fields `title`,
+   `author` and `year`, using the `String` type for strings.
+2. Implement the `new()` constructor that takes as argument a `title`,
+   an `author` and a `year`.
+3. Implement the three access methods for the three fields.
+4. Create an instance of `Book` and print the values of its three
+   fields.
+:::
+
+[see solution](#str-struct-solution)

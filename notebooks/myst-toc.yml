@@ -53,6 +53,7 @@ project:
             - file: var_mut.md
             - file: var_unused.md
             - file: const.md
+            - file: var_ex.md
 
         - title: Types I
           file: chap_atomic_types.md
@@ -76,6 +77,11 @@ project:
             - file: array.md
             - file: coll_summary.md
             - file: str_literals.md
+
+        - title: I/O I - Printing
+          file: chap_io_i.md
+          children:
+            - file: print.md
 
         - title: Syntax II - Control flow
           file: chap_syntax_ii.md
@@ -195,10 +201,9 @@ project:
             - file: osstring.md
             - file: osstr.md
 
-        - title: Input & output
+        - title: I/O II
           file: chap_input_output.md
           children:
-            - file: print.md
             - file: io.md
             - file: args.md
             - file: logs.md
@@ -306,10 +311,15 @@ project:
         - title: Solutions
           file: chap_solutions.md
           children:
+            - file: sol_cargo.md
+            - file: sol_var.md
+            - file: sol_ctrl.md
             - file: sol_enum.md
+            - file: sol_option.md
             - file: sol_int.md
             - file: sol_fct.md
             - file: sol_mem.md
             - file: sol_str.md
             - file: sol_struct.md
             - file: sol_gen.md
+            - file: sol_vec.md

@@ -9,7 +9,7 @@ kernelspec:
   language: rust
 ---
 
-# `if`/`let`
+# if/let
 
 The `if/let` statement is a concise way to treat the case of a value
 matching one pattern only.
@@ -24,7 +24,7 @@ if let Some(v) = x {
 }
 ```
 
-:::{note} Equivalent `match` statement
+:::{note} Equivalent match statement
 We may have written the same code using a `match`, however it is a bit
 longer since we must ignore explicitly all other case:
 
@@ -38,7 +38,7 @@ match x {
 
 :::
 
-## `let`/`else`
+## let/else
 
 The `let/else` control flow works the other way, letting us match a value
 and run a code block when it does not match:
@@ -54,7 +54,7 @@ fn foo(x: Option<u8>) -> Option<u8> {
 (foo(Some(10u8)), foo(None))
 ```
 
-## `if`/`let`/`else`
+## if/let/else
 
 The `if/let/else` expression returns a value, using two different
 expressions depending on a value matching:
@@ -81,3 +81,16 @@ y
 ```
 
 :::
+
+:::{exercise} Multiple search in a string
+:label: mult-search-str
+:enumerated: true
+
+1. Write a loop to search for letters `'c'`, `'a'`, `'t'`, `'z'`, `'h'`
+   inside string `"abcdefghijklmnop"`.
+2. Test the return value of method `find()` using the `if`/`let`
+   construct.
+3. Print the found letters and their indices in the string.
+:::
+
+[see solution](#mult-search-str-solution)

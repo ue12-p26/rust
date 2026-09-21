@@ -1,4 +1,4 @@
-# `Option<T>` methods
+# Option<T> methods
 
 We list here some of the methods of the `Option<T>` enum type. For a full
 list, see

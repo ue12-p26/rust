@@ -57,7 +57,7 @@ n = Some(-1230);
 println!("{n:?}");
 ```
 
-## `is_none()` & `is_some()`
+## is_none() & is_some()
 
 We may check if an `Option<T>` instance has a value or not with the
 following methods:
@@ -87,7 +87,7 @@ let x: Option::<u8> = None;
 x.unwrap()
 ```
 
-The `expect()` method works in the same way, but allow us to define a
+The `expect()` method works in the same way, but allows us to define a
 custom *panic* message:
 
 ```{code-cell} rust
@@ -97,14 +97,14 @@ let x: Option::<u8> = None;
 x.expect("A value is required !")
 ```
 
-## Returning an `Option<T>`
+## Returning an Option<T>
 
 Many functions return an `Option<T>` in order to handle the possibility
 of absence of value.
 
 For instance the `find()` method of the `str` type that searches for a
-patter inside a string returns a `Option<usize>` in order to handle the
-case of no match. Its declaration is as follow:
+pattern inside a string returns an `Option<usize>` in order to handle
+the case of no match. Its declaration is as follow:
 
 ```{code-cell} rust
 :tags: [skip-execution]
@@ -120,3 +120,16 @@ It returns `None` when no match is found:
 ```{code-cell} rust
 ("abcdef".find('c'), "ghijkl".find('c'))
 ```
+
+:::{exercise} Returning an Option<T> (★☆☆☆☆)
+:label: ret-option
+:enumerated: true
+
+1. Write a function `foo()` that takes an index and returns the value
+   at that index inside an array of three booleans: `true`, `false`,
+   `true`.
+2. The function must return the value as an `Option` enum.
+3. Test the function for indices `0` to `4`.
+:::
+
+[see solution](#ret-option-solution)

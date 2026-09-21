@@ -210,3 +210,128 @@ The content of the instance:
 
 (mail.recipient, mail.sender, mail.weight, mail.priority)
 ```
+
+## Book
+
+:::{solution} book-ex
+:label: book-ex-solution
+:::
+
+We define the `Book` structure, its constructor and three access
+functions to access the values of the three fields:
+
+```{code-cell} rust
+:tags: [remove-cell]
+
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
+
+struct Book {
+  title:  &'static str,
+  author: &'static str,
+  year:   i16,
+}
+
+impl Book {
+
+  fn new(title: &'static str, author: &'static str, year: i16) -> Self {
+    Self {
+      title,
+      author,
+      year,
+    }
+  }
+
+  fn title(&self) -> &'static str {
+    self.title
+  }
+
+  fn author(&self) -> &'static str {
+    self.author
+  }
+
+  fn year(&self) -> i16 {
+    self.year
+  }
+}
+```
+
+Here is an example of usage of the *constructor* and the *access
+functions*:
+
+```{code-cell} rust
+:class: seq-stop badges border
+
+let book = Book::new("Robinson Crusoe", "Daniel Defoe", 1719);
+(book.title(), book.author(), book.year())
+```
+
+In both the *constructor function* and the *access functions*, the idea
+is to *encapsulate* the construction and the access. If later we need
+to *run code* during construction or access, it will be easy inserted
+inside the function.
+
+## Square area
+
+:::{solution} square-area
+:label: square-area-solution
+:::
+
+We define a `struct` named `Square` that we can define be either giving
+the area or the side length. From one value the constructor function
+computes the other, leaving the original value untouched. This example
+shows how we can force to run the same computation for each constructed
+object:
+
+```{code-cell} rust
+:tags: [remove-cell]
+
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
+
+struct Square {
+  a: f32,
+  area: f32,
+}
+
+impl Square {
+  fn new(mut a: f32, mut area: f32) -> Self {
+    if a < 0.0 {
+      a = area.sqrt();
+    }
+    if area < 0.0 {
+      area = a * a;
+    }
+    Self {
+      a,
+      area,
+    }
+  }
+
+  fn a(&self) -> f32 {
+    self.a
+  }
+
+  fn area(&self) -> f32 {
+    self.area
+  }
+}
+```
+
+Excepted the representation error, the original value of the area of
+the following square is untouched, while the re-computed area
+propagates an error:
+
+```{code-cell} rust
+:class: seq-stop badges border
+
+let c = Square::new(-1.0, 1.0001);
+println!("a={:.10}, a*a={:.10}", c.a(), c.area());
+println!("a={:.10}, a*a={:.10} (recomputed)", c.a(), c.a() * c.a());
+```

@@ -9,7 +9,7 @@ kernelspec:
   language: bash
 ---
 
-# The `main` function
+# The main() function
 
 ```{code-cell} bash
 :tags: [remove-cell]
@@ -75,7 +75,7 @@ We may have launched only the `run` sub-command since it automatically
 executes the *build* step if needed.
 :::
 
-:::{exercise} First program
+:::{exercise} First program (★☆☆☆☆)
 :label: first-program
 :enumerated: true
 

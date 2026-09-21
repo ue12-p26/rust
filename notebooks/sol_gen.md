@@ -72,3 +72,52 @@ let port: u16 = get_env_or_default("PORT", 8080);
 
 println!("Server starting on {}:{}", host, port);
 ```
+
+## Integer wrapper
+
+:::{solution} int-wrapper
+:label: int-wrapper-solution
+:::
+
+We use the `PrimInt` trait from the `num-traits` crate to restrict `T`
+to primitive integer types. `PrimInt` does not provide an
+`is_power_of_two()` method directly, so we implement it using
+`count_ones()`, which is available on `PrimInt`: a strictly positive
+integer is a power of two when it has exactly one bit set. This example
+requires the external `num_traits` crate, which is not available in
+this notebook's kernel, so it is shown but not executed:
+
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
+
+use num_traits::PrimInt;
+
+struct MyInt<T: PrimInt> {
+  value: T,
+}
+
+impl<T: PrimInt> MyInt<T> {
+
+  fn new(value: T) -> Self {
+    Self { value }
+  }
+
+  fn value(&self) -> T {
+    self.value
+  }
+
+  fn doubled(&self) -> T {
+    self.value + self.value
+  }
+
+  fn is_power_of_two(&self) -> bool {
+    self.value.count_ones() == 1
+  }
+}
+
+let a = MyInt::new(20);
+let b = MyInt::new(32);
+println!("{} {} {}", a.value(), a.doubled(), a.is_power_of_two());
+println!("{} {} {}", b.value(), b.doubled(), b.is_power_of_two());
+```

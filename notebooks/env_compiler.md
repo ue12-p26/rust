@@ -21,7 +21,7 @@ The Rust compiler is used to compile and link Rust code files. Though we may
 use it directly (and it is used this way in this book to run the various
 examples), we mainly use it in practice through `cargo`.
 
-## Compiling with `rustc`
+## Compiling with rustc
 
 ```{code-cell} bash
 :tags: [remove-cell]

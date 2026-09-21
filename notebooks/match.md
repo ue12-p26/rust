@@ -51,7 +51,7 @@ for i in [-50, 3, 46, 7, 10] {
 }
 ```
 
-:::{exercise} Variable price
+:::{exercise} Variable price (★★☆☆☆)
 :label: variable-price
 :enumerated: true
 
@@ -157,3 +157,19 @@ for c in [Color::Grey(99), Color::Rgb(10, 30, 60)] {
   }
 }
 ```
+
+:::{exercise} Shapes area (★★☆☆☆)
+:label: shapes-area
+:enumerated: true
+
+1. Implement an `enum` named `Shape` that can represent a disk, a
+   square, a rectangle and a triangle as *variants*.
+2. Each variant must take the necessary parameters to compute the area
+   of the shape (radius, side lengths, height).
+3. Write a function `area()` that takes a `Shape`, then compute and
+   return the area.
+4. Test the computing of the area on the 4 different shapes and print
+   each result.
+:::
+
+[see solution](#shapes-area-solution)

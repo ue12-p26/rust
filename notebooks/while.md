@@ -9,7 +9,7 @@ kernelspec:
   language: rust
 ---
 
-# `while`
+# while
 
 The [while](https://doc.rust-lang.org/std/keyword.while.html) statement
 loops on a code block as long as a condition is `true`.

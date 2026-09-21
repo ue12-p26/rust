@@ -79,7 +79,7 @@ to be moved out of the collection (i.e.: the *ownership* passes from the
 collection to the caller). Hopefully, the compiler forbids this usage of
 the `[]` operator.
 
-:::{exercise} Two ways of accessing a value by index
+:::{exercise} Two ways of accessing a value by index (★☆☆☆☆)
 :label: indexing-vec
 :enumerated: true
 

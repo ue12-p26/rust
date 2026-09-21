@@ -13,8 +13,10 @@ for practical usages of *ranges*.
 For the moment, we just present in {numref}`tab-range-syntax` the syntax to
 use when defining a range.
 
-A *range* being also an `Iterator`, we may use `Iterator` methods on it
-like `rev()`. See [Iterator methods](#chp-iter-methods).
+A *range* being also an
+[Iterator](https://doc.rust-lang.org/std/iter/trait.Iterator.html), we
+may use `Iterator` methods on it like `rev()`. See
+[Iterator methods](#chp-iter-methods).
 
 :::{list-table} Range syntax
 :name: tab-range-syntax

@@ -9,7 +9,7 @@ kernelspec:
   language: rust
 ---
 
-# `loop`
+# loop
 
 The [loop](https://doc.rust-lang.org/std/keyword.loop.html) statement
 defines an *infinite* loop.
@@ -25,7 +25,7 @@ loop {
 }
 ```
 
-## `break`
+## break
 
 Using the `break` keyword, we may leave the loop at any moment:
 
@@ -53,7 +53,20 @@ let n = loop {
 n
 ```
 
-## `continue`
+:::{exercise} Loop exercise (★☆☆☆☆)
+:label: loop-ex
+:enumerated: true
+
+1. Define an integer `n` initialized to `0`.
+2. Write a loop that:
+   1. If `n` is even add `3` to `n`, otherwise add `1` to `n`.
+   2. Print the value of `n` and go to a new line.
+   3. If `n` is greater than `30`, leave the loop.
+:::
+
+[see solution](#loop-ex-solution)
+
+## continue
 
 Using the `continue` keyword, we can also skip the current step and go to
 the next:

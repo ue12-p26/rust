@@ -15,8 +15,11 @@ The `enum` keyword is used to define an
 [enumerated type](https://en.wikipedia.org/wiki/Enumerated_type) or a
 [tagged union](https://en.wikipedia.org/wiki/Tagged_union).
 
-An *enumerated type* defines a fixed size set of possible values:
-Here is an example that define the card suits:
+## Enumerated type
+
+An *enumerated type* defines a fixed size set of possible values.
+
+Here is an example that defines the card suits:
 
 ```{code-cell} rust
 :tags: [remove-cell]
@@ -50,6 +53,8 @@ automatically a debug formatting for a type. The `?` formatting mode
 enables *debug* formatting (i.e.: using `Debug` trait for formatting).
 :::
 
+## Tagged union
+
 The `enum` keyword can also define a *tagged union*, which can be viewed
 as an *enhanced enumerated type*.
 A *tagged union* defines *variants* instead of *values*.
@@ -71,3 +76,18 @@ enum MyError {
   WrongSize(u16, u16),
 }
 ```
+
+:::{exercise} Automaton State (★★☆☆☆)
+:label: automaton-state
+:enumerated: true
+
+1. Implement an `enum` that represents the states of an automaton:
+   `Start`, `Stage1`, `Stage2`, `Stage3`, `Stop`.
+2. Write a function `next_state()` that takes a state and returns the
+   next. The order of the state is their order of definition. The next
+   state after `Stop` is `Start`.
+3. Starting from state `Stop` call 10 times `next_state()` and print
+   each state.
+:::
+
+[see solution](#automaton-state-solution)

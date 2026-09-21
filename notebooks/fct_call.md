@@ -102,7 +102,7 @@ fn foo(n: u8) -> u8 {
 foo(128)
 ```
 
-## The `return` keyword
+## The return keyword
 
 The `return` keyword is used to leave the function. It can be used anywhere
 inside the function's scope:
@@ -119,7 +119,7 @@ foo(-3);
 foo(6);
 ```
 
-It can also return a value:
+The `return` keyword can also return a value:
 
 ```{code-cell} rust
 fn foo() -> u8 {

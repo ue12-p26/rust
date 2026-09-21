@@ -11,9 +11,6 @@ kernelspec:
 
 # Structures
 
-:::{warning} To review
-:::
-
 A structure (or
 [record](https://en.wikipedia.org/wiki/Record_(computer_science))) is a
 composite data structure made of several *fields* in sequence. In Rust,
@@ -80,7 +77,7 @@ The *Field Init Shorthand* uses the name of variables to initialize a
 struct instance.
 :::
 
-If we defined the three following variables:
+If we define the three following variables:
 
 ```{code-cell} rust
 :class: seq-cont badges border
@@ -113,8 +110,9 @@ Here is the instance's content:
 ```
 
 :::{tip} Struct Update Syntax
-The *Struct Update Syntax* allows to create a new object from an existing
-object:
+The *Struct Update Syntax* allows to create a new object from an
+existing object. In the following code, we use the fields from `book1`
+to complete the missing fields in `book2`:
 :::
 
 ```{code-cell} rust
@@ -135,8 +133,8 @@ Here is the result:
 ```
 
 For constructing an object, we do not usually use directly the curly
-braces syntax, but define a *constructor method*, usually named `new()`.
-We will see this in the next section.
+braces syntax, but define a *constructor method*, named `new()` by
+convention. We will see the `new()` method in the next section.
 
 ## Methods
 
@@ -173,7 +171,7 @@ fn with_size(mut self, size: usize) -> Self {
 }
 ```
 
-:::{note} `self` & `Self`
+:::{note} self & Self
 Note the distinction between `self` in lowercase, which refers to the
 current instance, and `Self` in capitalization, which refers to the
 *type* of `self`.
@@ -192,7 +190,7 @@ fn size(&self) -> usize {
 }
 ```
 
-:::{exercise} Rectangle area
+:::{exercise} Rectangle area (★☆☆☆☆)
 :label: rect-area
 :enumerated: true
 
@@ -209,7 +207,7 @@ struct Rect {
 ```
 
 Write a method `area()` that computes the area of the rectangle, and
-returns the value. Test the method of an instance of a `Rect`.
+returns the value. Test the method on a `Rect` instance.
 :::
 
 [see solution](#rect-area-solution)
@@ -268,7 +266,7 @@ let wnd = Window::new(10, 20, 200, 80);
 (wnd.x, wnd.y, wnd.width, wnd.height)
 ```
 
-:::{exercise} Rectangle & square
+:::{exercise} Rectangle & square (★☆☆☆☆)
 :label: rect-square
 :enumerated: true
 
@@ -284,7 +282,7 @@ let wnd = Window::new(10, 20, 200, 80);
 
 [see solution](#rect-square-solution)
 
-### Builder setters
+### Builder setters (instance methods)
 
 In Rust, it is no possible to define default values in methods and
 functions. This implies that in a constructor method we cannot make
@@ -307,7 +305,7 @@ let color = Color::new(0x00, 0xff, 0x50)
   .with_blinking(true);
 ```
 
-:::{exercise} Postal Mail
+:::{exercise} Postal Mail (★★☆☆☆)
 :label: postal-mail
 :enumerated: true
 
@@ -327,15 +325,15 @@ let color = Color::new(0x00, 0xff, 0x50)
 
 [see solution](#postal-mail-solution)
 
-### Setter methods
+### Setter methods (instance methods)
 
 Once an object has been built, we may modify its data through *setter
 methods*. Those methods take a *mutable reference* to the `self`
 instance, and thus can modify the values of the fields. We usually name
 the *setter methods* using the `set_` prefix.
 
-As example, let us write a `struct` representing the weight of a car,
-with its empty weight and the current volume of petrol:
+As an example, let us write a `struct` representing the weight of a
+car, with its empty weight and the current volume of petrol:
 
 ```{code-cell} rust
 :tags: [remove-cell]
@@ -412,121 +410,40 @@ car.set_petrol(40.0);
 (car.weight, car.petrol_vol)
 ```
 
-### Example
+:::{exercise} Book (★☆☆☆☆)
+:label: book-ex
+:enumerated: true
 
-In the following example, we define a *constructor method* named
-`new()` and three access functions to access the values of the three
-fields:
+1. Define a `struct` type named `Book` with fields `title`, `author`
+   and `year`. Use `&'static str` type for strings.
+2. Implement the `new()` constructor that takes three arguments to set
+   the three fields.
+3. Implement the three getter methods `title()`, `author()` and
+   `year()`.
+4. Create an instance of `Book` using the `new()` constructor and
+   display the values of the fields using the getter methods.
+:::
 
-```{code-cell} rust
-:tags: [remove-cell]
+[see solution](#book-ex-solution)
 
-:clear
-```
+:::{exercise} Square area (★★☆☆☆)
+:label: square-area
+:enumerated: true
 
-```{code-cell} rust
-:class: seq-start badges border
+1. Define a `Square` structure that stores both the `side` length and
+   the `area` of a square.
+2. Implement the `new()` constructor that must:
+   - Accept both fields `side` and `area`.
+   - Compute a field from the other, if this field's value is negative.
+3. Implement the two access methods for the two fields.
+4. Create an instance of a `Square` named `square` with an area of
+   `1.0001` and a negative value for the side length.
+5. Print the value of the area field of `square`.
+6. Print value of the area computed from the side field of `square`.
+7. Compare.
+:::
 
-struct Book {
-  title:  &'static str,
-  author: &'static str,
-  year:   i16,
-}
-
-impl Book {
-
-  fn new(title: &'static str, author: &'static str, year: i16) -> Self {
-    Self {
-      title,
-      author,
-      year,
-    }
-  }
-
-  fn title(&self) -> &'static str {
-    self.title
-  }
-
-  fn author(&self) -> &'static str {
-    self.author
-  }
-
-  fn year(&self) -> i16 {
-    self.year
-  }
-}
-```
-
-Here is an example of usage of the *constructor* and the *access
-functions*:
-
-```{code-cell} rust
-:class: seq-stop badges border
-
-let book = Book::new("Robinson Crusoe", "Daniel Defoe", 1719);
-(book.title(), book.author(), book.year())
-```
-
-In both the *constructor function* and the *access functions*, the idea
-is to *encapsulate* the construction and the access. If later we need to
-*run code* during construction or access, it will be easy inserted
-inside the function.
-
-In the following example we define a `struct` named `Square` that we can
-define be either giving the area or the side length. From one value the
-constructor function computes the other, leaving the original value
-untouched. This example shows how we can force to run the same
-computation for each constructed object:
-
-```{code-cell} rust
-:tags: [remove-cell]
-
-:clear
-```
-
-```{code-cell} rust
-:class: seq-start badges border
-
-struct Square {
-  a: f32,
-  area: f32,
-}
-
-impl Square {
-  fn new(mut a: f32, mut area: f32) -> Self {
-    if a < 0.0 {
-      a = area.sqrt();
-    }
-    if area < 0.0 {
-      area = a * a;
-    }
-    Self {
-      a,
-      area,
-    }
-  }
-
-  fn a(&self) -> f32 {
-    self.a
-  }
-
-  fn area(&self) -> f32 {
-    self.area
-  }
-}
-```
-
-Excepted the representation error, the original value of the area of
-the following square is untouched, while the re-computed area propagates
-an error:
-
-```{code-cell} rust
-:class: seq-stop badges border
-
-let c = Square::new(-1.0, 1.0001);
-println!("a={:.10}, a*a={:.10}", c.a(), c.area());
-println!("a={:.10}, a*a={:.10} (recomputed)", c.a(), c.a() * c.a());
-```
+[see solution](#square-area-solution)
 
 ## Tuple struct
 

@@ -84,7 +84,7 @@ fn foo3() -> bool {
 }
 ```
 
-:::{note} `println!()` macro
+:::{note} println!() macro
 The `print!()` and `println!()` macros (see
 [Macro print](https://doc.rust-lang.org/std/macro.print.html)) are
 *function-like macros* used for displaying text on the console. It

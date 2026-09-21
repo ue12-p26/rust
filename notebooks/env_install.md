@@ -18,7 +18,7 @@ See all the main installation methods on
 [Install Rust](https://rust-lang.org/tools/install/) official page, we will
 only briefly cover some of them here.
 
-## `rustup`
+## rustup
 
 The *Rust toolchain* is best installed through `rustup`, a tool dedicated to
 the toolchain management.
@@ -51,7 +51,7 @@ See
 [Rust in Visual Studio Code](https://code.visualstudio.com/docs/languages/rust)
 to install Rust inside VS Code.
 
-### RustRover
+### Rover
 
 See
 [RustRover](https://www.jetbrains.com/help/rust/getting-started.html) to

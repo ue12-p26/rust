@@ -36,3 +36,14 @@ while let _ = 5 {
   println!("Irrefutable patterns are always true");
 }
 ```
+
+:::{exercise} Iterating over results
+:label: iter-results
+:enumerated: true
+
+1. Use the `str` method `lines()` to iterate over the lines contained in
+   the string `"abc\nde\nfghi\njklm\nnop\n"`.
+2. Print each found line.
+:::
+
+[see solution](#iter-results-solution)

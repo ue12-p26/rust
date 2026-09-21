@@ -9,7 +9,7 @@ kernelspec:
   language: rust
 ---
 
-# `if`/`else`
+# if/else
 
 The [if](https://doc.rust-lang.org/std/keyword.if.html) statement allows
 conditional branching of code.
@@ -35,4 +35,12 @@ if n > 10 {
 let n = 11;
 let x = if n < 10 { 5.5 } else { -4.1 };
 x
+```
+
+We can chain the `if`/`else` statements:
+
+```{code-cell} rust
+let s = "b";
+let t = if s == "a" { (1,2) } else if s == "b" { (3,4) } else { (5,6) };
+t
 ```

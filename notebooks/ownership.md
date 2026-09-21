@@ -39,12 +39,12 @@ done:
   - Resetting of specific fields that must not be copied.
 
 Here is an example in which we clone a `String` object (the `String` type
-allocates heap memory for storing a character string):
+allocates memory on the heap for storing a character string):
 
 ```{code-cell} rust
 let mut s1 = String::from("hello");
 let s2 = s1.clone();
-s1.push_str(" world!");
+s1.push_str(", world!");
 println!("s1 = {s1}, s2 = {s2}");
 ```
 
@@ -128,7 +128,7 @@ Here is an example with a `String` value that is passed to a function:
 :tags: [raises-exception]
 
 fn foo(s: String) {
-  println!("{} world!", s);
+  println!("{}, world!", s);
 }
 
 let s1 = String::from("hello");
@@ -149,7 +149,7 @@ seen above is to clone the value:
 
 ```{code-cell} rust
 fn foo(s: String) {
-  println!("{} world!", s);
+  println!("{}, world!", s);
 }
 
 let s1 = String::from("hello");
@@ -158,7 +158,7 @@ let s2 = s1;
 s2
 ```
 
-:::{exercise} Filling up a collection
+:::{exercise} Filling up a collection (★☆☆☆☆)
 :label: filling-up-collection
 :enumerated: true
 
@@ -184,7 +184,7 @@ In the following example the value returned by `foo()` is moved into
 
 ```{code-cell} rust
 fn foo() -> String {
-  String::from("Hello world")
+  String::from("Hello, world!")
 }
 
 let s1 = foo();
@@ -194,8 +194,9 @@ s1
 ## Modifying a value with a function
 
 Using what we have seen above, we are able to write a function that
-computes a new value, returns it, and use it to set a new value to our
-variable:
+computes a new value and returns it. We can use this function to
+overwrite (i.e.: we use the variable shadowing feature, see
+[Shadowing a variable](#chp-var-shadow)) our variable with a new value:
 
 ```{code-cell} rust
 :tags: [remove-cell]
@@ -236,7 +237,7 @@ b = inc(b);
 b
 ```
 
-We can do the same with a type that allocates heap memory:
+We can do the same with a type that allocates memory on the heap:
 
 ```{code-cell} rust
 fn foo(s: String) -> String {

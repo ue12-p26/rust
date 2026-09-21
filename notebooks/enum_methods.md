@@ -11,7 +11,11 @@ kernelspec:
 
 # Enum methods
 
-We can define methods attached to an `enum` type.
+*Methods* can be attached to an `enum` type. Thus, instead of defining
+an independent function that takes an `enum` as argument (i.e.:
+`my_function(my_enum_value)`), we can define a method attached to the
+`enum` type. We will call this method directly onto the object:
+`my_enum_value.my_method()`.
 
 Let us define a `Suit` enum for representing card suits:
 
@@ -57,3 +61,17 @@ for x in [Suit::Diamond, Suit::Club, Suit::Heart, Suit::Spade] {
   }
 }
 ```
+
+:::{exercise} Animal feet (★★☆☆☆)
+:label: animal-feet
+:enumerated: true
+
+1. Implement an `enum` type named `Animal` that represents the following
+   animals: `Cat`, `Dog`, `Snake`, `Crow`.
+2. Implement a method `get_nb_feet()` that returns the number of feet of
+   each animal.
+3. Write a loop on all animals, and for each print its name and its
+   number of feet on one line.
+:::
+
+[see solution](#animal-feet-solution)

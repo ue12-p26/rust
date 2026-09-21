@@ -1,4 +1,4 @@
-# Main `cargo` commands
+# Main cargo commands
 
 :::{list-table} Main sub-commands of `cargo`
 :name: tab-cargo-subcmds

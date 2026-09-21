@@ -9,7 +9,7 @@ kernelspec:
   language: rust
 ---
 
-# `derive` macros
+# derive macros
 
 The `derive` macro is a *procedural* macro that generates automatically an
 implementation for selected traits.

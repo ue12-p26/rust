@@ -1,4 +1,4 @@
-# `Vec` methods
+# Vec methods
 
 :::{list-table} Some methods of `Vec`
 :name: tab-vec-methods

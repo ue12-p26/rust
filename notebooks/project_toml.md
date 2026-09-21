@@ -1,4 +1,4 @@
-# Project file `Cargo.toml`
+# Project file Cargo.toml
 
 :::{danger} Draft
 TODO: explain some of the fields of `Cargo.toml` here. Put a more

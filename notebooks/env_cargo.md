@@ -35,9 +35,6 @@ cargo --list
 (chp-app-inst)=
 ## Installing an application
 
-:::{warning} To review
-:::
-
 Rust public packages are called *crates* and provide binaries as well
 as libraries. Very useful Rust applications are available today on
 the official crate repository
@@ -256,6 +253,40 @@ cargo add --dev glob
 ```
 
 :::
+
+:::{exercise} First project (★☆☆☆☆)
+:label: first-cargo-project
+:enumerated: true
+
+1. Using `cargo`, generate a new project named `hello`.
+2. Build and run the project.
+3. Add the crate dependency `text2art` to the project.
+4. See in the log messages how `cargo` adds the dependency and its
+   dependencies and print the selected versions.
+5. Check what has changed inside the file `Cargo.toml`.
+6. Overwrite the file `src/main.rs` with the following code:
+
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
+
+use text2art::BasicFonts;
+use text2art::Font;
+use text2art::Printer;
+
+fn main() {
+  let font = Font::from_basic(BasicFonts::Big).unwrap();
+  let prntr = Printer::with_font(font);
+  prntr.print_to_stdio("Hello, world!").ok();
+}
+```
+
+7. Build again the project and see how it downloads and compiles the
+   dependencies.
+8. Run the project.
+:::
+
+[see solution](#first-cargo-project-solution)
 
 ## Running tests
 

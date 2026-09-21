@@ -63,12 +63,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   d093d28
-subject:  Resolve "Struct & impl"
-date:     2026-09-02
+commit:   d9b8ec6
+subject:  Resolve "Make a review of the stable part of the course and imagine exercices"
+date:     2026-09-10
 ```
 
-Previously caught up to 85cca2fef2f25d9b461240b160148da6cea3e19a (2026-08-28).
+Previously caught up to d093d28068893c339c4b19d994d56bdf449aec9f (2026-09-02).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
@@ -767,3 +767,92 @@ Upstream commit `d093d28` ("Struct & impl") replaces essentially all of
 **On merge:** if a future commit adds a real "Defining Macros" chapter
 with actual subfiles, it'll need a new `chap_defining_macros.md` created
 from scratch (currently still intentionally absent).
+
+### 22. Course-wide exercise review pass, from `d9b8ec6`
+
+Upstream commit `d9b8ec6` ("Make a review of the stable part of the
+course and imagine exercices") is the largest single commit ported so
+far: ~60 upstream files touched. Highlights:
+
+- **Heading de-styling, cross-cutting.** Upstream stripped `\var{...}`
+  wrapping from most `\section`/`\subsection`/note/important/exercise
+  *titles* (body text keeps its `\var{}`/code-span styling). Mirrored by
+  removing backticks from the corresponding MyST headings/admonition
+  titles across ~20 files (`array_methods.md`, `binaryheap.md`,
+  `btreemap.md`, `btreeset.md`, `cargo_cmds.md`, `hashset.md`,
+  `linked_list.md`, `macro_derive.md`, `option_methods.md`,
+  `project_toml.md`, `slice_methods.md`, `string_methods.md`,
+  `vec_deque.md`, `vec_methods.md`, `while.md`, `str_literals.md`,
+  `bool.md`, `memory.md`, `project.md`, `env_compiler.md`, `for.md`,
+  `if.md`, `loop.md`, `if_let.md`, `vec.md`, `env_install.md`,
+  `iter_methods.md`). **On merge:** when upstream removes `\var{}` from
+  a title, remove the matching backticks/code-span on our side too —
+  it's cosmetic but consistent across the whole course.
+- **Exercise difficulty stars added retroactively.** Several
+  *pre-existing* exercises gained an `\ExLvlN` marker with no other
+  change: `int_overflow.md` (★★★★☆), `ref.md` (★☆☆☆☆), `vec.md`
+  (★★☆☆☆), `match.md`'s "Variable price" (★★☆☆☆), `fct_main.md`'s
+  "First program" (★☆☆☆☆). New exercises across the board also carry
+  their star rating per item 19 above.
+- **`iter_methods.md`** finally gets real content (was a bare `TODO`):
+  a `{list-table}` of ~20 `Iterator` methods (`tab-iter-methods`).
+- **New chapter I/O I - Printing** (`chap_io_i.md` / `print.md`),
+  inserted in *Basics* right after *Types II*, before *Syntax II*.
+  `print.md` itself moves out of the *Input & output* chapter (renamed
+  **I/O II**, `chap_input_output.md`) and gets a full rewrite: print
+  macro table (`tab-print-macros`), several new examples (precision,
+  named/unnamed markers).
+- **`var_ex.md`** (new, chapter *Variables & constants*, last child):
+  upstream's subfile has no `\section` of its own (just a bare
+  exercise) — titled the page after the exercise itself
+  (`# Constant and variable`) for TOC/tab-title purposes. Solved in new
+  `sol_var.md` (chapter *Solutions*, first entry, before `sol_ctrl.md`
+  and `sol_enum.md`).
+- **New chapter-less solution files**, all new chapters immediately
+  before/after their usual neighbours in *Solutions*:
+  `sol_cargo.md` (bash kernel; "First project" — `cargo init`, `cargo
+  add text2art`, rebuild, run — **verified this actually compiles and
+  runs with real network access in this sandbox**, kept fully
+  executable, not disabled), `sol_var.md`, `sol_ctrl.md` (Loop exercise,
+  Checker, Multiple search in a string, Iterating over results),
+  `sol_option.md` (Returning an Option<T>), `sol_vec.md` (Iterating over
+  a vector's items — **relocated** from `sol_mem.md`, see below).
+- **`sol_vec.md` bugfix:** upstream's own solution calls a non-existent
+  `str::capitalize()` method. Replaced with a small working
+  `capitalize()` helper (`chars().next()` + `to_uppercase()` + rest of
+  the slice) that produces the same output — this is a correctness fix,
+  not a style choice; flag it if upstream ever "fixes" this differently.
+- **`gen_struct.md` / `sol_gen.md`: new "Integer wrapper" exercise**,
+  kept `skip-execution`/`disabled` like the pre-existing `Float`/
+  `num_traits` example next to it (item on `num_traits` from commit
+  `85cca2f`). Verified in isolation with evcxr that (a) `:dep num-traits
+  = "0.2"` **does** work in this environment (network access confirmed
+  — see `sol_cargo.md` above), but (b) introducing a *new* `impl<T:
+  Float> Point<T>` block on an already-`:clear`-reset generic struct
+  mid-page causes evcxr to silently drop all previously bound variables
+  of that type ("type of the variable was redefined, so was lost") —
+  a real evcxr limitation, not a network issue. Decided **not** to
+  "fix forward" and re-enable execution; kept both examples disabled,
+  consistent with the prior commit's choice. Also: upstream's exercise
+  text says to use `PrimInt::is_power_of_two()`, which doesn't exist on
+  that trait (verified) — the solution uses `count_ones() == 1` instead
+  (documented inline in `sol_gen.md`).
+- **`struct.md`: "### Example" subsection (Book‑with‑accessors +
+  Square demos) turned into two exercises** ("Book", "Square area"),
+  their old demo code relocated verbatim into `sol_struct.md` as the
+  solutions. The "Book" exercise prompt says `enum` where it clearly
+  means `struct` (the solution defines a `struct`) — corrected to
+  `struct` when porting (a real error, not a style choice).
+- **`env_cargo.md`: new "First project" exercise** using the
+  `text2art` crate, solved in `sol_cargo.md` (see above).
+- Many small wording fixes ported as-is (ownership.md's
+  `"hello world!"` → `"hello, world!"` comma fixes, option.md/ref.md
+  phrasing tweaks, ranges.md's `Iterator` hyperlink, etc.) — no
+  divergence, just keeping prose in sync.
+
+**On merge:** this kind of "sweep across many small files" commit is
+best handled by first triaging the `git show --stat` output into (a)
+pure 1-line heading destyles (batch them), (b) small wording tweaks
+(quick individual edits), (c) exercises/solutions (need careful
+label/star bookkeeping), (d) anything touching `main.tex` (chapter
+moves — always check before assuming a file's current chapter).

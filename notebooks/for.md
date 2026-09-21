@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 (chp-for)=
-# `for`
+# for
 
 The `for` statement is a shortcut to iterate over an iterator object or an
 object convertible into an iterator.
@@ -39,8 +39,9 @@ for i in 1..=10 {
 }
 ```
 
-Many methods (see [`Iterator` methods](#chp-iter-methods)) can be called
-onto the iterator to transform it.
+Many methods (see [`Iterator` methods](#chp-iter-methods) for a list of
+the main iterator methods) can be called onto the iterator to transform
+it.
 For instance, in the following example, we reverse the range to iterate
 from higher values to lower values, using the `rev()` iterator method:
 
@@ -55,3 +56,34 @@ As for the `loop` statement:
 - The `continue` keyword is used to skip a step.
 - The `break` keyword is used to exit the loop prematurely.
 - *Labels* are used to exit *nested* loops.
+
+:::{exercise} Checker (★★☆☆☆)
+:label: checker
+:enumerated: true
+
+Draw the following grid on the console using two nested `for` loops and
+the *print* macros (see [Print macros](#chp-print)):
+
+```
+X
+ X
+X X
+ X X
+X X X
+ X X X
+X X X X
+ X X X X
+X X X X X
+ X X X X X
+X X X X X X
+ X X X X X X
+X X X X X X X
+ X X X X X X X
+X X X X X X X X
+ X X X X X X X X
+X X X X X X X X X
+ X X X X X X X X X
+```
+:::
+
+[see solution](#checker-solution)

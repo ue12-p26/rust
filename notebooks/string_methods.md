@@ -1,4 +1,4 @@
-# `String` methods
+# String methods
 
 We list in {numref}`tab-string-methods` some of the methods of the
 [String](https://doc.rust-lang.org/std/string/struct.String.html)

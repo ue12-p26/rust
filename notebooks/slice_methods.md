@@ -1,4 +1,4 @@
-# `slice` methods
+# slice methods
 
 :::{danger} In progress
 This section is still being written.

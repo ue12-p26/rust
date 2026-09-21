@@ -22,7 +22,7 @@ let s = "abcdef";
 s
 ```
 
-:::{note} `s` type
+:::{note} s type
 The exact type of `s` will be explained later in the course.
 :::
 

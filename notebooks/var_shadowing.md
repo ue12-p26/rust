@@ -9,6 +9,7 @@ kernelspec:
   language: rust
 ---
 
+(chp-var-shadow)=
 # Shadowing a variable
 
 The

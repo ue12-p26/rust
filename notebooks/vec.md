@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 (chp-vec)=
-# `Vec` type
+# Vec type
 
 [Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html) is a *generic*
 type for allocating a growable array in the heap memory.
@@ -36,7 +36,7 @@ let v: Vec<i8> = Vec::new();
 v
 ```
 
-:::{note} `new()` method
+:::{note} new() method
 In Rust, `new()` is the usual name for the constructor method of a `struct`.
 :::
 
@@ -50,7 +50,7 @@ v.push(10);
 v
 ```
 
-## `vec!` macro
+## vec! macro
 
 The [vec!](https://doc.rust-lang.org/std/macro.vec.html) macro allows to
 initialize a `Vec` instance with values as it is done with standard
@@ -79,7 +79,7 @@ let v = vec![1, 2, 3];
 v[1]
 ```
 
-:::{warning} Indices start at `0`
+:::{warning} Indices start at 0
 As for *arrays*, the first element of a `vec` is at index `0`.
 :::
 
@@ -148,7 +148,7 @@ println!("v is still accessible: {v:?}");
 ```
 :::
 
-:::{exercise} Iterating over a vector's items
+:::{exercise} Iterating over a vector's items (★★☆☆☆)
 :label: vec-iter
 :enumerated: true
 
@@ -157,7 +157,7 @@ println!("v is still accessible: {v:?}");
 2. Iterate over the elements of the vector *without moving* them and
    print them on the standard output.
 3. Inside the iteration loop, put the first letter of each string into
-   uppercase before printing them.
+   uppercase before printing them, one on each line.
 :::
 
 [see solution](#vec-iter-solution)
