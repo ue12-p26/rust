@@ -203,6 +203,15 @@ To declare the dependency, we use the `add` sub-command:
 cargo add colour
 ```
 
+:::{note} Sub-dependencies
+We can see in the output that other crates (`winapi`, ...) have been
+added too. These are dependencies of the `colour` crate dependency.
+They need to be added in order to compile the application. In this
+particular case all sub-dependencies are libraries for the Windows
+operating system. When compiling on \*nix machines, they will not be
+used.
+:::
+
 The `dependencies` section now contains a line for the `colour` package with
 a version requirement:
 
@@ -211,6 +220,22 @@ a version requirement:
 
 bat Cargo.toml
 ```
+
+Cargo also creates a lock file that contains the version used for each
+dependency. Here is an excerpt from the `Cargo.lock` file:
+
+```{code-cell} bash
+:class: dark-background full-color-output seq-cont badges border
+
+bat -r 5:27 Cargo.lock
+```
+
+:::{warning} Lock file versioning
+The `Cargo.lock` needs to be tracked by the versioning system (i.e.:
+Git). It will be used by all developers when building the project, and
+also by users installing the crate with `cargo install --locked ...`
+command.
+:::
 
 Running the application, will trigger the installation of the dependencies,
 as well as compilation, before running:
