@@ -24,4 +24,32 @@ a *queue* (a.k.a.: *FIFO*).
 - Do a diagram of a ring-buffer.
 :::
 
+:::{code-block} text
+:name: fig-stack
+:caption: A LIFO (stack)
+
+push_front()    pop_front()
+          │     ▲
+          │     │
+          ▼     │
+         ┌────────┐
+         │   13   │
+         ├────────┤
+         │   47   │
+         ├────────┤
+         │    5   │
+         ├────────┤
+         │   10   │
+         └────────┘
+:::
+
+:::{code-block} text
+:name: fig-queue
+:caption: A FIFO (queue)
+
+                ┌────┬────┬────┬────┐
+push_back() --> │ 10 │  5 │ 47 │ 13 │ --> pop_front()
+                └────┴────┴────┴────┘
+:::
+
 It is implemented as a growable ring-buffer.

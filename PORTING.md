@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   01a434a
-subject:  Start VecDeque. Add lists of tables and figures
+commit:   471e3ca
+subject:  Draw diagrams
 date:     2026-09-21
 ```
 
-Previously caught up to 06fa7e1ae133735f687ae525cb3a9c0e6e70c623 (2026-09-21).
+Previously caught up to 01a434a9e44c51c33633ce17e1eb616a98bf38e2 (2026-09-21).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
@@ -1400,3 +1400,19 @@ diagrams", `f983aea` "Add figure ref") fill these in, so don't be
 surprised when this TODO shrinks/disappears shortly. `\listoffigures`/
 `\listoftables` and the `\Vec` → `\VecStruct` macro rename are
 LaTeX-only, no action.
+
+### 39. Two ASCII-art figures in `vec_deque.md`, from `471e3ca`
+
+Two LaTeX `\begin{figure}` blocks with `\begin{verbatim}` box-drawing
+diagrams (stack push/pop, queue push/pop) — no real image asset,
+same situation as the vtable diagram in `trait_poly.md` (item 26), but
+this time with a `\label`/`\caption` upstream (`fig:Stack`, `fig:Queue`)
+that a later commit (`f983aea`) cross-references. Ported as MyST
+`{code-block} text` with `:name:`/`:caption:` (same numbered/captioned
+listing pattern as item 32's `project_toml.md`, `kind: code`) rather
+than a plain fence, specifically so the upcoming `{numref}` reference
+has something to resolve to. The upstream `TODO` list right above
+these (LIFO/FIFO/ring-buffer diagrams) is **not** cleaned up even
+though 2 of its 3 items are now fulfilled — ported faithfully,
+matching upstream's current (slightly redundant) state; don't
+"fix" it preemptively.
