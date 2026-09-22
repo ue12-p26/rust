@@ -197,16 +197,17 @@ project:
             - file: project.md
             - file: project_toml.md
 
+        - title: Types VII - Sequences
+          file: chap_types_sequences.md
+          children:
+            - file: coll_intro.md
+            - file: vec_deque.md
+            - file: linked_list.md
+
         - title: Memory IV - Accessing collections
           file: chap_collections_i.md
           children:
             - file: coll_borrow.md
-
-        - title: Types VII - Sequences
-          file: chap_types_sequences.md
-          children:
-            - file: vec_deque.md
-            - file: linked_list.md
 
         - title: Types VIII - Hashes
           file: chap_types_hashes.md

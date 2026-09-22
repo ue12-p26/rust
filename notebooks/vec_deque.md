@@ -1,7 +1,10 @@
 # VecDeque
 
-:::{danger} TODO
-:class: readiness-todo
+:::{warning} To review
+:class: readiness-toreview
 
-Present this collection.
 :::
+
+The `VecDeque` structure is a double-ended queue.
+
+It is implemented as a growable ring-buffer.

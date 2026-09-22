@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   4c82af1
-subject:  Move collections chapters
+commit:   06fa7e1
+subject:  Wrote collections intro
 date:     2026-09-21
 ```
 
-Previously caught up to bd4fd2c2610a2c8efe9627bfeb40e387723c0c1f (2026-09-21).
+Previously caught up to 4c82af17d706d30a217380057a894590ae7859b7 (2026-09-21).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
@@ -1366,3 +1366,26 @@ chapter, not `Types` — don't assume its title tracks the `Types`
 counter. The Expertise "Collections" chapter is gone; if upstream adds
 new collection types later, check `main.tex` for which of the three
 new Proficiency chapters (or a new one) they land in.
+
+### 37. `coll_intro.md` new page, `vec_deque.md` filled in, from `06fa7e1`
+
+New `coll_intro.md` (chapter "Types VII - Sequences", first child,
+before `vec_deque.md`): overview of `std::collections`, classifying
+`Vec`/`VecDeque` (array-like), `LinkedList` (list-like),
+`BTreeSet`/`BTreeMap`/`BinaryHeap` (tree-like), `HashSet`/`HashMap`
+(hash table). Also swaps the relative order of the "Types Sequences"
+and "Memory Accessing collections" chapters back (Sequences now comes
+first) — pure reordering, doesn't change either prefix's roman
+numeral since no chapters were added/removed between them.
+`vec_deque.md` gains two sentences (double-ended queue / growable
+ring-buffer) replacing its bare `TODO`.
+
+`vec.tex`'s diff is almost entirely `\var{...}` → `\cod{...}` (both
+macros render identically — `\var` is literally defined as `\cod` in
+`common/newminted.sty`) plus swapping a hardcoded `\href{...}{Vec}` for
+a new `\Vec` alias macro pointing at the same URL — **no content or
+rendering change**, so `vec.md` needed no edits at all.
+
+**On merge:** a `\var{X}` → `\cod{X}` diff with no other change is a
+no-op for us (same backtick rendering) — don't spend time on these,
+just confirm via `grep`/diff that nothing else changed in the hunk.
