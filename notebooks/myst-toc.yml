@@ -197,12 +197,31 @@ project:
             - file: project.md
             - file: project_toml.md
 
-        - title: Types VII - Collections
+        - title: Memory IV - Accessing collections
           file: chap_collections_i.md
           children:
-            - file: coll.md
+            - file: coll_borrow.md
 
-        - title: Types VIII - Pointers
+        - title: Types VII - Sequences
+          file: chap_types_sequences.md
+          children:
+            - file: vec_deque.md
+            - file: linked_list.md
+
+        - title: Types VIII - Hashes
+          file: chap_types_hashes.md
+          children:
+            - file: hashmap.md
+            - file: hashset.md
+
+        - title: Types IX - Trees
+          file: chap_types_trees.md
+          children:
+            - file: btreemap.md
+            - file: btreeset.md
+            - file: binaryheap.md
+
+        - title: Types X - Pointers
           file: chap_types_pointers.md
           children:
             - file: box.md
@@ -248,17 +267,6 @@ project:
           children:
             - file: traits_in_fields.md
             - file: trait_bounds.md
-
-        - title: Types IX - Collections
-          file: chap_collections.md
-          children:
-            - file: vec_deque.md
-            - file: linked_list.md
-            - file: hashmap.md
-            - file: hashset.md
-            - file: btreemap.md
-            - file: btreeset.md
-            - file: binaryheap.md
 
     - title: Mastery
       children:

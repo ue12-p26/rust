@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   bd4fd2c
-subject:  Add text
+commit:   4c82af1
+subject:  Move collections chapters
 date:     2026-09-21
 ```
 
-Previously caught up to 9d418c053bebc5fb1b0ce5e82bab7f1d6b675196 (2026-09-21).
+Previously caught up to bd4fd2c2610a2c8efe9627bfeb40e387723c0c1f (2026-09-21).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
@@ -1335,3 +1335,34 @@ out-of-range one (`v.get(4)` on a 3-element vec, always `None`), with
 matching wording. Kept the pre-existing `:tags: [raises-exception]` —
 confirmed it's still needed for the same reason as before (`elem:
 Option<&i32>` is a non-`'static`-reference-containing type, item 13).
+
+### 36. Collections chapters moved from Expertise to Proficiency, split three ways, from `4c82af1`
+
+`coll.tex` → `coll_borrow.tex` (`git mv coll.md coll_borrow.md`, no
+content change), and its chapter changes prefix from `Types` to
+`Memory` (**"Types VII - Collections"** → **"Memory IV - Accessing
+collections"**, same file id `chap_collections_i.md` kept, still right
+after *Project I*). The old Expertise chapter "Types IX - Collections"
+(`chap_collections.md`: `vec_deque`/`linked_list`/`hashmap`/`hashset`/
+`btreemap`/`btreeset`/`binaryheap`) is **deleted** and its seven pages
+redistributed into three *new* Proficiency chapters, inserted between
+`coll_borrow.md` and the (renumbered) Pointers chapter:
+
+- **Types VII - Sequences** (new `chap_types_sequences.md`):
+  `vec_deque.md`, `linked_list.md`.
+- **Types VIII - Hashes** (new `chap_types_hashes.md`): `hashmap.md`,
+  `hashset.md`.
+- **Types IX - Trees** (new `chap_types_trees.md`): `btreemap.md`,
+  `btreeset.md`, `binaryheap.md`.
+- **Types X - Pointers** (was "Types VIII", `chap_types_pointers.md`
+  kept, children unchanged) — shifts by two since two new `Types`
+  chapters now sit before it.
+
+After this, the Expertise part has only one chapter left
+("Polymorphism V - Traits").
+
+**On merge:** `chap_collections_i.md` is now a `Memory`-prefixed
+chapter, not `Types` — don't assume its title tracks the `Types`
+counter. The Expertise "Collections" chapter is gone; if upstream adds
+new collection types later, check `main.tex` for which of the three
+new Proficiency chapters (or a new one) they land in.
