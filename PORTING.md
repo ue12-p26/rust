@@ -70,6 +70,26 @@ date:     2026-09-21
 
 Previously caught up to 7f1bd8d3f897165bf7c8d13be76c444e7e9ed0b5 (2026-09-20).
 
+### Branch `109-collections`
+
+Starting from `eb55b74` (tip of upstream `origin/main` at the time),
+upstream opened a feature branch `origin/109-collections` that is
+being ported here on a matching local branch `109-collections`
+(branched off the `main` commit that ported `eb55b74`). The porting
+routine (per-upstream-commit, `port of <sha>: <subject>` messages) is
+identical; only the branch differs. When this branch is eventually
+merged upstream, the corresponding local branch should be merged into
+`main` here too (or rebased — ask the user which).
+
+```
+upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
+commit:   9d418c0
+subject:  Use automatic numbering of chapter prefixes
+date:     2026-09-21
+```
+
+Previously caught up to eb55b7476c73b36630ceefaf3e621c04fca878bf (2026-09-21, base of this branch).
+
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
 (`eb55b74`), so the MyST port is fully caught up as of this pass.
@@ -1263,3 +1283,47 @@ these 5 admonition title patterns (new file or existing one), add the
 matching `:class: readiness-*` line (plus the blank line before body).
 This is now a permanent step in the per-commit porting routine, not a
 one-off — see the *Course-readiness banners* memory note.
+
+Porting then continues on branch `109-collections` (see the *Upstream
+reference* section above), tracking upstream's own
+`origin/109-collections` feature branch.
+
+### 34. Automatic chapter-prefix numbering, from `9d418c0` (branch `109-collections`)
+
+Upstream introduces a new LaTeX macro `\PrefixedChapter{Prefix}{Suffix}`
+(defined in `common/text.sty`, bumped submodule ref) that
+auto-increments a per-prefix roman-numeral counter and replaces every
+`\chapter{Prefix~\romX - Suffix}` call across `main.tex`. This is a
+pure mechanism change (LaTeX macro authoring convenience) with **no
+prose/content changes** — the counters happen to reproduce the exact
+same roman numerals we already use almost everywhere, since our MyST
+chapter titles were already hand-numbered in the same document order.
+
+Verified this by diffing the old and new `main.tex` chapter lists
+side by side (stripping numerals) to confirm ordering is unchanged,
+then working out by hand what each per-prefix counter evaluates to.
+Only **four** titles actually change, all because the automatic
+counter doesn't "restart" a prefix per book part/section the way the
+old hand-numbering sometimes did:
+
+- `chap_attributes_macros_i.md` / "Attributes & Macros I" → **"Attributes
+  and Macros I"** (the `&` becomes literal "and" — this one's a real
+  wording change, not a numbering artifact).
+- `chap_collections_i.md` (Proficiency part) / "Types V - Collections"
+  → **"Types VII - Collections"** (the global `Types` counter had
+  already reached VI by the time this chapter appears, from
+  Atomic/Complex/Enums/Methods/Structs/Vec&String — the old manual
+  numbering had reset to V here, out of sync with the sequential
+  reality).
+- `chap_types_pointers.md` / "Types VI - Pointers" → **"Types VIII -
+  Pointers"** (same reason, off by two).
+- `chap_collections.md` (Expertise part) / bare **"Collections"** (no
+  numeral at all previously) → **"Types IX - Collections"** (this
+  chapter reuses the `Types` prefix upstream now, whereas before it
+  was its own unnumbered `\chapter{Collections}`).
+
+**On merge:** if a future upstream commit adds another `Types`/`Memory`/
+`Syntax`/etc. chapter anywhere in `main.tex`, don't hand-assign the
+next roman numeral by guessing from nearby context — count *every*
+occurrence of that exact prefix from the top of `main.tex` down to
+that point, in document order, across all parts.

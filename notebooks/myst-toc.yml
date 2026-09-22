@@ -165,7 +165,7 @@ project:
           children:
             - file: enum_poly.md
 
-        - title: Attributes & Macros I
+        - title: Attributes and Macros I
           file: chap_attributes_macros_i.md
           children:
             - file: macros_intro.md
@@ -197,12 +197,12 @@ project:
             - file: project.md
             - file: project_toml.md
 
-        - title: Types V - Collections
+        - title: Types VII - Collections
           file: chap_collections_i.md
           children:
             - file: coll.md
 
-        - title: Types VI - Pointers
+        - title: Types VIII - Pointers
           file: chap_types_pointers.md
           children:
             - file: box.md
@@ -249,7 +249,7 @@ project:
             - file: traits_in_fields.md
             - file: trait_bounds.md
 
-        - title: Collections
+        - title: Types IX - Collections
           file: chap_collections.md
           children:
             - file: vec_deque.md
