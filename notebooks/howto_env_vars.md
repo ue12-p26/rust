@@ -13,6 +13,8 @@ kernelspec:
 # Environment variables
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 ```{code-cell} bash

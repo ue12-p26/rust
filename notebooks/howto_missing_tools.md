@@ -2,6 +2,8 @@
 # Missing tools
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 This chapter lists in a table the various tools that may be used in

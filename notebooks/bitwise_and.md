@@ -12,6 +12,8 @@ kernelspec:
 # Bitwise AND, OR and XOR
 
 :::{danger} Draft
+:class: readiness-draft
+
 This section is still being written.
 :::
 

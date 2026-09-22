@@ -1,6 +1,8 @@
 # Re-publishing modules
 
 :::{danger} Draft
+:class: readiness-draft
+
 TODO: explain how to use `pub mod ...` and `pub use ...` to re-publish
 sub-modules or rename and re-publish modules.
 

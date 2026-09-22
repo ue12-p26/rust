@@ -12,6 +12,8 @@ kernelspec:
 # Closures
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 A *closure* is an *anonymous* function that can be:

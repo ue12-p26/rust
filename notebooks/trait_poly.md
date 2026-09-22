@@ -12,6 +12,8 @@ kernelspec:
 # Polymorphism with traits
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 When a type implements a trait, we have the possibility to view this

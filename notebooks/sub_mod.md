@@ -13,6 +13,8 @@ kernelspec:
 # Sub-modules
 
 :::{danger} Draft
+:class: readiness-draft
+
 TODO: explain how to define and use sub-modules.
 
 TODO: explain visibility of `struct` in module. How fields are accessed
@@ -64,6 +66,8 @@ x.a
 ```
 
 :::{danger} TODO
+:class: readiness-todo
+
 Why does this work? Because everything that is defined inside a module
 is accessible from anyplace inside this same module. In C++ language:
 inside a module, everything is `friend` with everything.

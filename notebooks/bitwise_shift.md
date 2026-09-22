@@ -12,6 +12,8 @@ kernelspec:
 # Bitwise shift
 
 :::{danger} Draft
+:class: readiness-draft
+
 TODO: explain right shift is a division by 2 and left shift a
 multiplication.
 :::

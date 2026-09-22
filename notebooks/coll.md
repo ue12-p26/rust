@@ -12,6 +12,8 @@ kernelspec:
 # Accessing & borrowing collections
 
 :::{danger} Draft
+:class: readiness-draft
+
 This section is still being written.
 :::
 

@@ -13,6 +13,8 @@ kernelspec:
 # UTF-8
 
 :::{danger} Draft
+:class: readiness-draft
+
 This section is still being written.
 
 - TODO: explain UTF-8.

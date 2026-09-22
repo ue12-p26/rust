@@ -5,6 +5,8 @@ We list in {numref}`tab-std-traits` some of the most common *traits*
 of the *standard library*.
 
 :::{danger} TODO
+:class: readiness-todo
+
 Show existing traits for primitive types.
 :::
 

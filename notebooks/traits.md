@@ -13,6 +13,8 @@ kernelspec:
 # Traits
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 A *trait* represents a *functionality*. It defines a list of one or

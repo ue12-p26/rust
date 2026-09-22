@@ -12,6 +12,8 @@ kernelspec:
 # Bash examples
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 To run a bash example by yourself, open a bash session using your

@@ -2,6 +2,8 @@
 # Unicode
 
 :::{danger} Draft
+:class: readiness-draft
+
 This section is still being written.
 
 - TODO: present ASCII, extended ASCII, latin-1 & co encoding, UNICODE,

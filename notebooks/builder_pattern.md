@@ -2,6 +2,8 @@
 # Builder pattern
 
 :::{danger} TODO
+:class: readiness-todo
+
 Show the Rust builder pattern used to set the values of fields in a
 struct instance: `MyStruct::new().n(10).sz(20).name("foo")`.
 :::

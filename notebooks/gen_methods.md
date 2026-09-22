@@ -13,6 +13,8 @@ kernelspec:
 # Generic methods
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 We will use the following `Point` structure to illustrate various

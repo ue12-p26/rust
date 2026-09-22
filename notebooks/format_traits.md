@@ -2,6 +2,8 @@
 # Format traits
 
 :::{danger} TODO
+:class: readiness-todo
+
 - Present the different available format traits: `Display`, `Debug`,
   `Binary`, ...
 - Show how to implement one of those traits for a custom type.

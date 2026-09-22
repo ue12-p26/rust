@@ -13,6 +13,8 @@ kernelspec:
 # Folder module
 
 :::{danger} Draft
+:class: readiness-draft
+
 This section is still being written.
 :::
 

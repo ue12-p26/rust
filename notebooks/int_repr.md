@@ -12,6 +12,8 @@ kernelspec:
 # Integer representation
 
 :::{danger} Draft
+:class: readiness-draft
+
 - TODO: explain binary representation.
 - TODO: unsigned integers: show each bit is a power of 2.
 - TODO: signed integers: show each bit is a power of 2.

@@ -13,6 +13,8 @@ kernelspec:
 # Lifetimes
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 ## What is a lifetime?

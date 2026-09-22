@@ -12,6 +12,8 @@ kernelspec:
 # Default implementation
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 We may define default implementations for trait methods. These

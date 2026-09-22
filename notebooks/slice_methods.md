@@ -1,6 +1,8 @@
 # slice methods
 
 :::{danger} In progress
+:class: readiness-inprogress
+
 This section is still being written.
 :::
 

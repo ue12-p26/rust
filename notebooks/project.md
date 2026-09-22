@@ -12,6 +12,8 @@ kernelspec:
 # Project organisation
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 ```{code-cell} bash

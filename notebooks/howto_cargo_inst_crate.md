@@ -13,6 +13,8 @@ kernelspec:
 # Install a crate with `cargo`
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 `cargo` is the Rust package manager. It is thus used to installed

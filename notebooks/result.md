@@ -12,6 +12,8 @@ kernelspec:
 # Result
 
 :::{danger} Draft
+:class: readiness-draft
+
 This section is still being written.
 
 TODO: explain `Result`.

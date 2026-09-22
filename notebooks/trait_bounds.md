@@ -12,6 +12,8 @@ kernelspec:
 # Using trait bounds
 
 :::{danger} Draft
+:class: readiness-draft
+
 This section is still being written.
 :::
 
@@ -109,6 +111,8 @@ impl<T: MyTrait> MyStruct<T> {
 ## Trait bound
 
 :::{danger} TODO
+:class: readiness-todo
+
 Implement a function for only T that implements a trait ...
 :::
 

@@ -13,6 +13,8 @@ kernelspec:
 # `PATH` env var
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 ```{code-cell} bash

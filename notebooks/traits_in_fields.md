@@ -12,6 +12,8 @@ kernelspec:
 # Using a trait as field's type
 
 :::{danger} Draft
+:class: readiness-draft
+
 This section is still being written.
 :::
 

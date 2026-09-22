@@ -1,6 +1,8 @@
 # Project file Cargo.toml
 
 :::{warning} To review
+:class: readiness-toreview
+
 :::
 
 The `Cargo.toml` file uses the [TOML](https://toml.io/) format. See
