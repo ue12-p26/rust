@@ -207,6 +207,7 @@ project:
         - title: Memory IV - Accessing collections
           file: chap_collections_i.md
           children:
+            - file: safe_access.md
             - file: coll_borrow.md
 
         - title: Types VIII - Hashes

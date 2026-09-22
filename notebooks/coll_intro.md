@@ -1,4 +1,4 @@
-# Collections
+# Collections overview
 
 :::{warning} To review
 :::

@@ -83,12 +83,19 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   f983aea
-subject:  Add figure ref
-date:     2026-09-21
+commit:   8dae87a
+subject:  Split coll access chapter
+date:     2026-09-22
 ```
 
-Previously caught up to 16fd304dc7f9e573bbf685788778ea52677228a1 (2026-09-21).
+Previously caught up to f983aea1eeaa8fe7db21b9267de3e0c661789985 (2026-09-21).
+
+This is the last commit ported on branch `109-collections` in this
+pass. `origin/109-collections` was rebased upstream after this branch
+was ported (moving its base from `eb55b74` to `941f878`) — this local
+branch has been rebased and its `port of <sha>` messages/references
+updated to match. Check whether upstream has added more commits before
+resuming.
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
@@ -1432,3 +1439,29 @@ referencing the stack figure via `{numref}` — ported with the same
 trailing `...` upstream left (an intentionally unfinished draft
 sentence, not a typo to fix). The other two `TODO` items (FIFO/
 ring-buffer diagrams) remain.
+
+### 42. `coll_borrow.md` split into `coll_borrow.md` + new `safe_access.md`, from `8dae87a`
+
+`coll_borrow.tex` ("Accessing & borrowing collections", 2 subsections)
+is split in two:
+
+- `coll_borrow.md` retitled **"Borrowing a collection"**, kept as the
+  *second* child of "Memory IV - Accessing collections". Its example
+  is now self-contained (`let mut v = vec![1, 2, 3]; let elem = &v[0];
+  v.push(10); (elem, v)` — previously `v`/`i` were undefined,
+  presumably always erroring for the wrong reason). Verified with a
+  single-line-joined evcxr submission that this **is** a genuine
+  `E0505` ("cannot move out of `v` because it is borrowed") — kept
+  `:tags: [raises-exception]`.
+- New `safe_access.md` ("Safe access to elements" — upstream's actual
+  title is "Safe access to a elements", a clear grammar slip; wrote
+  correct English instead of porting the typo, since this is prose we
+  author, not verbatim quoted text), inserted as the *first* child of
+  the same chapter. Two subsections: "Vector" (the `get()` example,
+  moved here verbatim from the old `coll_borrow.md`, "out-of-range" →
+  "index is out of range") and "Map" (new, bare `TODO` stub).
+- `coll_intro.md` retitled "Collections" → **"Collections overview"**.
+
+**On merge:** "Memory IV - Accessing collections" now has two pages,
+`safe_access.md` then `coll_borrow.md`, in that order — don't assume
+it's still a single page.
