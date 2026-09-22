@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   471e3ca
-subject:  Draw diagrams
+commit:   16fd304
+subject:  Center diagrams
 date:     2026-09-21
 ```
 
-Previously caught up to 01a434a9e44c51c33633ce17e1eb616a98bf38e2 (2026-09-21).
+Previously caught up to 471e3ca9c3d1b1176a797a6da8529f7ce54cbee0 (2026-09-21).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
@@ -1416,3 +1416,11 @@ these (LIFO/FIFO/ring-buffer diagrams) is **not** cleaned up even
 though 2 of its 3 items are now fulfilled — ported faithfully,
 matching upstream's current (slightly redundant) state; don't
 "fix" it preemptively.
+
+### 40. Stack diagram element order corrected, from `16fd304`
+
+Mostly a LaTeX-only change (`minipage`+`verbatim` → `BVerbatim` for
+centering, no MyST equivalent needed). The one real content change:
+the "LIFO (stack)" diagram's element order (top to bottom) was
+`13/47/5/10`, now `10/5/47/13` — a real correction to the illustration,
+applied verbatim to our `{code-block}`.
