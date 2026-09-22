@@ -209,3 +209,74 @@ html.dark body::before {
     border-bottom-left-radius: 10px;
     padding-bottom: 4px;
 }
+
+/* ============================================================
+ * Course-readiness banners
+ *
+ * Applied on admonitions in course_readiness.md via a :class:
+ * option, e.g.:
+ *
+ *   :::{danger} Draft
+ *   :class: readiness-draft
+ *
+ * MyST resolves each admonition kind's colors (border / background /
+ * title text) from 3 CSS custom properties that cascade down from an
+ * ancestor: --myst-color-{group}, --myst-color-{group}-bg and
+ * --myst-color-{group}-text, where {group} is "danger" for the
+ * {danger} kind, "warning" for {warning}, "info" for {note}. Scoping
+ * an override of those variables to our own marker class recolors
+ * only that admonition, leaving every other {danger}/{warning}/{note}
+ * on the site untouched.
+ * ============================================================ */
+
+.myst-admonition.readiness-draft {
+    --myst-color-danger: #dc2626;
+    --myst-color-danger-bg: #fecaca;
+    --myst-color-danger-text: #7f1d1d;
+}
+.myst-admonition.readiness-inprogress {
+    --myst-color-danger: #ea580c;
+    --myst-color-danger-bg: #fed7aa;
+    --myst-color-danger-text: #7c2d12;
+}
+.myst-admonition.readiness-todo {
+    --myst-color-danger: #ca8a04;
+    --myst-color-danger-bg: #fde047;
+    --myst-color-danger-text: #422006;
+}
+.myst-admonition.readiness-toreview {
+    --myst-color-warning: #4d7c0f;
+    --myst-color-warning-bg: #bef264;
+    --myst-color-warning-text: #365314;
+}
+.myst-admonition.readiness-finalized {
+    --myst-color-info: #15803d;
+    --myst-color-info-bg: #bbf7d0;
+    --myst-color-info-text: #14532d;
+}
+
+html.dark .myst-admonition.readiness-draft {
+    --myst-color-danger: #ef4444;
+    --myst-color-danger-bg: #450a0a;
+    --myst-color-danger-text: #f87171;
+}
+html.dark .myst-admonition.readiness-inprogress {
+    --myst-color-danger: #fb923c;
+    --myst-color-danger-bg: #431407;
+    --myst-color-danger-text: #fdba74;
+}
+html.dark .myst-admonition.readiness-todo {
+    --myst-color-danger: #facc15;
+    --myst-color-danger-bg: #422006;
+    --myst-color-danger-text: #fde047;
+}
+html.dark .myst-admonition.readiness-toreview {
+    --myst-color-warning: #a3e635;
+    --myst-color-warning-bg: #1a2e05;
+    --myst-color-warning-text: #bef264;
+}
+html.dark .myst-admonition.readiness-finalized {
+    --myst-color-info: #4ade80;
+    --myst-color-info-bg: #052e16;
+    --myst-color-info-text: #86efac;
+}
