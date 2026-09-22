@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   9d418c0
-subject:  Use automatic numbering of chapter prefixes
+commit:   bd4fd2c
+subject:  Add text
 date:     2026-09-21
 ```
 
-Previously caught up to eb55b7476c73b36630ceefaf3e621c04fca878bf (2026-09-21, base of this branch).
+Previously caught up to 9d418c053bebc5fb1b0ce5e82bab7f1d6b675196 (2026-09-21).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
@@ -1327,3 +1327,11 @@ old hand-numbering sometimes did:
 next roman numeral by guessing from nearby context — count *every*
 occurrence of that exact prefix from the top of `main.tex` down to
 that point, in document order, across all parts.
+
+### 35. `coll.md` wording tweak, from `bd4fd2c`
+
+`get()` example switched from an in-range index (always `Some`) to an
+out-of-range one (`v.get(4)` on a 3-element vec, always `None`), with
+matching wording. Kept the pre-existing `:tags: [raises-exception]` —
+confirmed it's still needed for the same reason as before (`elem:
+Option<&i32>` is a non-`'static`-reference-containing type, item 13).

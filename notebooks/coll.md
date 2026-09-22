@@ -11,10 +11,9 @@ kernelspec:
 
 # Accessing & borrowing collections
 
-:::{danger} Draft
-:class: readiness-draft
+:::{warning} To review
+:class: readiness-toreview
 
-This section is still being written.
 :::
 
 ## Borrowing a vector
@@ -30,15 +29,17 @@ v.push(10); // mutable borrow ==> COMPILER ERROR!
 
 ## Safe access to a vector's element
 
-Securely accessing an element with `get()`:
+Accessing a vector's element with `get()` is safer than with the
+indexing operator (`[]`). `get()` returns an `Option<T>` and uses the
+`None` when the index is out-of-range:
 
 ```{code-cell} rust
 :tags: [raises-exception]
 
 let v = vec![1, 2, 3];
-let elem = v.get(0); // elem is a Option<&i32>
+let elem = v.get(4);
 match elem {
-  Some(elem) => println!("OK"),
-  None => println!("Error"),
+  Some(elem) => println!("Value is {elem}"),
+  None => println!("Error, out-of-range."),
 }
 ```
