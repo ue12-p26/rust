@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   06fa7e1
-subject:  Wrote collections intro
+commit:   01a434a
+subject:  Start VecDeque. Add lists of tables and figures
 date:     2026-09-21
 ```
 
-Previously caught up to 4c82af17d706d30a217380057a894590ae7859b7 (2026-09-21).
+Previously caught up to 06fa7e1ae133735f687ae525cb3a9c0e6e70c623 (2026-09-21).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
@@ -1389,3 +1389,14 @@ rendering change**, so `vec.md` needed no edits at all.
 **On merge:** a `\var{X}` → `\cod{X}` diff with no other change is a
 no-op for us (same backtick rendering) — don't spend time on these,
 just confirm via `grep`/diff that nothing else changed in the hunk.
+
+### 38. `vec_deque.md` gains method list + diagram TODOs, from `01a434a`
+
+Small wording fix in `coll_intro.md`. `vec_deque.md` gains a
+`push_front()`/`push_back()`/`pop_front()`/`pop_back()` bullet list and
+a 3-item `TODO` (LIFO/FIFO/ring-buffer diagrams) — the next few
+upstream commits (`471e3ca` "Draw diagrams", `16fd304` "Center
+diagrams", `f983aea` "Add figure ref") fill these in, so don't be
+surprised when this TODO shrinks/disappears shortly. `\listoffigures`/
+`\listoftables` and the `\Vec` → `\VecStruct` macro rename are
+LaTeX-only, no action.

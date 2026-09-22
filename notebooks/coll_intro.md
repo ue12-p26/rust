@@ -15,4 +15,4 @@ according to their underlying structure:
 - Hash table structure: `HashSet`, `HashMap`.
 
 In [Module collections](https://doc.rust-lang.org/std/collections/index.html)
-is a guide to choose the right collection for particular goal.
+is a guide to help choosing the right collection.
