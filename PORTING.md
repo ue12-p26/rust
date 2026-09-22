@@ -1226,3 +1226,40 @@ This is the last upstream commit ported in this pass — `myst` and
 `origin/main` (upstream) point to the same commit as of this session;
 see the *Upstream reference* block at the top of this file for
 whatever the next porting pass should resume from.
+
+### 33. Course-readiness banners get distinct colors via `:class: readiness-*` (fixed, not part of any upstream commit)
+
+Upstream LaTeX gives each of the 5 readiness levels (`\DRAFT`=red,
+`\INPROGRESS`=orange, `\TODO`=yellow, `\TOREVIEW`=light green,
+`\FINALIZED`=dark green) its own color. The MyST port maps them onto
+plain admonition kinds (`danger`/`warning`/`note`), and the
+`book-theme` only has 4 color groups, so 3 of the 5 levels (Draft, In
+progress, TODO — all `:::{danger}`) rendered identically.
+
+Fixed by adding 5 marker classes to `notebooks/_static/style_local.css`
+(`readiness-draft`, `readiness-inprogress`, `readiness-todo`,
+`readiness-toreview`, `readiness-finalized`), each overriding the 3 CSS
+custom properties (`--myst-color-{group}`, `-bg`, `-text`) that the
+theme resolves colors from, scoped to `.myst-admonition.readiness-*`
+(plus an `html.dark` variant for dark mode). Every admonition matching
+one of these 5 title patterns now carries the matching class:
+
+| Admonition | `:class:` |
+|---|---|
+| `:::{danger} Draft` | `readiness-draft` |
+| `:::{danger} In progress` | `readiness-inprogress` |
+| `:::{danger} TODO` | `readiness-todo` |
+| `:::{warning} To review` | `readiness-toreview` |
+| `:::{note} Finalized` | `readiness-finalized` |
+
+The option line is inserted right after the title line, followed by a
+blank line before the body (same option-then-blank-line convention as
+`{code-cell}`, item 0 above), even on the ~60 pre-existing pages whose
+body previously started immediately under the title with no blank
+line.
+
+**On merge:** whenever porting content that introduces or keeps one of
+these 5 admonition title patterns (new file or existing one), add the
+matching `:class: readiness-*` line (plus the blank line before body).
+This is now a permanent step in the per-commit porting routine, not a
+one-off — see the *Course-readiness banners* memory note.
