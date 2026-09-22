@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   16fd304
-subject:  Center diagrams
+commit:   f983aea
+subject:  Add figure ref
 date:     2026-09-21
 ```
 
-Previously caught up to 471e3ca9c3d1b1176a797a6da8529f7ce54cbee0 (2026-09-21).
+Previously caught up to 16fd304dc7f9e573bbf685788778ea52677228a1 (2026-09-21).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
@@ -1424,3 +1424,11 @@ centering, no MyST equivalent needed). The one real content change:
 the "LIFO (stack)" diagram's element order (top to bottom) was
 `13/47/5/10`, now `10/5/47/13` — a real correction to the illustration,
 applied verbatim to our `{code-block}`.
+
+### 41. Figure cross-reference, from `f983aea`
+
+The "Do a diagram of a LIFO" `TODO` item is replaced by a sentence
+referencing the stack figure via `{numref}` — ported with the same
+trailing `...` upstream left (an intentionally unfinished draft
+sentence, not a typo to fix). The other two `TODO` items (FIFO/
+ring-buffer diagrams) remain.

@@ -16,10 +16,12 @@ Elements can be added or retrieved using the following methods:
 This means that we can use it either as a *stack* (a.k.a.: *LIFO*) or
 a *queue* (a.k.a.: *FIFO*).
 
+A *stack*, or *Last In First Out* (*LIFO*), see {numref}`fig-stack`,
+...
+
 :::{danger} TODO
 :class: readiness-todo
 
-- Do a diagram of a LIFO.
 - Do a diagram of a FIFO.
 - Do a diagram of a ring-buffer.
 :::
