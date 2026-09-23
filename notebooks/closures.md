@@ -28,8 +28,10 @@ expression that uses those arguments to compute a value. Here is a
 closure that doubles a value, that we use as a normal function:
 
 ```{code-cell} rust
-let double = |x| x * 2;
-double(5)
+{
+  let double = |x| x * 2;
+  println!("{}", double(5));
+}
 ```
 
 We can define a function that takes a closure. We use the `Fn` trait
@@ -59,8 +61,10 @@ fn foo(f: impl Fn(i32) -> i32) {
 Here is the effect of calling `foo()` with `double()`:
 
 ```{code-cell} rust
-let double = |x| x * 2;
-foo(double);
+{
+  let double = |x| x * 2;
+  foo(double);
+}
 ```
 
 A function can return a closure as illustrated by the following
@@ -98,9 +102,11 @@ embeds the variable `x` from its scope. The evaluation is done as
 usual:
 
 ```{code-cell} rust
-let x = 4;
-let equal_to_x = |z| z == x;
-equal_to_x(5)
+{
+  let x = 4;
+  let equal_to_x = |z| z == x;
+  println!("{}", equal_to_x(5));
+}
 ```
 
 The capture of a variable by a closure, means the closure *borrows*

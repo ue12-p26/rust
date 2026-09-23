@@ -23,7 +23,7 @@ Create a new hash map `HashMap<K, V>`:
 
 ```{code-cell} rust
 use std::collections::HashMap;
-let mut scores = HashMap::new();
+let mut scores: HashMap<String, i32> = HashMap::new();
 scores.insert(String::from("Blue"), 10);
 scores.insert(String::from("Yellow"), 50);
 ```
@@ -34,7 +34,7 @@ Get a value:
 
 ```{code-cell} rust
 let team_name = String::from("Blue");
-let score = scores.get(&team_name).copied().unwrap_or(0);
+let score: i32 = scores.get(&team_name).copied().unwrap_or(0);
 ```
 
 - `get()` return's type is `Option<&V>`.
