@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   4d960dc
-subject:  Done VecDeque
+commit:   9c0b00e
+subject:  Add VecDeque methods table
 date:     2026-09-23
 ```
 
-Previously caught up to c02b7e24a1a44ebde262b9ed82d6b8087999983a (2026-09-22).
+Previously caught up to 4d960dc2143d2e60767dc6792232d4da9e1b326d (2026-09-23).
 
 **Note (2026-09-24):** the `myst-109-collections` bookmark in
 `upstream-tex` had drifted ahead of what was actually ported on this
@@ -1544,3 +1544,39 @@ faithfully rather than silently changed.
 **On merge:** `fig-vecdeque` is a genuinely new anchor — don't confuse
 it with the pre-existing `fig-queue`, they're different figures with
 (currently) identical captions.
+
+### 45. `vec_deque.md` methods table + ring-buffer note, from `9c0b00e`
+
+- New `tab-vecdeque` list-table (~20 methods), same
+  `{list-table}`/`:name:`/`:header-rows:`/`:align: center` pattern as
+  the existing `str_methods.md`/`slice_methods.md` tables. Intro
+  sentence rephrased slightly from upstream's literal "a list of most
+  important VecDeque's methods" (awkward word order) to "a list of
+  some of `VecDeque`'s most important methods" — a clarity tweak, not
+  a factual correction like item 44's two fixes.
+- The ring-buffer paragraph (added in item 44) is reworded by upstream
+  itself, replacing "start"/"end" with "front"/"back" for consistency
+  with the rest of the page — ported as reworded, verbatim, no
+  independent judgment call needed here.
+- New `:::{note} Indices` admonition (upstream's `\begin{note}{...}`
+  maps directly to MyST `:::{note}`, distinct from `\begin{important}`
+  → `:::{warning}`, item 2's rule).
+- `fig-ring-buffer` ASCII art: front/back labels swapped in the first
+  two snapshots, and the third snapshot gains a second `17` value
+  (demonstrating a value wrapping around the ring-buffer) — ported
+  verbatim.
+
+**Correction to this repo's own previous port (item 44), found while
+re-reading the full current upstream file for this commit:** `fig-
+vecdeque` had been placed right after the intro paragraph, *before*
+the "A stack, or LIFO..." paragraph. Re-checking upstream's actual
+`vec_deque.tex` shows it belongs *after* that paragraph and *before*
+`fig-stack` — the figure sits between the stack topic sentence and the
+stack diagram, which is what upstream's source has always shown (a
+misreading of the diff context, not an upstream change). Fixed here,
+forward, rather than rewriting the already-committed item-44 history
+(this is an unpublished local branch, but the fix doesn't need a
+history rewrite to be correct).
+
+**On merge:** if a future commit adds more methods to the `VecDeque`
+table, keep the alphabetical-by-method-name ordering upstream uses.

@@ -16,7 +16,68 @@ whose performance is in 𝒪(1):
 - `pop_back()`: pop an item from the back of the queue.
 
 This means that we can use it either as a *stack* (a.k.a.: *LIFO*) or
-a *queue* (a.k.a.: *FIFO*).
+a *queue* (a.k.a.: *FIFO*). See {numref}`tab-vecdeque` for a list of
+some of `VecDeque`'s most important methods.
+
+:::{list-table} Some methods of `VecDeque`
+:name: tab-vecdeque
+:header-rows: 1
+:align: center
+
+* - Method
+  - Description
+* - `append(other)`
+  - Appends another `VecDeque` object to this one.
+* - `back()`
+  - Provides a reference to the back element.
+* - `binary_search(v)`
+  - Binary searches for the value `v`. Supposes that this queue is
+    *sorted*.
+* - `clear()`
+  - Removes all elements.
+* - `contains(v)`
+  - Returns `true` if this queue contains the value `v`.
+* - `front()`
+  - Provides a reference to the front element.
+* - `get(i)`
+  - Gets the element at index `i`. This is an 𝒪(1) operation.
+* - `insert(i, v)`
+  - Inserts the value `v` at a position `i`. Index `0` is the *front*
+    of the queue.
+* - `is_empty()`
+  - Returns `true` if the queue contains no elements.
+* - `iter()`
+  - Returns a front-to-back iterator.
+* - `len()`
+  - Returns the number of elements.
+* - `make_contiguous()`
+  - Rearranges the ring-buffer so that the front element is at the
+    start of the buffer. This is an 𝒪(n) operation as we need to move
+    all the values.
+* - `new()`
+  - Creates a new vector.
+* - `pop_back()`
+  - Removes the back element and returns it.
+* - `pop_front()`
+  - Removes the front element and returns it.
+* - `push_back(v)`
+  - Appends an element to the back.
+* - `push_front(v)`
+  - Appends an element to the front.
+* - `remove(i)`
+  - Removes and returns the item at index `i`.
+* - `resize(sz, v)`
+  - Resizes the queue to size `sz`, appending copies of `v` if
+    required.
+* - `swap(i, j)`
+  - Swaps elements `i` and `j`.
+* - `truncate(sz)`
+  - Shortens the queue to size `sz`.
+:::
+
+A *stack*, or *LIFO* (*Last In First Out*), is a data structure
+in which items are put in their order of arrival, and only the last
+one can be put out. See {numref}`fig-stack` for an illustration.
 
 :::{code-block} text
 :name: fig-vecdeque
@@ -28,10 +89,6 @@ push_back() ──> │    │    │    │    │ <── push_front()
  pop_back() <── │    │    │    │    │ ──>  pop_front()
                 └────┴────┴────┴────┘
 :::
-
-A *stack*, or *LIFO* (*Last In First Out*), is a data structure
-in which items are put in their order of arrival, and only the last
-one can be put out. See {numref}`fig-stack` for an illustration.
 
 :::{code-block} text
 :name: fig-stack
@@ -76,9 +133,14 @@ when the underlying storage is full. However this implies a *copy*
 operation, whose performance is in 𝒪(n).
 
 The *ring-buffer* feature (see {numref}`fig-ring-buffer`) means that
-the start of the queue is not always at the start of the buffer. In
+the front of the queue is not always at the start of the buffer. In
 order to get 𝒪(1) performance for *push* and *pop* operations, the
-*start* and *end* of the queue move in a circular way.
+*front* and *back* of the queue move in a circular way.
+
+:::{note} Indices
+In all cases, the *front* (i.e.: start) of the queue is always at
+index *0* wherever it is placed inside the ring-buffer.
+:::
 
 :::{code-block} text
 :name: fig-growable
@@ -114,24 +176,24 @@ order to get 𝒪(1) performance for *push* and *pop* operations, the
 :name: fig-ring-buffer
 :caption: Demonstration of a ring-buffer usage
 
-  │   back           front
+  │   front          back
  T│    │              │
   │    ▼              ▼
  I│  ┌────┬────┬────┬────┬────┬────┬────┐
   │  │ 10 │  5 │ 47 │ 13 │    │    │    │
  M│  └────┴────┴────┴────┴────┴────┴────┘
   │
- E│             back           front
+ E│             front          back
   │              │              │
  L│              ▼              ▼
   │  ┌────┬────┬────┬────┬────┬────┬────┐
  I│  │    │    │ 47 │ 13 │ 16 │  4 │    │
   │  └────┴────┴────┴────┴────┴────┴────┘
  N│
-  │   front               back
- E│    │                   │
-  │    ▼                   ▼
+  │        back           front
+ E│         │              │
+  │         ▼              ▼
   │  ┌────┬────┬────┬────┬────┬────┬────┐
-  │  │ 25 │    │    │    │ 16 │  4 │ 17 │
+  │  │ 25 │ 17 │    │    │ 16 │  4 │ 17 │
   ▼  └────┴────┴────┴────┴────┴────┴────┘
 :::
