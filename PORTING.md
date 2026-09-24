@@ -83,12 +83,17 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   00f5022
-subject:  Done HashMap
+commit:   e9c880b
+subject:  Start HashSet
 date:     2026-09-23
 ```
 
-Previously caught up to 0e76e33deee7403d57e473e53b2c48feaa495403 (2026-09-23).
+Previously caught up to 00f50225a2ebeedc2b5291f1b1d9f6a969455b41 (2026-09-23).
+
+This is the last commit ported on branch `109-collections` in this
+pass — this was a batch of 7 (`c02b7e2` through `e9c880b`), catching up
+after the `myst-109-collections` bookmark had drifted (see the note
+below). Check whether upstream has added more before resuming.
 
 **Note (2026-09-24):** the `myst-109-collections` bookmark in
 `upstream-tex` had drifted ahead of what was actually ported on this
@@ -1707,3 +1712,10 @@ one.
 now a single merged cell/paragraph, not two — if upstream edits either
 half, check whether the merge still makes sense before splitting it
 back apart (it can't be split without reintroducing the evcxr error).
+
+### 49. `hashset.md` intro sentence, from `e9c880b`
+
+Small, matches the same pattern as `hashmap.md`'s and `hashset.md`'s
+own earlier bare stubs: one intro sentence, banner goes from
+`:::{danger} TODO` to `:::{warning} To review`. No code, no figures,
+no tables yet — just the opening sentence.

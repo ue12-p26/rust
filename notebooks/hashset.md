@@ -1,7 +1,9 @@
 # HashSet
 
-:::{danger} TODO
-:class: readiness-todo
+:::{warning} To review
+:class: readiness-toreview
 
-Present this collection.
 :::
+
+The `HashSet` structure is a *set* that uses a *hashing* algorithm to
+store unique values.
