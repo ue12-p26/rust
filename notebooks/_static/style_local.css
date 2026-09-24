@@ -280,3 +280,86 @@ html.dark .myst-admonition.readiness-finalized {
     --myst-color-info-bg: #052e16;
     --myst-color-info-text: #86efac;
 }
+
+/* ============================================================
+ * Sidebar TOC: less wasted space, more chapters visible
+ *
+ * The theme renders the sidebar with Tailwind utility classes
+ * baked into the HTML (no semantic "sidebar.css" to edit), so we
+ * override those utility classes by targeting the theme's own
+ * semantic wrapper classes instead — same element, same
+ * specificity (single class selector), our rule wins because
+ * style_local.css is concatenated after the theme's CSS.
+ *
+ * Three independent, composable tweaks:
+ * 1. Widen the sidebar text column (was capped at 350px at every
+ *    viewport width, even on wide desktop windows with visible
+ *    unused space to its right) so long titles wrap less.
+ * 2. Tighten each entry's vertical padding/margin (pure per-item
+ *    overhead, on top of however many lines its title wraps to).
+ * 3. Slightly smaller sidebar font (theme's own "text-sm" scale)
+ *    - shortens both wrapped-line count and per-line height.
+ * ============================================================ */
+
+ /*
+ override page layout from style_jb2.css for more space in the toc
+*/
+@media (min-width: 1280px) {
+    /* make it more specific */
+    html body {
+        .article-grid, .xl\:article-grid {
+            grid-template-columns:
+                /* [screen-start] .5rem [screen-inset-start] 1fr [page-start] 3rem [page-inset-start] minmax(4rem, 9rem) [body-outset-start] 3rem [body-start gutter-left-start] 1rem [body-inset-start] minmax(8ch, 10ch) [middle-start] minmax(8ch, 10ch) [gutter-left-end] minmax(8ch, 10ch) minmax(8ch, 10ch) [gutter-right-start] minmax(8ch, 10ch) [middle-end] minmax(8ch, 10ch) [body-inset-end] 1rem [body-end gutter-right-end] 3rem [body-outset-end] minmax(5rem, 13rem) [page-inset-end] 3rem [page-end] 1fr [screen-inset-end] .5rem [screen-end]; */
+                [screen-start] .5rem
+                [screen-inset-start] 1fr
+                [page-start] 3rem
+                /* [page-inset-start] minmax(4rem, 9rem) */
+                [page-inset-start] 12rem
+                [body-outset-start] 3rem
+                [body-start gutter-left-start] 1rem
+                [body-inset-start] minmax(8ch, 10ch)
+                [middle-start] minmax(8ch, 10ch)
+                [gutter-left-end] minmax(8ch, 10ch)
+                /* this is the one we increase from minmax(8ch, 10ch)*/
+                10fr
+                [gutter-right-start] minmax(8ch, 10ch)
+                [middle-end] minmax(8ch, 10ch)
+                [body-inset-end] 1rem
+                [body-end gutter-right-end] 3rem
+                [body-outset-end] minmax(5rem, 13rem)
+                [page-inset-end] 3rem
+                [page-end] 1fr
+                [screen-inset-end] .5rem
+                [screen-end] !important;
+        }
+    }
+}
+
+
+/* more compact lhs toc */
+
+.myst-primary-sidebar-toc,
+.myst-primary-sidebar-footer,
+.myst-primary-sidebar-topnav {
+    max-width: 480px;
+}
+
+.myst-toc {
+    font-size: 1.05rem;
+}
+
+.myst-toc-item {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    margin-top: 0.15rem;
+    margin-bottom: 0.15rem;
+}
+
+div[data-state="closed"] > .myst-toc-item {
+    padding-top: 0px;
+    padding-bottom: 0px;
+   > a[title] {
+    padding-top: 0px;
+    padding-bottom: 0px;
+   }
+}
