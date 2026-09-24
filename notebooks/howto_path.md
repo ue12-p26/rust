@@ -51,7 +51,7 @@ And the script creation:
 ```{code-cell} bash
 :tags: [remove-cell]
 
-bat >my/sub/folder/a_script.sh <<EOF
+cat > my/sub/folder/a_script.sh <<EOF
 #!/bin/bash
 echo "Hello!"
 EOF
@@ -138,9 +138,6 @@ modified.
 For now, we only have to *source* the file explicitly in order to
 get the modification:
 
-```{code-cell} bash
-:tags: [skip-execution]
-:class: dark-background full-color-output disabled
-
+```bash
 source $HOME/.bash_profile
 ```
