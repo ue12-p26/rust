@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   ec77c0f
-subject:  End VecDeque methods. Move Vec table.
+commit:   0e76e33
+subject:  Wrote LinkedList chapter
 date:     2026-09-23
 ```
 
-Previously caught up to 9c0b00e53c9c31ac5837132b1dcfdf2527089e84 (2026-09-23).
+Previously caught up to ec77c0f3b7f904dc0582cc3d1fff47d9ec8f8ee3 (2026-09-23).
 
 **Note (2026-09-24):** the `myst-109-collections` bookmark in
 `upstream-tex` had drifted ahead of what was actually ported on this
@@ -1607,3 +1607,37 @@ this table or `vec_methods.md`).
 `vec_methods.md` — the mapping table in item 5 above has been updated
 to reflect this; don't recreate a `vec_methods.md` file if upstream
 references it again, check `vec.md` first.
+
+### 47. `linked_list.md` filled in + `vec_deque.md` reshuffled again, from `0e76e33`
+
+**`linked_list.md`** (was a bare `TODO` stub): intro paragraph, a new
+`:::{warning} LinkedList vs Vec` admonition (upstream's own
+`\begin{important}{...}`, per item 2's rule — `important` maps to
+`warning`, not `note`), a new `fig-linked-list` diagram (push/pop at
+both ends, 𝒪(1) annotations), and a `tab-linked-list` methods table
+(same `{list-table}` pattern as the `VecDeque`/`Vec` tables). **Fixed a
+typo while porting**: upstream's own figure caption is "A doubly-linked
+list)" — a stray, unmatched closing parenthesis — corrected to "A
+doubly-linked list".
+
+**`vec_deque.md` reshuffled a third time.** Upstream keeps
+repositioning `fig-vecdeque` across these last few commits: item 44
+first placed it right after the intro paragraph; item 45's port
+"corrected" that to *after* the "A stack..." paragraph, believing the
+first placement had been a porting mistake — but re-reading this
+commit's full file shows upstream itself moves it *back* to right
+after the intro paragraph (before the methods bullet list), which is
+where item 44 originally (correctly, as it turns out) had it. Neither
+this repo's item-44 nor item-45 placement was a mistake — upstream
+has simply moved this figure more than once across consecutive
+commits; each port matched its commit's actual state at the time.
+Also in this commit: `fig-stack` and `fig-queue`'s own ASCII art swap
+which end (front/back) is used for push vs. pop (e.g. `fig-stack`
+was `push_front()`/`pop_front()`, now `push_back()`/`pop_back()`) —
+ported verbatim, and the "ring-buffer feature" paragraph + `Indices`
+note move from *before* `fig-growable` to *after* it.
+
+**On merge:** don't assume `fig-vecdeque`'s position is stable —
+upstream has moved it 3 times across items 44/45/47; always re-check
+the current full `vec_deque.tex` rather than trusting the position
+from the last port.

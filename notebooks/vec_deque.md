@@ -7,6 +7,22 @@
 
 The `VecDeque` (*VECtor Double Ended QUEue*) structure is a
 double-ended queue (see {numref}`fig-vecdeque`).
+
+:::{code-block} text
+:name: fig-vecdeque
+:caption: A FIFO (queue)
+
+                 ┌────┬────┬────┬────┐
+push_front() ──> │    │    │    │    │ <── push_back()
+   O(1)          │ 10 │  5 │ 47 │ 13 │        O(1)
+ pop_front() <── │    │    │    │    │ ──>  pop_back()
+                 └────┴────┴────┴────┘
+                             │
+                             │
+                             ▼
+                           get()  O(1)
+:::
+
 Elements can be added or retrieved using the four following methods,
 whose performance is in 𝒪(1):
 
@@ -80,25 +96,10 @@ in which items are put in their order of arrival, and only the last
 one can be put out. See {numref}`fig-stack` for an illustration.
 
 :::{code-block} text
-:name: fig-vecdeque
-:caption: A FIFO (queue)
-
-                ┌────┬────┬────┬────┐
-push_back() ──> │    │    │    │    │ <── push_front()
-   O(1)         │ 10 │  5 │ 47 │ 13 │        O(1)
- pop_back() <── │    │    │    │    │ ──>  pop_front()
-                └────┴────┴────┴────┘
-                            │
-                            │
-                            ▼
-                          get()  O(1)
-:::
-
-:::{code-block} text
 :name: fig-stack
 :caption: A LIFO (stack)
 
-push_front()    pop_front()
+push_back()    pop_back()
    O(1)   │     ▲  O(1)
           │     │
           ▼     │
@@ -121,9 +122,9 @@ put out in their order of arrival.
 :name: fig-queue
 :caption: A FIFO (queue)
 
-                ┌────┬────┬────┬────┐
-push_back() ──> │ 10 │  5 │ 47 │ 13 │ ──> pop_front()
-   O(1)         └────┴────┴────┴────┘       O(1)
+                 ┌────┬────┬────┬────┐
+push_front() ──> │ 10 │  5 │ 47 │ 13 │ ──> pop_back()
+   O(1)          └────┴────┴────┴────┘       O(1)
 :::
 
 Like the `Vec` structure, the `VecDeque` uses an array as the
@@ -135,16 +136,6 @@ underlying structure. This array:
 *Growable* (see {numref}`fig-growable`) means it automatically expands
 when the underlying storage is full. However this implies a *copy*
 operation, whose performance is in 𝒪(n).
-
-The *ring-buffer* feature (see {numref}`fig-ring-buffer`) means that
-the front of the queue is not always at the start of the buffer. In
-order to get 𝒪(1) performance for *push* and *pop* operations, the
-*front* and *back* of the queue move in a circular way.
-
-:::{note} Indices
-In all cases, the *front* (i.e.: start) of the queue is always at
-index *0* wherever it is placed inside the ring-buffer.
-:::
 
 :::{code-block} text
 :name: fig-growable
@@ -174,6 +165,16 @@ index *0* wherever it is placed inside the ring-buffer.
 └────┘       └────┘       └────┘
 ╰────────┬────────╯         │
   ORIGINAL BUFFER       NEW BUFFER
+:::
+
+The *ring-buffer* feature (see {numref}`fig-ring-buffer`) means that
+the front of the queue is not always at the start of the buffer. In
+order to get 𝒪(1) performance for *push* and *pop* operations, the
+*front* and *back* of the queue move in a circular way.
+
+:::{note} Indices
+In all cases, the *front* (i.e.: start) of the queue is always at
+index *0* wherever it is placed inside the ring-buffer.
 :::
 
 :::{code-block} text
