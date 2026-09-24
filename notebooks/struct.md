@@ -84,7 +84,7 @@ If we define the three following variables:
 
 let title = "Mon ami Maigret";
 let author = "Georges Simenon";
-let year = 1949;
+let year: i16 = 1949;
 ```
 
 We can use them to create a `Book` instance. The names of the variables,

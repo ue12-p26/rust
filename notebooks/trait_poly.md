@@ -217,7 +217,7 @@ Here is a vector of objects that implement the `Surface` trait:
 ```{code-cell} rust
 :class: seq-cont badges border
 
-let mut surfaces: Vec<&dyn Surface> = Vec::new();
+let mut surfaces: Vec<Box<dyn Surface>> = Vec::new();
 ```
 
 We can put in it our two objects `rect` and `circ`:
@@ -225,8 +225,8 @@ We can put in it our two objects `rect` and `circ`:
 ```{code-cell} rust
 :class: seq-cont badges border
 
-surfaces.push(&rect);
-surfaces.push(&circ);
+surfaces.push(Box::new(rect));
+surfaces.push(Box::new(circ));
 ```
 
 When iterating over objects contained inside the vector, we can call
@@ -239,3 +239,19 @@ for s in &surfaces {
   println!("Area is {}.", s.area());
 }
 ```
+
+:::{note} Why `Box<dyn Surface>` and not `&dyn Surface`
+:class: dropdown
+
+A collection like this could just as well hold *borrowed* trait
+objects (`Vec<&dyn Surface>`) instead of *owned, boxed* ones. Here we
+use `Box` only because of how this book's interactive notebooks are
+executed: each cell runs as a separate, isolated step, and a
+collection of borrowed references cannot survive from one cell to the
+next unless what it borrows lives for the entire program (`'static`).
+`Box<dyn Surface>` sidesteps that by having `surfaces` *own* its
+elements instead of borrowing them. In an ordinary, single-file Rust
+program, `Vec<&dyn Surface>` would work perfectly well as long as
+`rect` and `circ` outlive the vector.
+:::
+

@@ -42,7 +42,7 @@ Example:
 ```{code-cell} bash
 :class: dark-background full-color-output seq-start badges border
 
-mkdir foo
+mkdir -p foo
 ```
 
 ```{code-cell} bash
