@@ -338,7 +338,6 @@ project:
             - file: std_traits.md
             - file: str_methods.md
             - file: string_methods.md
-            - file: vec_methods.md
 
         - title: Solutions
           file: chap_solutions.md

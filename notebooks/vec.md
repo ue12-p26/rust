@@ -27,6 +27,40 @@ To know more about *generics*, see [Generics chapter](#chp-generics).
 We present here the basics of the `Vec` type and some of its methods. See
 {numref}`tab-vec-methods` for a more complete list of its methods.
 
+:::{list-table} Some methods of `Vec`
+:name: tab-vec-methods
+:header-rows: 1
+:align: center
+
+* - Method
+  - Description
+* - `append(other)`
+  - Appends another `Vec` object to this one.
+* - `clear()`
+  - Removes all elements.
+* - `dedup()`
+  - Removes consecutive repeated elements.
+* - `insert(i, v)`
+  - Inserts the value `v` at a position `i`.
+* - `is_empty()`
+  - Returns `true` if the vector contains no elements.
+* - `len()`
+  - Returns the number of elements.
+* - `new()`
+  - Creates a new vector.
+* - `pop()`
+  - Removes the last element and returns it.
+* - `push(v)`
+  - Appends the value `v`.
+* - `remove(i)`
+  - Removes an element at a position `i`.
+* - `resize(sz, v)`
+  - Resizes the vector to size `sz`, appending copies of `v` if
+    required.
+* - `truncate(sz)`
+  - Shortens the vector to size `sz`.
+:::
+
 ## Empty vector
 
 Example of an empty vector of signed bytes:

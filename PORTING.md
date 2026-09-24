@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   9c0b00e
-subject:  Add VecDeque methods table
+commit:   ec77c0f
+subject:  End VecDeque methods. Move Vec table.
 date:     2026-09-23
 ```
 
-Previously caught up to 4d960dc2143d2e60767dc6792232d4da9e1b326d (2026-09-23).
+Previously caught up to 9c0b00e53c9c31ac5837132b1dcfdf2527089e84 (2026-09-23).
 
 **Note (2026-09-24):** the `myst-109-collections` bookmark in
 `upstream-tex` had drifted ahead of what was actually ported on this
@@ -308,7 +308,7 @@ of original LaTeX labels to MyST names:
 | `tab:CargoSubCmds`     | `tab-cargo-subcmds`  | `cargo_cmds.md`     |
 | `tab:RustApps`         | `tab-rust-apps`      | `rust_apps.md`      |
 | `table:ArrayMethods`   | `tab-array-methods`  | `array_methods.md`  |
-| `table:VecMethods`     | `tab-vec-methods`    | `vec_methods.md`    |
+| `table:VecMethods`     | `tab-vec-methods`    | `vec.md` (moved from `vec_methods.md`, item 46) |
 | `table:StrSliceMethods`| `tab-str-methods`    | `str_methods.md`    |
 | `table:StringMethods`  | `tab-string-methods` | `string_methods.md` |
 | `table:SliceMethods`   | `tab-slice-methods`  | `slice_methods.md`  |
@@ -1580,3 +1580,30 @@ history rewrite to be correct).
 
 **On merge:** if a future commit adds more methods to the `VecDeque`
 table, keep the alphabetical-by-method-name ordering upstream uses.
+
+### 46. `vec_methods.md` deleted, its table moved (and expanded) into `vec.md`, from `ec77c0f`
+
+The standalone `Vec methods` appendix page (`table:VecMethods` /
+`tab-vec-methods`) is removed; an **expanded** version of the same
+table (now with method parameters shown, plus new `append(other)`,
+`dedup()`, `truncate(sz)` rows) is inlined directly into `vec.md`,
+right after its intro paragraph and before "## Empty vector" — same
+`:name: tab-vec-methods` label preserved, so the existing
+`{numref}`tab-vec-methods`` cross-reference in `vec.md` itself keeps
+resolving with no change needed (confirmed no other file references
+this table or `vec_methods.md`).
+
+- Removed `vec_methods.md` from `myst-toc.yml`'s *Tables* appendix
+  chapter and `git rm`'d the file.
+- **Fixed a copy-paste error while porting**: the new table's
+  `resize(sz, v)` row says "Resizes the *queue* to size..." — copied
+  verbatim from the `VecDeque` methods table (item 45) without
+  adapting "queue" to "vector". Corrected, same rationale as the other
+  copy-paste fixes in items 44/45.
+- `vec_deque.md`'s `fig-vecdeque` diagram (item 44) gains a small
+  `get()  O(1)` annotation with a downward arrow — ported verbatim.
+
+**On merge:** `table:VecMethods` now lives in `vec.md`, not
+`vec_methods.md` — the mapping table in item 5 above has been updated
+to reflect this; don't recreate a `vec_methods.md` file if upstream
+references it again, check `vec.md` first.

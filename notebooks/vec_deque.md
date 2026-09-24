@@ -88,6 +88,10 @@ push_back() ──> │    │    │    │    │ <── push_front()
    O(1)         │ 10 │  5 │ 47 │ 13 │        O(1)
  pop_back() <── │    │    │    │    │ ──>  pop_front()
                 └────┴────┴────┴────┘
+                            │
+                            │
+                            ▼
+                          get()  O(1)
 :::
 
 :::{code-block} text
