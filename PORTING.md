@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   0e76e33
-subject:  Wrote LinkedList chapter
+commit:   00f5022
+subject:  Done HashMap
 date:     2026-09-23
 ```
 
-Previously caught up to ec77c0f3b7f904dc0582cc3d1fff47d9ec8f8ee3 (2026-09-23).
+Previously caught up to 0e76e33deee7403d57e473e53b2c48feaa495403 (2026-09-23).
 
 **Note (2026-09-24):** the `myst-109-collections` bookmark in
 `upstream-tex` had drifted ahead of what was actually ported on this
@@ -1641,3 +1641,69 @@ note move from *before* `fig-growable` to *after* it.
 upstream has moved it 3 times across items 44/45/47; always re-check
 the current full `vec_deque.tex` rather than trusting the position
 from the last port.
+
+### 48. `hashmap.md` full rewrite (Draft → To review) + chapter reorder, from `00f5022`
+
+**`hashmap.md`** goes from a `\DRAFT` stub to a fully-written page —
+new intro, a `fig-hashmap` bucket diagram, a `tab-hashmap` methods
+table, and one long `seq-start`/`seq-cont`.../`seq-stop` sequence (10
+cells) replacing the old, disconnected per-section snippets.
+
+- **New admonition mapping**: upstream introduces `\begin{danger}{Index
+  out of range}` — a genuine content warning (indexing a missing key
+  panics), not a readiness marker. Mapped to plain `:::{danger} Index
+  out of range` with **no** `:class: readiness-*` (the repo-wide
+  propagation script only ever matched the 3 exact readiness title
+  patterns, so this is naturally excluded — a `:::{danger}` block can
+  coexist as ordinary content-warning styling alongside the readiness
+  system without conflict).
+- **First use of LaTeX math in this repo**: upstream's `\begin{note}`
+  admonition has inline `$\alpha$` and a display equation
+  `\[\alpha = \frac{n}{m}\]` — ported as standard MyST/KaTeX
+  `` $\alpha$ `` inline and `` $$\alpha = \frac{n}{m}$$ `` display math
+  (no special repo convention needed, this just works).
+- **evcxr fix needed, not in the original 2-cell form**: upstream's
+  "Updating an existing value" section is two separate `[cont]` cells
+  (`let count = scores.entry(...).or_insert(0);` then, after a prose
+  paragraph, `*count += 1;`). `or_insert()` returns a non-`'static`
+  `&mut V`, so — per item 13/16 — it can't survive a cell boundary.
+  Verified directly against the real kernel that merging into *one*
+  cell (without wrapping) still fails identically (matches item 28's
+  finding: same-submission doesn't help for non-`'static` references
+  either). Fixed with the established wrap-in-braces pattern: merged
+  both cells (and their two paragraphs' worth of narrative) into one
+  `{ ... }` block ending in a `println!` showing the incremented
+  count. `scores` itself (the persisted top-level `HashMap`) is
+  unaffected and still correctly mutated afterward — verified `scores`
+  reflects the increment in the next (`stop`) cell.
+- `HashMap::new()` needed **no** explicit type annotation this time
+  (unlike the old draft's version, and unlike item 23's `Vec`/`HashMap`
+  precedent) — verified directly: since the evcxr rebuild earlier this
+  session (0.21.1 → 0.22.0), a bare `HashMap::new()` followed by
+  `.insert()` calls in the same cell now infers fine. Item 23's
+  guidance to default to an explicit annotation still stands as the
+  safe choice for *future* ports — this is a note that the exact
+  boundary of what needs one may have shifted with the evcxr upgrade,
+  not a blanket lifting of that guidance.
+
+**`linked_list.md` and `vec_deque.md`** each gain small new stub
+subsections (`## Create`, `## push/pop`, plus `## Searching` and
+`## split_off` for `linked_list.md` only), each a bare `:::{danger}
+TODO` — same pattern as any other unwritten subsection. **Fixed a
+copy-paste error while porting**: upstream's `split_off` subsection
+TODO literally says "show push/pop() usage" (copied from the section
+above it) — corrected to reference `split_off()`.
+
+**Chapter reorder**: `main.tex` moves the "Memory IV - Accessing
+collections" chapter (`safe_access.md`, `coll_borrow.md`) from *before*
+"Types VIII - Hashes" to *after* "Types IX - Trees" (right before
+"Types X - Pointers"). Mirrored in `myst-toc.yml`. No chapter numerals
+change — "Memory" and "Types" are different `\PrefixedChapter` prefixes
+with independent per-prefix counters (item 34), and no *other*
+same-prefix chapter sits between the old and new positions of either
+one.
+
+**On merge:** `hashmap.md`'s "Updating an existing value" section is
+now a single merged cell/paragraph, not two — if upstream edits either
+half, check whether the merge still makes sense before splitting it
+back apart (it can't be split without reintroducing the evcxr error).

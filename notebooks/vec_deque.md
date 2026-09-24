@@ -202,3 +202,25 @@ index *0* wherever it is placed inside the ring-buffer.
   │  │ 25 │ 17 │    │    │ 16 │  4 │ 17 │
   ▼  └────┴────┴────┴────┴────┴────┴────┘
 :::
+
+## Create
+
+:::{danger} TODO
+:class: readiness-todo
+
+Show `new()` usage.
+:::
+
+## push/pop
+
+:::{danger} TODO
+:class: readiness-todo
+
+Show `push()`/`pop()` usage.
+:::
+
+:::{danger} TODO
+:class: readiness-todo
+
+Add exercise.
+:::

@@ -204,12 +204,6 @@ project:
             - file: vec_deque.md
             - file: linked_list.md
 
-        - title: Memory IV - Accessing collections
-          file: chap_collections_i.md
-          children:
-            - file: safe_access.md
-            - file: coll_borrow.md
-
         - title: Types VIII - Hashes
           file: chap_types_hashes.md
           children:
@@ -222,6 +216,12 @@ project:
             - file: btreemap.md
             - file: btreeset.md
             - file: binaryheap.md
+
+        - title: Memory IV - Accessing collections
+          file: chap_collections_i.md
+          children:
+            - file: safe_access.md
+            - file: coll_borrow.md
 
         - title: Types X - Pointers
           file: chap_types_pointers.md

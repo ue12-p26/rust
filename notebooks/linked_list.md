@@ -76,3 +76,41 @@ Main methods of the `LinkedList` structure can be seen in
 * - `split_off(i)`
   - Splits the list into two at the given index.
 :::
+
+## Create
+
+:::{danger} TODO
+:class: readiness-todo
+
+Show `new()` usage.
+:::
+
+## push/pop
+
+:::{danger} TODO
+:class: readiness-todo
+
+Show `push()`/`pop()` usage.
+:::
+
+## Searching
+
+:::{danger} TODO
+:class: readiness-todo
+
+Show searching inside a list.
+:::
+
+## split_off
+
+:::{danger} TODO
+:class: readiness-todo
+
+Show `split_off()` usage.
+:::
+
+:::{danger} TODO
+:class: readiness-todo
+
+Add exercise.
+:::
