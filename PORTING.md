@@ -83,19 +83,20 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   8dae87a
-subject:  Split coll access chapter
+commit:   c02b7e2
+subject:  Draw ring buffer
 date:     2026-09-22
 ```
 
-Previously caught up to f983aea1eeaa8fe7db21b9267de3e0c661789985 (2026-09-21).
+Previously caught up to 8dae87a65f8308ebdb068025d59cf71dccfa370f (2026-09-22).
 
-This is the last commit ported on branch `109-collections` in this
-pass. `origin/109-collections` was rebased upstream after this branch
-was ported (moving its base from `eb55b74` to `941f878`) — this local
-branch has been rebased and its `port of <sha>` messages/references
-updated to match. Check whether upstream has added more commits before
-resuming.
+**Note (2026-09-24):** the `myst-109-collections` bookmark in
+`upstream-tex` had drifted ahead of what was actually ported on this
+branch (it pointed at `ec77c0f`, 4 commits past the real last-ported
+`8dae87a`) — reset to match reality before resuming. Kept the bookmark
+(rather than removing it) since it's useful for noticing upstream
+activity; just make sure it's moved *only* as each commit is actually
+ported, not preemptively.
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
@@ -1465,3 +1466,27 @@ is split in two:
 **On merge:** "Memory IV - Accessing collections" now has two pages,
 `safe_access.md` then `coll_borrow.md`, in that order — don't assume
 it's still a single page.
+
+### 43. `vec_deque.md` ring-buffer explanation + 2 new figures, from `c02b7e2`
+
+Both remaining `TODO` items on this page ("Do a diagram of a FIFO",
+"Do a diagram of a ring-buffer") are resolved: the truncated "A stack,
+... see fig:Stack, ..." sentence is completed, a new paragraph
+introduces the queue figure, and two new ASCII-art figures are added
+(`fig-growable`: how a `VecDeque` copies into a bigger buffer when it
+grows; `fig-ring-buffer`: front/back pointers wrapping around a fixed
+buffer over three snapshots in time) — same `{code-block} text` with
+`:name:`/`:caption:` pattern as the existing `fig-stack`/`fig-queue`
+(item 39). The `TODO` admonition is now fully resolved and removed.
+
+Ported the closing sentence **"*Growable* means"** verbatim, including
+its being cut off mid-thought — this is upstream's own draft-in-
+progress state (confirmed by reading the raw `.tex`, not a porting
+mistake), matching this repo's convention of not "fixing" prose we
+don't author. `\VecStruct` (a macro not yet seen in this repo, defined in the main
+repo's `rust_alias.sty`, not the `common` submodule) renders as plain
+`Vec`, matching the existing convention for type-name macros.
+
+**On merge:** if a future commit finishes the "*Growable* means..."
+sentence, port the completion normally — no special handling needed,
+it's just a paragraph that currently ends early.
