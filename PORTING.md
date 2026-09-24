@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   c02b7e2
-subject:  Draw ring buffer
-date:     2026-09-22
+commit:   4d960dc
+subject:  Done VecDeque
+date:     2026-09-23
 ```
 
-Previously caught up to 8dae87a65f8308ebdb068025d59cf71dccfa370f (2026-09-22).
+Previously caught up to c02b7e24a1a44ebde262b9ed82d6b8087999983a (2026-09-22).
 
 **Note (2026-09-24):** the `myst-109-collections` bookmark in
 `upstream-tex` had drifted ahead of what was actually ported on this
@@ -1490,3 +1490,57 @@ repo's `rust_alias.sty`, not the `common` submodule) renders as plain
 **On merge:** if a future commit finishes the "*Growable* means..."
 sentence, port the completion normally — no special handling needed,
 it's just a paragraph that currently ends early.
+
+### 44. `vec_deque.md` finished (intro, complexity annotations, growable/ring-buffer explanation), from `4d960dc`
+
+Follow-up to item 43 — this is the commit that actually finishes the
+"*Growable* means" sentence, plus a lot more:
+
+- New intro sentence with the `VecDeque` acronym expansion ("VECtor
+  Double Ended QUEue") and a brand new figure, `fig-vecdeque`, showing
+  all 4 methods (`push_front`/`push_back`/`pop_front`/`pop_back`) on a
+  single queue diagram with 𝒪(1) annotations — inserted **before**
+  `fig-stack`, not after.
+- Each method bullet gains a one-line description and an overall
+  "performance is in 𝒪(1)" note. **Fixed a copy-paste error while
+  porting**: upstream's own text says `pop_back()`: "*push* an item
+  from the back of the queue" (should obviously be *pop* — every other
+  bullet's description verb matches its method name) — this is a
+  factual/typo fix, not a style choice, matching this repo's existing
+  precedent for correcting genuine upstream mistakes (e.g. item 21's
+  "Book" exercise enum→struct fix, item 22's `sol_vec.md`
+  `str::capitalize()` fix).
+- `fig-stack`/`fig-queue` ASCII art both gain 𝒪(1) annotations next to
+  their arrows (cosmetic, ported verbatim).
+- The "*Growable* means" sentence (left incomplete in item 43) is
+  finished: "means it automatically expand[s] when the underlying
+  storage is full. However this implies a *copy* operation, whose
+  performance is in 𝒪(n)." **Fixed a grammar slip while porting**:
+  upstream literally has "it automatically expand" (missing the `s`) —
+  corrected to "expands", same rationale as above (finished, non-draft
+  prose — item 43's note about *not* touching the sentence while it was
+  still a fragment no longer applies now that it's complete).
+- New paragraph introducing `fig-ring-buffer` (this figure existed
+  already from item 43 but had no prose referencing it yet): "the
+  *start* and *end* of the queue move in a circular way" to get 𝒪(1)
+  push/pop despite the underlying array being fixed-size until a
+  growth/copy is needed. Upstream's own LaTeX has an unmatched-brace
+  typo here (`\autoref{fig:RingBuffer} means` — missing the closing
+  `}`); ported with the reference correctly closed
+  (`` {numref}`fig-ring-buffer` ``), since MyST's directive syntax
+  doesn't have LaTeX's brace-matching leniency.
+- `fig-growable`'s ASCII art gains 𝒪(1)/𝒪(n) annotations.
+- The old closing sentence "It is implemented as a growable
+  ring-buffer." is **removed** by upstream (redundant now that the
+  growable/ring-buffer behavior is explained in full above it) —
+  removed here too.
+
+**Note (not fixed, upstream's own choice):** `fig-vecdeque` (new in
+this commit) and `fig-queue` (pre-existing) share the exact same
+caption text, "A FIFO (queue)" — looks like it could be an oversight,
+but it's not a clear-cut factual error like the two above, so ported
+faithfully rather than silently changed.
+
+**On merge:** `fig-vecdeque` is a genuinely new anchor — don't confuse
+it with the pre-existing `fig-queue`, they're different figures with
+(currently) identical captions.
