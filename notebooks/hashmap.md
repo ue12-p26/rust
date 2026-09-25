@@ -212,8 +212,8 @@ scores
 
 ## Adding a value if no key present
 
-The `or_insert()` of the `Entry` struct, allows to insert a key/value
-only if the key is not already defined:
+The `or_insert()` of the `Entry` structure, allows to insert a
+key/value only if the key is not already defined:
 
 ```{code-cell} rust
 :class: seq-cont badges border

@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   a635d7c
-subject:  Add VecDeque chapters
+commit:   ada59fb
+subject:  Write BTreeMap chapter
 date:     2026-09-24
 ```
 
-Previously caught up to 99584b8f6ef30a3564639d04294ec3876ca8211e (2026-09-24).
+Previously caught up to a635d7c85f777a34268d3137ff076616eb479655 (2026-09-24).
 
 **Note (2026-09-24):** the `myst-109-collections` bookmark in
 `upstream-tex` had drifted ahead of what was actually ported on this
@@ -1830,3 +1830,43 @@ element in the list") — ported verbatim.
 
 Same upstream `autoref{chp:Vec}` (missing backslash) typo as item 51,
 same handling (ported as the intended `` [Vec type](#chp-vec) `` link).
+
+### 53. `btreemap.md` filled in (near-identical structure to `hashmap.md`) + `btreeset.md` gains a figure, from `ada59fb`
+
+**`btreemap.md`** goes from a bare `TODO` stub to a full page,
+structurally almost identical to `hashmap.md` (item 48): intro (B-tree
+specific this time — `Ord` trait requirement, per-node key capacity
+$K$, 𝒪($\log_K(n)$) iteration), a `fig-btreemap` tree diagram (not a
+bucket diagram), a `tab-btreemap` methods table (mostly the same
+methods as `HashMap`'s, minus the 𝒪(1)-time annotations since B-tree
+operations are 𝒪(log n), plus two B-tree-specific methods:
+`range(r)` and `split_off(k)`), then the *exact same* worked-example
+flow as `hashmap.md` (create, ownership/clone note, `get()`, indexing
++ danger box, iterating, replacing, `entry().or_insert()`, then the
+increment-via-`or_insert()` sequence). Verified the whole sequence
+directly against the real kernel first, rather than assuming it'd
+behave like `HashMap` just because the API shape matches — it does
+behave identically, including needing the exact same item-48
+wrap-in-braces fix for `let count = ...or_insert(0); *count += 1;`
+(a non-`'static` `&mut V` still can't cross a cell boundary, same as
+for `HashMap`).
+
+**Fixed a grammar typo while porting** (`split_off(k)`'s description):
+upstream's "The current is modified to contains all elements..." —
+missing a noun after "current" and a stray "s" on "contain" — corrected
+to "The current map is modified to contain all elements...".
+
+**`btreeset.md`** stays a bare `TODO` stub for now, just gains a new
+`fig-btreeset` tree diagram (same shape as `fig-btreemap` but with
+single values instead of key/value pairs) — upstream added the figure
+ahead of writing the prose that will reference it.
+
+Small unrelated tweak bundled in this commit: `hashmap.md`'s "Adding a
+value if no key present" section — "the `Entry` struct" → "the `Entry`
+structure" — ported verbatim.
+
+**On merge:** if BTreeSet's intro prose arrives in a later commit
+before this figure gets a caption/cross-reference from the text, check
+whether the figure needs repositioning relative to the new prose (same
+situation `vec_deque.md`'s `fig-vecdeque` went through in items
+44/45/47 — don't assume the figure stays where item 53 left it).
