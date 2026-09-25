@@ -83,12 +83,16 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   ada59fb
-subject:  Write BTreeMap chapter
+commit:   cb86a30
+subject:  Done BTreeMap
 date:     2026-09-24
 ```
 
-Previously caught up to a635d7c85f777a34268d3137ff076616eb479655 (2026-09-24).
+Previously caught up to ada59fbe069cc8bac999671fb4c0c743242a5bd0 (2026-09-24).
+
+This is the last commit ported on branch `109-collections` in this
+pass — a batch of 5 (`5683783` through `cb86a30`). Check whether
+upstream has added more before resuming.
 
 **Note (2026-09-24):** the `myst-109-collections` bookmark in
 `upstream-tex` had drifted ahead of what was actually ported on this
@@ -1870,3 +1874,43 @@ before this figure gets a caption/cross-reference from the text, check
 whether the figure needs repositioning relative to the new prose (same
 situation `vec_deque.md`'s `fig-vecdeque` went through in items
 44/45/47 — don't assume the figure stays where item 53 left it).
+
+### 54. `btreeset.md` filled in (predicted in item 53) + a complexity-notation fix, from `cb86a30`
+
+**`btreemap.md`**: the iteration-complexity bullet changes from
+𝒪($\log_K(n)$) to 𝒪($\log(n)$) — dropping the base-$K$ subscript is
+the mathematically correct simplification (Big-O drops constant
+multiplicative factors, and $\log_K(n) = \log(n)/\log(K)$ — a genuine
+correction, not a style choice) — ported verbatim.
+
+**`btreeset.md`** gets its intro prose (the figure arrived one commit
+early, in item 53, exactly as flagged). **Fixed two clear copy-paste
+errors while porting**, both in the same paragraph:
+- "The `BTreeSet` is a *B-tree* data structure that stores **key/value
+  pairs** in an ordered way" — copy-pasted from `btreemap.md`'s
+  identical sentence; a `BTreeSet` stores plain values, not key/value
+  pairs. Corrected to "stores values".
+- "The main features of a `BTreeMap` are:" — literally names the wrong
+  type (`BTreeMap` instead of `BTreeSet`) in a `BTreeSet` page's own
+  intro. Corrected.
+
+Also **fixed the methods table's identity**: upstream's own LaTeX has
+`\caption{Some methods of \HashSet}` / `\label{table:HashSet}` on this
+*new* `BTreeSet` table — copy-pasted from `hashset.tex` and never
+updated, which would collide with the *already-existing*
+`table:HashSet` label from `hashset.tex` itself (a real duplicate-
+label bug upstream). Named it `tab-btreeset` / "Some methods of
+`BTreeSet`" instead, consistent with every other collection page's
+naming in this repo.
+
+The methods list itself is (correctly) near-identical to `HashSet`'s
+own table — same API shape, just ordered. Carried forward the same 2
+typo fixes already applied to `hashset.md` in item 50 ("if it exits" →
+"if it exists", "the values o this set" → "the values of this set"),
+since this table is a copy of that one and inherited the same typos.
+
+**On merge:** `table:BTreeSet`/`tab-btreeset` is the correct
+label/name for this table going forward — if upstream's own LaTeX
+ever gets a proper unique label here, treat it as confirming this fix,
+not superseding it (same pattern as item 50's `hashmap-performance`
+fix).

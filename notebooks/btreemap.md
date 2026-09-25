@@ -23,7 +23,7 @@ The main features of a `BTreeMap` are:
 - The keys must implement the
   [Ord](https://doc.rust-lang.org/std/cmp/trait.Ord.html) trait.
 - Each node of a *B-tree* has a maximum of $K$ keys.
-- Iteration is made in key order, and has 𝒪($\log_K(n)$) complexity.
+- Iteration is made in key order, and has 𝒪($\log(n)$) complexity.
 
 :::{code-block} text
 :name: fig-btreemap
