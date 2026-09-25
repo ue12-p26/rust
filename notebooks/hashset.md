@@ -81,12 +81,14 @@ The most important features of a set are:
   - Description
 * - `clear()`
   - Removes all elements.
-* - `contains(v)`
+* - `contains(&v)`
   - Returns `true` if this map contains the value `v`. 𝒪(1) time.
 * - `difference(&other)`
   - Returns an iterator over the values that are in this set but not
     in the other.
-* - `get(v)`
+* - `first()`
+  - Returns a reference on the first element.
+* - `get(&v)`
   - Returns a reference to the value contained in this set, if it
     exists. The returned type is `Option<&V>`. 𝒪(1) time.
 * - `insert(v)`
@@ -107,18 +109,20 @@ The most important features of a set are:
     𝒪(n) time.
 * - `iter()`
   - Returns an iterator over all values. Order is undefined.
+* - `last()`
+  - Returns a reference on the last element.
 * - `len()`
   - Returns the number of elements.
 * - `new()`
   - Creates a new map.
-* - `remove(v)`
+* - `remove(&v)`
   - Removes the specified value from the map.
 * - `replace(v)`
   - Replaces an existing value with a new value `v`.
 * - `symmetric_difference(&other)`
   - Returns an iterator over the values that are in this set or in the
     other but not in both.
-* - `take(v)`
+* - `take(&v)`
   - Removes and returns a value from the set.
 * - `union(&other)`
   - Returns an iterator over the values of this set and the other,
@@ -250,3 +254,9 @@ common:
 
 names.is_disjoint(&other_names)
 ```
+
+:::{danger} TODO
+:class: readiness-todo
+
+Add exercise.
+:::

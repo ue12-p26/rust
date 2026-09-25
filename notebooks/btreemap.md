@@ -32,12 +32,14 @@ The main features of a `BTreeMap` are:
                      ┌──────┬──────┬──────┬──────┐
                      │10/"a"│16/"r"│23/"z"│      │
                      └──────┴──────┴──────┴──────┘
-                    ╱               ╲
-                   ╱                 ╲
-                  ╱                   ╲
-┌──────┬──────┬──────┬──────┐         ┌──────┬──────┬──────┬──────┐
-│ 2/"t"│ 5/"e"│      │      │         │17/"w"│19/"o"│21/"j"│22/"v"│
-└──────┴──────┴──────┴──────┘         └──────┴──────┴──────┴──────┘
+                    ╱               ╲      ╲
+                   ╱                 ╲      ╲
+┌──────┬──────┬──────┬──────┐         ▏     ┌──────┬──────┬──────┬──────┐
+│ 2/"t"│ 5/"e"│      │      │         ▏     │25/"w"│29/"o"│      │      │
+└──────┴──────┴──────┴──────┘         ▏     └──────┴──────┴──────┴──────┘
+                        ┌──────┬──────┬──────┬──────┐
+                        │17/"w"│19/"o"│21/"j"│22/"v"│
+                        └──────┴──────┴──────┴──────┘
 :::
 
 The main methods of the `BTreeMap` are presented in
@@ -51,7 +53,7 @@ The main methods of the `BTreeMap` are presented in
 * - Method
   - Description
 * - `append(&other)`
-  - Moves the elements of others into this map.
+  - Moves the elements of another map into this map.
 * - `clear()`
   - Removes all elements.
 * - `contains_key(k)`

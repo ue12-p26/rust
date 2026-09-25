@@ -157,6 +157,35 @@ k
 ```
 :::
 
+It is also possible to construct a `HashMap` from two vectors of the
+same length.
+Here are a vector of string with a vector of integers:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+let names = vec!["Paul", "John", "George"];
+let values = vec![10, 17, 23];
+```
+
+Using iterators and the `zip()` method we can combine the iterators
+and collect the result inside a new `HashMap`:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+let other_scores: HashMap<_, _> =
+  names.into_iter().zip(values.into_iter()).collect();
+```
+
+Here is the result:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+other_scores
+```
+
 ## Getting a value
 
 Getting a value from the map is done using the `get()` method, which

@@ -35,8 +35,49 @@ match elem {
 
 ## Map
 
-:::{danger} TODO
-:class: readiness-todo
+Like the `Vec`, maps can be accessed either with the index operator
+(`[]`) or the `get()` method.
 
-Show that `get()` is better than `[]` in the same way used for `Vec`.
-:::
+Let us construct a map:
+
+```{code-cell} rust
+:tags: [remove-cell]
+
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
+
+use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+scores.insert("Paul", 15);
+scores.insert("John", 20);
+```
+
+The index operator will return the value directly:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+scores["Paul"]
+```
+
+The `get()` method will return an `Option<T>`:
+
+```{code-cell} rust
+:class: seq-stop badges border
+
+scores.get("Paul")
+```
+
+However if the key is unknown the index operator will *panic*:
+
+```{code-cell} rust
+:tags: [raises-exception]
+
+let mut scores = std::collections::HashMap::new();
+scores.insert("Paul", 15);
+scores["John"]
+```

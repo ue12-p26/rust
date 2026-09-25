@@ -63,52 +63,58 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   eb55b74
-subject:  Packaging / Project definition
-date:     2026-09-21
+commit:   5fd00ab
+subject:  Resolve "Collections"
+date:     2026-09-25
 ```
 
-Previously caught up to 7f1bd8d3f897165bf7c8d13be76c444e7e9ed0b5 (2026-09-20).
-
-### Branch `109-collections`
-
-Starting from `eb55b74` (tip of upstream `origin/main` at the time),
-upstream opened a feature branch `origin/109-collections` that is
-being ported here on a matching local branch `109-collections`
-(branched off the `main` commit that ported `eb55b74`). The porting
-routine (per-upstream-commit, `port of <sha>: <subject>` messages) is
-identical; only the branch differs. When this branch is eventually
-merged upstream, the corresponding local branch should be merged into
-`main` here too (or rebased — ask the user which).
-
-```
-upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   cb86a30
-subject:  Done BTreeMap
-date:     2026-09-24
-```
-
-Previously caught up to ada59fbe069cc8bac999671fb4c0c743242a5bd0 (2026-09-24).
-
-This is the last commit ported on branch `109-collections` in this
-pass — a batch of 5 (`5683783` through `cb86a30`). Check whether
-upstream has added more before resuming.
-
-**Note (2026-09-24):** the `myst-109-collections` bookmark in
-`upstream-tex` had drifted ahead of what was actually ported on this
-branch (it pointed at `ec77c0f`, 4 commits past the real last-ported
-`8dae87a`) — reset to match reality before resuming. Kept the bookmark
-(rather than removing it) since it's useful for noticing upstream
-activity; just make sure it's moved *only* as each commit is actually
-ported, not preemptively.
+Previously caught up to 941f878e3d071b3933c936a96d824f3103679b59 (2026-09-23).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
-(`eb55b74`), so the MyST port is fully caught up as of this pass.
+(`5fd00ab`), so the MyST port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
-`git -C <repo> diff 7834f97..<new-ref> -- <foo>.tex` per file to identify
+`git -C <repo> diff 5fd00ab..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
+
+### History: the `109-collections` branch, and how it landed on `main`
+
+Starting from `eb55b74`, upstream opened a feature branch
+`origin/109-collections`, ported here commit-by-commit on a matching
+local branch `109-collections` (21 commits, `b776886` through
+`cb86a30`; see the git log for the full per-commit trail — each is a
+`port of <sha>: <subject>` commit). Our local `109-collections` was
+kept as a strict superset of `main` throughout (rebased onto `main`'s
+tip whenever `main` moved), so it never diverged.
+
+Upstream, however, did **not** merge `origin/109-collections` into
+`origin/main` as a merge/fast-forward — instead they pushed a single
+new commit directly on `main`, `5fd00ab` ("Resolve \"Collections\""),
+whose sole parent is the old `main` tip (`941f878`). It reproduces
+most, but not all, of what `origin/109-collections` had, plus some
+additional new/changed content, and `origin/109-collections` itself
+was deleted upstream after the merge.
+
+Rather than re-derive everything from `941f878` by hand, we confirmed
+(via `git diff cb86a30..origin/main`, i.e. comparing upstream's actual
+new commit against our own fully-ported `109-collections` tip) that
+**~85% of `5fd00ab`'s content was already captured** by our 21-commit
+trail (317 insertions/29 deletions remaining vs. 1433/198 for the full
+naïve diff from `941f878`). Since local `main`'s tip was confirmed to
+be a plain ancestor of `109-collections`' tip (no divergence — ancestor
+check via `git merge-base --is-ancestor`), we fast-forward-merged
+`109-collections` into `main` (zero conflicts, nothing re-done), then
+ported just the small remaining delta as one final commit,
+`port of 5fd00ab: Resolve "Collections"` — see the item below. End
+state mirrors upstream exactly; the local `109-collections` branch is
+now fully merged and redundant (left in place, not deleted).
+
+**On merge:** if a future upstream commit again squash-merges a
+feature branch we've been tracking separately, check for this same
+situation first (diff the squash commit against our own branch tip,
+not just against `main`) before assuming a full from-scratch port is
+needed.
 
 ## Local divergences from upstream
 
@@ -1914,3 +1920,62 @@ label/name for this table going forward — if upstream's own LaTeX
 ever gets a proper unique label here, treat it as confirming this fix,
 not superseding it (same pattern as item 50's `hashmap-performance`
 fix).
+
+### 55. Delta port after `109-collections` landed on `main` as a squash commit, from `5fd00ab`
+
+See the "History" note in the *Upstream reference* section above for
+how this commit was handled (fast-forward-merge `109-collections` into
+`main`, then port just the remaining delta rather than everything).
+Content of that delta:
+
+- **`binaryheap.md`**: brand new page (was a bare `TODO` stub) — intro
+  (max-heap concept, complexity bullets), a `fig-maxheap` tree diagram,
+  a `tab-binaryheap` methods table, and a `seq-start`/`seq-cont`.../
+  `seq-stop` worked example (create, `from()`, `append()` to merge two
+  heaps, `peek()`/`pop()`). Verified the whole sequence directly
+  against the real kernel — no issues. Upstream references an
+  undefined `\MaxHeap` LaTeX macro (never defined anywhere in the
+  source tree, including the `common` submodule) — rendered as plain
+  *max-heap* text instead of a broken/missing macro expansion. Also
+  **fixed a typo while porting**: "If we remote it with `pop()`" →
+  "If we remove it with `pop()`".
+- **`btreemap.md`**: `fig-btreemap` gains a third tree level (existing
+  content, figure only got more detailed) — ported verbatim; small
+  wording fix to `append(&other)`'s description ("Moves the elements
+  of *others*" → "of *another map*").
+- **`btreeset.md`**: gains the full worked-example flow it was
+  missing (items 53/54 only had intro/figure/table) — same
+  create/`from()`/`contains()`/combining-methods/comparing-methods
+  shape as `hashset.md` (item 50), figure gains a third tree level.
+  Verified the sequence directly against the kernel (identical
+  behavior to `HashSet`, as expected). New `tab-btreeset` rows
+  (`first()`, `last()`) and `&`-reference fixes on several existing
+  rows (`contains(&v)`, `get(&v)`, `remove(&v)`, `take(&v)`) — matches
+  a parallel set of fixes upstream also applied to `hashset.tex` in
+  this same commit (see below). New `:::{warning} Important features`
+  admonition (same content/pattern as `hashset.md`'s).
+- **`hashmap.md`**: new demo inserted between the "Ownership of keys
+  and values" warning and "Getting a value" — constructing a `HashMap`
+  from two `Vec`s via `.into_iter().zip(...).collect()`. Verified
+  against the kernel, no issues. Small wording fix ("Entry struct" →
+  "Entry structure", bundled in this commit, mirrors item 53's
+  `btreemap.md` wording).
+- **`hashset.md`**: same `&`-reference fixes as `btreeset.md`
+  (`contains(&v)`, `get(&v)`, `remove(&v)`, `take(&v)`), two new rows
+  (`first()`, `last()`), and gains a trailing `Add exercise` `TODO`
+  (previously had none). **Fixed a typo while porting**: upstream's
+  own new edit has `contains(v\&)` (ampersand *after* the parameter,
+  backwards) — corrected to `contains(&v)`, consistent with every
+  other reference-taking method in the same table.
+- **`safe_access.md`**: fills in the "Map" `TODO` subsection — a
+  3-cell sequence (create a `HashMap`, index with `[]`, `get()`) plus
+  a separate standalone cell demonstrating that indexing an unknown
+  key *panics* (tagged `raises-exception`, verified against the kernel
+  — genuine panic, not an evcxr artifact).
+- `rust_alias.sty` gains a `\BinaryHeap` macro (supports the new page
+  above) and a `common` submodule bump (no content impact).
+
+**On merge:** the `109-collections`-branch PORTING.md items above
+(33-54) and this item both describe real, already-applied state — no
+further action needed for them; resume normal per-commit porting from
+`5fd00ab` onward.
