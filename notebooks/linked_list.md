@@ -138,7 +138,7 @@ names
 
 ## Pushing & removing
 
-We push back or front an element in the list at any time:
+We can push back or front an element in the list:
 
 ```{code-cell} rust
 :class: seq-cont badges border

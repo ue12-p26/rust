@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   99584b8
-subject:  Add chapters for LinkedList
+commit:   a635d7c
+subject:  Add VecDeque chapters
 date:     2026-09-24
 ```
 
-Previously caught up to 5683783bcb339f961d982cb58b1a542795b05595 (2026-09-24).
+Previously caught up to 99584b8f6ef30a3564639d04294ec3876ca8211e (2026-09-24).
 
 **Note (2026-09-24):** the `myst-109-collections` bookmark in
 `upstream-tex` had drifted ahead of what was actually ported on this
@@ -1805,3 +1805,28 @@ leading backslash on `\autoref`) in this commit's `linked_list.tex` —
 a real LaTeX typo, harmless for us since we always port the *intent*
 (a link to the Vec page) as `` [Vec type](#chp-vec) ``, not the raw
 macro call.
+
+### 52. `vec_deque.md` filled in, small `linked_list.md` wording, from `a635d7c`
+
+Same pattern as item 51, one chapter behind: replaces `vec_deque.md`'s
+2 remaining bare `TODO` subsections (`## Create`, `## push/pop`) with
+real content — "Creating a new instance" (`VecDeque::new()` +
+`push_back()`, `VecDeque::from([...])` array constructor) and
+"Pushing & removing" (`push_front()`/`pop_back()`). Verified the
+4-cell sequence directly against the real kernel first — no issues.
+
+**Caught a real gap while build-verifying**: `vec_deque.md` never
+had a `jupytext`/`kernelspec` frontmatter block — harmless while the
+page was all figures/tables/prose (items 43-45), but now that it has
+real `{code-cell} rust` blocks the build failed with "Notebook does
+not declare the necessary 'kernelspec' frontmatter key". Added the
+same rust-kernel frontmatter block `linked_list.md` already got in
+item 51.
+
+Small unrelated tweak bundled in this commit: `linked_list.md`'s
+"Pushing & removing" intro sentence reworded ("We push back or front
+an element in the list at any time" → "We can push back or front an
+element in the list") — ported verbatim.
+
+Same upstream `autoref{chp:Vec}` (missing backslash) typo as item 51,
+same handling (ported as the intended `` [Vec type](#chp-vec) `` link).

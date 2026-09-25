@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: rust
+  display_name: Rust
+  language: rust
+---
+
 # VecDeque
 
 :::{warning} To review
@@ -203,21 +214,59 @@ index *0* wherever it is placed inside the ring-buffer.
   ▼  └────┴────┴────┴────┴────┴────┴────┘
 :::
 
-## Create
+## Creating a new instance
 
-:::{danger} TODO
-:class: readiness-todo
+To create a new double-ended queue `VecDeque<V>`, an easy way, like
+for the [Vec type](#chp-vec), is to let the compiler infer the type.
+Inserting at least one value will give the compiler the information it
+needs:
 
-Show `new()` usage.
-:::
+```{code-cell} rust
+:tags: [remove-cell]
 
-## push/pop
+:clear
+```
 
-:::{danger} TODO
-:class: readiness-todo
+```{code-cell} rust
+:class: seq-start badges border
 
-Show `push()`/`pop()` usage.
-:::
+use std::collections::VecDeque;
+
+let mut names = VecDeque::new();
+names.push_back(String::from("Paul"));
+names.push_back(String::from("John"));
+```
+
+A `VecDeque` may also be created from a vector or an array:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+let other_names = VecDeque::from([
+  "George".to_string(),
+  "Ringo".to_string(),
+]);
+other_names
+```
+
+## Pushing & removing
+
+We can push back or front an element in the `VecDeque`:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+names.push_front(String::from("Paul"));
+names
+```
+
+And also remove elements using the `pop_*()` methods:
+
+```{code-cell} rust
+:class: seq-stop badges border
+
+names.pop_back()
+```
 
 :::{danger} TODO
 :class: readiness-todo
