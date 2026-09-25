@@ -83,12 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   5683783
-subject:  Done HashSet
+commit:   99584b8
+subject:  Add chapters for LinkedList
 date:     2026-09-24
 ```
 
-Previously caught up to e9c880bc44accb7186b1f2eabfca0fbe3ee26b4e (2026-09-23).
+Previously caught up to 5683783bcb339f961d982cb58b1a542795b05595 (2026-09-24).
 
 **Note (2026-09-24):** the `myst-109-collections` bookmark in
 `upstream-tex` had drifted ahead of what was actually ported on this
@@ -1768,3 +1768,40 @@ new `HashSet<&str>`" (also fixed the subject-verb agreement to match
 target (`:name:` on the note admonition) — if upstream ever properly
 adds its own `\label{HashMapPerformance}` in a later commit, treat it
 as confirming (not superseding) this fix.
+
+### 51. `linked_list.md` filled in, from `99584b8`
+
+Replaces the 4 bare `TODO` subsections (`## Create`, `## push/pop`,
+`## Searching`, `## split_off`) with real content — gains a rust
+kernelspec frontmatter (its first real code). New/renamed sections:
+"Creating a new instance" (`LinkedList::new()` + `push_back()`,
+`LinkedList::from([...])` array constructor), "Concatenating" (new,
+`append()`), "Pushing & removing" (new, `push_front()`/`pop_back()`),
+"Searching" (`Iterator::position()`, two variants of
+`Iterator::find()` demonstrating the double-reference
+(`&&T`)-vs-single-reference-plus-deref pattern), "Splitting" (renamed
+from "split_off", `split_off()` returning both halves as a tuple).
+Verified the full 10-cell sequence directly against the real kernel
+before writing it up — no evcxr issues, every binding is either
+consumed same-cell or a plain owned value that persists fine.
+
+`tab-linked-list`'s `append(other)` row updated to `append(&other)`
+with a corrected description ("Moves all elements from another
+`LinkedList` into this one" — matches the trait signature and actual
+behavior, not the old "Appends another... object to this one", which
+undersold that it's a *move*, not a copy/append-by-value).
+`split_off(i)`'s description gains detail about what the returned
+list contains. **Fixed a grammar typo while porting**: "The
+`split_off()` method cut a list" → "...method *cuts* a list"
+(subject-verb agreement, plain typo not a style choice).
+
+Small unrelated tweak bundled in this same upstream commit:
+`hashset.md`'s `Important features` admonition method signatures gain
+`&` (`difference(other)` → `difference(&other)`, etc., matching what
+`tab-hashset` already had) — ported the same fix.
+
+**On merge:** upstream's own diff has `autoref{chp:Vec}` (missing the
+leading backslash on `\autoref`) in this commit's `linked_list.tex` —
+a real LaTeX typo, harmless for us since we always port the *intent*
+(a link to the Vec page) as `` [Vec type](#chp-vec) ``, not the raw
+macro call.

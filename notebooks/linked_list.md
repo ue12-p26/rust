@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: rust
+  display_name: Rust
+  language: rust
+---
+
 # LinkedList
 
 :::{warning} To review
@@ -47,8 +58,8 @@ Main methods of the `LinkedList` structure can be seen in
 
 * - Method
   - Description
-* - `append(other)`
-  - Appends another `LinkedList` object to this one.
+* - `append(&other)`
+  - Moves all elements from another `LinkedList` into this one.
 * - `back()`
   - Provides a reference to the back element.
 * - `clear()`
@@ -74,40 +85,131 @@ Main methods of the `LinkedList` structure can be seen in
 * - `push_front(v)`
   - Appends an element to the front.
 * - `split_off(i)`
-  - Splits the list into two at the given index.
+  - Splits the list into two at the given index. The current list is
+    cut at the splitting point, and another list containing the
+    remaining values is returned.
 :::
 
-## Create
+## Creating a new instance
 
-:::{danger} TODO
-:class: readiness-todo
+To create a new linked list `LinkedList<V>`, an easy way, like for the
+[Vec type](#chp-vec), is to let the compiler infer the type. Inserting
+at least one value will give the compiler the information it needs:
 
-Show `new()` usage.
-:::
+```{code-cell} rust
+:tags: [remove-cell]
 
-## push/pop
+:clear
+```
 
-:::{danger} TODO
-:class: readiness-todo
+```{code-cell} rust
+:class: seq-start badges border
 
-Show `push()`/`pop()` usage.
-:::
+use std::collections::LinkedList;
+
+let mut names = LinkedList::new();
+names.push_back(String::from("Paul"));
+names.push_back(String::from("John"));
+```
+
+A `LinkedList` may also be created from a vector or an array:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+let mut other_names = LinkedList::from([
+  "George".to_string(),
+  "Ringo".to_string(),
+]);
+other_names
+```
+
+## Concatenating
+
+To concatenate two lists we used the `append()` method that adds
+elements from a list to the current one:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+names.append(&mut other_names);
+names
+```
+
+## Pushing & removing
+
+We push back or front an element in the list at any time:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+names.push_front(String::from("Paul"));
+names
+```
+
+And also remove elements using the `pop_*()` methods:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+names.pop_back()
+```
 
 ## Searching
 
-:::{danger} TODO
-:class: readiness-todo
+Searching inside a list must be made using an iterator.
 
-Show searching inside a list.
-:::
+The `position()` method of the `Iterator` trait searches for a value
+and returns the found index:
 
-## split_off
+```{code-cell} rust
+:class: seq-cont badges border
 
-:::{danger} TODO
-:class: readiness-todo
+names.iter().position(|x| x == "George")
+```
 
-Show `split_off()` usage.
-:::
+The `find()` method of the `Iterator` trait searches for a value and
+returns it:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+names.iter().find(|&x| x == "John")
+```
+
+The `find()` method takes a reference, and `iter()` iterates over
+references, thus we get double references for elements.
+One way is to explicitly write the double reference with the variable
+declaration inside the closure. This way we can use the variable
+directly:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+let l = std::collections::LinkedList::from([10, 50, 8, 4]);
+l.iter().find(|&&x| x == 8)
+```
+
+Another solution is to write only one reference and use the
+*dereference* operator `*`:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+l.iter().find(|&x| *x == 8)
+```
+
+## Splitting
+
+The `split_off()` method cuts a list into two parts at an index. The
+current list is cut at the index, while the second part becomes a new
+list that is returned by the method:
+
+```{code-cell} rust
+:class: seq-stop badges border
+
+(names.split_off(2), names)
+```
 
 :::{danger} TODO
 :class: readiness-todo

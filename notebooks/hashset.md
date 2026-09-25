@@ -62,14 +62,14 @@ The most important features of a set are:
 
 - No duplicated values.
 - Combining methods:
-  - `difference(other)`: $A \setminus B$.
-  - `intersection(other)`: $A \cap B$.
-  - `symmetric_difference(other)`: $A \triangle B$.
-  - `union(other)`: $A \cup B$.
+  - `difference(&other)`: $A \setminus B$.
+  - `intersection(&other)`: $A \cap B$.
+  - `symmetric_difference(&other)`: $A \triangle B$.
+  - `union(&other)`: $A \cup B$.
 - Comparing methods:
-  - `is_disjoint(other)`: $A \cap B = \emptyset$.
-  - `is_subset(other)`: $A \subseteq B$.
-  - `is_superset(other)`: $A \supseteq B$.
+  - `is_disjoint(&other)`: $A \cap B = \emptyset$.
+  - `is_subset(&other)`: $A \subseteq B$.
+  - `is_superset(&other)`: $A \supseteq B$.
 :::
 
 :::{list-table} Some methods of `HashSet`
