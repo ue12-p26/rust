@@ -83,17 +83,12 @@ merged upstream, the corresponding local branch should be merged into
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   e9c880b
-subject:  Start HashSet
-date:     2026-09-23
+commit:   5683783
+subject:  Done HashSet
+date:     2026-09-24
 ```
 
-Previously caught up to 00f50225a2ebeedc2b5291f1b1d9f6a969455b41 (2026-09-23).
-
-This is the last commit ported on branch `109-collections` in this
-pass — this was a batch of 7 (`c02b7e2` through `e9c880b`), catching up
-after the `myst-109-collections` bookmark had drifted (see the note
-below). Check whether upstream has added more before resuming.
+Previously caught up to e9c880bc44accb7186b1f2eabfca0fbe3ee26b4e (2026-09-23).
 
 **Note (2026-09-24):** the `myst-109-collections` bookmark in
 `upstream-tex` had drifted ahead of what was actually ported on this
@@ -1719,3 +1714,57 @@ Small, matches the same pattern as `hashmap.md`'s and `hashset.md`'s
 own earlier bare stubs: one intro sentence, banner goes from
 `:::{danger} TODO` to `:::{warning} To review`. No code, no figures,
 no tables yet — just the opening sentence.
+
+### 50. `hashset.md` filled in, `hashmap.md` tweaked, from `5683783`
+
+**`hashmap.md`** (small fixes/additions, no new content):
+- Section retitled "Hash Maps" → "HashMap", gains a
+  `(chp-hashmap)=` anchor (upstream adds `\label{chp:HashMap}`,
+  referenced from the new `hashset.md` content below).
+- The `Performance` note gains `:name: hashmap-performance`.
+  **Fixed a real upstream authoring bug while porting**: upstream's
+  edit was `\begin{note}{performance}\autoref{HashMapPerformance}` —
+  an `\autoref` (not `\label`) stuffed into the note's title argument,
+  which cannot possibly work as a real LaTeX cross-reference (nothing
+  named `HashMapPerformance` is ever defined with `\label`). This is
+  almost certainly upstream trying to add a link target for the new
+  `hashset.tex` content's `\autoref{HashMapPerformance}` references and
+  getting the macro backwards. Ported the *intent* (a working
+  cross-reference from `hashset.md` to this note) via a proper
+  `:name:`/`` [text](#hashmap-performance) `` link instead of the
+  broken source.
+- The "verify" code block converts from a plain ```` ```text ```` fence
+  to real display math (`` $$k1 = k2 \Rightarrow ...$$ ``) — upstream's
+  own style change, ported as such.
+- `get(k)`'s table row: `Option<V>` → `Option<&V>` (upstream fixing its
+  own earlier mistake — `get()` on a `HashMap` returns `Option<&V>`,
+  never `Option<V>`).
+- Minor grammar fix ("let the compiler infer" → "is to let the
+  compiler infer") ported verbatim.
+
+**`hashset.md`** goes from a 2-sentence stub to a full page: intro
+extension linking to `hashmap.md` (both the new `(chp-hashmap)=` anchor
+and the `hashmap-performance` note), a `fig-hashset` bucket diagram
+(simpler than `HashMap`'s — single values, no key/value pairs), a
+`tab-hashset` methods table (~17 methods), a new `:::{warning}
+Important features` admonition listing set-operation math notation
+($\setminus$, $\cap$, $\triangle$, $\cup$, $\subseteq$, $\supseteq$,
+$\emptyset$), and one 10-cell `seq-start`/`seq-cont`.../`seq-stop`
+sequence (create, `from()`, `contains()`, `union()`/`intersection()`/
+`difference()`/`symmetric_difference()`, `is_subset()`/`is_superset()`/
+`is_disjoint()`). Verified the entire sequence directly against the
+real kernel before writing it up — no evcxr persistence issues this
+time (every binding here is either a plain owned value or immediately
+consumed within its own cell).
+
+**Fixed 3 more clear upstream typos while porting** (not stylistic
+choices — plain typos in finished, non-draft prose): "if it exits" →
+"if it exists"; "the values o this set" → "the values of this set";
+"put them inside a the new `HashSet<&str>`" → "puts them inside the
+new `HashSet<&str>`" (also fixed the subject-verb agreement to match
+"The `collect()` method... puts").
+
+**On merge:** `hashmap-performance` is now a real, working named
+target (`:name:` on the note admonition) — if upstream ever properly
+adds its own `\label{HashMapPerformance}` in a later commit, treat it
+as confirming (not superseding) this fix.

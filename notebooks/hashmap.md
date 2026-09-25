@@ -9,7 +9,8 @@ kernelspec:
   language: rust
 ---
 
-# Hash Maps
+(chp-hashmap)=
+# HashMap
 
 :::{warning} To review
 :class: readiness-toreview
@@ -30,6 +31,8 @@ Possibly, multiple keys will be associated to the same index. Those
 key/values are stored together in another structure.
 
 :::{note} Performance
+:name: hashmap-performance
+
 The efficiency of a hash map depends on its load factor $\alpha$:
 
 $$\alpha = \frac{n}{m}$$
@@ -76,9 +79,7 @@ Buckets
 To be usable inside a `HashMap` the keys must have a type that
 implements the traits `Eq` and `Hash`. Moreover it must verify:
 
-```text
-k1 == k2 ==> hash(k1) == hash(k2)
-```
+$$k1 = k2 \Rightarrow hash(k1) = hash(k2)$$
 
 The main methods of the `HashMap` are presented in
 {numref}`tab-hashmap`.
@@ -98,7 +99,7 @@ The main methods of the `HashMap` are presented in
   - Gives access to key/value pair. 𝒪(1) time.
 * - `get(k)`
   - Returns a reference to the value, if any. The returned type is
-    `Option<V>`. 𝒪(1) time.
+    `Option<&V>`. 𝒪(1) time.
 * - `insert(k, v)`
   - Inserts a new key/value pair. 𝒪(1) time.
 * - `is_empty()`
@@ -120,8 +121,8 @@ The main methods of the `HashMap` are presented in
 ## Creating a new instance
 
 To create a new hash map `HashMap<K, V>`, an easy way, like for the
-[Vec type](#chp-vec), let the compiler infer the type. Inserting at
-least one key/value pair will give the compiler the information it
+[Vec type](#chp-vec), is to let the compiler infer the type. Inserting
+at least one key/value pair will give the compiler the information it
 needs:
 
 ```{code-cell} rust
