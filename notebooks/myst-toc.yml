@@ -11,7 +11,7 @@ project:
         - title: Introduction
           file: chap_introduction.md
           children:
-            - file: intro_cea.md
+            # - file: intro_cea.md
             - file: about_rust.md
             - file: why_rust.md
             - file: pros_n_cons.md
