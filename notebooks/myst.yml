@@ -58,6 +58,7 @@ site:
     logo_text: "Rust course"
     style: "_static/style.css"
     folders: true
+    hide_header_links: false
 
 extends:
   - myst-toc.yml
