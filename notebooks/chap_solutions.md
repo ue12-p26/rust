@@ -1,1 +1,3 @@
-# Solutions
+---
+title: Solutions
+---

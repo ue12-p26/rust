@@ -1,1 +1,0 @@
-# Polymorphism II - Traits

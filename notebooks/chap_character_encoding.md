@@ -1,1 +1,3 @@
-# Character encoding
+---
+title: Character encoding
+---

@@ -1,1 +1,3 @@
-# How-tos
+---
+title: How-tos
+---

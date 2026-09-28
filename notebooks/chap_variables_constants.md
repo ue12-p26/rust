@@ -1,1 +1,3 @@
-# Variables & constants
+---
+title: Variables & constants
+---

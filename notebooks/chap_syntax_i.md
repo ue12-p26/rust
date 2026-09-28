@@ -1,1 +1,3 @@
-# Syntax I
+---
+title: Syntax (i)
+---

@@ -8,8 +8,7 @@ project:
     - title: Preliminaries
       children:
 
-        - title: Introduction
-          file: chap_introduction.md
+        - file: chap_introduction.md
           children:
             # - file: intro_cea.md
             - file: about_rust.md
@@ -17,8 +16,7 @@ project:
             - file: pros_n_cons.md
             - file: resources.md
 
-        - title: Course presentation
-          file: chap_course_presentation.md
+        - file: chap_course_presentation.md
           children:
             - file: course_org.md
             - file: course_readiness.md
@@ -26,8 +24,7 @@ project:
             - file: course_bash_ex.md
             - file: course_rust_ex.md
 
-        - title: Environment
-          file: chap_environment.md
+        - file: chap_environment.md
           children:
             - file: env_intro.md
             - file: env_install.md
@@ -37,16 +34,14 @@ project:
     - title: Basics
       children:
 
-        - title: Syntax I
-          file: chap_syntax_i.md
+        - file: chap_syntax_i.md
           children:
             - file: syntax.md
             - file: comments.md
             - file: expr.md
             - file: ranges.md
 
-        - title: Variables & constants
-          file: chap_variables_constants.md
+        - file: chap_variables_constants.md
           children:
             - file: var_def.md
             - file: var_immut.md
@@ -55,44 +50,38 @@ project:
             - file: const.md
             - file: var_ex.md
 
-        - title: Types I
-          file: chap_atomic_types.md
+        - file: chap_types_i.md
           children:
             - file: int.md
             - file: float.md
             - file: bool.md
             - file: char.md
 
-        - title: Memory I
-          file: chap_memory_i.md
+        - file: chap_memory_i.md
           children:
             - file: memory.md
             - file: var_scope.md
             - file: var_shadowing.md
 
-        - title: Types II
-          file: chap_complex_types.md
+        - file: chap_types_ii.md
           children:
             - file: tuple.md
             - file: array.md
             - file: coll_summary.md
             - file: str_literals.md
 
-        - title: I/O I - Printing
-          file: chap_io_i.md
+        - file: chap_io_i_printing.md
           children:
             - file: print.md
 
-        - title: Syntax II - Control flow
-          file: chap_syntax_ii.md
+        - file: chap_syntax_ii_control_flow.md
           children:
             - file: if.md
             - file: loop.md
             - file: while.md
             - file: for.md
 
-        - title: Functions I
-          file: chap_functions_i.md
+        - file: chap_functions_i.md
           children:
             - file: fct_def.md
             - file: fct_call.md
@@ -101,28 +90,23 @@ project:
     - title: Fundamentals
       children:
 
-        - title: Types III - Enums
-          file: chap_enum_type.md
+        - file: chap_types_iii_enums.md
           children:
             - file: enum.md
 
-        - title: Syntax III - Match
-          file: chap_syntax_match.md
+        - file: chap_syntax_iii_match.md
           children:
             - file: match.md
 
-        - title: Types IV - Methods
-          file: chap_types_methods.md
+        - file: chap_types_iv_methods.md
           children:
             - file: enum_methods.md
 
-        - title: Types V - Structs
-          file: chap_types_structs.md
+        - file: chap_types_v_structs.md
           children:
             - file: struct.md
 
-        - title: Polymorphism I - Generics
-          file: chap_polymorphism_gen.md
+        - file: chap_polymorphism_i_generics.md
           children:
             - file: poly.md
             - file: generics.md
@@ -130,21 +114,18 @@ project:
             - file: gen_fct.md
             - file: gen_struct.md
 
-        - title: Syntax IV - Option
-          file: chap_syntax_iii.md
+        - file: chap_syntax_iv_option.md
           children:
             - file: option.md
             - file: if_let.md
             - file: while_let.md
 
-        - title: Types VI - Vec & String
-          file: chap_dynamic_types_i.md
+        - file: chap_types_vi_vec_string.md
           children:
             - file: vec.md
             - file: string.md
 
-        - title: Memory II - Ownership & references
-          file: chap_memory_ii.md
+        - file: chap_memory_ii_ownership.md
           children:
             - file: ownership.md
             - file: ref.md
@@ -153,20 +134,17 @@ project:
     - title: Proficiency
       children:
 
-        - title: Polymorphism II - Traits
-          file: chap_polymorphism_i.md
+        - file: chap_polymorphism_ii_traits.md
           children:
             - file: traits.md
             - file: trait_poly.md
             - file: trait_default_impl.md
 
-        - title: Polymorphism III - Enum
-          file: chap_polymorphism_enum.md
+        - file: chap_polymorphism_iii_enum.md
           children:
             - file: enum_poly.md
 
-        - title: Attributes and Macros I
-          file: chap_attributes_macros_i.md
+        - file: chap_attributes_macros_i.md
           children:
             - file: macros_intro.md
             - file: macro_decl.md
@@ -174,62 +152,52 @@ project:
             - file: macro_derive.md
             - file: macro_attr.md
 
-        - title: Functions II
-          file: chap_functions_ii.md
+        - file: chap_functions_ii.md
           children:
             - file: memory_passing_value.md
             - file: closures.md
 
-        - title: Polymorphism IV - Generic traits & methods
-          file: chap_polymorphism_traits.md
+        - file: chap_polymorphism_iv_generic_traits.md
           children:
             - file: gen_methods.md
             - file: gen_traits.md
 
-        - title: Memory III - Lifetimes
-          file: chap_memory.md
+        - file: chap_memory_iii_lifetimes.md
           children:
             - file: lifetimes.md
 
-        - title: Project I - Organization & definition
-          file: chap_project.md
+        - file: chap_project_i.md
           children:
             - file: project.md
             - file: project_toml.md
 
-        - title: Types VII - Sequences
-          file: chap_types_sequences.md
+        - file: chap_types_vii_sequences.md
           children:
             - file: coll_intro.md
             - file: vec_deque.md
             - file: linked_list.md
 
-        - title: Types VIII - Hashes
-          file: chap_types_hashes.md
+        - file: chap_types_viii_hashes.md
           children:
             - file: hashmap.md
             - file: hashset.md
 
-        - title: Types IX - Trees
-          file: chap_types_trees.md
+        - file: chap_types_ix_trees.md
           children:
             - file: btreemap.md
             - file: btreeset.md
             - file: binaryheap.md
 
-        - title: Memory IV - Accessing collections
-          file: chap_collections_i.md
+        - file: chap_memory_iv_collections.md
           children:
             - file: safe_access.md
             - file: coll_borrow.md
 
-        - title: Memory V - Pointers
-          file: chap_types_pointers.md
+        - file: chap_memory_v_pointers.md
           children:
             - file: box.md
 
-        - title: Error handling I
-          file: chap_error_handling_i.md
+        - file: chap_error_handling_i.md
           children:
             - file: err_intro.md
             - file: err_unrec.md
@@ -237,24 +205,21 @@ project:
             - file: result.md
             - file: question_mark.md
 
-        - title: File system
-          file: chap_file_system.md
+        - file: chap_file_system.md
           children:
             - file: pathbuf.md
             - file: path.md
             - file: osstring.md
             - file: osstr.md
 
-        - title: I/O II
-          file: chap_input_output.md
+        - file: chap_io_ii.md
           children:
             - file: io.md
             - file: args.md
             - file: logs.md
             - file: format_traits.md
 
-        - title: Testing
-          file: chap_testing.md
+        - file: chap_testing.md
           children:
             - file: test_intro.md
             - file: test_unit.md
@@ -264,8 +229,7 @@ project:
     - title: Expertise
       children:
 
-        - title: Polymorphism V - Traits
-          file: chap_polymorphism_fields.md
+        - file: chap_polymorphism_v_traits.md
           children:
             - file: traits_in_fields.md
             - file: boxed_trait.md
@@ -274,57 +238,49 @@ project:
     - title: Mastery
       children:
 
-        - title: Project II - Modules
-          file: chap_advanced_projects.md
+        - file: chap_project_ii_modules.md
           children:
             - file: folder_mod.md
             - file: sub_mod.md
             - file: repub_mod.md
             - file: mult_crates.md
 
-        - title: Bitwise operations
-          file: chap_bitwise_operations.md
+        - file: chap_bitwise_operations.md
           children:
             - file: bitwise_intro.md
             - file: int_repr.md
             - file: bitwise_and.md
             - file: bitwise_shift.md
 
-        - title: Error handling II
-          file: chap_error_handling_ii.md
+        - file: chap_error_handling_ii.md
           children:
             - file: err_msg_alloc.md
             - file: int_overflow.md
 
-        - title: Character encoding
-          file: chap_character_encoding.md
+        - file: chap_character_encoding.md
           children:
             - file: unicode.md
             - file: utf8.md
 
-        - title: Documenting
-          file: chap_documenting.md
+        - file: chap_documenting.md
           children:
             - file: doc.md
 
-        - title: Design
-          file: chap_design.md
+        - file: chap_design.md
           children:
             - file: builder_pattern.md
 
     - title: Appendices
       children:
 
-        - title: How-tos
-          file: chap_howto.md
+        - file: chap_howto.md
           children:
             - file: howto_path.md
             - file: howto_missing_tools.md
             - file: howto_cargo_inst_crate.md
             - file: howto_env_vars.md
 
-        - title: Solutions
-          file: chap_solutions.md
+        - file: chap_solutions.md
           children:
             - file: sol_cargo.md
             - file: sol_var.md

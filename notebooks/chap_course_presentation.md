@@ -1,1 +1,3 @@
-# Course presentation
+---
+title: Course presentation
+---

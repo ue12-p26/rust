@@ -1,1 +1,0 @@
-# Memory III - Lifetimes
