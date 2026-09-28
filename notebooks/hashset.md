@@ -25,7 +25,7 @@ Its performance is the same as the `HashMap`, see the
 
 :::{code-block} text
 :name: fig-hashset
-:caption: An example of a `HashSet`
+:caption: An example of a HashSet
 
 Buckets
   │
@@ -72,7 +72,7 @@ The most important features of a set are:
   - `is_superset(&other)`: $A \supseteq B$.
 :::
 
-:::{list-table} Some methods of `HashSet`
+:::{list-table} Some methods of HashSet
 :name: tab-hashset
 :header-rows: 1
 :align: center

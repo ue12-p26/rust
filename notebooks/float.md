@@ -17,6 +17,25 @@ are available in 32-bit (`f32`) and 64-bit (`f64`) versions.
 
 {numref}`tab-float-op` presents the available floating-point operators.
 
+:::{list-table} Floating-point operators
+:name: tab-float-op
+:header-rows: 1
+:align: center
+
+* - Operator
+  - Description
+* - `+`
+  - Addition
+* - `-`
+  - Subtraction
+* - `*`
+  - Multiplication
+* - `/`
+  - Division
+* - `%`
+  - Remainder
+:::
+
 ## Default type
 
 The default type for floats is `f64`:

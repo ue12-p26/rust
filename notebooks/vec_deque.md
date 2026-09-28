@@ -46,7 +46,7 @@ This means that we can use it either as a *stack* (a.k.a.: *LIFO*) or
 a *queue* (a.k.a.: *FIFO*). See {numref}`tab-vecdeque` for a list of
 some of `VecDeque`'s most important methods.
 
-:::{list-table} Some methods of `VecDeque`
+:::{list-table} Some methods of VecDeque
 :name: tab-vecdeque
 :header-rows: 1
 :align: center

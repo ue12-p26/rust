@@ -18,7 +18,6 @@ All six parts of the upstream course have been ported:
   *Testing*.
 - *Expertise*: chapters 23 (Traits) through 25 (Collections).
 - *Mastery*: chapters 26 (Advanced projects) through 31 (Documenting).
-- *Appendices > Tables*: full chapter.
 - *Appendices > Solutions*: all three exercise solutions (chapters 8,
   12, 29).
 

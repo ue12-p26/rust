@@ -323,23 +323,6 @@ project:
             - file: howto_cargo_inst_crate.md
             - file: howto_env_vars.md
 
-        - title: Tables
-          file: chap_tables.md
-          children:
-            - file: cargo_cmds.md
-            - file: rust_apps.md
-            - file: macro_fct_list.md
-            - file: bool_ops.md
-            - file: int_ops.md
-            - file: float_ops.md
-            - file: array_methods.md
-            - file: iter_methods.md
-            - file: option_methods.md
-            - file: slice_methods.md
-            - file: std_traits.md
-            - file: str_methods.md
-            - file: string_methods.md
-
         - title: Solutions
           file: chap_solutions.md
           children:

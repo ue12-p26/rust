@@ -28,7 +28,8 @@ MyST output. Parts covered:
   (skipped — empty upstream), 28 *Bitwise operations*, 29 *Error
   handling — Part II*, 30 *Character encoding*, 31 *Documenting*
 
-Of the *Appendices*, **Tables** is fully ported and **Solutions**
+Of the *Appendices*, **Solutions** (the former **Tables** appendix
+was dissolved into the body chapters, item 57)
 contains all three entries: *First program* (chapter 8), *Nuts price*
 (chapter 12), and *Overflow in hash function* (chapter 29).
 
@@ -63,19 +64,19 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   961c19c
-subject:  Resolve "Write Box chapter"
+commit:   aa480d0
+subject:  Resolve "Move tables into text body and add list of tables"
 date:     2026-09-28
 ```
 
-Previously caught up to 5fd00ab0d0661f4da4dbb9eb09e28e13f1cb6fd9 (2026-09-25).
+Previously caught up to 961c19c0c37bfb68126f0e43d2c3cd9421939c03 (2026-09-28).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
-(`961c19c`), so the MyST port is fully caught up as of this pass.
+(`aa480d0`), so the MyST port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
-`git -C <repo> diff 961c19c..<new-ref> -- <foo>.tex` per file to identify
+`git -C <repo> diff aa480d0..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
 
 ### History: the `109-collections` branch, and how it landed on `main`
@@ -306,43 +307,38 @@ version executes it; in evcxr that would SIGSEGV the kernel and break the
 rest of the page. `:tags: [raises-exception]` doesn't help because a
 native stack overflow is a kernel death, not a recoverable error.
 
-### 5. Cross-references to appendix tables — restored after Tables port
+### 5. Cross-references to former appendix tables
 
-All references that were dropped during chapters 4–8 (in `int.md`,
-`float.md`, `bool.md`, `array.md`, `env_cargo.md`) were restored as
-`{numref}` directives once the *Tables* appendix was ported. Mapping
-of original LaTeX labels to MyST names:
+The tables of the former *Appendices > Tables* chapter now live in the
+body chapters (item 57). Mapping of LaTeX labels to MyST names, all
+resolved with `{numref}`:
 
 | LaTeX label            | MyST `:name:`        | File                |
 |------------------------|----------------------|---------------------|
-| `tab:CargoSubCmds`     | `tab-cargo-subcmds`  | `cargo_cmds.md`     |
-| `tab:RustApps`         | `tab-rust-apps`      | `rust_apps.md`      |
-| `table:ArrayMethods`   | `tab-array-methods`  | `array_methods.md`  |
+| `tab:CargoSubCmds`     | `tab-cargo-subcmds`  | `env_cargo.md`      |
+| `tab:RustApps`         | `tab-rust-apps`      | `env_cargo.md`      |
+| `table:ArrayMethods`   | `tab-array-methods`  | `array.md`          |
 | `table:VecMethods`     | `tab-vec-methods`    | `vec.md` (moved from `vec_methods.md`, item 46) |
-| `table:StrSliceMethods`| `tab-str-methods`    | `str_methods.md`    |
-| `table:StringMethods`  | `tab-string-methods` | `string_methods.md` |
-| `table:SliceMethods`   | `tab-slice-methods`  | `slice_methods.md`  |
-| `table:OptionMethods`  | `tab-option-methods` | `option_methods.md` |
-| `tab:MacroFctLike`     | `tab-macro-fct-like` | `macro_fct_list.md` |
-| `table:LogicalOp`      | `tab-logical-op`     | `bool_ops.md`       |
-| `table:CompOp`         | `tab-comp-op`        | `bool_ops.md`       |
-| `table:ArithOp`        | `tab-arith-op`       | `int_ops.md`        |
-| `table:BitwiseOp`      | `tab-bitwise-op`     | `int_ops.md`        |
-| `table:FloatOp`        | `tab-float-op`       | `float_ops.md`      |
+| `table:StrSliceMethods`| `tab-str-methods`    | `slices.md`         |
+| `table:StringMethods`  | `tab-string-methods` | `string.md`         |
+| `table:SliceMethods`   | `tab-slice-methods`  | `slices.md`         |
+| `table:OptionMethods`  | `tab-option-methods` | `option.md`         |
+| `tab:MacroFctLike`     | `tab-macro-fct-like` | `macro_fct.md`      |
+| `table:LogicalOp`      | `tab-logical-op`     | `bool.md`           |
+| `table:CompOp`         | `tab-comp-op`        | `bool.md`           |
+| `table:ArithOp`        | `tab-arith-op`       | `int.md`            |
+| `table:BitwiseOp`      | `tab-bitwise-op`     | `bitwise_intro.md`  |
+| `table:FloatOp`        | `tab-float-op`       | `float.md`          |
+| `table:IterMethods`    | `tab-iter-methods`   | `ranges.md`         |
+| `table:StdTraits`      | `tab-std-traits`     | `traits.md`         |
 
 In-file table refs (`\autoref{table:CharEsc}` in `char.tex`,
 `\autoref{tab:RangeSyntax}` in `ranges.tex`) were always kept and
 converted to MyST `{numref}` against `{list-table}` blocks in the same
 file.
 
-**On merge:** when porting a new LaTeX file that references one of the
-appendix tables, use the corresponding `{numref}` name from the table
-above. When porting a new appendix table, add a row to this table and
-restore any dangling references in the body chapters.
-
-**Two appendix tables still marked `\INPROGRESS` upstream**
-(`array_methods.tex`, `slice_methods.tex`) are rendered with a
-`:::{danger} In progress` admonition at the top of the MyST page.
+**On merge:** when porting a new table, keep the `:name: tab-…` and use
+`{numref}` for the reference.
 
 ### 6. Bibliography citations — inlined
 
@@ -2057,3 +2053,42 @@ the `Memory` prefix — item 34's per-prefix counter gives V, after IV
 nothing with the `Types` prefix follows it). `rust_alias.sty` was
 renamed `rustalias.sty` (adds `\BoxStruct`, `\Deref`, `\DerefMut`) —
 no content impact, macros are rendered as plain text/links as usual.
+
+### 57. Tables moved from the appendix into the chapters, from `aa480d0`
+
+Upstream dissolved `\chapter{Tables}` (13 subfiles) into the body text.
+Ported one-to-one, each `{list-table}` keeping its `:name:` (so the
+existing `{numref}` refs stay valid):
+
+- `cargo_cmds` and `rust_apps` → `env_cargo.md` (with upstream's
+  reworded "Most of them are replacement for standard Unix commands...").
+- `macro_fct_list` → `macro_fct.md`; `bool_ops` → `bool.md` (logical
+  table after the *Logical operators* intro, comparison table after the
+  *Comparison operators* intro); `int_ops` → `int.md` (arithmetic, with
+  its three footnotes) and `bitwise_intro.md` (bitwise, footnote *d*);
+  `float_ops` → `float.md`; `array_methods` → `array.md`;
+  `iter_methods` → `ranges.md`; `option_methods` → `option.md`;
+  `slice_methods` and `str_methods` → `slices.md`; `string_methods` →
+  `string.md`; `std_traits` → `traits.md`.
+- Deleted the 13 appendix pages and `chap_tables.md`, and the *Tables*
+  entry of `myst-toc.yml`. Consequently the `(chp-iter-methods)=` and
+  `(chp-std-traits)=` anchors are gone: `for.md` and `traits.md` now use
+  `{numref}` on the tables, as upstream now does. The local `index.md`
+  no longer lists *Appendices > Tables*.
+- The `:::{danger} In progress` banners of `array_methods` and
+  `slice_methods`, the `TODO` banner of `std_traits` ("Show existing
+  traits for primitive types") and the standalone `Return type` warning
+  of `str_methods` (upstream folded its text into the *`str` methods*
+  box) were not carried over, since upstream dropped them with the pages.
+- New text: "...and *slice* for the full list" style links to the Rust
+  docs (array, slice, str, String, Enum Option, Range, Iterator) —
+  upstream's new `\Array`, `\Slice`, `\Str`, `\String`, `\Iterator`,
+  `\Range`, `\EnumOption`, `\CmpModule`, `\OpsModule` macros are
+  rendered as plain links; the *Traits* section gains the paragraph on
+  the `cmp`/`ops` modules.
+- Captions of the collection tables/figures (`Some methods of Vec`,
+  `An example of a max heap`, ...) are now plain text without inline
+  code, as upstream's captions no longer use link macros.
+- Upstream typos not carried over: missing `\\` after the `du-dust`
+  row of `\RustApps` (rows would merge in LaTeX; ported as separate
+  rows) and `chain(other` without `)` (kept as `chain(other)`).

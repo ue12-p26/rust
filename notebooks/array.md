@@ -17,13 +17,30 @@ In Rust, an
 is defined with a type and a fixed size.
 Arrays are stored on the *stack* memory (see [Stack](#chp-stack)), and thus
 must be used with *reasonable sizes*.
-It provides few methods (see {numref}`tab-array-methods`), but can be
+It provides few methods (see {numref}`tab-array-methods` and
+[array](https://doc.rust-lang.org/std/primitive.array.html)), but can be
 coerced to *slices*, which provide most of the interesting methods (see
 {numref}`tab-slice-methods`).
 
 :::{warning} Rust indices
 In Rust, the indices of arrays, ranges, vectors, etc, start all at
 index `0`. Thus the first element is always at index `0`.
+:::
+
+:::{list-table} Some methods of array
+:name: tab-array-methods
+:header-rows: 1
+:align: center
+
+* - Method
+  - Description
+* - `each_mut()`
+  - Returns an array of mutable references on elements.
+* - `each_ref()`
+  - Returns an array of references on elements.
+* - `map(f)`
+  - Applies function `f()` on each element of the array and returns an
+    array of the same size.
 :::
 
 Here is an array of four `i32` integers:

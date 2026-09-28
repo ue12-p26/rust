@@ -35,7 +35,7 @@ The time complexity of a *max-heap* is roughly as following:
 
 :::{code-block} text
 :name: fig-maxheap
-:caption: An example of a max-heap
+:caption: An example of a max heap
 
                    ┌──┐
                    │98│
@@ -58,7 +58,7 @@ The time complexity of a *max-heap* is roughly as following:
 The main methods of the `BinaryHeap` are presented in
 {numref}`tab-binaryheap`.
 
-:::{list-table} Some methods of `BinaryHeap`
+:::{list-table} Some methods of BinaryHeap
 :name: tab-binaryheap
 :header-rows: 1
 :align: center

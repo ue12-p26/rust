@@ -32,6 +32,71 @@ To get the full list of sub-commands, run the following command:
 cargo --list
 ```
 
+:::{list-table} Main sub-commands of `cargo`
+:name: tab-cargo-subcmds
+:header-rows: 1
+:align: center
+
+* - Sub-command
+  - Shortcut
+  - Description
+* - `add`
+  -
+  - Add dependencies to a Cargo.toml manifest file.
+* - `build`
+  -
+  - Compile a local package and all of its dependencies.
+* - `check`
+  -
+  - Check a local package and all of its dependencies for errors.
+* - `clean`
+  -
+  - Remove artifacts that cargo has generated in the past.
+* - `clippy`
+  -
+  - Check a package to catch common mistakes and improve your Rust code.
+* - `config`
+  -
+  - Inspect configuration values.
+* - `doc`
+  - `d`
+  - Build a package's documentation.
+* - `fix`
+  -
+  - Automatically fix lint warnings reported by rustc.
+* - `init`
+  -
+  - Create a new cargo package in a new or existing directory.
+* - `install`
+  -
+  - Install a Rust binary.
+* - `new`
+  -
+  - Create a new cargo package in a new directory.
+* - `remove`
+  - `rm`
+  - Remove dependencies from a Cargo.toml manifest file.
+* - `run`
+  - `r`
+  - Run a binary or example of the local package.
+* - `search`
+  -
+  - Search packages in the registry. Default registry is *crates.io*.
+* - `test`
+  - `t`
+  - Execute all unit and integration tests and build examples of a local
+    package.
+* - `tree`
+  -
+  - Display a tree visualization of a dependency graph.
+* - `uninstall`
+  -
+  - Remove a Rust binary.
+* - `version`
+  -
+  - Show version information.
+:::
+
 (chp-app-inst)=
 ## Installing an application
 
@@ -40,9 +105,50 @@ as libraries. Very useful Rust applications are available today on
 the official crate repository
 ([https://crates.io/](https://crates.io/)).
 We present in {numref}`tab-rust-apps` a list of some of them.
-For instance, there are several re-implementations of standard Unix
-tools (e.g.: `ls`, `find`, `cat`, `tree`) in Rust, usually with a
-nicer output and greater processing speed.
+Most of them are replacement for standard Unix commands (e.g.: `ls`,
+`find`, `cat`, `tree`) that run *faster* and propose *colourful*
+outputs.
+
+:::{list-table} Useful Rust applications
+:name: tab-rust-apps
+:header-rows: 1
+:align: center
+
+* - Crate
+  - Command
+  - Description
+* - [bat](https://crates.io/crates/bat)
+  - `bat`
+  - Replacement for `cat`.
+* - [bottom](https://crates.io/crates/bottom)
+  - `btm`
+  - Replacement for `top`.
+* - [du-dust](https://crates.io/crates/du-dust)
+  - `dust`
+  - Replacement for `du` and `ncdu`.
+* - [eza](https://crates.io/crates/eza)
+  - `eza`
+  - Replacement for `ls`.
+* - [fd-find](https://crates.io/crates/fd-find)
+  - `fd`
+  - Replacement for `find`.
+* - [hexler](https://crates.io/crates/hexler)
+  - `hexler`
+  - Replacement for `hexdump`.
+* - [procs](https://crates.io/crates/procs)
+  - `procs`
+  - Replacement for `ps`.
+* - [ripgrep](https://crates.io/crates/ripgrep)
+  - `rg`
+  - Replacement for `grep`.
+* - [minijinja-cli](https://crates.io/crates/minijinja-cli)
+  - `minijinja-cli`
+  - Rendering of MiniJinja/Jinja2 templates.
+* - [rustlings](https://crates.io/crates/rustlings)
+  - `rustlings`
+  - An application to learn Rust through exercises.
+:::
+
 See [Install a crate with Cargo](#chp-howto-cargo-inst-crate) to
 learn how to *search* for a crate and how to *install* it.
 

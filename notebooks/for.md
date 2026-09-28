@@ -39,7 +39,7 @@ for i in 1..=10 {
 }
 ```
 
-Many methods (see [`Iterator` methods](#chp-iter-methods) for a list of
+Many methods (see {numref}`tab-iter-methods` for a list of
 the main iterator methods) can be called onto the iterator to transform
 it.
 For instance, in the following example, we reverse the range to iterate

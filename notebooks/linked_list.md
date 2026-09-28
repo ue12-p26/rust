@@ -51,7 +51,7 @@ push_front() ──> │    │ ──> │    │ ──> │    │ ──> �
 Main methods of the `LinkedList` structure can be seen in
 {numref}`tab-linked-list`.
 
-:::{list-table} Some methods of `LinkedList`
+:::{list-table} Some methods of LinkedList
 :name: tab-linked-list
 :header-rows: 1
 :align: center

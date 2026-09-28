@@ -45,7 +45,7 @@ The main features of a `BTreeMap` are:
 The main methods of the `BTreeMap` are presented in
 {numref}`tab-btreemap`.
 
-:::{list-table} Some methods of `BTreeMap`
+:::{list-table} Some methods of BTreeMap
 :name: tab-btreemap
 :header-rows: 1
 :align: center

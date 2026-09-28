@@ -52,7 +52,7 @@ the cost of possibly a high memory consumption.
 
 :::{code-block} text
 :name: fig-hashmap
-:caption: An example of a `HashMap`
+:caption: An example of a HashMap
 
 Buckets
   │
@@ -84,7 +84,7 @@ $$k1 = k2 \Rightarrow hash(k1) = hash(k2)$$
 The main methods of the `HashMap` are presented in
 {numref}`tab-hashmap`.
 
-:::{list-table} Some methods of `HashMap`
+:::{list-table} Some methods of HashMap
 :name: tab-hashmap
 :header-rows: 1
 :align: center

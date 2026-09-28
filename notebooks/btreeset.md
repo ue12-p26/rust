@@ -60,7 +60,7 @@ The most important features of a set are:
   - `is_superset(&other)`: $A \supseteq B$.
 :::
 
-:::{list-table} Some methods of `BTreeSet`
+:::{list-table} Some methods of BTreeSet
 :name: tab-btreeset
 :header-rows: 1
 :align: center

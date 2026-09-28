@@ -18,6 +18,31 @@ The **signed** versions are: `i8`, `i16`, `i32`, `i64` and `i128`.
 
 {numref}`tab-arith-op` provides a list of available operators.
 
+:::{list-table} Arithmetic operators
+:name: tab-arith-op
+:header-rows: 1
+:align: center
+
+* - Operator
+  - Description
+* - `+`
+  - Addition
+* - `-`
+  - Subtraction
+* - `*`
+  - Multiplication
+* - `/`
+  - Division [^a] [^b]
+* - `%`
+  - Remainder [^c]
+:::
+
+[^a]: Rounded towards zero.
+[^b]: Division by zero panics.
+[^c]: Rust uses a remainder defined with truncating division. Given
+    *remainder = dividend % divisor*, the `remainder` will have the same
+    sign as the `dividend`.
+
 ## Default type
 
 If unspecified, an integer is of type `i32`:

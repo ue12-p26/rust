@@ -27,7 +27,7 @@ To know more about *generics*, see [Generics chapter](#chp-generics).
 We present here the basics of the `Vec` type and some of its methods. See
 {numref}`tab-vec-methods` for a more complete list of its methods.
 
-:::{list-table} Some methods of `Vec`
+:::{list-table} Some methods of Vec
 :name: tab-vec-methods
 :header-rows: 1
 :align: center

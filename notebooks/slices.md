@@ -101,7 +101,35 @@ foo(&v[..4]);
 
 :::{important} Slice methods
 Many very useful general methods are available for slices. See
-{numref}`tab-slice-methods` for a list of them.
+{numref}`tab-slice-methods` for a list of them and
+[slice](https://doc.rust-lang.org/std/primitive.slice.html) for the full
+list.
+:::
+
+:::{list-table} Some methods of slice
+:name: tab-slice-methods
+:header-rows: 1
+:align: center
+
+* - Method
+  - Description
+* - `contains(x)`
+  - Returns `true` if the element `x` is inside the slice.
+* - `ends_with(sub_slice)`
+  - Test the end of the slice.
+* - `get(range)`
+  - Get a slice of the slice.
+* - `get_mut(range)`
+  - Get a mutable slice of the slice.
+* - `len()`
+  - Return the length of the `str` object (i.e.: the number of elements).
+* - `repeat(n)`
+  - Build a new slice by repeating the slice n times.
+* - `split(predicate)`
+  - Split a slice in sub-slices, using a predicate function to know where
+    to cut.
+* - `starts_with(sub_slice)`
+  - Test if a string starts with a pattern.
 :::
 
 (chp-str-slices)=
@@ -178,7 +206,40 @@ into `&str` because `String` implements the
 :::{important} `str` methods
 In addition to methods provided by the generic slice, the string slice
 `str` defines specific ones and also improves some of the generic ones.
-See {numref}`tab-str-methods` for a list of them.
+See {numref}`tab-str-methods` for a list of them and
+[str](https://doc.rust-lang.org/std/primitive.str.html) for a full list.
+Read well the documentation of methods returning a string, some methods
+return a `&str` (when no modification is done), while others return a
+`String`.
+:::
+
+:::{list-table} Some methods of str
+:name: tab-str-methods
+:header-rows: 1
+:align: center
+
+* - Method
+  - Description
+* - `bytes()`
+  - Get an iterator on the bytes.
+* - `chars()`
+  - Get an iterator on the characters.
+* - `find(pattern)`
+  - Search forward for a pattern.
+* - `from_utf8(bytes)`
+  - Convert a slice of bytes into a string slice.
+* - `replace(pattern, s)`
+  - Replace all matches of the pattern with the string s.
+* - `rfind(pattern)`
+  - Search backward for a pattern.
+* - `to_lowercase()`
+  - Convert the string into lowercase.
+* - `to_string()`
+  - Convert to a `String` object.
+* - `to_uppercase()`
+  - Convert the string into uppercase.
+* - `trim()`
+  - Remove white spaces at both ends of the string.
 :::
 
 :::{exercise} Splitting a string

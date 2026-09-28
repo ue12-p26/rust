@@ -26,6 +26,27 @@ let b = false;
 *Logical operators* (see {numref}`tab-logical-op`) combine boolean values
 to give a new boolean value.
 
+:::{list-table} Logical operators
+:name: tab-logical-op
+:header-rows: 1
+:align: center
+
+* - Operator
+  - Description
+* - `!`
+  - NOT
+* - `&`
+  - AND
+* - `&&`
+  - Short-circuiting AND
+* - `|`
+  - OR
+* - `||`
+  - Short-circuiting OR
+* - `^`
+  - XOR
+:::
+
 The NOT operator `!` negates the value:
 
 ```{code-cell} rust
@@ -146,6 +167,27 @@ println!("{b}");
 
 *Comparison operators* (see {numref}`tab-comp-op`) compare values of
 various types and return a boolean value.
+
+:::{list-table} Comparison operators
+:name: tab-comp-op
+:header-rows: 1
+:align: center
+
+* - Operator
+  - Description
+* - `!=`
+  - Nonequality
+* - `<`
+  - Less than
+* - `<=`
+  - Less than or equal
+* - `==`
+  - Equality
+* - `>`
+  - Greater than
+* - `>=`
+  - Greater than or equal
+:::
 
 The *equality* operator returns `true` if two values are equal:
 
