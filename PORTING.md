@@ -63,19 +63,19 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   5fd00ab
-subject:  Resolve "Collections"
-date:     2026-09-25
+commit:   961c19c
+subject:  Resolve "Write Box chapter"
+date:     2026-09-28
 ```
 
-Previously caught up to 941f878e3d071b3933c936a96d824f3103679b59 (2026-09-23).
+Previously caught up to 5fd00ab0d0661f4da4dbb9eb09e28e13f1cb6fd9 (2026-09-25).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
-(`5fd00ab`), so the MyST port is fully caught up as of this pass.
+(`961c19c`), so the MyST port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
-`git -C <repo> diff 5fd00ab..<new-ref> -- <foo>.tex` per file to identify
+`git -C <repo> diff 961c19c..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
 
 ### History: the `109-collections` branch, and how it landed on `main`
@@ -1979,3 +1979,81 @@ Content of that delta:
 (33-54) and this item both describe real, already-applied state — no
 further action needed for them; resume normal per-commit porting from
 `5fd00ab` onward.
+
+### 56. Box chapter written, new `boxed_trait.md` and `sol_box.md`, from `961c19c`
+
+**`box.md`** goes from a `Draft` stub (one disabled snippet) to a full
+page: what a `Box` is, "Putting an object in a Box" (a `Book` struct
+with many fields, builder-style `with_*` methods, moving it into a
+`Box`), "Size of a Box", "Passing a Box", "Is Box really useful?" (with
+the by-value `print_price_per_page` variant kept as a
+`skip-execution`/`disabled` cell, as upstream's `[disable]`), and two
+`:::{warning}` admonitions (upstream's `egin{important}`). Also a new
+exercise "Type size" (`box-struct-size`, solution in the new
+`sol_box.md`, item 9's exercise/solution pattern). The whole
+`start`/`cont`.../`stop` sequence was verified against the real kernel
+first: it all runs as-is.
+
+**Real upstream factual errors fixed while porting** (verified with
+`std::mem::size_of::<Book>()`, which is **120**, not upstream's 86):
+- `String` and `Vec<T>` are 3 words (24 bytes: pointer, capacity,
+  length), not 2 words (16 bytes) as upstream's solution states; also
+  its list says `i16: 8 bytes` (it is 2, and the sum used 2). Corrected
+  in `sol_box.md`: 24×4 + 8 + 2 + 8 + 4 = 118 bytes, padded to 120 by
+  8-byte alignment.
+- Consequently the prose figures in `box.md` ("Compared to the 86
+  bytes of our `Book`... 10 times lighter", "instead of storing 86
+  bytes, we store only 10 bytes") became "120 bytes... 15 times
+  lighter" and "120 bytes... only 8 bytes" (a `Box` is 8 bytes,
+  upstream's "10 bytes" was inconsistent with its own "8 bytes" two
+  sentences earlier).
+- "an array of 40000 32-bit integers (i.e.: 320MB)" is off by orders of
+  magnitude (40000 × 4 bytes = 160 KB, which would not overflow a 1 MiB
+  stack). Changed to "40 million 32-bit integers (i.e.: 160MB)" — a
+  guess at the intended magnitude, worth reporting upstream.
+- Typo "instead the object on the stack, we stored it" → "instead of
+  storing the object on the stack, we store it".
+
+**Missing upstream file**: `box.tex` (twice) says `See \autoref{chp:Word}
+to learn about what is a word`, and `main.tex` adds `\subfile{howto_sizes}`
+to the How-tos — but **`howto_sizes.tex` does not exist** in this
+commit (nor at `origin/main`), so `chp:Word` is a dangling label. We do
+not create a `howto_sizes.md`; the exercise text instead defines the
+term inline ("a *word* is the natural unit of data of the processor
+(8 bytes on a 64-bit architecture)") and the second reference (in
+"Size of a Box") is dropped, since `Size of a Box` already gives the 8
+bytes/16 bytes figures. **On merge:** when upstream adds
+`howto_sizes.tex`, port it as a How-tos page and turn the inline
+definition into a link to it.
+
+**`boxed_trait.md`** (new, in *Polymorphism V - Traits* between
+`traits_in_fields.md` and `trait_bounds.md`; anchor `(chp-boxed-trait)=`
+for upstream's `\label{chp:BoxedTrait}`, linked from `box.md`): a
+`Shape` trait with `Circle`/`Rectangle`, first collected as
+`Vec<&dyn Shape>`, then as `Vec<Box<dyn Shape>>`. **evcxr adaptation
+needed (item 13/16 again)**: verified directly that the
+`let shapes: Vec<&dyn Shape> = vec![&circ, &rect];` cell fails ("contains
+a reference with a non-static lifetime so can't be persisted") — the
+same limitation as `trait_poly.md`'s `Vec<&dyn Surface>`. Fixed by
+merging upstream's two cells (build the reference vector + loop over
+it) into one `{ ... }` block; the `Box` version afterwards persists
+fine (owned values) and keeps its own separate loop cell.
+
+**`sol_vec.md`**: upstream fixes its own exercise — item 22's
+`capitalize()` workaround (for the non-existent `str::capitalize()`)
+is no longer needed. The exercise now asks to print the strings in
+*upper case* (`to_uppercase()`), accepts `&str` or `String`, and the
+solution became a 3-cell sequence (create, loop, `fruits.len()` to show
+the vector is intact). `let fruits = vec![...]` now needs **no** explicit
+`Vec<&str>` annotation (item 23's annotation is unnecessary since the
+evcxr upgrade, see item 48's note). `vec.md`'s exercise text updated to
+match.
+
+Small items: `traits_in_fields.md` gains a trailing `Add exercise` `TODO`;
+the *Pointers* chapter (`chap_types_pointers.md`) becomes **"Memory V -
+Pointers"** (was "Types X - Pointers"; upstream's `main.tex` now uses
+the `Memory` prefix — item 34's per-prefix counter gives V, after IV
+*Accessing collections*; no other chapter's numeral shifts since
+nothing with the `Types` prefix follows it). `rust_alias.sty` was
+renamed `rustalias.sty` (adds `\BoxStruct`, `\Deref`, `\DerefMut`) —
+no content impact, macros are rendered as plain text/links as usual.

@@ -17,21 +17,34 @@ kernelspec:
 :label: vec-iter-solution
 :::
 
-`str` has no `capitalize()` method, so we write a small helper function
-that uppercases the first character of a string slice and appends the
-rest unchanged:
+Here is a version of the vector using string slices:
 
 ```{code-cell} rust
-fn capitalize(s: &str) -> String {
-  let mut chars = s.chars();
-  match chars.next() {
-    None => String::new(),
-    Some(first) => first.to_uppercase().collect::<String>() + chars.as_str(),
-  }
-}
+:tags: [remove-cell]
 
-let fruits: Vec<&str> = vec!["banana", "strawberry", "orange"];
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
+
+let fruits = vec!["banana", "strawberry", "orange"];
+```
+
+We loop on the vector's elements using a vector's reference:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
 for fruit in &fruits {
-  println!("{}", capitalize(fruit));
+  println!("{}", fruit.to_uppercase());
 }
+```
+
+The vector still contains its elements:
+
+```{code-cell} rust
+:class: seq-stop badges border
+
+fruits.len()
 ```

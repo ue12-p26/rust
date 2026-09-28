@@ -186,12 +186,12 @@ println!("v is still accessible: {v:?}");
 :label: vec-iter
 :enumerated: true
 
-1. Create a vector of 3 `String` objects with the following values:
-   `"banana"`, `"strawberry"`, `"orange"`.
-2. Iterate over the elements of the vector *without moving* them and
-   print them on the standard output.
-3. Inside the iteration loop, put the first letter of each string into
-   uppercase before printing them, one on each line.
+1. Create a vector of 3 static string slices (`&str`) or `String`
+   objects with the following values: `"banana"`, `"strawberry"`,
+   `"orange"`.
+2. Iterate over the elements of the vector *without moving* them.
+3. Inside the iteration loop, put the strings into uppercase before
+   printing them, one on each line.
 :::
 
 [see solution](#vec-iter-solution)

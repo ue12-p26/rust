@@ -28,3 +28,9 @@ pub struct MyStruct<'a> {
     my_field: &'a (dyn MyTrait + 'a),
 }
 ```
+
+:::{danger} TODO
+:class: readiness-todo
+
+Add exercise.
+:::
