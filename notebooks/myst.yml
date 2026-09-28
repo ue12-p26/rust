@@ -12,6 +12,8 @@ project:
   # inserted under the title
   authors:
     - Pierrick Roger
+  github: https://github.com/ue12-p26/rust.git
+  # for the upstream tex version
   gitlab: https://gitlab.com/cnrgh/teaching/rust-class
   keywords:
     - Informatique
@@ -21,7 +23,7 @@ project:
     - Rust
     - Cargo
     - Jupyter
-  date: 2026-05-13
+  date: 2026-10-01
   numbering:
     title: true
     heading_1: false

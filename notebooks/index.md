@@ -1,4 +1,9 @@
-# Introduction to the Rust language
+---
+authors:
+  - Pierrick Roger
+  - Thierry Parmentelat
+title: Introduction to the Rust language
+---
 
 This is the MyST port of the Rust course originally authored in LaTeX by
 Pierrick Roger.
