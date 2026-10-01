@@ -1,5 +1,4 @@
 (chp-attr)=
-(chp-macros)=
 # Introduction
 
 [Attributes](https://doc.rust-lang.org/rust-by-example/attribute.html)
