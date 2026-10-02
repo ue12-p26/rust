@@ -21,8 +21,12 @@ A *trait* represents a *functionality*. It defines a list of one or
 more methods that a type must implement in order to provide this
 functionality.
 
-In Rust, almost any data type can implement a trait: *structs*,
-*enums*, *primitive types*, and *tuples*.
+In Rust, almost any data type can implement a trait:
+
+- *Structs*.
+- *Enums*.
+- *Primitive types*.
+- *Tuples*.
 
 Inside the *standard library*:
 
@@ -41,9 +45,9 @@ in {numref}`tab-std-traits`.
 Among them are the comparison operators from the
 [cmp](https://doc.rust-lang.org/std/cmp/index.html) module.
 Other operators (`*`, `/`, `+`, `%`, ...) are defined inside the
-[ops module](https://doc.rust-lang.org/stable/std/ops/index.html).
-They are listed inside the
-[Traits](https://doc.rust-lang.org/stable/std/ops/index.html#traits)
+[ops module](https://doc.rust-lang.org/stable/std/ops/index.html). They
+are listed inside the
+[ops traits](https://doc.rust-lang.org/stable/std/ops/index.html#traits)
 section.
 
 :::{list-table} Some of the most common traits

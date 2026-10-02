@@ -9,43 +9,39 @@ kernelspec:
   language: rust
 ---
 
-# Recoverable errors
+# File
 
-:::{danger} Draft
-:class: readiness-draft
+:::{danger} TODO
+:class: readiness-todo
 
-This section is still being written...
+Explain `std::fs::File`.
 :::
 
-The definition of `Result<T, E>` is:
-
-```{code-cell} rust
-enum Result<T, E> {
-  Ok(T),
-  Err(E),
-}
-```
-
-Example of usage:
+For instance, the `File::open()` method returns a `Result`, either with
+a `File` instance or an I/O error:
 
 ```{code-cell} rust
 :tags: [raises-exception]
 
 use std::fs::File;
+use std::io::Read;
 
-fn main() {
-    let result = File::open("hello.txt");
-    let f = match result {
-        Ok(file) => file,
-        Err(error) => panic!("Problem opening the file: {error:?}"),
-    };
-}
+let myfile = "some/undefined/path/hello.txt";
+let result = File::open(myfile);
+let mut f = match result {
+    Ok(file) => file,
+    Err(error) => panic!("Problem opening the file {myfile}: {error:?}"),
+};
+let mut contents = String::new();
+f.read_to_string(&mut contents)?;
+contents
 ```
 
 Check the error type:
 
 ```{code-cell} rust
-:tags: [raises-exception]
+:tags: [skip-execution]
+:class: disabled
 
 let f = match result {
   Ok(file) => file,
@@ -60,55 +56,6 @@ let f = match result {
   },
 };
 ```
-
-## Using unwrap and expect
-
-Using `unwrap()` to get the wanted value:
-
-```{code-cell} rust
-:tags: [raises-exception]
-
-let f = File::open("hello.txt").unwrap();
-```
-
-- `unwrap()` will return the file handle on success, or call `panic!`
-  on error.
-
-Using `expect()` to customize the error message:
-
-```{code-cell} rust
-:tags: [raises-exception]
-
-let f = File::open("hello.txt")
-  .expect("hello.txt should be included in this project");
-```
-
-- `expect()` will return the file handle on success, or exit and print
-  our error message.
-
-## Using closures
-
-```{code-cell} rust
-:tags: [skip-execution]
-:class: disabled
-
-use std::fs::File;
-use std::io::ErrorKind;
-
-fn main() {
-  let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
-    if error.kind() == ErrorKind::NotFound {
-      File::create("hello.txt").unwrap_or_else(|error| {
-        panic!("Problem creating the file: {error:?}");
-      })
-    } else {
-      panic!("Problem opening the file: {error:?}");
-    }
-  });
-}
-```
-
-## Propagating errors
 
 Detailed version:
 
@@ -176,4 +123,18 @@ Note that this function is already in the standard library:
 :class: disabled
 
 std::fs::read_to_string("hello.txt"); // Returns a Result<String, io::Error>
+```
+
+Returning an error from the `main()` function:
+
+```{code-cell} rust
+use std::error::Error;
+use std::fs::File;
+
+fn main() -> Result<(), Box<dyn Error>> {
+  let greeting_file = File::open("hello.txt")?;
+  Ok(())
+}
+
+main()
 ```

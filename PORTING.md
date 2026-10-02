@@ -64,19 +64,19 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   aa480d0
-subject:  Resolve "Move tables into text body and add list of tables"
-date:     2026-09-28
+commit:   e056a95
+subject:  Resolve "Error handling"
+date:     2026-09-29
 ```
 
-Previously caught up to 961c19c0c37bfb68126f0e43d2c3cd9421939c03 (2026-09-28).
+Previously caught up to aa480d04a891d02ffb2e1c386fce66edcc4c746d (2026-09-28).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
-(`aa480d0`), so the MyST port is fully caught up as of this pass.
+(`e056a95`), so the MyST port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
-`git -C <repo> diff aa480d0..<new-ref> -- <foo>.tex` per file to identify
+`git -C <repo> diff e056a95..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
 
 ### History: the `109-collections` branch, and how it landed on `main`
@@ -2092,3 +2092,122 @@ existing `{numref}` refs stay valid):
 - Upstream typos not carried over: missing `\\` after the `du-dust`
   row of `\RustApps` (rows would merge in LaTeX; ported as separate
   rows) and `chain(other` without `)` (kept as `chain(other)`).
+
+### 58. Error handling chapter written, Option moved under Error handling, Threading and Visitor pattern chapters added, from `e056a95`
+
+Upstream's biggest single commit so far: a full rewrite of the
+*Error handling* chapters, a reshuffle of where `Option` lives, a
+reordered *File system* chapter, and two new one-page chapters
+(*Threading*, *Design > Visitor pattern*). Most of the changed `.tex`
+files (`array`, `bitwise_intro`, `bool`, `btreemap`, `btreeset`, `char`,
+`coll_summary`, `env_cargo`, `float`, `hashmap`, `hashset`, `int`,
+`int_repr`, `linked_list`, `macro_fct`, `macro_fct_list`, `print`,
+`project_toml`, `ranges`, `slices`, `string`, `vec`, `vec_deque`,
+`why_rust`) only touched LaTeX table formatting (`table`+`tblr` →
+single `tblr[long, caption=.., label=..]`) and renamed labels
+(`table:Foo`/`tab:Foo` → `tab:Foo`); these have no MyST-visible effect
+(our `{list-table}` were already in that shape) and were not re-ported.
+`traits.md`'s intro sentence ("almost any data type can implement a
+trait: *structs*, *enums*, ...") became a bullet list, and its
+`cmp`/`ops` paragraph now links "ops traits" instead of spelling out
+"Traits" — both carried over.
+
+**`Option` moves from `Syntax` to `Error handling`**: upstream splits
+the old combined "Syntax IV - Option" chapter (`option`, `if_let`,
+`while_let`) into `Error handling I - Option` (just `option.md`) and
+`Syntax IV - If/let & while/let` (`if_let.md`, `while_let.md`), both
+still inside the *Fundamentals* part, in the same place as before.
+Renamed `chap_syntax_iv_option.md` → `chap_syntax_iv_if_while_let.md`
+and added `chap_error_handling_i_option.md`. `option.md`'s intro drops
+the Wikipedia "Option type" aside in favor of a direct link to the
+`Option<T>` doc page, and its methods table grows substantially
+(`and`, `and_then`, `cloned`, `copied`, `ok_or`, `ok_or_else`, `or`,
+`or_else`, `transpose`, `unzip`, `xor`, `zip`; `map(v, f)` →
+`map_or(v, f)`; `take(p)` → `take_if(p)`). Added anchor
+`(chp-option)=` for upstream's `\label{chp:Option}` wanted by
+`err_prop_auto.tex` (a label upstream references but still never
+defines anywhere — we supply it since we have the natural target,
+same as the `howto_sizes`/`chp:Word` case in item 56).
+
+**`Error handling` chapter rewritten from scratch**: the old
+`chap_error_handling_i.md` (`err_intro`, `err_unrec`, `err_rec`,
+`result`, `question_mark` — all `Draft`/stub pages) is replaced by
+three new chapters, renumbering the whole `Error handling` sequence
+(global counter, same mechanism that numbers `Syntax I`..`IV` across
+parts):
+
+- **`Error handling II - Panic & Result`** (`chap_error_handling_ii_panic_result.md`,
+  renamed from `chap_error_handling_i.md`): new `panic.md` (the
+  `panic!()` macro, `unwrap()`/`expect()`/`unwrap_or()`/
+  `unwrap_or_else()` on `Option`, disabling stack unwinding) and a
+  fully rewritten `result.md` (anchor `(chp-result)=`, a
+  `tab-result-methods` table, the `fact()`/`combination()` example as
+  a `seq-start`/`cont`/`stop` sequence, a `map()` note, a `match`
+  handling section, an `unwrap`/`expect` section reusing the `foo()`
+  pattern, and a closing `TODO: Add exercise` banner).
+- **`Error handling III - Propagation`** (new
+  `chap_error_handling_iii_propagation.md`): new `err_prop_manual.md`
+  (manual `match`-based propagation of a custom `MyError` enum through
+  `fact()`/`combination()`, one `seq-start..stop` sequence) and new
+  `err_prop_auto.md` (the same example rewritten with the `?`
+  operator; replaces `question_mark.md`, which is deleted — its old
+  `last_char_of_first_line` example is not carried over, upstream
+  dropped it for this one).
+- **`Error handling IV - Error trait`** (new
+  `chap_error_handling_iv_error_trait.md`): new `error.md` (a custom
+  `MyError` struct implementing `Debug`/`Display`/`Error`, one
+  `seq-start..stop` sequence) and new `err_box.md` (`Box<dyn Error>`
+  polymorphism over two different error types via the `?` operator in
+  `read_floats()`/`do_stuff()`).
+
+`err_intro.md`, `err_unrec.md`, `err_rec.md` and `question_mark.md` are
+deleted. The old `chap_error_handling_ii.md` (`err_msg_alloc`,
+`int_overflow`, in *Mastery*) is renamed `chap_error_handling_v.md`
+(content unchanged) to reflect its new slot in the global numbering.
+
+All seven new/rewritten pages' Rust cells were run against the real
+`evcxr` kernel before porting (not guessed):
+`panic.md`'s `"abcdef".find('h').unwrap()`/`.expect(...)` panic as
+expected (`raises-exception`); the `fact()`/`combination()` sequences
+in `result.md`, `err_prop_manual.md` and `err_prop_auto.md` all behave
+as upstream describes (`combination(12, 15)` hits the forbidden
+negative `fact(n-r)` call and returns `Err`); `error.md`'s `Display`/
+`Error` impls and `err_box.md`'s `try_reserve`/`parse::<f32>()`
+propagation both run cleanly.
+
+**File system reordered, new `File` page**: children of
+`chap_file_system.md` reordered to `path`, `pathbuf`, `osstr`,
+`osstring`, `file` (new). `file.tex` is `err_rec.tex` renamed
+(`git diff --find-renames` shows 57% similarity): it keeps `err_rec`'s
+"check the error type"/"detailed version"/`?`-operator/one-liner
+`disable`d snippets, drops its "Using unwrap and expect" subsection,
+and appends `err_intro.tex`'s "returning an error from `main()`"
+example (`err_intro.tex` itself is deleted, folded in here).
+**Real upstream bug fixed while porting** `file.md`'s first (non-
+disabled) example: `Err(error) => panic!(...)` binds the success value
+to `f` (`Ok(file) => file`), but the following line calls
+`file.read_to_string(...)` — `file` doesn't exist outside the `match`
+arm, and `f` itself isn't declared `mut`. This fails to *compile*, not
+just panic. Fixed to `let mut f = match ...` and `f.read_to_string(...)`;
+verified against the kernel that it now panics as intended
+(`File::open` on a nonexistent path) and documents it here rather than
+silently diverging from upstream.
+
+**New one-page chapters**: `Threading` (new `chap_threading.md`, in
+*Mastery* before `Project II - Modules`, matching
+`\chapter{Threading}` right before `\PrefixedChapter{Project}{Modules}`)
+holds new `future.md` — two `TODO` stubs (`Future`, and
+`(chp-poll)=`-anchored `Poll`, upstream's `\label{chp:Poll}`). `Design`
+gains new `visitor_pattern.md` as a second child after
+`builder_pattern.md` — anchor `(chp-visitor-pattern)=` for upstream's
+`\label{chp:VisitorPattern}` (currently unreferenced) and
+`(chp-control-flow)=` for `\label{chp:ControlFlow}` (referenced by
+`err_prop_auto.md`), with a single `TODO` stub under `ControlFlow`.
+
+**On merge**: the `Error handling` chapter numbering is a *global*
+counter across `\PrefixedChapter{Error handling}{...}` occurrences
+regardless of part — same as `Syntax I`..`IV`. If upstream inserts
+another `Error handling`-prefixed chapter anywhere in the book, every
+`chap_error_handling_*` file after that insertion point needs its
+roman numeral (and title) bumped, mirroring what happened here to the
+old `chap_error_handling_ii.md` → `chap_error_handling_v.md`.

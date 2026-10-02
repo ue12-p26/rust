@@ -114,9 +114,12 @@ project:
             - file: gen_fct.md
             - file: gen_struct.md
 
-        - file: chap_syntax_iv_option.md
+        - file: chap_error_handling_i_option.md
           children:
             - file: option.md
+
+        - file: chap_syntax_iv_if_while_let.md
+          children:
             - file: if_let.md
             - file: while_let.md
 
@@ -197,20 +200,28 @@ project:
           children:
             - file: box.md
 
-        - file: chap_error_handling_i.md
+        - file: chap_error_handling_ii_panic_result.md
           children:
-            - file: err_intro.md
-            - file: err_unrec.md
-            - file: err_rec.md
+            - file: panic.md
             - file: result.md
-            - file: question_mark.md
+
+        - file: chap_error_handling_iii_propagation.md
+          children:
+            - file: err_prop_manual.md
+            - file: err_prop_auto.md
+
+        - file: chap_error_handling_iv_error_trait.md
+          children:
+            - file: error.md
+            - file: err_box.md
 
         - file: chap_file_system.md
           children:
-            - file: pathbuf.md
             - file: path.md
-            - file: osstring.md
+            - file: pathbuf.md
             - file: osstr.md
+            - file: osstring.md
+            - file: file.md
 
         - file: chap_io_ii.md
           children:
@@ -238,6 +249,10 @@ project:
     - title: Mastery
       children:
 
+        - file: chap_threading.md
+          children:
+            - file: future.md
+
         - file: chap_project_ii_modules.md
           children:
             - file: folder_mod.md
@@ -252,7 +267,7 @@ project:
             - file: bitwise_and.md
             - file: bitwise_shift.md
 
-        - file: chap_error_handling_ii.md
+        - file: chap_error_handling_v.md
           children:
             - file: err_msg_alloc.md
             - file: int_overflow.md
@@ -269,6 +284,7 @@ project:
         - file: chap_design.md
           children:
             - file: builder_pattern.md
+            - file: visitor_pattern.md
 
     - title: Appendices
       children:

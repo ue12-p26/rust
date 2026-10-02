@@ -1,3 +1,0 @@
----
-title: Syntax (iv) - Option
----

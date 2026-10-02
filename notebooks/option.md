@@ -9,6 +9,7 @@ kernelspec:
   language: rust
 ---
 
+(chp-option)=
 # Option
 
 ```{code-cell} rust
@@ -20,16 +21,15 @@ std::panic::set_hook(Box::new(|info| {
 }));
 ```
 
-The generic enum `Option<T>` (see
-[Option type](https://en.wikipedia.org/wiki/Option_type) for a general
-presentation of this concept)
-is defined inside the standard library and is used everywhere in Rust to
+The generic enum
+[Option<T>](https://doc.rust-lang.org/std/option/enum.Option.html) is
+defined inside the standard library and is used everywhere in Rust to
 handle the Value/No-value case. It allows to declare and handle the
 possiblity of the absence of value.
 
-Some of the methods of `Option<T>` are presented in this chapter. See
-{numref}`tab-option-methods` for more interesting methods and
-[Enum Option](https://doc.rust-lang.org/std/option/enum.Option.html) for a
+Some of the methods of `Option<T>` are presented in
+{numref}`tab-option-methods`. See
+[Option<T>](https://doc.rust-lang.org/std/option/enum.Option.html) for a
 full list.
 
 :::{list-table} Some methods of `Option<T>`
@@ -39,8 +39,17 @@ full list.
 
 * - Method
   - Description
+* - `and(other)`
+  - Returns `None` if this `Option` is `None` otherwise returns `other`.
+* - `and_then(f)`
+  - Returns `None` if this `Option` is `None` otherwise calls `f()` with
+    the wrapped value.
+* - `cloned()`
+  - Convert an `Option<&T>` into an `Option<T>` by cloning.
+* - `copied()`
+  - Convert an `Option<&T>` into an `Option<T>` by copying.
 * - `expect(m)`
-  - Returns `t` if `Some(t)`, or *panic* with the custom message `m` if
+  - Returns `T` if `Some(T)`, or *panic* with the custom message `m` if
     `None`.
 * - `filter(p)`
   - Returns `None` if `None`, and `Some(t)` if predicates `p` evaluates to
@@ -67,19 +76,44 @@ full list.
 * - `map(f)`
   - Maps the function `f()` on the contained value if any or returns
     `None`.
-* - `map(v, f)`
+* - `map_or(v, f)`
   - Maps the function `f()` on the contained value if any or returns `v`.
+* - `ok_or(e)`
+  - Transforms the `Option<T>` into a `Result<T, E>`, mapping `Some(v)` to
+    `Ok(v)` and `None` to `Err(e)`.
+* - `ok_or_else(f)`
+  - Transforms the `Option<T>` into a `Result<T, E>`, mapping `Some(v)` to
+    `Ok(v)` and `None` to `Err(f())`.
+* - `or(other)`
+  - Returns this option if it contains a value, otherwise returns
+    `other`.
+* - `or_else(f)`
+  - Returns this option if it contains a value, otherwise calls `f()` and
+    returns its value.
 * - `replace(v)`
   - Sets object to `Some(v)` and returns the old value, if any.
 * - `take()`
   - Returns the current value as `Some(v)` or `None`, and leaves only
     `None`.
-* - `take(p)`
+* - `take_if(p)`
   - Same as `take()` but only if predicate `p()` is `true`.
+* - `transpose()`
+  - Transposes an `Option<Result<T, E>>` into a `Result<Option<T>, E>`.
 * - `unwrap()`
   - Returns the current value `v` if `Some(v)`, or *panics* if `None`.
-* - `unwrap(u)`
+* - `unwrap_or(u)`
   - Returns the current value `v` if `Some(v)`, or `u` if `None`.
+* - `unwrap_or_else(f)`
+  - Returns the current value `v` if `Some(v)`, or executes the function
+    `f` and returns its result.
+* - `unzip()`
+  - Unzips an option of a tuple of two values into a tuple of two
+    options.
+* - `xor(other)`
+  - Returns the `Some(v)` of either this option or other, or `None` if
+    both are `None` or `Some`.
+* - `zip(other)`
+  - Makes an option of a tuple by combining this option and `other`.
 :::
 
 The `Option<T>` type is a *generic enum type* (see
