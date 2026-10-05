@@ -64,19 +64,19 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   803b3be
-subject:  Resolve "Corrections & precisions"
+commit:   42ca04b
+subject:  Resolve "Chapter about file system"
 date:     2026-10-04
 ```
 
-Previously caught up to e056a95d868273d2207dea9c7cf512ce21680aa5 (2026-09-29).
+Previously caught up to 803b3bedbbef97cf352044cc64d1fcd3f83cc389 (2026-10-04).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
-(`803b3be`), so the MyST port is fully caught up as of this pass.
+(`42ca04b`), so the MyST port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
-`git -C <repo> diff 803b3be..<new-ref> -- <foo>.tex` per file to identify
+`git -C <repo> diff 42ca04b..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
 
 ### History: the `109-collections` branch, and how it landed on `main`
@@ -2351,3 +2351,47 @@ pattern also exists, untouched, in `closures.md`, `loop.md` (×2),
 `sol_enum.md`, `sol_str.md`, `vec.md` (×2) — flagged for a follow-up
 pass, out of scope here.
 
+### 60. OsStr/OsString and Path/PathBuf merged and filled in, File system reclassified as I/O, Expertise part moved earlier, new Memory VI stub chapter, from `42ca04b`
+
+**`osstr.md`** goes from a `Draft` stub to "OsStr & OsString" (merging
+in `osstring.tex`'s content, which is deleted upstream): the
+Rust-vs-OS string encoding differences, `tab-os-str`/`tab-os-string`
+tables, and three `OsString` construction examples (`::from`, `.into()`,
+`::new()` + `.push()`). **`path.md`** similarly goes from stub to
+"Path & PathBuf" (merging in `pathbuf.tex`, also deleted upstream):
+`tab-path`/`tab-path-buf` tables, no code examples upstream. Local
+`pathbuf.md` and `osstring.md` are deleted (upstream drops the standalone
+pages entirely, not just moves their content — confirmed via
+`git show <sha>:osstring.tex` / `:pathbuf.tex` both failing "does not
+exist"). All three new `OsString` cells run against the real kernel.
+
+**File system reclassified under I/O, and renumbered**: the old
+chapter-less `File system` chapter (`path`, `pathbuf`, `osstr`,
+`osstring`, `file`) becomes `\PrefixedChapter{I/O}{File system}` with
+only `osstr`+`path` as children (`pathbuf`/`osstring` gone, `file`
+moved out — see next). Since this is the first new `I/O`-prefixed
+chapter inserted before the pre-existing plain `\PrefixedChapter{I/O}{}`
+(`io`/`args`/`logs`/`format_traits`), that one becomes "I/O III" (was
+"I/O II"), and gains `file.md` as its second child (right after `io.md`).
+Renamed `chap_file_system.md` → `chap_io_ii_file_system.md` (title
+"I/O (ii) - File system"), `chap_io_ii.md` → `chap_io_iii.md` (title
+"I/O (iii)").
+
+**The `Expertise` part boundary moves much earlier**: upstream moves
+`\part{Expertise}` from right before `Polymorphism V - Traits` (after
+`Testing`) to right after `Memory IV - Accessing collections` (before
+`Memory V - Pointers`/`box.md`). Concretely, `chap_memory_v_pointers.md`
+(box), `chap_error_handling_ii_panic_result.md`,
+`chap_error_handling_iii_propagation.md`,
+`chap_error_handling_iv_error_trait.md`, `chap_io_ii_file_system.md`,
+`chap_io_iii.md` and `chap_testing.md` all move from the *Proficiency*
+part to the *Expertise* part in `myst-toc.yml` (ahead of
+`chap_polymorphism_v_traits.md`, unchanged content/position otherwise).
+No chapter numbering is affected by this (part boundaries are a
+MyST/our-TOC-only concept; upstream's `\PrefixedChapter` counters are
+global and don't reset per `\part`).
+
+**New stub chapter "Memory VI - Pointers again"** (new
+`chap_memory_vi_pointers_again.md`, in *Mastery*, right before
+`Threading`): three new one-page `TODO` stubs, `cow.md`, `rc.md`,
+`arc.md` (`Cow`, `Rc`, `Arc`).

@@ -201,6 +201,9 @@ project:
             - file: safe_access.md
             - file: coll_borrow.md
 
+    - title: Expertise
+      children:
+
         - file: chap_memory_v_pointers.md
           children:
             - file: box.md
@@ -220,17 +223,15 @@ project:
             - file: error.md
             - file: err_box.md
 
-        - file: chap_file_system.md
+        - file: chap_io_ii_file_system.md
           children:
-            - file: path.md
-            - file: pathbuf.md
             - file: osstr.md
-            - file: osstring.md
-            - file: file.md
+            - file: path.md
 
-        - file: chap_io_ii.md
+        - file: chap_io_iii.md
           children:
             - file: io.md
+            - file: file.md
             - file: args.md
             - file: logs.md
             - file: format_traits.md
@@ -242,9 +243,6 @@ project:
             - file: test_running.md
             - file: test_integration.md
 
-    - title: Expertise
-      children:
-
         - file: chap_polymorphism_v_traits.md
           children:
             - file: traits_in_fields.md
@@ -253,6 +251,12 @@ project:
 
     - title: Mastery
       children:
+
+        - file: chap_memory_vi_pointers_again.md
+          children:
+            - file: cow.md
+            - file: rc.md
+            - file: arc.md
 
         - file: chap_threading.md
           children:
