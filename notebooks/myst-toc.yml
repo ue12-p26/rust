@@ -92,19 +92,29 @@ project:
 
         - file: chap_types_iii_enums.md
           children:
-            - file: enum.md
+            - file: enum_type.md
+            - file: tagged_union.md
 
-        - file: chap_syntax_iii_match.md
+        - file: chap_syntax_iii_if_let_match.md
           children:
+            - file: if_let.md
+            - file: while_let.md
             - file: match.md
 
-        - file: chap_types_iv_methods.md
+        - file: chap_types_iv_structs.md
           children:
-            - file: enum_methods.md
+            - file: struct_intro.md
+            - file: regular_struct.md
+            - file: tuple_struct.md
 
-        - file: chap_types_v_structs.md
+        - file: chap_functions_ii_methods.md
           children:
-            - file: struct.md
+            - file: methods.md
+            - file: instance_methods.md
+            - file: static_methods.md
+            - file: builder_setters.md
+            - file: setter_methods.md
+            - file: enum_methods.md
 
         - file: chap_polymorphism_i_generics.md
           children:
@@ -118,12 +128,7 @@ project:
           children:
             - file: option.md
 
-        - file: chap_syntax_iv_if_while_let.md
-          children:
-            - file: if_let.md
-            - file: while_let.md
-
-        - file: chap_types_vi_vec_string.md
+        - file: chap_types_v_vec_string.md
           children:
             - file: vec.md
             - file: string.md
@@ -155,7 +160,7 @@ project:
             - file: macro_derive.md
             - file: macro_attr.md
 
-        - file: chap_functions_ii.md
+        - file: chap_functions_iii.md
           children:
             - file: memory_passing_value.md
             - file: closures.md
@@ -174,18 +179,18 @@ project:
             - file: project.md
             - file: project_toml.md
 
-        - file: chap_types_vii_sequences.md
+        - file: chap_types_vi_sequences.md
           children:
             - file: coll_intro.md
             - file: vec_deque.md
             - file: linked_list.md
 
-        - file: chap_types_viii_hashes.md
+        - file: chap_types_vii_hashes.md
           children:
             - file: hashmap.md
             - file: hashset.md
 
-        - file: chap_types_ix_trees.md
+        - file: chap_types_viii_trees.md
           children:
             - file: btreemap.md
             - file: btreeset.md
@@ -291,10 +296,10 @@ project:
 
         - file: chap_howto.md
           children:
-            - file: howto_path.md
-            - file: howto_missing_tools.md
             - file: howto_cargo_inst_crate.md
             - file: howto_env_vars.md
+            - file: howto_missing_tools.md
+            - file: howto_path.md
 
         - file: chap_solutions.md
           children:

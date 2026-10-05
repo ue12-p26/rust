@@ -48,10 +48,24 @@ They work the same way as the `format!()` macro (see
 [the `format!()` macro section](#chp-format) for details).
 :::
 
+## Printing of simple objects
+
 Printing a simple string:
 
 ```{code-cell} rust
 println!("Hello, world!");
+```
+
+Using unnamed markers:
+
+```{code-cell} rust
+println!("my values: {} {}", 12.34, 789);
+```
+
+Using named markers:
+
+```{code-cell} rust
+println!("my_values: {a} - {b}", b=12.34, a=789);
 ```
 
 Printing a variable:
@@ -81,22 +95,41 @@ let prec = 3;
 println!("x: {:.*}", prec, 0.123456789);
 ```
 
-Using unnamed markers:
+## Printing of complex objects
+
+Printing a *complex object* requires a special formatter. The easiest
+way is to use the *Debug* formatter that is included in *core* objects
+and objects from the *standard library*. For custom types, the *Debug*
+trait can easily be implemented using the `derive()` attribute as we
+will see later.
+
+Let us define a tuple object with three values:
 
 ```{code-cell} rust
-println!("my values: {} {}", 12.34, 789);
+:tags: [remove-cell]
+
+:clear
 ```
 
-Using a named marker:
-
 ```{code-cell} rust
-println!("my_value: {value}", value=12.34);
-```
+:class: seq-start badges border
 
-Printing a *complex object* (here a *tuple*) using the *pretty-print*
-(`:?`) formatting option of the *Debug* formatter:
-
-```{code-cell} rust
 let t = (1.5, "abc", true);
+```
+
+The *Debug* formatter being implemented for *tuple* objects, we can use
+the special *debug* formatter operator `?` to print our tuple:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+println!("{t:?}");
+```
+
+Using the `#` option, we can also enable the *pretty-print* output:
+
+```{code-cell} rust
+:class: seq-stop badges border
+
 println!("{t:#?}");
 ```

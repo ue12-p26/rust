@@ -1,3 +1,0 @@
----
-title: Types (v) - Structs
----

@@ -51,6 +51,86 @@ for i in [-50, 3, 46, 7, 10] {
 }
 ```
 
+## Missing cases
+
+`match` must be exhaustive and cover all cases, otherwise the compiler
+will raise an error:
+
+```{code-cell} rust
+:tags: [raises-exception]
+
+let n = 1111;
+match n {
+  -100..100 => println!("My single case.")
+};
+```
+
+## Using variables
+
+For each match case, we may set the matched value into a variable that
+we can use:
+
+- Inside an additional `if` condition.
+- In the action part, on the right of `=>`.
+
+For instance, if we define the following function:
+
+```{code-cell} rust
+:tags: [remove-cell]
+
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
+
+fn double(n: i32) -> i32 {
+  2 * n
+}
+```
+
+We may test its returned values with `match`, and set them into a
+variable `n`:
+
+```{code-cell} rust
+:class: seq-stop badges border
+
+for i in [-50, 3, 46, 5, 7, 10] {
+  match double(i) {
+    n if n <= -10      => println!("{n} is <= -10."),
+    n @ 0..7           => println!("Between 0 and 7 excluded: {n}."),
+    n @ (7 | 13 | 20)  => println!("{n} is in 7, 13, 20."),
+    10                 => println!("Exactly 10!"),
+    n                  => println!("Other value: {n}."),
+  };
+}
+```
+
+## Handling floats
+
+Float values can be used inside a `match` statement. One way to match
+them is to use *float ranges*:
+
+```{code-cell} rust
+match 1.4 {
+  0.0..0.9  => println!("First case"),
+  0.9..1.8  => println!("Second case"),
+     x      => println!("Unhandled value {x}"),
+}
+```
+
+Another way is to use variables with `if` statements:
+
+```{code-cell} rust
+match 3.7 {
+  x if x <= 0.0  => println!("First case: {x}"),
+  x if x <= 0.9  => println!("Second case: {x}"),
+  x if x <= 3.3 => println!("Third case: {x}"),
+  x if x <= 7.6 => println!("Fourth case: {x}"),
+     x      => println!("Unhandled value {x}"),
+}
+```
+
 :::{exercise} Variable price (★★☆☆☆)
 :label: variable-price
 :enumerated: true
@@ -90,37 +170,6 @@ mass_prices
 ```
 
 [see solution](#variable-price-solution)
-
-## Missing cases
-
-`match` must be exhaustive and cover all cases, otherwise the compiler
-will raise an error:
-
-```{code-cell} rust
-:tags: [raises-exception]
-
-let n = 1111;
-match n {
-  -100..100 => println!("My single case.")
-};
-```
-
-## Using variables
-
-For each match case, we may set the matched value into a variable in
-order to use it inside right expression/code:
-
-```{code-cell} rust
-for i in [-50, 3, 46, 7, 10] {
-  match i {
-    n if n <= -10      => println!("{n} is <= -10."),
-    n @ 0..5           => println!("Between 0 and 5 excluded: {n}."),
-    n @ (7 | 13 | 20)  => println!("{n} is in 7, 13, 20."),
-    10                 => println!("Exactly 10!"),
-    n                  => println!("Other value: {n}."),
-  };
-}
-```
 
 ## With variants
 

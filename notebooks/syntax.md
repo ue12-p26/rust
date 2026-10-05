@@ -71,3 +71,26 @@ for i in 0..10 {
 }
 println!("")
 ```
+
+## Naming conventions
+
+In Rust, naming conventions are as shown in {numref}`tab-rust-naming`.
+
+:::{list-table} Rust naming conventions
+:name: tab-rust-naming
+:header-rows: 1
+:align: center
+
+* - Object
+  - Naming style
+  - Examples
+* - `struct`, `enum`
+  - `PascalCase`
+  - `struct YamlReader`, `enum CardSuit`
+* - Local variable, function
+  - `snake_case`
+  - `size`, `nb_elements`, `parse_file()`.
+* - Constant
+  - `CONSTANT_CASE`
+  - `MAX_THREADS`, `TIMEOUT`.
+:::

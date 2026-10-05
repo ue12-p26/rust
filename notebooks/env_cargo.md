@@ -183,39 +183,34 @@ The project file defines a *project name*, a *project version* and the
 bat foo/Cargo.toml
 ```
 
-### Initializing a project inside a Git repository
-
-Let us a create an empty Git repository first:
+If we look at the *hidden* files inside the project folder, we find that
+two Git related files have also been created:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-git init foo2
+ls -a foo
 ```
 
-Then let we run Cargo to initialize a Rust project:
+The `.git` folder means a Git database has been created.
+The `.gitignore` file contains a single line that makes Git ignore the
+`target` folder that is used by Cargo for its building outputs:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-cargo init --bin foo2
+bat foo/.gitignore
 ```
 
-Cargo created the same files as before:
+Note that, however, the created Git database is left empty. All
+created files are list as *untracked*. This is up to us to include
+them or not inside the Git repository:
 
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-eza -T foo2
-```
-
-But also a `.gitignore` file that contains a single line in order to ignore
-the `target` folder which is used by Cargo for compiling:
-
-```{code-cell} bash
-:class: dark-background full-color-output seq-cont badges border
-
-bat foo2/.gitignore
+pushd foo
+git status
 ```
 
 :::{note} `new` sub-command
@@ -237,7 +232,6 @@ To compile a whole project, we use the `build` sub-command:
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-pushd foo2
 cargo build
 ```
 
@@ -265,7 +259,7 @@ set the binary to run:
 ```{code-cell} bash
 :class: dark-background full-color-output seq-cont badges border
 
-cargo run --bin foo2
+cargo run --bin foo
 ```
 
 To pass, argument to our binary, we would set them after a double dash `--`:
@@ -274,7 +268,7 @@ To pass, argument to our binary, we would set them after a double dash `--`:
 :tags: [skip-execution]
 :class: dark-background full-color-output disabled
 
-cargo run --bin foo2 -- arg1 arg2 arg3 ...
+cargo run --bin foo -- arg1 arg2 arg3 ...
 ```
 
 ## Adding dependencies
@@ -393,7 +387,7 @@ cargo add --dev glob
 2. Build and run the project.
 3. Add the crate dependency `text2art` to the project.
 4. See in the log messages how `cargo` adds the dependency and its
-   dependencies and print the selected versions.
+   dependencies and prints the selected versions.
 5. Check what has changed inside the file `Cargo.toml`.
 6. Overwrite the file `src/main.rs` with the following code:
 

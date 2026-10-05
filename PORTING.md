@@ -64,19 +64,19 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   e056a95
-subject:  Resolve "Error handling"
-date:     2026-09-29
+commit:   803b3be
+subject:  Resolve "Corrections & precisions"
+date:     2026-10-04
 ```
 
-Previously caught up to aa480d04a891d02ffb2e1c386fce66edcc4c746d (2026-09-28).
+Previously caught up to e056a95d868273d2207dea9c7cf512ce21680aa5 (2026-09-29).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
-(`e056a95`), so the MyST port is fully caught up as of this pass.
+(`803b3be`), so the MyST port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
-`git -C <repo> diff e056a95..<new-ref> -- <foo>.tex` per file to identify
+`git -C <repo> diff 803b3be..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
 
 ### History: the `109-collections` branch, and how it landed on `main`
@@ -2211,3 +2211,143 @@ another `Error handling`-prefixed chapter anywhere in the book, every
 `chap_error_handling_*` file after that insertion point needs its
 roman numeral (and title) bumped, mirroring what happened here to the
 old `chap_error_handling_ii.md` → `chap_error_handling_v.md`.
+
+### 59. Enums/Structs/Methods split and reshuffled, Match/if-let merged, from `803b3be`
+
+A large "Corrections & precisions" commit. Three kinds of change mixed
+together:
+
+**Pure LaTeX table reformatting, no content change** (verified
+byte-identical prose, `\var{}` → `\cod{}` only): `array`, `bitwise_intro`,
+`bool`, `btreemap`, `btreeset`, `char`, `coll_summary`, `float`, `hashmap`,
+`hashset`, `int`, `int_repr`, `linked_list`, `macro_fct`, `macro_fct_list`,
+`print` (table only; see below for real print.md content), `project_toml`,
+`ranges`, `slices`, `string`, `vec`, `vec_deque`, `why_rust` — not
+re-ported, the MyST `{list-table}`s were already in that shape.
+
+**`enum.md` split into `enum_type.md` + `tagged_union.md`** (matching
+upstream's `enum.tex` → `enum_type.tex`/`tagged_union.tex` split), same
+content, upstream's own typo "Tagger unions" → "Tagged unions" fixed.
+
+**`struct.md` (483 lines, one file) split into 8 pages**, each upstream
+section becoming its own subfile: `struct_intro.md` (just the
+`# Introduction` prose), `regular_struct.md`, `tuple_struct.md`
+(moved right after `regular_struct.md`, no longer trailing the whole
+chapter), and — now under a brand new **`Functions II - Methods`**
+chapter instead of the old **`Types IV - Methods`** — `methods.md`
+(the `# Introduction` splitting static/instance methods),
+`instance_methods.md`, `static_methods.md`, `builder_setters.md`,
+`setter_methods.md`, and the pre-existing `enum_methods.md` (content
+untouched, just relocated here). Verified byte-identical prose/code
+throughout (just `\var{}` → `\cod{}`); our existing local fixes
+(`year: i16 = 1949` type annotation, "application window", "next
+section", etc.) were preserved across the split, not reverted.
+
+**Chapter renumbering cascade** — since `Types IV - Methods` no longer
+exists as a `Types`-prefixed chapter (it's now `Functions`-prefixed),
+every subsequent `Types`-prefixed chapter shifts its roman numeral down
+by one, and since the new `Functions II - Methods` is inserted before
+the old `Functions II` (`memory_passing_value`/`closures`), that one
+becomes `Functions III`:
+
+| Old file (old title) | New file (new title) |
+|---|---|
+| `chap_types_v_structs.md` (Types V) | `chap_types_iv_structs.md` (Types IV) |
+| `chap_types_vi_vec_string.md` (Types VI) | `chap_types_v_vec_string.md` (Types V) |
+| `chap_types_vii_sequences.md` (Types VII) | `chap_types_vi_sequences.md` (Types VI) |
+| `chap_types_viii_hashes.md` (Types VIII) | `chap_types_vii_hashes.md` (Types VII) |
+| `chap_types_ix_trees.md` (Types IX) | `chap_types_viii_trees.md` (Types VIII) |
+| `chap_types_iv_methods.md` (Types IV) | deleted — content now in `chap_functions_ii_methods.md` |
+| `chap_functions_ii.md` (Functions II) | `chap_functions_iii.md` (Functions III) |
+
+**`if_let.md`/`while_let.md` rewritten, merged with `match.md` into one
+chapter**: `chap_syntax_iv_if_while_let.md` (its own chapter, right
+after `Error handling I - Option`) is deleted; `if_let.md` and
+`while_let.md` move into `chap_syntax_iii_match.md`, renamed
+`chap_syntax_iii_if_let_match.md`, retitled "Syntax III - If/let, match
+& co", ordered `if_let.md`, `while_let.md`, `match.md`. Both pages get
+wholly new examples: `if_let.md` now uses a `Speed` tagged union
+(`Miles`/`Km`/`Unknown`) across three sub-sections (plain `if/let`,
+"Returned value", `let/else`); `while_let.md` now uses a `Measure`
+tagged union (`Value`/`Nil`) driven by a `get_measure()` function, with
+the infinite-loop warning now a plain `:::{danger}` box (was inline
+text). Both pages' old `Option`-based examples and their exercises
+("Multiple search in a string", "Iterating over results") move to a new
+"Usage with if/let & co" section at the end of `option.md` — the
+solutions (`sol_ctrl.md`) were untouched upstream, only the exercise
+*text* moved, so no solution changes needed. All new Rust cells run
+against the real kernel; `let mut i = 0;` needed an explicit
+`let mut i: usize = 0;` (evcxr infers each top-level `let` from its own
+statement, and `i` is only used as a `usize` argument two cells later).
+
+**`match.md` reorganized**: "Missing cases" and "Using variables" move
+from *after* the "Variable price" exercise to *before* it. "Using
+variables"'s example changes from `match i { n if ... }` directly on the
+loop variable to `match double(i) { n if ... }` (new `double()` helper
+function, `n @ 0..5` → `n @ 0..7`, input array gains a `5`). New
+"Handling floats" subsection added after it (float-range matching, then
+`if`-guarded float matching), still before the exercise.
+
+**`option.md` methods table expanded**: `and`, `and_then`, `cloned`,
+`copied`, `ok_or`, `ok_or_else`, `or`, `or_else`, `transpose`, `unzip`,
+`xor`, `zip` added; `map(v, f)` → `map_or(v, f)`; `take(p)` →
+`take_if(p)`. Intro paragraph drops the Wikipedia "Option type" aside
+for a direct doc link.
+
+**`traits.md`**: "almost any data type can implement a trait: *structs*,
+*enums*, ..." → a bullet list; the `cmp`/`ops` paragraph's "Traits"
+link reworded to "ops traits" (upstream's new `\OpsTraits` macro).
+
+**`print.md`**: new "Printing of simple objects"/"Printing of complex
+objects" subsections; a new "named markers" example
+(`{a} - {b}`, `b=12.34, a=789`) added next to the existing unnamed-markers
+one; the old single-cell tuple pretty-print example becomes a
+`seq-start`/`cont`/`stop` sequence (define the tuple, print with `{t:?}`,
+then `{t:#?}`), replacing the old direct-to-`:#?` jump. Verified against
+the kernel.
+
+**`env_cargo.md`**: the "Initializing a project inside a Git repository"
+subsection (manually `git init foo2` + `cargo init --bin foo2`) is
+replaced — `cargo init --bin foo` in this environment's cargo version
+already creates `.git`/`.gitignore` automatically, so the new text
+instead runs `ls -a foo`, explains the auto-created `.git`/`.gitignore`,
+and runs `pushd foo; git status` to show the untracked files. All
+subsequent `foo2` references (`cargo build`, `cargo run --bin foo2`,
+...) become plain `foo`, and the `pushd` that used to happen in the
+"Building the project" section now happens here instead. Verified end
+to end against a real `cargo init`/`git status` run in this environment.
+
+**`syntax.md`** gains a new "Naming conventions" subsection with a
+`tab-rust-naming` table. Upstream's own text references
+`\autoref{chp:Naming}`, pointing at a `howto_naming.tex` file that
+`main.tex` now also `\subfile{}`s — but, like the earlier
+`howto_sizes.tex` case (item 56), **the file does not exist**, neither
+in this repo nor in the `common` submodule. Ported without that
+dangling reference.
+
+**`fct_main.md`**'s "First program" exercise and `sol_ctrl.md`'s wording
+("print the selected versions" → "prints the selected versions" in
+`env_cargo.md`'s dependency exercise) get minor copy-edit/bullet-list
+formatting, carried over.
+
+**Appendices > How-tos reordered**: `howto_cargo_inst_crate.md`,
+`howto_env_vars.md`, `howto_missing_tools.md`, `howto_path.md`
+(alphabetical, matching upstream's new `main.tex` order — `howto_naming`
+and `howto_sizes` still excluded, neither exists).
+
+**Self-discovered defect, fixed where touched by this pass**: a
+`{code-cell} rust` cell whose last (or only) statement is a bare
+`print!()` with no trailing newline produces **no visible output at
+all** in the rendered site — evcxr's stdout redirection only flushes on
+a newline-producing write, and a cell's buffered-but-unflushed output is
+silently dropped at cell end (does not leak into the next cell either;
+verified with the real kernel). `for.md` already had three such cells
+(pre-existing, unrelated to this upstream pass except one line);
+`while_let.md`'s new `while/let` example and the `while/let`-on-`Option`
+example newly added to `option.md` both have the same shape. Fixed all
+three by appending a same-cell `println!();` after the loop (matching
+the pattern `syntax.md` already used). **Not yet fixed**: the same
+pattern also exists, untouched, in `closures.md`, `loop.md` (×2),
+`sol_enum.md`, `sol_str.md`, `vec.md` (×2) — flagged for a follow-up
+pass, out of scope here.
+

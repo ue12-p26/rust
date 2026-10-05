@@ -219,3 +219,51 @@ It returns `None` when no match is found:
 :::
 
 [see solution](#ret-option-solution)
+
+## Usage with if/let & co
+
+Using `if/let` we can get the eventual value contained in an `Option`
+and run some code with it:
+
+```{code-cell} rust
+let x = Some(10u8);
+if let Some(v) = x {
+  println!("My value is {v}");
+}
+```
+
+In the following example, we loop on all elements of `x`, taking them
+one by one until there is no element left and `pop` returns `None`:
+
+```{code-cell} rust
+let mut i = 3..10;
+
+while let Some(n) = i.next() {
+  print!("{n} ");
+}
+println!();
+```
+
+:::{exercise} Multiple search in a string
+:label: mult-search-str
+:enumerated: true
+
+1. Write a loop to search for letters `'c'`, `'a'`, `'t'`, `'z'`, `'h'`
+   inside string `"abcdefghijklmnop"`.
+2. Test the return value of method `find()` using the `if`/`let`
+   construct.
+3. Print the found letters and their indices in the string.
+:::
+
+[see solution](#mult-search-str-solution)
+
+:::{exercise} Iterating over results
+:label: iter-results
+:enumerated: true
+
+1. Use the `str` method `lines()` to iterate over the lines contained
+   in the string `"abc\nde\nfghi\njklm\nnop\n"`.
+2. Print each found line.
+:::
+
+[see solution](#iter-results-solution)

@@ -29,6 +29,7 @@ let a = [1, 2, 3, 4];
 for n in a {
   print!("{n} ");
 }
+println!();
 ```
 
 A range being an iterator, we can use the `for` statement on it:
@@ -37,6 +38,7 @@ A range being an iterator, we can use the `for` statement on it:
 for i in 1..=10 {
   print!("{i} ");
 }
+println!();
 ```
 
 Many methods (see {numref}`tab-iter-methods` for a list of
@@ -49,6 +51,7 @@ from higher values to lower values, using the `rev()` iterator method:
 for i in (1..=10).rev() {
   print!("{i} ");
 }
+println!();
 ```
 
 As for the `loop` statement:

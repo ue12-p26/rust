@@ -79,10 +79,11 @@ executes the *build* step if needed.
 :label: first-program
 :enumerated: true
 
-Create a new Cargo project named `factorial` and write a program that
-computes the factorial of 20, using a recursive function.
-Print the result on the standard output stream (i.e.: using the
-`println!()` macro).
+1. Create a new Cargo project named `factorial`.
+2. Write a program that computes the factorial of 20, using a recursive
+   function.
+3. Print the result on the standard output stream (i.e.: using the
+   `println!()` macro).
 :::
 
 [see solution](#first-program-solution)

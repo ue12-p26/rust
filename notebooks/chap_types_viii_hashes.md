@@ -1,3 +1,0 @@
----
-title: Types (viii) - Hashes
----

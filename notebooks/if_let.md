@@ -11,86 +11,80 @@ kernelspec:
 
 # if/let
 
-The `if/let` statement is a concise way to treat the case of a value
-matching one pattern only.
+The `if/let` statement is a concise way to treat the case of an enum
+value matching one pattern only.
 
-In the following example the code block of the `if/let` statement is only
-executed if `x` is a `Some`:
+Let us define a tagged union:
 
 ```{code-cell} rust
-let x = Some(10u8);
-if let Some(v) = x {
-  println!("My value is {v}");
+:tags: [remove-cell]
+
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
+
+enum Speed {
+  Miles(f32), // Miles per hour
+  Km(f32),    // Km/h
+  Unknown,
 }
 ```
 
-:::{note} Equivalent match statement
-We may have written the same code using a `match`, however it is a bit
-longer since we must ignore explicitly all other case:
+And an array of values:
 
 ```{code-cell} rust
-let x = Some(10u8);
-match x {
-  Some(v) => println!("My value is {v}"),
-    _     => (),
+:class: seq-cont badges border
+
+let speeds = [Speed::Unknown, Speed::Km(60.5), Speed::Miles(40.2)];
+```
+
+In the following example the code block of the `if/let` statement is
+used twice in order to process the two cases `Miles` and `Km`:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+for x in &speeds {
+  if let Speed::Miles(speed) = x {
+    println!("Speed is {speed} miles/h.");
+  }
+  else if let Speed::Km(speed) = x {
+    println!("Speed is {speed} km/h.");
+  }
 }
 ```
 
-:::
+## Returned value
+
+With the `if/let/else` expression we may return values, the restriction
+being that all returned values must be of the same type. Let us use a
+`if/let/else` expression to get a speed in km/h all the time:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+for x in &speeds {
+  let speed = if let Speed::Miles(s) = x { s / 0.62 }
+              else if let Speed::Km(s) = x { *s }
+              else { 0.0 };
+  println!("Speed is {speed} km/h.");
+}
+```
 
 ## let/else
 
-The `let/else` control flow works the other way, letting us match a value
-and run a code block when it does not match:
+The `let/else` control flow works the other way, letting us match a
+value and run a code block when it does not match:
 
 ```{code-cell} rust
-fn foo(x: Option<u8>) -> Option<u8> {
-  let Some(v) = x else {
-    return None;
+:class: seq-stop badges border
+
+for x in &speeds {
+  let Speed::Miles(speed) = x else {
+    continue;
   };
-  Some(2 * v)
+  println!("Speed is {speed} miles/h.");
 }
-
-(foo(Some(10u8)), foo(None))
 ```
-
-## if/let/else
-
-The `if/let/else` expression returns a value, using two different
-expressions depending on a value matching:
-
-```{code-cell} rust
-let x = Some(10u8);
-let y = if let Some(v) = x { Some(2 * v) } else { None };
-y
-```
-
-:::{warning} Same return type
-Note the usage `Some(...)` inside the `if` block. This is compulsory
-because we return a `None` in the `else` block, hence the return type
-must be an `Option<T>`.
-Both `if` and `else` blocks must return the same value type otherwise
-the compiler will fail:
-
-```{code-cell} rust
-:tags: [raises-exception]
-
-let x = Some(10u8);
-let y = if let Some(v) = x { 2 * v } else { None };
-y
-```
-
-:::
-
-:::{exercise} Multiple search in a string
-:label: mult-search-str
-:enumerated: true
-
-1. Write a loop to search for letters `'c'`, `'a'`, `'t'`, `'z'`, `'h'`
-   inside string `"abcdefghijklmnop"`.
-2. Test the return value of method `find()` using the `if`/`let`
-   construct.
-3. Print the found letters and their indices in the string.
-:::
-
-[see solution](#mult-search-str-solution)
