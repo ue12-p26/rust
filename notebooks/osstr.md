@@ -24,8 +24,8 @@ main operating systems:
 
 [OsStr](https://doc.rust-lang.org/std/ffi/struct.OsStr.html) and
 [OsString](https://doc.rust-lang.org/std/ffi/struct.OsString.html)
-allow to make the transition between Rust's strings and the operating
-system:
+(part of the `std::ffi` module) allow to make the transition between
+Rust's strings and the operating system:
 
 - `OsString` stores its string on the *heap*.
 - `OsStr` is a *slice* on an operating system's string.

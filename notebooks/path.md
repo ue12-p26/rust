@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: rust
+  display_name: Rust
+  language: rust
+---
+
 # Path & PathBuf
 
 [Path](https://doc.rust-lang.org/std/path/struct.Path.html) and
@@ -22,7 +33,8 @@ useful methods for these both types.
 * - `as_os_str()`
   - Returns the underlying `OsStr` slice.
 * - `canonicalize()`
-  - Returns the canonical & absolute form of the path.
+  - Returns the canonical & absolute form of the path with symbolic
+    links resolved.
 * - `components()`
   - Returns an iterator over all individual components of the path.
 * - `display()`
@@ -87,6 +99,74 @@ useful methods for these both types.
   - Create a `PathBuf` from this path by replacing the file name.
 :::
 
+The `Path` struct resides inside the `std::path` module. We declare it
+using the `use` keyword:
+
+```{code-cell} rust
+:tags: [remove-cell]
+
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
+
+use std::path::Path;
+```
+
+The `new()` method can be used to create a new `Path` object from a
+string slice:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+let file = Path::new("data/measures.tsv");
+```
+
+We can extract the file name from the path as following:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+file.file_name()
+```
+
+The extension:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+file.extension()
+```
+
+The name without the extension:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+file.file_stem()
+```
+
+We can change the extension:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+file.with_extension("txt")
+```
+
+:::{warning} Empty path
+The `is_empty()` method only tests if a `Path` object is empty, not if
+a file is empty:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+(Path::new("").is_empty(), Path::new("foo.txt").is_empty())
+```
+
+:::
+
 :::{list-table} Some methods of PathBuf
 :name: tab-path-buf
 :header-rows: 1
@@ -110,4 +190,44 @@ useful methods for these both types.
   - Replaces the current extension with `e`.
 * - `set_file_name(f)`
   - Replaces the current file name with `f`.
+:::
+
+The `PathBuf` struct resides inside the `std::path` module. We declare
+it using the `use` keyword:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+use std::path::PathBuf;
+```
+
+The `new()` method can be used to create a new empty `PathBuf` object:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+let mut file2 = PathBuf::new();
+```
+
+We can then add some path to it:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+file2.push("README.md");
+file2
+```
+
+We may also transform a `Path` instance into a new `PathBuf` instance:
+
+```{code-cell} rust
+:class: seq-stop badges border
+
+file.to_path_buf()
+```
+
+:::{danger} TODO
+:class: readiness-todo
+
+Add exercise.
 :::

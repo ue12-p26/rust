@@ -227,13 +227,16 @@ project:
           children:
             - file: osstr.md
             - file: path.md
-
-        - file: chap_io_iii.md
-          children:
-            - file: io.md
+            - file: fs.md
             - file: file.md
+
+        - file: chap_io_iii_cmdline_logs.md
+          children:
             - file: args.md
             - file: logs.md
+
+        - file: chap_io_iv_formatters.md
+          children:
             - file: format_traits.md
 
         - file: chap_testing.md

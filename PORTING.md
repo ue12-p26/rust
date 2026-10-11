@@ -64,19 +64,19 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   42ca04b
-subject:  Resolve "Chapter about file system"
-date:     2026-10-04
+commit:   aef71de
+subject:  Resolve "File I/O"
+date:     2026-10-08
 ```
 
-Previously caught up to 803b3bedbbef97cf352044cc64d1fcd3f83cc389 (2026-10-04).
+Previously caught up to 42ca04b7efa90b893c3b3d7251e01343a785a2e8 (2026-10-04).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
-(`42ca04b`), so the MyST port is fully caught up as of this pass.
+(`aef71de`), so the MyST port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
-`git -C <repo> diff 42ca04b..<new-ref> -- <foo>.tex` per file to identify
+`git -C <repo> diff aef71de..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
 
 ### History: the `109-collections` branch, and how it landed on `main`
@@ -2395,3 +2395,77 @@ global and don't reset per `\part`).
 `chap_memory_vi_pointers_again.md`, in *Mastery*, right before
 `Threading`): three new one-page `TODO` stubs, `cow.md`, `rc.md`,
 `arc.md` (`Cow`, `Rc`, `Arc`).
+
+### 61. `fs.md` (new, replaces `io.md`) and `file.md` rewritten, `path.md` gains real examples, I/O chapter split in three, from `aef71de`
+
+**`io.md` deleted**, replaced by new **`fs.md`** ("File system functions"):
+a `tab-file-system` table of `std::fs` module functions
+(`copy`/`create_dir`/`read`/`write`/...), then a `seq-start..stop`
+sequence covering writing a whole file (`std::fs::write`), reading it
+back (`std::fs::read_to_string`), getting its size via
+`file.metadata()?.len()`, checking existence (`exists()`),
+`is_file()`/`is_dir()`, and creating folders
+(`create_dir`/`create_dir_all`).
+
+**`file.md` rewritten from scratch** (was a `TODO` stub with one
+real example about recoverable errors, now a full "File" chapter):
+`tab-file`/`tab-read`/`tab-seek`/`tab-write` tables for the `File`
+struct and the `Read`/`Seek`/`io::Write` traits it implements; a
+`seq-start..stop` sequence covering write mode (`File::create()`,
+`File` object fields, a security-issue warning linking
+[Bugs Rust Won't Catch](https://corrode.dev/blog/bugs-rust-wont-catch/#don-t-trust-a-path-across-two-syscalls)
+— new `refs.bib` entry, inlined as a plain link per item 6's
+convention), `OpenOptions` (with its own `tab-open-options` table), and
+the `write!()`/`writeln!()` macros; a second `seq-start..stop` sequence
+covering closing a file (drop-based), appending, read mode (with a
+mutability-of-`file` warning), and the `BufRead` trait / `BufReader`
+line-by-line reading (`tab-buf-read` table, with a
+no-mutability-needed warning since the file is moved, not borrowed);
+and finally a standalone example checking the `io::Error`/`io::ErrorKind`
+returned by `std::fs` functions, opening-or-creating a file depending on
+`ErrorKind::NotFound`. All of this (old `file.md`'s "returning an error
+from `main()`" example, the "check the error type"/"detailed
+version"/`?`-operator/one-liner `disable`d snippets) is gone, superseded
+by the richer narrative above — nothing carried over verbatim.
+
+**`path.md` gains real executable examples** after each of its two
+tables: for `Path`, a `seq-start..stop` sequence (`Path::new()`,
+`file_name()`, `extension()`, `file_stem()`, `with_extension()`, an
+`is_empty()` warning comparing an empty path vs. a non-empty one); for
+`PathBuf`, a continuing sequence (`PathBuf::new()`, `push()`,
+`to_path_buf()`), plus a closing `TODO: Add exercise`. `path.md` gains
+jupytext/kernelspec frontmatter (it had none, no code cells before).
+`osstr.md`'s intro gains a parenthetical on which module `OsStr`/
+`OsString` live in — **upstream says "part of `std::fs` module", which
+is wrong** (confirmed via the `\href` targets already in the same
+file: both are `std::ffi::OsStr`/`std::ffi::OsString`); ported as
+"part of the `std::ffi` module" instead.
+
+**Self-discovered hygiene issue, fixed**: `fs.md` and `file.md` are the
+*first* pages in this whole port whose Rust cells actually touch the
+real file system (`std::fs::write`, `File::create`, `create_dir`, ...).
+Unlike bash-kernel pages, which already `cd $(mktemp -d)` via
+`bash-setup.sh` (sourced in a `remove-cell`), there was no equivalent
+isolation for the Rust kernel — verified directly that an evcxr kernel
+with no such setup writes into whatever directory the Jupyter server
+was launched from (i.e. `notebooks/`, polluting the repo on every
+build). Fixed by adding, as the first statement of each page's
+`remove-cell`/`:clear` setup, a `std::env::set_current_dir()` into a
+freshly-created `std::env::temp_dir()` subdirectory. **Caveat found
+while testing**: evcxr's `:clear` command resets the working directory
+back to the kernel's launch directory (not just the compiled
+variables/functions) — confirmed directly. `file.md` uses `:clear`
+twice more (between its three independent `seq-start..stop` groups), so
+the same `set_current_dir` snippet is repeated after each `:clear`,
+not just once at the top of the page.
+
+**I/O chapter split in three**: the old plain `\PrefixedChapter{I/O}{}`
+(`io`, `file`, `args`, `logs`, `format_traits`) is replaced by `fs`/
+`file` moving into the *same* chapter as `osstr`/`path`
+(`\PrefixedChapter{I/O}{File system}`, our `chap_io_ii_file_system.md`,
+now with 4 children), plus two new chapters: `\PrefixedChapter{I/O}
+{Command line & logs}` (`args`, `logs` — new `chap_io_iii_cmdline_logs.md`,
+title "I/O III - Command line & logs") and `\PrefixedChapter{I/O}
+{Formatters}` (`format_traits` alone — new `chap_io_iv_formatters.md`,
+title "I/O IV - Formatters"). The old `chap_io_iii.md` ("I/O III",
+untitled) is deleted.
