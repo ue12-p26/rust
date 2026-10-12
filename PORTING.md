@@ -79,6 +79,21 @@ When resuming, fetch upstream and use
 `git -C <repo> diff aef71de..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
 
+**The `common` submodule must also be kept current.** `upstream-tex`
+pulls shared macros/assets (`alias.sty`, and several `texts/howto_*.tex`
+files) from a separate `courses-common` git submodule at `common/`.
+Each superproject commit records a `common` pointer, but checking that
+pointer out requires an *explicit* `git submodule update` (or
+`git -C upstream-tex/common fetch && git -C upstream-tex submodule
+update --remote common`) — it is not automatic on `git fetch`/`git
+log` of the superproject alone. **This was missed for a while**: the
+local `common/` checkout silently lagged several commits behind what
+every superproject commit since `803b3be` actually recorded, which led
+to two false "this file doesn't exist upstream" conclusions (items 56
+and 59, corrected in item 62 below). On resuming, update the submodule
+checkout *before* concluding that any `\subfile{howto_*}` or similar
+reference is dangling.
+
 ### History: the `109-collections` branch, and how it landed on `main`
 
 Starting from `eb55b74`, upstream opened a feature branch
@@ -2010,17 +2025,18 @@ first: it all runs as-is.
 - Typo "instead the object on the stack, we stored it" → "instead of
   storing the object on the stack, we store it".
 
-**Missing upstream file**: `box.tex` (twice) says `See \autoref{chp:Word}
-to learn about what is a word`, and `main.tex` adds `\subfile{howto_sizes}`
-to the How-tos — but **`howto_sizes.tex` does not exist** in this
-commit (nor at `origin/main`), so `chp:Word` is a dangling label. We do
-not create a `howto_sizes.md`; the exercise text instead defines the
-term inline ("a *word* is the natural unit of data of the processor
-(8 bytes on a 64-bit architecture)") and the second reference (in
-"Size of a Box") is dropped, since `Size of a Box` already gives the 8
-bytes/16 bytes figures. **On merge:** when upstream adds
-`howto_sizes.tex`, port it as a How-tos page and turn the inline
-definition into a link to it.
+**Missing upstream file (CORRECTED — see item 62)**: `box.tex` (twice)
+says `See \autoref{chp:Word} to learn about what is a word`, and
+`main.tex` adds `\subfile{howto_sizes}` to the How-tos — this was
+reported here as **`howto_sizes.tex` does not exist**, but that was
+wrong: the file lives in the `common` submodule
+(`common/texts/howto_sizes.tex`), which our local checkout had never
+been updated to fetch (see "Upstream reference" above). At the time, we
+did not create a `howto_sizes.md`; the exercise text instead defined
+the term inline ("a *word* is the natural unit of data of the
+processor (8 bytes on a 64-bit architecture)") and the second reference
+(in "Size of a Box") was dropped. **Fixed in item 62**: `howto_sizes.md`
+now exists and both references link to it properly.
 
 **`boxed_trait.md`** (new, in *Polymorphism V - Traits* between
 `traits_in_fields.md` and `trait_bounds.md`; anchor `(chp-boxed-trait)=`
@@ -2320,10 +2336,12 @@ to end against a real `cargo init`/`git status` run in this environment.
 **`syntax.md`** gains a new "Naming conventions" subsection with a
 `tab-rust-naming` table. Upstream's own text references
 `\autoref{chp:Naming}`, pointing at a `howto_naming.tex` file that
-`main.tex` now also `\subfile{}`s — but, like the earlier
-`howto_sizes.tex` case (item 56), **the file does not exist**, neither
-in this repo nor in the `common` submodule. Ported without that
-dangling reference.
+`main.tex` now also `\subfile{}`s. **CORRECTED in item 62**: this was
+reported here as "the file does not exist, neither in this repo nor
+in the `common` submodule" — wrong, same root cause as the
+`howto_sizes.tex` case (item 56): a stale local `common/` checkout.
+The dangling reference was ported without a link at the time; item 62
+fixes it to a proper link.
 
 **`fct_main.md`**'s "First program" exercise and `sol_ctrl.md`'s wording
 ("print the selected versions" → "prints the selected versions" in
@@ -2469,3 +2487,53 @@ title "I/O III - Command line & logs") and `\PrefixedChapter{I/O}
 {Formatters}` (`format_traits` alone — new `chap_io_iv_formatters.md`,
 title "I/O IV - Formatters"). The old `chap_io_iii.md` ("I/O III",
 untitled) is deleted.
+
+### 62. Retrofit: `howto_sizes.md` and `howto_naming.md` (the `common` submodule had never been updated)
+
+Triggered by an explicit ask to pull the `common` submodule. Running
+`git submodule update --remote common` moved the local checkout from
+`5657a6f` (2026-09-29, already 5 commits behind even at the time of
+item 59's port) to `100d708` — the pointer recorded by `42ca04b`
+(item 60) was already `99ddad193f86e2e49ba0974506a3ffa3a659fdb3`
+("Howto about naming conventions"), meaning **`howto_naming.tex` has
+existed in `common` since before item 59 was written**, and
+`howto_sizes.tex` has existed since before item 56 (it was *already
+present* at `common`'s `0b00db2`, the pointer recorded by `961c19c` —
+confirmed directly with `git show 0b00db2:texts/howto_sizes.tex`).
+Both "does not exist" conclusions in items 56 and 59 were wrong,
+caused by inspecting a submodule checkout that `git fetch`/`git log`
+on the superproject alone does not update (corrected inline at both
+items above).
+
+New `howto_sizes.md` ("About memory and sizes"): a `Byte` subsection
+(anchor `(chp-byte)=` for upstream's `\label{chp:Byte}`, currently
+unreferenced) with the decimal/binary size-unit table split into two
+`{list-table}`s (`tab-size-units-decimal`/`-binary`) rather than one
+grouped-header table, matching how `bool_ops.md`'s logical/comparison
+split was handled (MyST `{list-table}` has no native
+support for upstream's spanning `\SetCell[c=4]{c}` header groups); and
+a `Word` subsection (anchor `(chp-word)=` for `\label{chp:Word}` — the
+target `box.md` has wanted since item 56).
+
+New `howto_naming.md` ("Naming conventions", anchor `(chp-naming)=`
+for `\label{chp:Naming}`): two tables, `tab-case-styles` (naming
+styles: `CONSTANT_CASE`, `Train-Case`, `camelCase`, `PascalCase`,
+`snake_case`, `kebab-case`) and `tab-semantic-styles` (Hungarian
+notation, interface/type prefixes, boolean prefixes, action-based
+function patterns, unit suffixes).
+
+Both added to `chap_howto.md`'s children in `main.tex`'s `\subfile`
+order: `howto_cargo_inst_crate`, `howto_env_vars`,
+`howto_missing_tools`, `howto_naming`, `howto_path`, `howto_sizes`.
+
+**Retrofitted the two dangling references** now that real targets
+exist: `box.md`'s exercise ("Compute the size of this `struct` type.
+A *word* is...") now reads "...See [Word](#chp-word) to learn about
+what is a *word*." (dropping the inline definition), and "Size of a
+Box" gains the trailing "See [Word](#chp-word) to know what is a
+*word*." sentence upstream always had. `syntax.md`'s "Naming
+conventions" intro now links `(see [Naming conventions](#chp-naming))`
+(also fixes an unrelated upstream typo in the same sentence — a
+dangling unbalanced parenthesis — by rephrasing rather than carrying
+it over literally).
+

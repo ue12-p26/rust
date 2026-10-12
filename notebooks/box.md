@@ -66,8 +66,7 @@ struct Book {
 :enumerated: true
 
 Compute the size of this `struct` type.
-A *word* is the natural unit of data of the processor (8 bytes on a
-64-bit architecture).
+See [Word](#chp-word) to learn about what is a *word*.
 :::
 
 [see solution](#box-struct-size-solution)
@@ -174,6 +173,8 @@ The size of a `Box` depends on the stored type:
   pointer and its size is two words (16 bytes on a 64-bit
   architecture): one word for the pointer to the object, and one word
   for the size of the object.
+
+See [Word](#chp-word) to know what is a *word*.
 
 ## Passing a Box
 

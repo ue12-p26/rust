@@ -74,7 +74,8 @@ println!("")
 
 ## Naming conventions
 
-In Rust, naming conventions are as shown in {numref}`tab-rust-naming`.
+In Rust, naming conventions (see [Naming conventions](#chp-naming)) are
+as shown in {numref}`tab-rust-naming`.
 
 :::{list-table} Rust naming conventions
 :name: tab-rust-naming

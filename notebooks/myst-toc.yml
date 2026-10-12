@@ -306,7 +306,9 @@ project:
             - file: howto_cargo_inst_crate.md
             - file: howto_env_vars.md
             - file: howto_missing_tools.md
+            - file: howto_naming.md
             - file: howto_path.md
+            - file: howto_sizes.md
 
         - file: chap_solutions.md
           children:
