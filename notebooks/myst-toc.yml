@@ -230,6 +230,13 @@ project:
             - file: fs.md
             - file: file.md
 
+        - file: chap_threading.md
+          children:
+            - file: threading.md
+            - file: thread_msg.md
+            - file: thread_mem.md
+            - file: future.md
+
         - file: chap_io_iii_cmdline_logs.md
           children:
             - file: args.md
@@ -260,10 +267,7 @@ project:
             - file: cow.md
             - file: rc.md
             - file: arc.md
-
-        - file: chap_threading.md
-          children:
-            - file: future.md
+            - file: refcell.md
 
         - file: chap_project_ii_modules.md
           children:
@@ -312,16 +316,17 @@ project:
 
         - file: chap_solutions.md
           children:
+            - file: sol_box.md
             - file: sol_cargo.md
-            - file: sol_var.md
             - file: sol_ctrl.md
             - file: sol_enum.md
-            - file: sol_option.md
-            - file: sol_int.md
             - file: sol_fct.md
-            - file: sol_mem.md
-            - file: sol_str.md
-            - file: sol_struct.md
             - file: sol_gen.md
+            - file: sol_int.md
+            - file: sol_mem.md
+            - file: sol_option.md
+            - file: sol_struct.md
+            - file: sol_str.md
+            - file: sol_thread.md
+            - file: sol_var.md
             - file: sol_vec.md
-            - file: sol_box.md

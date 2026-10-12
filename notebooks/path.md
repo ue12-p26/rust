@@ -11,6 +11,11 @@ kernelspec:
 
 # Path & PathBuf
 
+:::{warning} To review
+:class: readiness-toreview
+
+:::
+
 [Path](https://doc.rust-lang.org/std/path/struct.Path.html) and
 [PathBuf](https://doc.rust-lang.org/std/path/struct.PathBuf.html) use
 `OsStr` and `OsString` respectively to handle operating system paths to

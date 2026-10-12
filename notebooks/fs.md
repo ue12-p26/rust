@@ -11,6 +11,11 @@ kernelspec:
 
 # File system functions
 
+:::{warning} To review
+:class: readiness-toreview
+
+:::
+
 The [std::fs](https://doc.rust-lang.org/std/fs/index.html) module
 provides multiple functions to interact with the file system. See
 {numref}`tab-file-system`.

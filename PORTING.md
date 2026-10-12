@@ -64,19 +64,19 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   aef71de
-subject:  Resolve "File I/O"
-date:     2026-10-08
+commit:   16895ff
+subject:  Resolve "Threading chapter"
+date:     2026-10-09
 ```
 
-Previously caught up to 42ca04b7efa90b893c3b3d7251e01343a785a2e8 (2026-10-04).
+Previously caught up to aef71de2e5e5bc0f84d009a16fe4dc601019ea1e (2026-10-08).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
-(`aef71de`), so the MyST port is fully caught up as of this pass.
+(`16895ff`), so the MyST port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
-`git -C <repo> diff aef71de..<new-ref> -- <foo>.tex` per file to identify
+`git -C <repo> diff 16895ff..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
 
 **The `common` submodule must also be kept current.** `upstream-tex`
@@ -2537,3 +2537,87 @@ conventions" intro now links `(see [Naming conventions](#chp-naming))`
 dangling unbalanced parenthesis — by rephrasing rather than carrying
 it over literally).
 
+
+### 63. Threading chapter (`threading.md`, `thread_msg.md`, `thread_mem.md`, `refcell.md`, `sol_thread.md`), I/O pages marked `To review`, from `16895ff`
+
+**New `Threading` chapter**, moved from *Mastery* (where it held only
+the `future.md` stub) to *Expertise*, now sandwiched between
+`chap_io_ii_file_system.md` and the new `chap_io_iii_cmdline_logs.md`
+(matching `main.tex`'s new position, right after `fs`/`file`). Four
+children in order: new `threading.md`, new `thread_msg.md`, new
+`thread_mem.md` (a near-empty `To review` stub, "Shared memory", no
+content upstream either), then the pre-existing `future.md` (unchanged,
+just relocated).
+
+**`threading.md`** (new): thread-vs-process intro with a real
+JPEG figure (`media/thread_process_program.jpg`, copied from
+upstream's new `img/Concepts-_Program_vs._Process_vs._Thread.jpg`,
+anchor/`:name:` `fig-thread-exec`) and a `tab-thread-fcts` function
+table, then five `seq-start..stop` sections: spawning a thread (and
+why the printed text is lost — main thread exits first), waiting for
+termination via `join()`, a thread's returned value, returning a
+`Result` from a thread (custom `ThreadErr` type), and execution
+ordering across 20 spawned threads (`move` closures).
+
+**`thread_msg.md`** (new): MPSC channel messaging —
+`tab-mpsc-fcts` function table, then three `seq-start..stop` sections:
+an asynchronous `channel()` round-trip, a synchronous `sync_channel()`
+example with a 2-message buffer and timestamps (demonstrates the
+sender blocking once the buffer fills), and multiple senders via
+`tx.clone()`. Closes with a "Rendez-vous" exercise, solved in new
+`sol_thread.md` (two `sync_channel(0)` zero-buffer channels forcing
+threads to hand off in lockstep, interleaving even/odd counts from 0
+to 21).
+
+**Two real evcxr quirks found and worked around while verifying every
+cell against the kernel** (not guessed — all of `threading.md`,
+`thread_msg.md` and `sol_thread.md`'s sequences were run end-to-end,
+exactly as written, including every `:clear` boundary):
+- A closure's return-type annotation using a **fully-qualified**
+  trait-object bound (`Box<dyn std::error::Error + Send + Sync>`)
+  breaks evcxr's variable-persistence analysis with an opaque
+  `consider importing this trait` / `cannot find trait Error in this
+  scope` error — even though the path is valid Rust. Fixed by always
+  `use std::error::Error;` first and writing the bare `Box<dyn Error +
+  Send + Sync>` (as a `type ThreadErr = ...` alias, which *does*
+  persist correctly across cells once this is fixed).
+- `let mut handles = Vec::new();` (no turbofish) and
+  `let (tx, rx) = std::sync::mpsc::channel();` both fail with "type
+  annotations needed" when the only usage that would pin down the
+  type (`.push()`, `.send()`) lives in a *later, separate* cell —
+  evcxr only infers from the same top-level compilation unit, it does
+  not defer across cells the way it does for e.g. `HashMap::new()`
+  followed by `.insert()` in-cell. Fixed with explicit types:
+  `Vec<std::thread::JoinHandle<()>>` and `channel::<&str>()` /
+  `sync_channel::<String>(2)` / `sync_channel::<bool>(0)` as needed.
+
+**Repo-hygiene follow-through**: `threading.md`'s "Returning an error"
+example reads `foo.txt` in read-only mode inside the spawned thread —
+upstream's prose implies this succeeds, but nothing creates `foo.txt`
+first on this page (upstream likely relies on it existing from an
+earlier chapter in their single continuous document build, which our
+per-page-kernel-isolation model, item 61, does not replicate). Added a
+`remove-cell` that writes a placeholder `foo.txt` first, inside the
+same temp-dir isolation pattern established in item 61 (and verified
+the example now succeeds and prints the `File` object, rather than
+silently panicking).
+
+**New `refcell.md`** (`TODO` stub, "RefCell") added as a 4th child of
+`chap_memory_vi_pointers_again.md`, after `arc.md` (matching
+`main.tex`'s `\subfile{refcell}` placement).
+
+**`osstr.md`, `path.md`, `fs.md`, `file.md` all gain a `To review`
+banner** (upstream added bare `\TOREVIEW` to each of these four
+already-existing pages in this commit, with no other content change).
+
+**Solutions chapter reordered** to match `main.tex`'s new
+(alphabetical) `\subfile` order: `sol_box`, `sol_cargo`, `sol_ctrl`,
+`sol_enum`, `sol_fct`, `sol_gen`, `sol_int`, `sol_mem`, `sol_option`,
+`sol_struct`, `sol_str`, `sol_thread`, `sol_var`, `sol_vec` — purely
+cosmetic (solutions are addressed by label, not position), done for
+consistency with upstream.
+
+**Not ported** (cosmetic only, confirmed no content change):
+`poly.md`'s intro sentence replaces a manual `\href` with upstream's
+new `\polymorphism` macro — same link target, our existing markdown
+link already matches.

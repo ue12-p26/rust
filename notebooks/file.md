@@ -11,6 +11,11 @@ kernelspec:
 
 # File
 
+:::{warning} To review
+:class: readiness-toreview
+
+:::
+
 The [File](https://doc.rust-lang.org/std/fs/struct.File.html) struct
 allows to create/read/overwrite files onto file systems. See
 {numref}`tab-file` for some its methods. It implements the

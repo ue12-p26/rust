@@ -11,6 +11,11 @@ kernelspec:
 
 # OsStr & OsString
 
+:::{warning} To review
+:class: readiness-toreview
+
+:::
+
 Operating systems use their own string encoding that they use for file
 system paths. This means that the Rust strings cannot be used directly
 with operating systems. Here are the differences between Rust and the
