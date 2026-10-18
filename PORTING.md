@@ -64,19 +64,20 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   a2b0354
-subject:  Resolve "Write chapter about pointers"
+commit:   94eb476
+subject:  Resolve "Make generic page about threading"
 date:     2026-10-18
 ```
 
-Previously caught up to 16895ff474b9f93c483ae9ce2506d048347fabef (2026-10-09).
+Previously caught up to a2b03545da24888c51cb1a3b34080ca387bde050
+(2026-10-18).
 
-There is one more commit on `origin/main` not yet ported at this point,
-`94eb476` ("Resolve \"Make generic page about threading\"") — see item
-65 below, ported immediately after this one in the same session.
+This is the last commit on the `myst` branch of upstream at the time of
+this porting pass; `myst` and `origin/main` point to the same commit
+(`94eb476`), so the MyST port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
-`git -C <repo> diff a2b0354..<new-ref> -- <foo>.tex` per file to identify
+`git -C <repo> diff 94eb476..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
 
 **The `common` submodule must also be kept current.** `upstream-tex`
@@ -2813,3 +2814,54 @@ macro renames/additions (`\MoveKwd` → `\KwdMove`, new `\KwdRef`, `\Drop`,
 hyperlink macros; our port already hyperlinks these terms directly in
 prose. `CHANGELOG.md` isn't mirrored in this repo (no `notebooks/CHANGELOG.md`
 exists).
+
+### 65. `thread_module.md` split out of `threading.md`, `arc.md`/`cow.md` relocated, from `94eb476`
+
+**Upstream renamed `threading.tex` to `thread_module.tex`** (via a
+plain `git mv`-equivalent — `git diff -M` confirms an 81%-similarity
+rename), re-titled it "Thread module", and dropped the old generic
+thread/process/concurrency-vs-parallelism intro (the first ~55 lines of
+the old file) from it entirely. `main.tex` still has
+`\subfile{threading}` right before the now-added `\subfile{thread_module}`
+— **but `threading.tex` no longer exists anywhere in the tree** after
+this commit (confirmed via `git ls-tree 94eb476`). This is an upstream
+oversight: the commit's own title, "Make generic page about threading",
+and the still-present `\subfile{threading}` line both show the clear
+intent was to split the old overloaded `threading.tex` into (a) a slim
+generic conceptual page and (b) a specifics page, but the first half
+was simply deleted without ever being re-created as the new
+`threading.tex` — upstream's own LaTeX build is presently broken on
+this exact point (dangling `\subfile`). Treated as a bug to route
+around, not a cue to delete content: kept `threading.md` holding
+exactly the generic intro material upstream's diff removed (thread vs.
+process, the `fig-thread-exec` figure, concurrent vs. parallel
+programming — i.e. exactly the page the commit title promises), and
+moved everything else (the `tab-thread-fcts` table and all five
+`seq-start..stop` sections: spawning, waiting for termination, returned
+values, returning an error, execution ordering) verbatim into a new
+`thread_module.md`, inserted as `chap_threading.md`'s 2nd child, right
+after `threading.md`. No Rust content changed — this is a pure
+file/page split of already-verified material, so no new evcxr testing
+was needed. `threading.md` no longer has any code cells, so its
+jupytext/kernelspec frontmatter was dropped too, matching the existing
+convention for code-free pages (e.g. `thread_mem.md`, `future.md`).
+
+**`myst-toc.yml`**: `chap_memory_vii_thread_safe.md` (`arc.md`) and
+`chap_memory_viii_cow.md` (`cow.md`) — both brand new in item 64 above —
+are relocated to sit right after `chap_memory_vi_ref_counters.md` and
+right before `chap_threading.md` (matching `main.tex`'s new order:
+these two `\PrefixedChapter{Memory}{...}` chapters move from
+after-Threading/after-Testing to directly after "Ref counters and
+cycles"). Their `vii`/`viii` numerals are unchanged — this is only a
+few-lines move within the same `Part`, not a change to Memory-chapter
+relative order.
+
+**`common` submodule** updated again, `2f63a0b` → `8dd21be` (the
+pointer `94eb476` records) → further to `d038ef6` ("Add aliases", the
+submodule's current remote tip at the time of this pass, confirmed an
+ancestor-descendant of `8dd21be` via `git merge-base --is-ancestor`,
+consistent with the "keep the submodule current" policy from item 62).
+One intervening submodule commit, `fbf3d22` ("Add Mutex, Lock ,..."),
+suggests upcoming upstream content for a future mutex/locking chapter —
+nothing in `upstream-tex` references it yet, so no action needed this
+pass; worth watching for on the next resumption.
