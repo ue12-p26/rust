@@ -53,7 +53,7 @@ We present here the basics of the `Vec` type and some of its methods. See
 * - `push(v)`
   - Appends the value `v`.
 * - `remove(i)`
-  - Removes an element at a position `i`.
+  - Removes an element at position `i`.
 * - `resize(sz, v)`
   - Resizes the vector to size `sz`, appending copies of `v` if
     required.

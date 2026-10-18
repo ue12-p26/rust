@@ -17,7 +17,7 @@ kernelspec:
 :::
 
 The [Box](https://doc.rust-lang.org/std/boxed/struct.Box.html)
-pointer is a unique pointer. It owns an object of type `T` that
+pointer is a *unique pointer*. It owns an object of type `T` that
 resides on the *heap*.
 A `Box`:
 
@@ -237,8 +237,102 @@ better than storing objects on the stack.
 So what is the `Box` structure useful for? Mainly for *trait
 polymorphism*, when we need to mix various objects that share a
 common trait. We will see that in
-[Use Box to store different objects in a collection](#chp-boxed-trait).
+[Use Box to store traits in a collection](#chp-boxed-trait).
 :::
+
+:::{danger} TODO
+:class: readiness-todo
+
+Add exercise.
+:::
+
+(chp-box-recursive)=
+## Recursive type
+
+The `Box` is also useful for defining recursive type. As an example
+we are going to create a chain `List` type as an `enum`. The type
+will be generic, and thus will be able to store any type of values.
+
+Let us define it by making a recursive reference to the type itself.
+The following definition states that the `Val` variant contains a
+*value* and the *next element*, and that the `Nil` value marks the
+end of the list:
+
+```{code-cell} rust
+:tags: [skip-execution]
+:class: disabled
+
+enum List<T> {
+  Val(T, List<T>),
+  Nil,
+}
+```
+
+However an enum can only be defined if we can compute its size. The
+size of an enum is the size of its biggest variant. The *size* of
+the `Val` variant being *impossible to compute*, this enum
+definition is *invalid*, the compiler will reject it.
+
+We must thus give a *fixed size* to the `Val` variant. The `Box`
+structure is exactly what we need. It will move the next element
+onto the heap, and it has a fixed size whatever the value it points
+to. Here is the new definition:
+
+```{code-cell} rust
+:tags: [remove-cell]
+
+:clear
+```
+
+```{code-cell} rust
+:class: seq-start badges border
+
+enum List<T> {
+  Val(T, Box<List<T>>),
+  Nil,
+}
+```
+
+Let us import the enum's variants to ease their use:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+use List::{Val, Nil};
+```
+
+We implement a `print()` that we will use to print the content of a
+list:
+
+```{code-cell} rust
+:class: seq-cont badges border
+
+impl<T> List<T>
+  where T: std::fmt::Debug {
+
+  fn print(&self) {
+    match self {
+      Val(x, next) => {
+        print!("({x:?}, ");
+        next.print();
+        print!(")");
+      },
+      Nil => print!("Nil"),
+    }
+  }
+}
+```
+
+We can now create a list of, for instance, 32-bit integers, and
+prints it:
+
+```{code-cell} rust
+:class: seq-stop badges border
+
+let list = Val(4, Box::new(Val(10, Box::new(Val(-13, Box::new(Nil))))));
+list.print();
+println!();
+```
 
 :::{danger} TODO
 :class: readiness-todo

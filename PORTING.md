@@ -64,19 +64,19 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   16895ff
-subject:  Resolve "Threading chapter"
-date:     2026-10-09
+commit:   a2b0354
+subject:  Resolve "Write chapter about pointers"
+date:     2026-10-18
 ```
 
-Previously caught up to aef71de2e5e5bc0f84d009a16fe4dc601019ea1e (2026-10-08).
+Previously caught up to 16895ff474b9f93c483ae9ce2506d048347fabef (2026-10-09).
 
-This is the last commit on the `myst` branch of upstream at the time of
-this porting pass; `myst` and `origin/main` point to the same commit
-(`16895ff`), so the MyST port is fully caught up as of this pass.
+There is one more commit on `origin/main` not yet ported at this point,
+`94eb476` ("Resolve \"Make generic page about threading\"") — see item
+65 below, ported immediately after this one in the same session.
 
 When resuming, fetch upstream and use
-`git -C <repo> diff 16895ff..<new-ref> -- <foo>.tex` per file to identify
+`git -C <repo> diff a2b0354..<new-ref> -- <foo>.tex` per file to identify
 the deltas to port into the matching `<foo>.md`.
 
 **The `common` submodule must also be kept current.** `upstream-tex`
@@ -2621,3 +2621,195 @@ consistency with upstream.
 `poly.md`'s intro sentence replaces a manual `\href` with upstream's
 new `\polymorphism` macro — same link target, our existing markdown
 link already matches.
+
+### 64. Chapter about pointers: `deref.md`/`drop.md` (new), `rc.md`/`refcell.md`/`ref_cycles.md` filled in, new `Traits` chapter moved up, from `a2b0354`
+
+**`Memory (v)` renamed "Pointers" → "Smart pointers"**
+(`chap_memory_v_pointers.md`), gains `deref.md` and `drop.md` as new
+children after `box.md`.
+
+**`box.md`**: minor wording fix (`*unique pointer*` now emphasized),
+plus a new `## Recursive type` subsection (anchor `chp-box-recursive`,
+linked from the new `rc.md` exercise below) building a generic `List<T>`
+`enum` via `Box<List<T>>`, with a `print()` method. The final `list.print()`
+cell needed a trailing `println!();` to force a flush — `print!()`
+without a trailing newline is not reliably flushed before the kernel
+reports idle (the same long-known evcxr quirk already worked around
+elsewhere, e.g. `sol_thread.md`).
+
+**`boxed_trait.md`**: retitled "Use Box to store different objects in a
+collection" → "Use Box to store traits in a collection" (its own
+anchor/cross-reference in `box.md` updated to match), plus a new intro
+paragraph. No code changes.
+
+**`gen_struct.md`**: new `## Specialization` subsection
+(`impl Point<f32> { fn distance_from_origin(...) }`, executable, doesn't
+need the `num_traits` crate); `## Trait bound` section reworded with a
+forward cross-reference to the new `chp-bound-gen-method` anchor in
+`trait_bounds.md` (see below); exercise step 5 gains "(see `PrimInt`
+methods)."
+
+**`deref.md`** (new): the `Deref`/`DerefMut` traits — dereferencing a
+`Box<i32>`, the `Deref` trait's shape (shown `skip-execution`/`disabled`,
+it's an incomplete illustration, not real code), automatic `Deref`
+coercion (`&Box<String>` → `&String` → `&str`), method access through
+`Deref`, and `DerefMut` (`push_str()` on a `Box<String>`). Exercise
+"Custom Box-like implementation" (`deref-impl`, solution in the new
+`sol_pointers.md`, see below).
+
+**`drop.md`** (new): the `Drop` trait — a `Foo` struct with a logging
+`drop()`, automatic drop at end of scope vs. explicit `drop(y)` to
+disable it early. Straightforward, no evcxr surprises.
+
+**`ref.md`**: the old `## Type of a reference` subsection (which just
+showed that printing a reference and then assigning to it doesn't type
+check) is replaced by a new `## Dereferencing` subsection (anchor
+`chp-deref-op`) that develops the point properly: a `16 == b` type
+mismatch (`raises-exception`), then the fix `16 == *b`, an `:::{important}`
+box on references-as-pointers, and the two-levels-deep `let c = &b;`
+example (`b == *c`, `16 == **c`). A new `## The ref pattern` subsection
+(anchor `chp-ref-pattern`) follows the existing "Passing a reference"
+section: the `ref` keyword as an alternative to `&`, then `if let
+Some(ref n) = a`/`if let Some(ref mut n) = b` demos. Also fixes a
+longstanding typo, "If want to access" → "If we want to access" (in the
+pre-existing "Passing a reference" section).
+
+Every one of these new multi-step demos **relies on persisting a `&T`
+reference to a local variable across cells (`b`, `c`), which evcxr
+cannot do** ("contains a reference with a non-static lifetime so can't
+be persisted") — the exact quirk already documented and worked around
+in item 16 (*Wrap-in-brackets workaround for evcxr persistence*). Ported
+each one the same way: a single `{ … }`-wrapped block per demo, with
+`println!()` replacing the trailing boolean/reference expression. The
+two reference-chain diagrams (`b`→`a`, then `c`→`b`→`a`) are plain
+` ```text ` fenced diagrams (no `{figure}`/`{numref}`, matching the
+existing convention in `trait_poly.md` for an inline ASCII diagram that
+nothing else cross-references).
+
+**`rc.md`** (new, was a bare `TODO` stub): `Rc` as a reference-counted
+smart pointer — `strong_count()`/`clone()`/`drop()` walkthrough (owned
+`Rc<i32>` values persist across cells fine, no wrap-in-braces needed
+here, unlike `ref.md` above), a `tab-rc-methods` table, and exercise
+"Shared lists" (`shared-lists`, solution in `sol_pointers.md`) with a
+plain-text ASCII diagram of three lists sharing sub-lists via `Rc`.
+
+**`refcell.md`** (new, was a bare `TODO` stub): the `RefCell` borrowing
+rules, a `tab-refcell-methods` table, and a `Fib` memoization example
+(`RefCell<Vec<u64>>` cache, `fib.get(50)` → `12586269025`, verified).
+This example uses a **let-chain** (`if let Some(v) = cached && v != 0`),
+confirmed to compile and run fine on the kernel's `rustc 1.98.1`.
+Exercise "Prime numbers" (`prime-numbers`, solution in `sol_pointers.md`).
+
+**`ref_cycles.md`** (new): reference cycles with `Rc<RefCell<...>>`.
+Two demos: a *strong* cycle (`a`↔`b`, both ends `Rc`) that leaks even
+after both variables are dropped (proven via a `Weak::upgrade()` check
+before/after), then a *droppable* cycle built from a `Next<T>` enum
+(`StrongLink`/`WeakLink`/`Nil`) with one strong link and one weak link,
+which drops cleanly. **Caught and fixed an upstream wording bug** in the
+droppable-cycle walkthrough: the prose said "we define `b` with a
+*strong* reference on `a`" where the code uses `WeakLink(Rc::downgrade(&a))`
+(weak), and "we change the termination of `a` into a *weak* reference on
+`b`" where the code uses `StrongLink(Rc::clone(&b))` (strong) — the two
+labels were swapped. Confirmed against the kernel: with the links as
+coded (not as upstream's swapped prose describes), dropping `a` and `b`
+does make the cycle collapse (`c.upgrade()` → `None`), matching the
+section's own conclusion — so the *code* was right and only the prose
+needed the two words swapped back. Fixed in the port; not reported
+upstream (out of scope for this routine).
+
+**`trait_bounds.md`**: complete rewrite from the old `DRAFT` stub.
+`Media`/`Video` traits, a `Movie<'a>` struct, `impl Trait` arguments vs.
+the equivalent generic form (`:::{important}` boxes showing the
+generic equivalent as `skip-execution`/`disabled`, per item 15), a
+`:::{warning}` on why two separate `impl Media` parameters don't let you
+compare them (shown `disabled`, genuinely doesn't compile), multiple
+trait bounds with `+`, returning `impl Trait` (`get_video()`), a
+`FromTitle<'a>` trait used to work around the fact that a *generic*
+`fn get_video<T: ...>() -> T` can't pick a concrete type, a `where`
+clause example (`merge_videos`), and `## Bounding a generic method`
+(anchor `chp-bound-gen-method`, linked from `gen_struct.md` above) with
+a `num_traits::PrimInt`-bounded `Bag<T>::sum()` (`skip-execution`/
+`disabled`, same as `gen_struct.md`'s pre-existing `num_traits` example
+— the crate isn't available in this notebook's kernel).
+
+Two evcxr quirks hit and fixed, both using the item-16 wrap-in-braces
+pattern: `let movie3 = get_video(); info_media(&movie3);` fails to
+persist `movie3` because its type is the opaque `impl Media + Video`
+return type (fixed by wrapping both lines in a single `{ … }` block);
+and upstream's own `:::{important}` box contains a *mix* of a
+`[disable]`d snippet followed by several real `[cont]` cells
+(`trait FromTitle`, its `impl`, `get_video_bis`, the typed `let movie3:
+Movie = ...`) — rather than nest executable `{code-cell}` directives
+inside an admonition (untested in this codebase, and a real execution
+dependency besides), the admonition was closed right after the
+`disabled` snippet and prose, and the four executable cells were moved
+out as regular top-level content immediately following it. No content
+lost, just flattened one level.
+
+**`traits_in_fields.md`**: complete rewrite from the old `DRAFT` stub.
+`Shape` trait, `Rectangle`, and a `Drawing<'a> { shape: &'a (dyn Shape +
+'a) }` structure storing a trait object by reference with an explicit
+lifetime. Exercise "Shapes drawing" (`shapes-drawing`, solution in the
+new `sol_trait.md`). The final `Drawing` instantiation+draw needed the
+same wrap-in-braces treatment (`Drawing` holds a `&'a` reference to a
+local `rect`, which can't be persisted standalone).
+
+**`sol_box.md` → `sol_pointers.md`** (renamed, matching upstream's
+`sol_box.tex` → `sol_pointers.tex`): kept our existing (previously
+corrected, see item 44/history) "Type size" solution's byte-count math
+as-is — upstream's own copy of this solution still has the old,
+already-superseded numbers, so overwriting would have reintroduced a
+bug we'd already fixed. Added three new solutions: "Deref
+implementation" (`deref-impl-solution`, a `MyBox<T>` tuple struct), and
+"Shared lists" (`shared-lists-solution`, `Rc<List<T>>`),"Prime numbers"
+(`prime-numbers-solution`, `RefCell<HashMap<u64, bool>>` cache). The
+prime-numbers solution needed its `is_prime()`/`trial_division()`
+methods **merged into one `impl` block/cell**: `is_prime()` calls
+`Self::trial_division()`, but upstream's source shows them in
+*separate* sequential code blocks with `is_prime()` first — that only
+compiles in LaTeX (never executed) or inside a single real compilation
+unit; across two separate evcxr cells, the earlier cell can't see a
+method defined in a cell that hasn't run yet. Merged into one cell,
+order of methods inside kept as upstream wrote it (`is_prime()` first,
+`trial_division()` second) since that's valid once they're in the same
+`impl` block.
+
+**`sol_trait.md`** (new): "Shapes drawing" solution — `Circle` added
+alongside `Rectangle`, `Drawing<'a> { shapes: Vec<&'a (dyn Shape + 'a)>
+}`, `add_shape()`. Same wrap-in-braces treatment as the exercise.
+
+**`vec.md`**: tiny wording fix, "Removes an element at a position `i`"
+→ "at position `i`" (the `resize()` row already said "vector", not
+upstream's old "queue" — already fixed in an earlier pass).
+
+**`myst-toc.yml` restructuring** (Expertise part): `chap_polymorphism_v_traits.md`
+(`traits_in_fields.md`/`boxed_trait.md`/`trait_bounds.md`) moved from
+its old position (right before the `Mastery` part, after `chap_testing.md`)
+to right after `chap_memory_v_pointers.md` (matching `main.tex`'s new
+chapter order). New chapters, matching `main.tex`'s three new
+`\PrefixedChapter{Memory}{...}` entries: `chap_memory_vi_ref_counters.md`
+("Ref counters and cycles": `rc.md`/`refcell.md`/`ref_cycles.md`) between
+`chap_io_ii_file_system.md` and `chap_threading.md`;
+`chap_memory_vii_thread_safe.md` ("Thread safe ref counters": `arc.md`)
+between `chap_threading.md` and `chap_io_iii_cmdline_logs.md`;
+`chap_memory_viii_cow.md` ("Clone-on-write pointer": `cow.md`) between
+`chap_testing.md` and the `Mastery` part. The old Mastery-part
+`chap_memory_vi_pointers_again.md` ("Pointers again": `cow.md`/`rc.md`/
+`arc.md`/`refcell.md`) is **removed entirely** (file deleted) — its four
+children are exactly the ones redistributed to the three new chapters
+above plus `cow.md`'s own new chapter. Since `Memory (v) Smart pointers`
+stays the 5th `\PrefixedChapter{Memory}{...}` in `main.tex` and the
+removed "Pointers again" would have been the 6th, the three brand new
+chapters simply take over `vi`/`vii`/`viii` in its place — no other
+`Memory`-numbered (or `Polymorphism`/`I/O`/`Error handling`-numbered)
+chapter title needed to change, since none of them changed relative
+order among same-prefix siblings. `chap_solutions.md`: `sol_box.md` →
+`sol_pointers.md`, `sol_trait.md` added (matching `main.tex`'s
+alphabetical `\subfile` order).
+
+**Not ported** (cosmetic only, no prose depends on these): `rustalias.sty`
+macro renames/additions (`\MoveKwd` → `\KwdMove`, new `\KwdRef`, `\Drop`,
+`\Rc`, `\RefStruct`, `\RefCell`, `\RefMut`, `\Weak`) are LaTeX-internal
+hyperlink macros; our port already hyperlinks these terms directly in
+prose. `CHANGELOG.md` isn't mirrored in this repo (no `notebooks/CHANGELOG.md`
+exists).

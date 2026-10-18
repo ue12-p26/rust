@@ -1,3 +1,3 @@
 ---
-title: Memory (v) - Pointers
+title: Memory (v) - Smart pointers
 ---

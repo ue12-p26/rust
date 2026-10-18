@@ -30,19 +30,70 @@ Here is the definition of a reference on an integer variable:
 }
 ```
 
-## Type of a reference
+(chp-deref-op)=
+## Dereferencing
 
-Printing the value of `b` gives the right value, however the type of `b`
-is not `integer` but is a reference to an `integer`: `&integer`.
-We can see it if we make `b` mutable and try to modify its value:
+Most of the time a reference cannot be used as is. The following
+equality test cannot compile because `a` is a `i32`, while `b` is a
+`&i32`:
 
 ```{code-cell} rust
 :tags: [raises-exception]
 
 let a = 16;
-let mut b = &a;
-b = 20;
-b
+let b = &a;
+16 == b
+```
+
+The compiler gives us the solution to make it work. We need to use
+the dereferencing operator `*` that will convert back the `&i32`
+into a `i32`:
+
+```{code-cell} rust
+{
+  let a = 16;
+  let b = &a;
+  println!("{}", 16 == *b);
+}
+```
+
+:::{important} References as pointers
+A reference is a type of *pointer*. In our example `b` contains a
+reference to the value of the `a` variable in memory. Memory on a
+computer is divided in *byte cells*, each having an *address* (i.e.:
+an integer number). The numeric value of an address is stored as a
+[word](#chp-word) (`usize` in Rust). In our case the `b` variable
+stores a `usize` value that is the *address* of the `a` variable in
+memory.
+:::
+
+```text
+    ┌────────────────┐         ┌────────┐
+    │ b (0xa413b...) │────────>│ a (16) │
+    └────────────────┘         └────────┘
+```
+
+The type of `b` is thus a *reference on an integer*, but it is also a
+regular variable. As a consequence, we can also make a reference on
+`b`. Let us define `c` a variable that is a reference on `b`:
+
+```text
+    ┌────────────────┐         ┌────────────────┐         ┌────────┐
+    │ c (0x9c1f7...) │────────>│ b (0xa413b...) │────────>│ a (16) │
+    └────────────────┘         └────────────────┘         └────────┘
+```
+
+To test `c` against `b` we need to *dereference* it. To test `c`
+against `a`'s value we need to *dereference* it *twice*:
+
+```{code-cell} rust
+{
+  let a = 16;
+  let b = &a;
+  let c = &b;
+  println!("{}", b == *c);
+  println!("{}", 16 == **c);
+}
 ```
 
 ## Passing a reference
@@ -59,8 +110,8 @@ let a = 16;
 foo(&a);
 ```
 
-If want to access the referenced value *directly*, we need to use the
-*dereferencing* operator `*`:
+If we want to access the referenced value *directly*, we need to use
+the *dereferencing* operator `*`:
 
 ```{code-cell} rust
 fn foo(x: &i32) -> i32 {
@@ -69,6 +120,78 @@ fn foo(x: &i32) -> i32 {
 
 let a = 16;
 foo(&a)
+```
+
+(chp-ref-pattern)=
+## The ref pattern
+
+The `ref` keyword can be used in place of the `&` operator.
+
+For instance when defining a new variable:
+
+```{code-cell} rust
+{
+  let a = 10;
+  let ref b = a;
+  println!("{:?}", (a, b, a == *b));
+}
+```
+
+If we define a function that takes a reference, we see that we can
+pass `b` directly to the function, since it is already a reference:
+
+```{code-cell} rust
+{
+  let a = 10;
+  let ref b = a;
+
+  fn foo(x: &i32) -> i32 {
+    *x + 2
+  }
+
+  println!("{}", foo(b));
+}
+```
+
+The `ref` keyword is useful when writing match expressions, like in
+`if let`. Let us define an `Option` value, and write a match using
+the `ref` keyword to make the variable `n` a reference on the
+internal value of `a` instead of a copy of the value:
+
+```{code-cell} rust
+{
+  let a = Some(13);
+
+  fn foo(x: &i32) -> i32 {
+    *x + 2
+  }
+
+  if let Some(ref n) = a {
+    println!("{}", foo(n));
+  }
+}
+```
+
+:::{important} Moving or borrowing in `let Some` pattern
+The `let Some(x)` pattern moves the object from the `Some()` into
+`x` unless the object implements the `Copy` trait, in which case the
+object is copied. If we do want the object to be moved, we use the
+`let Some(ref x)` pattern that makes `x` a reference on the original
+object into the `Some()`.
+:::
+
+If we have a mutable `Option` value, we can get a `mutable reference`
+on the internal value using `ref` and `mut` together. This allows us
+to *modify* the internal value, which we can check afterward:
+
+```{code-cell} rust
+{
+  let mut b = Some(20);
+  if let Some(ref mut n) = b {
+    *n += 5;
+  }
+  println!("{:?}", b);
+}
 ```
 
 ## Indexing a vector

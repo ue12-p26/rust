@@ -207,6 +207,14 @@ project:
         - file: chap_memory_v_pointers.md
           children:
             - file: box.md
+            - file: deref.md
+            - file: drop.md
+
+        - file: chap_polymorphism_v_traits.md
+          children:
+            - file: traits_in_fields.md
+            - file: boxed_trait.md
+            - file: trait_bounds.md
 
         - file: chap_error_handling_ii_panic_result.md
           children:
@@ -230,12 +238,22 @@ project:
             - file: fs.md
             - file: file.md
 
+        - file: chap_memory_vi_ref_counters.md
+          children:
+            - file: rc.md
+            - file: refcell.md
+            - file: ref_cycles.md
+
         - file: chap_threading.md
           children:
             - file: threading.md
             - file: thread_msg.md
             - file: thread_mem.md
             - file: future.md
+
+        - file: chap_memory_vii_thread_safe.md
+          children:
+            - file: arc.md
 
         - file: chap_io_iii_cmdline_logs.md
           children:
@@ -253,21 +271,12 @@ project:
             - file: test_running.md
             - file: test_integration.md
 
-        - file: chap_polymorphism_v_traits.md
+        - file: chap_memory_viii_cow.md
           children:
-            - file: traits_in_fields.md
-            - file: boxed_trait.md
-            - file: trait_bounds.md
+            - file: cow.md
 
     - title: Mastery
       children:
-
-        - file: chap_memory_vi_pointers_again.md
-          children:
-            - file: cow.md
-            - file: rc.md
-            - file: arc.md
-            - file: refcell.md
 
         - file: chap_project_ii_modules.md
           children:
@@ -316,7 +325,6 @@ project:
 
         - file: chap_solutions.md
           children:
-            - file: sol_box.md
             - file: sol_cargo.md
             - file: sol_ctrl.md
             - file: sol_enum.md
@@ -325,8 +333,10 @@ project:
             - file: sol_int.md
             - file: sol_mem.md
             - file: sol_option.md
+            - file: sol_pointers.md
             - file: sol_struct.md
             - file: sol_str.md
             - file: sol_thread.md
+            - file: sol_trait.md
             - file: sol_var.md
             - file: sol_vec.md

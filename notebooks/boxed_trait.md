@@ -10,12 +10,16 @@ kernelspec:
 ---
 
 (chp-boxed-trait)=
-# Use Box to store different objects in a collection
+# Use Box to store traits in a collection
 
 :::{warning} To review
 :class: readiness-toreview
 
 :::
+
+The `Box` structure can be used to store objects as traits on the
+heap. This allows to use polymorphism on objects that can be *owned*
+by other objects, instead of borrowing them.
 
 Let us create a `Shape` trait for which we declare an `area()` method:
 

@@ -91,10 +91,30 @@ And we use them to print the coordinates of point `p`:
 println!("p=({},{})", p.x(), p.y());
 ```
 
+## Specialization
+
+It is possible to implement a method only for one specialization of
+a generic. In the following example, we specialize `Point<T>` for
+`f32`, and define a method that computes the distance from origin
+*only for this specialization*:
+
+```{code-cell} rust
+impl Point<f32> {
+  fn distance_from_origin(&self) -> f32 {
+    (self.x.powi(2) + self.y.powi(2)).sqrt()
+  }
+}
+```
+
+## Trait bound
+
 If we restrict `T` to floating point types (`f32` and `f64`) using the
 `num-traits` library, we can define functions that use floating point
-operations. For instance we can implement a `distance()` method that
-computes the distance between the current point and another. This
+operations in general, whatever the float type. See
+[Bounding a generic method](#chp-bound-gen-method) about *trait
+bounding* for generic methods. For instance we can implement a
+`distance()` method that computes the distance between the current
+point and another. To do this we bound `T` to the trait `Float`. This
 example requires the external `num_traits` crate, which is not
 available in this notebook's kernel, so it is shown but not executed:
 
@@ -140,7 +160,7 @@ types, and provide custom methods on them:
 4. Implement a method `doubled()` that returns the double of the stored
    value.
 5. Implement a method `is_power_of_two()` that returns `true` if the
-   stored value is a power of 2.
+   stored value is a power of 2 (see `PrimInt` methods).
 6. Test the `struct` with numbers `20` and `32`, and print the returned
    values of methods `value()`, `doubled()` and `is_power_of_two()`.
 :::
