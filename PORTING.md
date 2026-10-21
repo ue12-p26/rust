@@ -64,17 +64,17 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   94eb476
-subject:  Resolve "Make generic page about threading"
-date:     2026-10-18
+commit:   ed3021b
+subject:  Resolve "Explain shared memory for threads"
+date:     2026-10-19
 ```
 
-Previously caught up to a2b03545da24888c51cb1a3b34080ca387bde050
-(2026-10-18).
+Previously caught up to 94eb47637acdda288628ace365117a0695a21a15
+(2026-10-18→2026-10-21).
 
 This is the last commit on the `myst` branch of upstream at the time of
 this porting pass; `myst` and `origin/main` point to the same commit
-(`94eb476`), so the MyST port is fully caught up as of this pass.
+(`ed3021b`), so the MyST port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 94eb476..<new-ref> -- <foo>.tex` per file to identify
@@ -2865,3 +2865,104 @@ One intervening submodule commit, `fbf3d22` ("Add Mutex, Lock ,..."),
 suggests upcoming upstream content for a future mutex/locking chapter —
 nothing in `upstream-tex` references it yet, so no action needed this
 pass; worth watching for on the next resumption.
+
+### 66. `thread_mem.md` filled in (Sync, Mutex, locking, Arc shared access), `sol_thread.md` gains Dining philosophers solution, `thread_msg.md` gains Send section, `arc.md`/thread-safe-ref-counters chapter dropped, `cow.md` renumbered to (vii), from `ed3021b`
+
+Confirms the mutex/locking content flagged as "upcoming" in item 65 —
+the `fbf3d22` submodule commit was indeed a precursor to this.
+
+**`thread_mem.md`** (was a bare `TOREVIEW` stub) is filled in with the
+full "Shared memory" chapter: a `Sync` trait bullet list (mirrors the
+`Send` list already in `thread_msg.md`), a `Mutexes` section with a
+`tab-mutex-methods` table (upstream itself leaves most method
+descriptions blank except `new(v)` — ported as-is, not invented), a
+`:::{danger}` box on deadlock causes, a `Locking` section demoing
+`Mutex::new()`/`lock()`/`Deref` (wrapped in a scope block to force the
+guard's drop, verified against the kernel: `Mutex { data: 7,
+poisoned: false, .. }` after release), a `:::{important}` box on RAII,
+and a `Shared access` section (the classic "10 threads incrementing an
+`Arc<Mutex<i32>>` counter" example from the Rust book). The
+`let mut handles = vec![];` binding needed the same explicit
+`Vec<std::thread::JoinHandle<()>>` type-annotation workaround already
+used in `thread_module.md`'s "Execution ordering" section — plain
+`vec![]` can't have its element type inferred across the evcxr
+cell-persistence boundary. All cells verified end-to-end against the
+real kernel (final `Result: 10` after 10 increments). The file gained
+jupytext/kernelspec frontmatter since it now has code cells, matching
+convention. Added a new 5-star exercise, "Dining philosophers
+problem," `:label: dining-philosophers`, linking to a new
+`sol_thread.md` solution.
+
+**`sol_thread.md`** gains a "Dining philosophers problem" section
+(`:::{solution} dining-philosophers`, `:label:
+dining-philosophers-solution`). Upstream's LaTeX source builds the
+`diner()` function across a dozen separate `\begin{minted}[cont,notag]`
+fragments (each an incomplete partial statement, e.g. a single
+unclosed `for i in 0..n {` line) — these are purely a LaTeX/PDF
+cosmetic device (the `notag` option just suppresses the per-fragment
+start/cont/stop corner badge in `common/newminted.sty`, it does not
+mark a separate executable unit) and cannot map to separate evcxr
+cells 1:1, since most fragments are not syntactically complete Rust on
+their own. Ported as the project's established approach for this kind
+of incremental-build narration: merged all `notag` fragments between
+two real tagged boundaries into one `{code-cell}` (the complete
+`diner()` function body), moved the per-fragment narration that used
+to sit between fragments into one combined prose paragraph before the
+cell, and kept only the comments that were genuinely already inside
+upstream's Rust code (`// Total eaten`, `// Eat`, `// We got the two
+chopsticks`, `// Nothing to eat, we leave`, `// Think`, etc.) rather
+than inventing new ones. `fn print_res()` is its own real `[cont]` tag
+in the LaTeX source, so it became its own separate `{code-cell}` as
+well. Verified end-to-end: `diner(5, 500, 1)` (no-deadlock check, since
+`try_lock()` is non-blocking) and `diner(5, 5, 1)` (each of the 5
+philosophers eats exactly 1 bite) both ran correctly and fast (sub-
+second, since the exercise's blocking-`lock()` naive version that can
+actually deadlock is never executed — only upstream's fixed
+`try_lock()`-based solution is).
+
+**`thread_msg.md`** gains a one-sentence intro ("the `mpsc` module
+provides methods to *pass ownership* of an object...") plus a new
+`## Send` section (inserted between the `tab-mpsc-fcts` table and the
+pre-existing "Asynchronous channel" section), mirroring the `Sync`
+list added to `thread_mem.md` above. Prose only, no new code cells.
+
+**`vec.tex`'s `\var{...}` → `\cod{...}` macro renames** (8 method
+names in its methods table) are a purely cosmetic LaTeX distinction
+(italic vs. code-styled inline text) that MyST's `vec.md` never had in
+the first place — every entry in `tab-vec-methods` was already
+rendered with backtick code formatting. No action needed; confirmed
+no textual wording changed either (`remove(i)`'s description, the one
+entry already flagged in a prior pass, is unchanged: "at position
+`i`").
+
+**`main.tex` / `myst-toc.yml`**: upstream entirely removes the
+`\PrefixedChapter{Memory}{Thread safe ref counters}` /
+`\subfile{arc}` pair — `arc.tex` itself still exists on disk (still
+just a `\TODO{Explain Arc}` stub) but is no longer referenced from
+`main.tex` anywhere; its content (explaining `Arc`) is superseded by
+the fuller treatment inside the new `thread_mem.tex`'s "Shared access"
+section. Mirrored by deleting both `chap_memory_vii_thread_safe.md`
+and `arc.md` (`git rm`, not left as orphans — matches the item 64
+precedent of deleting a chapter wrapper whose upstream chapter
+disappeared). `\PrefixedChapter{Memory}{Clone-on-write pointer}` /
+`cow.tex` also moves — from before the `Threading` chapter to *after*
+it — and since it's now the **last** `Memory`-prefixed chapter in
+`main.tex` (with "Thread safe ref counters" gone and nothing else
+`Memory`-prefixed following it), its auto-numeral shifts from `(viii)`
+to `(vii)`: `chap_memory_viii_cow.md` → `chap_memory_vii_cow.md`
+(`git mv`), title updated to "Memory (vii) - Clone-on-write pointer".
+`myst-toc.yml`'s `Expertise` part reordered to match: `chap_threading.md`
+now sits directly after `chap_memory_vi_ref_counters.md`, and the
+renamed `chap_memory_vii_cow.md` comes right after `chap_threading.md`,
+before `chap_io_iii_cmdline_logs.md`.
+
+**`rustalias.sty`** gains several new macros (`\RustProgLang`, `\Arc`,
+`\Cell`, `\LockResult`, `\MutexGuard`, `\MutexStruct`, `\PoisonError`,
+`\TryLockResult`) — pure LaTeX href shortcuts for terms now used in
+`thread_mem.tex`, no MyST-side equivalent needed (we just write the
+term + a markdown link directly, as always).
+
+**`common` submodule** updated again, `d038ef6` → `058a11f` ("Add web
+links", the submodule's current remote tip at the time of this pass),
+confirmed to still have `c6e4e2f` (the pointer `ed3021b` records) as
+an ancestor via `git merge-base --is-ancestor`.

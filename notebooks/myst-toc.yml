@@ -244,14 +244,6 @@ project:
             - file: refcell.md
             - file: ref_cycles.md
 
-        - file: chap_memory_vii_thread_safe.md
-          children:
-            - file: arc.md
-
-        - file: chap_memory_viii_cow.md
-          children:
-            - file: cow.md
-
         - file: chap_threading.md
           children:
             - file: threading.md
@@ -259,6 +251,10 @@ project:
             - file: thread_msg.md
             - file: thread_mem.md
             - file: future.md
+
+        - file: chap_memory_vii_cow.md
+          children:
+            - file: cow.md
 
         - file: chap_io_iii_cmdline_logs.md
           children:

@@ -26,6 +26,9 @@ communication channels between threads. In an MPSC (Multiple
 Producers, Single Consumer) model, only one thread listen for
 arriving messages, while one or more threads can emit messages.
 
+In practice, the `std::sync::mpsc` module provides methods to *pass
+ownership* of an object from one thread to another.
+
 :::{list-table} Functions of the mpsc module
 :name: tab-mpsc-fcts
 :header-rows: 1
@@ -42,6 +45,22 @@ arriving messages, while one or more threads can emit messages.
     objects. Returns a tuple made of a `SyncSender<T>` (transmitter)
     and a `Receiver<T>`.
 :::
+
+## Send
+
+The channels provided by the `std::sync::mpsc` module are made to
+transmit objects of the *same type* from one thread to another. The
+only *condition* is that the type must implement the
+[Send](https://doc.rust-lang.org/std/marker/trait.Send.html) trait.
+
+- The `Send` trait is a *marker* trait, used by the compiler. We must
+  *never implement it manually* for types.
+- Most of built-in types and types from the standard library implement
+  the `Send` trait.
+- Any type composed of types that implement `Send`, will also
+  automatically implement `Send`.
+- Among the types that do not implement `Send` is `Rc`. Instead, one
+  must use `Arc`, which is thread-safe.
 
 ## Asynchronous channel
 
