@@ -25,6 +25,3 @@ All six parts of the upstream course have been ported:
 - *Mastery*: chapters 26 (Advanced projects) through 31 (Documenting).
 - *Appendices > Solutions*: all three exercise solutions (chapters 8,
   12, 29).
-
-Many chapters in Parts 3 through 6 are still marked *Draft* upstream;
-these pages carry a red admonition at the top.
