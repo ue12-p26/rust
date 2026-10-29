@@ -64,17 +64,16 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   a922858
-subject:  Resolve "Chapter about encoding (ASCII, UTF-8,...)"
+commit:   754b4e2
+subject:  Remove duplicate raw string
 date:     2026-10-26
 ```
 
-Previously caught up to e9b02bf6c7b2276a69a30e1c9ffb83de68e6ab2c
+Previously caught up to a922858e51dccc5de43b4149d3d6fe9eab67ddfc
 (2026-10-26).
 
-3 more upstream commits remain to port after this one (as of this pass):
-`754b4e2` (remove duplicate raw string), `8bb6efc` (bump version),
-`9fbecdf` (move howtos into course).
+2 more upstream commits remain to port after this one (as of this pass):
+`8bb6efc` (bump version), `9fbecdf` (move howtos into course).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 94eb476..<new-ref> -- <foo>.tex` per file to identify
@@ -3204,3 +3203,13 @@ all match).
 and 2 padding header cells, pure LaTeX border cosmetics) — no MyST
 action, `howto_sizes.md` already renders this as two separate
 `{list-table}`s (item 62) with no spanning border to begin with.
+
+### 69. `str_literals.md` loses its temporarily-duplicated "Raw string" subsection, from `754b4e2`
+
+As anticipated in item 68: upstream's own previous commit (`a922858`)
+had left "Raw string" duplicated in both `str_literals.tex` and the new
+`str_raw.tex`; this commit removes it from `str_literals.tex` only,
+leaving `str_raw.tex` as its sole, permanent home. Mirrored by removing
+the same subsection from `str_literals.md` (it already lives,
+unchanged, in `str_raw.md` since item 68) — no other file references
+it.
