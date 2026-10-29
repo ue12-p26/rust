@@ -253,7 +253,7 @@ project:
             - file: refcell.md
             - file: ref_cycles.md
 
-        - file: chap_threading.md
+        - file: chap_threading_i_bases.md
           children:
             - file: threading.md
             - file: thread_module.md

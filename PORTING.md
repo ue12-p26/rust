@@ -64,16 +64,16 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   754b4e2
-subject:  Remove duplicate raw string
-date:     2026-10-26
+commit:   8bb6efc
+subject:  Bump version
+date:     2026-10-27
 ```
 
-Previously caught up to a922858e51dccc5de43b4149d3d6fe9eab67ddfc
+Previously caught up to 754b4e2cece8da407e5fd052bd56e9ffa00f0b44
 (2026-10-26).
 
-2 more upstream commits remain to port after this one (as of this pass):
-`8bb6efc` (bump version), `9fbecdf` (move howtos into course).
+1 more upstream commit remains to port after this one (as of this pass):
+`9fbecdf` (move howtos into course).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 94eb476..<new-ref> -- <foo>.tex` per file to identify
@@ -3213,3 +3213,23 @@ leaving `str_raw.tex` as its sole, permanent home. Mirrored by removing
 the same subsection from `str_literals.md` (it already lives,
 unchanged, in `str_raw.md` since item 68) — no other file references
 it.
+
+### 70. `chap_threading.md` retitled "Threading (i) - Bases" + renamed, `CourseVersion` 1.4.0 → 1.4.1, from `8bb6efc`
+
+Despite its subject line, this commit also fixes the transient
+double-chapter-heading bug flagged in item 67: the stray
+`\PrefixedChapter{Threading}{}` + leftover `\chapter{Threading}` pair is
+replaced in one shot by `\PrefixedChapter{Threading}{Bases}`. Mirrored
+by retitling `chap_threading.md` to "Threading (i) - Bases" and
+renaming it to `chap_threading_i_bases.md` (`git mv`, matching the
+project's "empty suffix → plain filename, non-empty suffix → filename
+carries the slug" convention — same as `chap_memory_vii_cow.md`/
+`chap_threading_ii_future.md`). Children (`threading.md`/
+`thread_module.md`/`thread_msg.md`/`thread_mem.md`) unchanged.
+Build-verified: enumerator unchanged (`39`, same slot as the plain
+"Threading" title held before).
+
+`CourseVersion` bumps `1.4.0` → `1.4.1` in upstream's `main.tex` — no
+MyST-side equivalent (the port has never tracked this value; `myst.yml`
+has no version field tied to it), noted here only for the historical
+record.
