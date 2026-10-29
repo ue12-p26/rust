@@ -15,6 +15,7 @@ project:
             - file: why_rust.md
             - file: pros_n_cons.md
             - file: resources.md
+            - file: eu_alt.md
 
         - file: chap_course_presentation.md
           children:
@@ -250,18 +251,23 @@ project:
             - file: thread_module.md
             - file: thread_msg.md
             - file: thread_mem.md
-            - file: future.md
 
-        - file: chap_memory_vii_cow.md
+        - file: chap_io_iii_environment.md
           children:
-            - file: cow.md
-
-        - file: chap_io_iii_cmdline_logs.md
-          children:
+            - file: env.md
+            - file: app_folders.md
+            - file: tmp.md
+            - file: env_vars.md
             - file: args.md
-            - file: logs.md
+            - file: clap.md
+            - file: exit.md
 
-        - file: chap_io_iv_formatters.md
+        - file: chap_io_iv_logging.md
+          children:
+            - file: logs.md
+            - file: env_logger.md
+
+        - file: chap_io_v_formatters.md
           children:
             - file: format_traits.md
 
@@ -281,6 +287,14 @@ project:
             - file: sub_mod.md
             - file: repub_mod.md
             - file: mult_crates.md
+
+        - file: chap_memory_vii_cow.md
+          children:
+            - file: cow.md
+
+        - file: chap_threading_ii_future.md
+          children:
+            - file: future.md
 
         - file: chap_bitwise_operations.md
           children:

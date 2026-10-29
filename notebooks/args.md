@@ -9,12 +9,18 @@ kernelspec:
   language: rust
 ---
 
+(chp-cmdlineargs)=
 # Command line arguments
 
-:::{danger} Draft
-:class: readiness-draft
+:::{warning} To review
+:class: readiness-toreview
 
-This section is still being written.
+:::
+
+:::{danger} TODO
+:class: readiness-todo
+
+`args()` and `args_os()`.
 :::
 
 Getting all arguments:
@@ -28,12 +34,4 @@ use std::env;
 fn main() {
   let args: Vec<String> = env::args().collect();
 }
-```
-
-## Clap
-
-Add with derive feature:
-
-```bash
-cargo add clap --features derive
 ```

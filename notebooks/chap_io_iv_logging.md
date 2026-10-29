@@ -1,5 +1,5 @@
 ---
-title: I/O (iii) - Command line & logs
+title: I/O (iv) - Logging
 ---
 
 :::{toc}

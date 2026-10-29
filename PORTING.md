@@ -64,17 +64,17 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   ed3021b
-subject:  Resolve "Explain shared memory for threads"
-date:     2026-10-19
+commit:   e9b02bf
+subject:  Start app environment
+date:     2026-10-26
 ```
 
-Previously caught up to 94eb47637acdda288628ace365117a0695a21a15
-(2026-10-18→2026-10-21).
+Previously caught up to ed3021bbf5f02e39bf108dea0c7bfe7dc8939fbe
+(2026-10-19).
 
-This is the last commit on the `myst` branch of upstream at the time of
-this porting pass; `myst` and `origin/main` point to the same commit
-(`ed3021b`), so the MyST port is fully caught up as of this pass.
+4 more upstream commits remain to port after this one (as of this pass):
+`a922858` (encoding chapter), `754b4e2` (remove duplicate raw string),
+`8bb6efc` (bump version), `9fbecdf` (move howtos into course).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 94eb476..<new-ref> -- <foo>.tex` per file to identify
@@ -2966,3 +2966,131 @@ term + a markdown link directly, as always).
 links", the submodule's current remote tip at the time of this pass),
 confirmed to still have `c6e4e2f` (the pointer `ed3021b` records) as
 an ancestor via `git merge-base --is-ancestor`.
+
+### 67. New "I/O - Environment"/"I/O - Logging" chapters (`env.md`, `app_folders.md`, `tmp.md`, `env_vars.md`, `clap.md`, `exit.md`, `env_logger.md`), `args.md` moves to To review, `eu_alt.md` added to Introduction, `future.md`/`cow.md` chapters relocated to Mastery, from `e9b02bf`
+
+**New pages, all `:::{warning} To review`** (upstream marks the whole
+commit `\TOREVIEW`, not `\DRAFT`, even though three of them ship full
+content):
+
+- **`env.md`** ("Process environment"): intro bullets, a
+  `tab-env-fcts` table (`std::env` functions), and three subsections —
+  "Current working directory" (`current_dir()`/`set_current_dir()`,
+  kernel-verified, a `seq-start`/`seq-stop` pair showing the directory
+  actually changes), "Home directory" (`home_dir()` — deprecated in
+  real `std` since 1.29 but still compiles/executes, verified), and
+  "Temporary directory" (`temp_dir()`). Anchors `(chp-envvars)=` /
+  `(chp-cmdlineargs)=` / `(chp-appfolders)=` / `(chp-tmp)=` referenced
+  from this page are added to their respective target pages below.
+- **`app_folders.md`** ("Application folders", anchor `(chp-appfolders)=`
+  for upstream's `\label{chp:AppFolders}`): the `directories` crate's
+  `ProjectDirs` struct, a `tab-project-dir-methods` table, "Initializing"
+  plus one subsection per folder kind (Cache/Configuration/Data/
+  Preference/Runtime/State), a `seq-start`→6×`seq-cont`→`seq-stop` chain
+  all operating on one persisted `prj` binding. Needs a crate dependency
+  the project had never used before (`evcxr`'s `:dep` directive) —
+  confirmed network access to crates.io is available during
+  `myst build --execute` (both locally and, implicitly, on GitHub
+  Actions' own runners); the `:dep directories = "5"` line is hidden in
+  its own `:tags: [remove-cell]` cell (same convention as
+  `folder_mod.md`'s hidden `pushd`), since upstream's LaTeX prose never
+  shows a `cargo add` step for it. `runtime_dir()`/`state_dir()`
+  correctly return `None` when built on a non-Linux machine (matches
+  upstream's own "only used on Linux platforms" callout — not an error).
+  Upstream's `\namedsockets`/`\namedpipes` macros used in the Runtime
+  folder prose don't actually exist anywhere in `common/` (an upstream
+  typo/dangling macro); rendered as plain lowercase "named sockets"/
+  "named pipes" text, matching the obvious intent.
+- **`tmp.md`** ("Temporary files and folders", anchor `(chp-tmp)=` for
+  `\label{chp:Tmp}`): the `tempfile` crate (new `:dep`, same hidden-cell
+  convention), two `:::{important}` boxes, a `tab-tempfile-fcts` table,
+  and 5 subsections (Temporary file, Temporary folder, Named temporary
+  file, In-memory buffer backed by file system, The Builder structure)
+  chained as one long `seq-start`→...→`seq-stop` sequence, plus a
+  `tab-builder-methods` table and two more `:::{important}` boxes.
+  Kernel-verified end-to-end (`tempfile()`, `tempdir()`,
+  `TempDir::with_prefix/with_suffix`, `NamedTempFile::new/with_prefix/
+  with_suffix`, `spooled_tempfile()`'s `is_rolled()` flipping
+  `false`→`true` after the 16-byte buffer overflows, and the `Builder`
+  producing 5 distinct `.tsv` tempfiles in a loop).
+- **`env_vars.md`** ("Environment variables", anchor `(chp-envvars)=`
+  for `\label{chp:EnvVars}`): a bare stub — upstream's own content here
+  is 3 `\TODO{}` markers and nothing else (`var()`/`var_os()`/`vars()`/
+  `vars_os()`, `join_paths()`, `split_paths()`), ported as one combined
+  `:::{danger} TODO` bullet list, no code.
+- **`clap.md`** ("clap crate"): one bash cell, `cargo add clap --features
+  derive` (moved out of `args.md`, see below).
+- **`exit.md`** ("Exit status", anchor `(chp-exit)=` for
+  `\label{chp:Exit}`) and **`env_logger.md`** ("env_logger crate"): both
+  pure title+banner stubs — upstream's own content is entirely
+  LaTeX-commented-out placeholder prose (invisible in the PDF too), so
+  there is nothing to port.
+
+**`args.md`** gains anchor `(chp-cmdlineargs)=` (upstream's
+`\label{chp:CmdLineArgs}`), readiness changes from `Draft` to `To
+review`, a new `:::{danger} TODO` ("`args()` and `args_os()`.") right
+after the banner, and loses its "Clap" subsection (moved verbatim to the
+new `clap.md` above).
+
+**`eu_alt.md`** ("EU alternatives") added as the last child of
+`chap_introduction.md`, right after `resources.md`. From the `common`
+submodule bump (`c6e4e2f` → `6ac37e6`, "Resolve 'Advertising about EU
+alternatives'"): two images side by side in upstream's LaTeX (via
+`minipage`), ported as two `:::{image}` blocks (`:align: left` /
+`:align: right`, both `:width: 45%`) — `media/european-alternatives-
+logo.svg` and `media/advertising_banner.png` copied in from the
+submodule's `texts/`. All of upstream's `\EuAlt*`/`\Framasoft`/`\Frama*`/
+`\Nuudel` href macros resolved to plain markdown links inline (no MyST
+macro equivalent needed, as always).
+
+**Chapter restructuring in `main.tex`**:
+
+- The former "I/O (iii) - Command line & logs" chapter
+  (`chap_io_iii_cmdline_logs.md`, children `args.md`/`logs.md`) is
+  dissolved (`git rm`, matching the item 64/66 precedent for a chapter
+  wrapper whose upstream chapter disappears) and replaced by two new
+  chapters: **"I/O (iii) - Environment"** (new `chap_io_iii_environment.md`,
+  children `env.md`/`app_folders.md`/`tmp.md`/`env_vars.md`/`args.md`/
+  `clap.md`/`exit.md`) and **"I/O (iv) - Logging"** (new
+  `chap_io_iv_logging.md`, children `logs.md`/`env_logger.md`). The
+  pre-existing "I/O (iv) - Formatters" chapter shifts down one slot to
+  **"I/O (v) - Formatters"** (`chap_io_iv_formatters.md` →
+  `chap_io_v_formatters.md`, `git mv`, title updated) since it's the
+  next `\PrefixedChapter{I/O}{...}` call after the two new ones.
+- `future.md` is pulled out of the `chap_threading.md` chapter (which
+  keeps `threading.md`/`thread_module.md`/`thread_msg.md`/`thread_mem.md`)
+  and relocated, together with `cow.md` (previously its own chapter
+  right after Threading in the Expertise part), into the **Mastery**
+  part, both inserted right after `chap_project_ii_modules.md` and
+  before `chap_bitwise_operations.md`: `chap_memory_vii_cow.md` first,
+  then a new `chap_threading_ii_future.md` ("Threading (ii) - Future").
+  Despite the big reshuffle, no roman numerals actually change for
+  either prefix: `Memory`'s 7th `\PrefixedChapter{Memory}{...}` call is
+  still `cow` wherever it sits (nothing `Memory`-prefixed is inserted
+  between its old and new position), and `Threading`'s 2nd call is
+  still `future` (it was already positioned after the 1st call in both
+  the old and new document order).
+- Upstream's actual `main.tex` has a transient, self-inflicted bug at
+  this exact commit: it adds `\PrefixedChapter{Threading}{}` but forgets
+  to delete the pre-existing `\chapter{Threading}` line right below it,
+  so the literal source has two consecutive chapter headings (an empty
+  one with zero subfiles, immediately followed by the real one). This
+  produces no stable, buildable intermediate state worth modeling in
+  MyST (there's nothing to even put a stub page behind for the empty
+  heading), and upstream fixes it two commits later (`8bb6efc`, see
+  below) by deleting both lines and replacing them with
+  `\PrefixedChapter{Threading}{Bases}` in one shot — so `chap_threading.md`
+  keeps its plain "Threading" title at this step and only becomes
+  "Threading (i) - Bases" once that fix lands.
+- `chap_environment.md`'s title changes from "Environment" to
+  "Development environment" (`\chapter{Environment}` →
+  `\chapter{Development environment}`, filename unchanged since it's
+  not a `\PrefixedChapter`).
+
+**`rustalias.sty`** macro reshuffle (new `\Directories`/`\ProjectDirs`/
+`\Tempfile`/`\TempDir`/`\NamedTempFile`/`\SpooledTempFile`/
+`\TempFileBuilder`/`\ModEnv`/`\ModCmp`/`\ModMpsc`/`\ModOps`/`\ModThread`
+macros, `\ThreadMod`→`\ModThread` and `\MpscMod`→`\ModMpsc` renames
+cascading into cosmetic-only edits in `thread_module.tex`/`thread_msg.tex`)
+— pure LaTeX href-shortcut mechanism, no MyST-side action needed, as
+with every prior macro-only rename in this project.
