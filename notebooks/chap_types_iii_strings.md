@@ -1,5 +1,5 @@
 ---
-title: Types (iv) - Structs
+title: Types (iii) - Strings
 ---
 
 :::{toc}

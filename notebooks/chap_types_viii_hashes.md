@@ -1,5 +1,5 @@
 ---
-title: Types (v) - Vec & String
+title: Types (viii) - Hashes
 ---
 
 :::{toc}

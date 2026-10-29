@@ -1,5 +1,5 @@
 ---
-title: Types (vi) - Sequences
+title: Types (ix) - Trees
 ---
 
 :::{toc}

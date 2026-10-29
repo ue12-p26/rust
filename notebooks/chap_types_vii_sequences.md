@@ -1,5 +1,5 @@
 ---
-title: Types (iii) - Enums
+title: Types (vii) - Sequences
 ---
 
 :::{toc}

@@ -10,24 +10,15 @@ kernelspec:
 ---
 
 (chp-utf8)=
-# UTF-8
+# UTF-8 encoding
 
-:::{danger} Draft
-:class: readiness-draft
+In Rust, strings are encoded in UTF-8. Since not all combinations of
+bytes give *valid* UTF-8 characters, Rust adds a checking algorithm to
+strings in order to verify at runtime that a string or a character is
+always a valid UTF-8 string or UTF-8 character.
 
-This section is still being written.
-
-- TODO: explain UTF-8.
-- TODO: explain that it is used in `str` and `String`.
-- TODO: explain that this is the reason `str` has no size.
-- TODO: present ASCII, extended ASCII, latin-1 & co encoding, UNICODE,
-  UTF-8 encoding, character fonts, ...
-- TODO: add a chapter presenting binary, octal, hexadecimal.
-:::
-
-### Getting a slice from a UTF-8 string
-
-Compiler error:
+Getting a slice from a UTF-8 string can lead to runtime errors. Here is
+an example with a russian word:
 
 ```{code-cell} rust
 :tags: [raises-exception]
@@ -36,25 +27,29 @@ let s = "Салам";
 println!("s: {}", &s[0..1]);
 ```
 
-Runtime error (panic):
+If we use the `get()` method, we can handle error cases thanks to the
+`Option<T>` value it returns. Here is our russian string again:
 
 ```{code-cell} rust
-:tags: [raises-exception]
+:class: seq-start badges border
 
-let s = String::from("Салам");
-println!("s: {}", &s[0..1]);
+let s = "Салам";
 ```
 
-We use the `get()` method:
+```{code-cell} rust
+:class: seq-cont badges border
+
+match s.get(0..1) {
+  Some(t) => println!("s[0..1]: {t}"),
+  None => println!("Invalid slice."),
+}
+```
 
 ```{code-cell} rust
-{
-  let s = String::from("Салам");
-  if let Some(t) = s.get(0..1) {
-    println!("s[0..1]: {t}");
-  }
-  if let Some(t) = s.get(0..2) {
-    println!("s[0..2]: {t}");
-  }
+:class: seq-stop badges border
+
+match s.get(0..2) {
+  Some(t) => println!("s[0..2]: {t}"),
+  None => println!("Invalid slice."),
 }
 ```

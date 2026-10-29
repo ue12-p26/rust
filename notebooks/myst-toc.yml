@@ -53,9 +53,11 @@ project:
 
         - file: chap_types_i.md
           children:
+            - file: numbers.md
             - file: int.md
             - file: float.md
             - file: bool.md
+            - file: chr_encoding.md
             - file: char.md
 
         - file: chap_memory_i.md
@@ -69,7 +71,13 @@ project:
             - file: tuple.md
             - file: array.md
             - file: coll_summary.md
+
+        - file: chap_types_iii_strings.md
+          children:
             - file: str_literals.md
+            - file: str_raw.md
+            - file: str_bytes.md
+            - file: utf8.md
 
         - file: chap_io_i_printing.md
           children:
@@ -91,7 +99,7 @@ project:
     - title: Fundamentals
       children:
 
-        - file: chap_types_iii_enums.md
+        - file: chap_types_iv_enums.md
           children:
             - file: enum_type.md
             - file: tagged_union.md
@@ -102,7 +110,7 @@ project:
             - file: while_let.md
             - file: match.md
 
-        - file: chap_types_iv_structs.md
+        - file: chap_types_v_structs.md
           children:
             - file: struct_intro.md
             - file: regular_struct.md
@@ -129,7 +137,7 @@ project:
           children:
             - file: option.md
 
-        - file: chap_types_v_vec_string.md
+        - file: chap_types_vi_vec_string.md
           children:
             - file: vec.md
             - file: string.md
@@ -180,18 +188,18 @@ project:
             - file: project.md
             - file: project_toml.md
 
-        - file: chap_types_vi_sequences.md
+        - file: chap_types_vii_sequences.md
           children:
             - file: coll_intro.md
             - file: vec_deque.md
             - file: linked_list.md
 
-        - file: chap_types_vii_hashes.md
+        - file: chap_types_viii_hashes.md
           children:
             - file: hashmap.md
             - file: hashset.md
 
-        - file: chap_types_viii_trees.md
+        - file: chap_types_ix_trees.md
           children:
             - file: btreemap.md
             - file: btreeset.md
@@ -307,11 +315,6 @@ project:
           children:
             - file: err_msg_alloc.md
             - file: int_overflow.md
-
-        - file: chap_character_encoding.md
-          children:
-            - file: unicode.md
-            - file: utf8.md
 
         - file: chap_documenting.md
           children:

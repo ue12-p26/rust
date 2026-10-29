@@ -64,17 +64,17 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   e9b02bf
-subject:  Start app environment
+commit:   a922858
+subject:  Resolve "Chapter about encoding (ASCII, UTF-8,...)"
 date:     2026-10-26
 ```
 
-Previously caught up to ed3021bbf5f02e39bf108dea0c7bfe7dc8939fbe
-(2026-10-19).
+Previously caught up to e9b02bf6c7b2276a69a30e1c9ffb83de68e6ab2c
+(2026-10-26).
 
-4 more upstream commits remain to port after this one (as of this pass):
-`a922858` (encoding chapter), `754b4e2` (remove duplicate raw string),
-`8bb6efc` (bump version), `9fbecdf` (move howtos into course).
+3 more upstream commits remain to port after this one (as of this pass):
+`754b4e2` (remove duplicate raw string), `8bb6efc` (bump version),
+`9fbecdf` (move howtos into course).
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 94eb476..<new-ref> -- <foo>.tex` per file to identify
@@ -3094,3 +3094,113 @@ macros, `\ThreadMod`→`\ModThread` and `\MpscMod`→`\ModMpsc` renames
 cascading into cosmetic-only edits in `thread_module.tex`/`thread_msg.tex`)
 — pure LaTeX href-shortcut mechanism, no MyST-side action needed, as
 with every prior macro-only rename in this project.
+
+### 68. New "Types - Strings" chapter (`str_raw.md`, `str_bytes.md`, `utf8.md` move in), new `numbers.md`/`chr_encoding.md` in "Types - Base types", `chap_character_encoding.md`/`unicode.md` dropped, from `a922858`
+
+**`chap_types_ii.md`** ("Types (ii)") loses its "Byte string" subsection
+(moved out, see `str_bytes.md` below) and is retitled "Types (ii) -
+Tuples & arrays" (upstream's `\PrefixedChapter{Types}{}` →
+`\PrefixedChapter{Types}{Tuples \& arrays}`), keeping only
+`tuple.md`/`array.md`/`coll_summary.md`.
+
+**New chapter "Types (iii) - Strings"** (new `chap_types_iii_strings.md`,
+inserted right after the above, matching the new
+`\PrefixedChapter{Types}{Strings}` call), with 4 children:
+
+- `str_literals.md` moves here unchanged in substance, but loses its
+  "Raw string" subsection (see below) in addition to the "Byte string"
+  one it already lost.
+- **`str_raw.md`** (new, "Raw string"): verbatim copy of the subsection
+  just removed from `str_literals.md`. Upstream genuinely duplicates
+  this content across both files at this exact commit (confirmed: the
+  *next* commit, `754b4e2`, is titled "Remove duplicate raw string" and
+  removes it from `str_literals.tex` only) — ported faithfully as a
+  temporary duplication now, to be cleaned up in the very next porting
+  commit, matching upstream's own two-commit sequence exactly.
+- **`str_bytes.md`** (new, "Byte string"): expanded from `str_literals.md`'s
+  old subsection — upstream rewords "slice of bytes (`u8`)" into "a
+  pure *slice of bytes* (i.e.: `&[u8]`)", otherwise identical code.
+- **`utf8.md`** moves here from the now-dissolved "Character encoding"
+  chapter (see below), and is substantially rewritten: title `UTF-8` →
+  `UTF-8 encoding`, the `:::{danger} Draft` banner and all 5 TODO
+  bullets are dropped entirely (upstream finalizes this page, no
+  readiness banner at all now), and the example changes shape:
+  the old "Compiler error" cell (actually a *runtime panic*, mislabeled)
+  and the old separate "Runtime error (panic)" cell (`String::from` +
+  same panic, pure duplication) collapse into **one** panic
+  demonstration (kept as `:tags: [raises-exception]`, re-verified via
+  the real kernel — `end byte index 1 is not a char boundary`), followed
+  by a 3-cell `seq-start`/`seq-cont`/`seq-stop` chain showing the
+  `get()`-based fix with `match`/`Some`/`None` (upstream switches from
+  the old `if let Some(t) = ...` style to `match ... { Some/None }`,
+  also now explicitly printing "Invalid slice." on the `None` branch
+  for the `0..1` case instead of silently skipping it) — re-verified
+  end-to-end (`0..1` → "Invalid slice.", `0..2` → `s[0..2]: С`).
+
+**"Types (i)" chapter** (`chap_types_i.md`) retitled "Types (i) - Base
+types" (`\PrefixedChapter{Types}{}` → `\PrefixedChapter{Types}{Base
+types}`), gaining two new children:
+
+- **`numbers.md`** (new, "Number systems", from the `common` submodule
+  bump below): binary/octal/hexadecimal base explanations, 3 worked
+  single-number tables (177 in binary, 12446 in octal, 993312446 in
+  hex) plus one 16-column decimal/binary/octal/hex side-by-side
+  conversion table. MyST's `{list-table}` has no spanning-header cells
+  (unlike upstream's `\SetCell[c=N]{c}`), so the two-row spanning
+  header ("Decimal" over 3 cols, "Binary" over 8, etc.) is flattened
+  into one row of 16 already-qualified column labels (`Dec $10^2$`,
+  `Bin $2^7$`, ... `Hex $16^0$` — same `tab-size-units-decimal`-style
+  precedent as item 62), and upstream's vertically-spanning `⋮` ellipsis
+  rows become ordinary rows of 16 `…` cells (matching the existing
+  `int_repr.md` precedent for ellipsis rows, just repeated across every
+  column since there's no row-spanning cell to carry a single `…`
+  across 16 columns either).
+- **`chr_encoding.md`** (new, "Character encoding", anchor
+  `(chp-chr-enc)=`, inserted right before `char.md`): ASCII/Extended
+  ASCII/Latin-1/Unicode/UTF-8 history, a `fig-usascii` figure (new
+  `media/USASCII_code_chart.svg`, copied in from the submodule), and
+  the "UTF-8 strings can be seen as..." bullet list that used to live
+  (as bare `\TODO`s) in `unicode.tex`. This page inherits the
+  `(chp-chr-enc)=` anchor that `unicode.md` used to carry — that anchor
+  was itself a MyST-only addition from an earlier porting pass (no
+  matching upstream `\label`), created solely to satisfy a cross-reference
+  already present in `string.md` ("`...`see [Character encoding]
+  (#chp-chr-enc)`"); moving it to `chr_encoding.md` keeps that link
+  resolving to the page that now actually covers the topic, instead of
+  a deleted file. Caught by the full-build link checker (`myst
+  build --execute`, 0 unresolved refs) after an initial pass missed it
+  (not found by `grep`-ing for `chap_character_encoding`/`unicode.md`/
+  `ChrEnc`, since the anchor's own slug, `chp-chr-enc`, doesn't contain
+  any of those strings) — a reminder to always rebuild-and-check rather
+  than trust a text search alone for anchor fallout from a file deletion.
+
+**`chap_character_encoding.md`** (the old "Character encoding" chapter,
+children `unicode.md`/`utf8.md`) is dissolved (`git rm`, same precedent
+as items 64/66/67): `unicode.md` is deleted outright (fully superseded
+by `chr_encoding.md`'s real content), `utf8.md` moves into the new
+"Types (iii) - Strings" chapter above.
+
+**Types-prefix renumbering cascade**: since "Types - Strings" is a
+brand new `\PrefixedChapter{Types}{...}` call inserted between "Tuples
+& arrays" (2nd) and "Enums" (previously 3rd), every subsequent
+`Types`-prefixed chapter shifts down one roman numeral: `chap_types_iii_enums.md`
+→ `chap_types_iv_enums.md`, `chap_types_iv_structs.md` →
+`chap_types_v_structs.md`, `chap_types_v_vec_string.md` →
+`chap_types_vi_vec_string.md`, `chap_types_vi_sequences.md` →
+`chap_types_vii_sequences.md`, `chap_types_vii_hashes.md` →
+`chap_types_viii_hashes.md`, `chap_types_viii_trees.md` →
+`chap_types_ix_trees.md` (6× `git mv` + title update, children
+untouched). Build-verified: all 9 "Types"-prefixed chapters still get
+sequential, LaTeX-matching chapter numbers (`6`, `8`, `9`, `13`, `15`,
+`19`, `28`, `29`, `30` as MyST's own book-wide enumerators, following
+whatever non-`Types` chapters fall between them — the roman numerals
+inside each title are the ones that matter for LaTeX parity, and those
+all match).
+
+**`common` submodule** updated again, `c6e4e2f` → `e65f6dc` ("Resolve
+'Unicode & UTF-8 chapter'"): besides `numbers.tex`/`chr_encoding.tex`/
+`USASCII_code_chart.svg` (new, ported above), it also tweaks
+`howto_sizes.tex`'s `tab-size-units` table (adds a `|` column separator
+and 2 padding header cells, pure LaTeX border cosmetics) — no MyST
+action, `howto_sizes.md` already renders this as two separate
+`{list-table}`s (item 62) with no spanning border to begin with.

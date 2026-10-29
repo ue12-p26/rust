@@ -1,5 +1,5 @@
 ---
-title: Character encoding
+title: Types (vi) - Vec & String
 ---
 
 :::{toc}

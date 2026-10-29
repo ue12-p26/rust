@@ -117,12 +117,3 @@ r##"Some string with a quote " inside and some symbols: "# at the end."##
 ```
 
 :::
-
-## Byte string
-
-Byte string (slice of bytes (`u8`)):
-
-```{code-cell} rust
-let bytes = b"abc"; // Type is &[u8; 3]
-bytes
-```

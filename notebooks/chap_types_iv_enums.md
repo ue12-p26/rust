@@ -1,5 +1,5 @@
 ---
-title: Types (viii) - Trees
+title: Types (iv) - Enums
 ---
 
 :::{toc}

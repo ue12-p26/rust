@@ -1,5 +1,5 @@
 ---
-title: Types (vii) - Hashes
+title: Types (v) - Structs
 ---
 
 :::{toc}
