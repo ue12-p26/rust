@@ -43,9 +43,9 @@ Inside the *standard library*:
 A list of the most common traits of the standard library is available
 in {numref}`tab-std-traits`.
 Among them are the comparison operators from the
-[cmp](https://doc.rust-lang.org/std/cmp/index.html) module.
+[std::cmp](https://doc.rust-lang.org/std/cmp/index.html) module.
 Other operators (`*`, `/`, `+`, `%`, ...) are defined inside the
-[ops module](https://doc.rust-lang.org/stable/std/ops/index.html). They
+[std::ops](https://doc.rust-lang.org/stable/std/ops/index.html) module. They
 are listed inside the
 [ops traits](https://doc.rust-lang.org/stable/std/ops/index.html#traits)
 section.

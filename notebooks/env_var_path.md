@@ -9,7 +9,7 @@ kernelspec:
   language: bash
 ---
 
-(chp-howto-path)=
+(chp-env-var-path)=
 # `PATH` env var
 
 :::{warning} To review

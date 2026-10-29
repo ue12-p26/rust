@@ -26,11 +26,13 @@ The compiler suggests us two solutions:
 - Either *borrow* the indexed value (`&v[0]`).
 - Or *clone* it (`v[0].clone()`).
 
-```{code-cell} rust
-:tags: [raises-exception]
+Here is the *borrowing* solution:
 
-let mut v: Vec<String> = Vec::new();
-v.push(String::from("abc"));
-let a = v[0];
-a
+```{code-cell} rust
+{
+  let mut v: Vec<String> = Vec::new();
+  v.push(String::from("abc"));
+  let a = &v[0];
+  println!("{a}");
+}
 ```

@@ -80,12 +80,12 @@ them.
 Standard Unix commands, like `mkdir`, `ls`, `find`, `cat`, etc, should
 already be available on your system. Some others (e.g.: `which`,
 `tree`) are not always installed by default, see
-[Missing tools](#chp-howto-missing-tools).
+[Missing Rust tools](#chp-missing-rust-tools).
 
 Sometimes, you will find some *more modern* version of the Unix
 commands (e.g.: `bat`, `eza`) that we use in the course for their
 *better looking* and *clearer* outputs. See also
-[Missing tools](#chp-howto-missing-tools) to know how to install
+[Missing Rust tools](#chp-missing-rust-tools) to know how to install
 them.
 
 ## Running in another shell

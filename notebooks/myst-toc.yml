@@ -25,18 +25,35 @@ project:
             - file: course_bash_ex.md
             - file: course_rust_ex.md
 
-        - file: chap_environment.md
+        - file: chap_environment_i_installing_compiling.md
           children:
             - file: env_intro.md
             - file: env_install.md
             - file: env_compiler.md
-            - file: env_cargo.md
+
+        - file: chap_environment_ii_cargo.md
+          children:
+            - file: cargo_intro.md
+            - file: cargo_crates.md
+            - file: env_vars.md
+            - file: env_var_path.md
+            - file: cargo_inst_crate.md
+            - file: missing_rust_tools.md
+            - file: cargo_init.md
+            - file: cargo_build.md
+            - file: cargo_run.md
+            - file: cargo_deps.md
+            - file: cargo_tests.md
+            - file: cargo_check.md
+            - file: cargo_lint.md
+            - file: cargo_fix.md
 
     - title: Basics
       children:
 
         - file: chap_syntax_i.md
           children:
+            - file: naming_conventions.md
             - file: syntax.md
             - file: comments.md
             - file: expr.md
@@ -53,6 +70,7 @@ project:
 
         - file: chap_types_i.md
           children:
+            - file: mem_sizes.md
             - file: numbers.md
             - file: int.md
             - file: float.md
@@ -265,7 +283,7 @@ project:
             - file: env.md
             - file: app_folders.md
             - file: tmp.md
-            - file: env_vars.md
+            - file: env_vars_access.md
             - file: args.md
             - file: clap.md
             - file: exit.md
@@ -327,15 +345,6 @@ project:
 
     - title: Appendices
       children:
-
-        - file: chap_howto.md
-          children:
-            - file: howto_cargo_inst_crate.md
-            - file: howto_env_vars.md
-            - file: howto_missing_tools.md
-            - file: howto_naming.md
-            - file: howto_path.md
-            - file: howto_sizes.md
 
         - file: chap_solutions.md
           children:

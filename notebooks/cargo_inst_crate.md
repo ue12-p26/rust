@@ -9,13 +9,8 @@ kernelspec:
   language: bash
 ---
 
-(chp-howto-cargo-inst-crate)=
+(chp-cargo-inst-crate)=
 # Install a crate with `cargo`
-
-:::{warning} To review
-:class: readiness-toreview
-
-:::
 
 `cargo` is the Rust package manager. It is thus used to installed
 applications written in the Rust language.
@@ -58,6 +53,6 @@ which bat
 ```
 
 Thus we need to make sure that this path is defined inside our
-`PATH` environment variable. See [PATH env var](#chp-howto-path) to
+`PATH` environment variable. See [PATH env var](#chp-env-var-path) to
 learn what is the `PATH` environment variable and how to add a
 folder path to it.

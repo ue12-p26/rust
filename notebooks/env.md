@@ -85,7 +85,7 @@ listed in {numref}`tab-env-fcts`.
 :::
 
 Environment variables related functions will be covered in
-[Environment variables](#chp-envvars), and command line arguments related
+[Accessing environment variables](#chp-envvarsaccess), and command line arguments related
 functions in [Command line arguments](#chp-cmdlineargs).
 
 ## Current working directory

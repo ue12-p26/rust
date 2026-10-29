@@ -64,16 +64,17 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   8bb6efc
-subject:  Bump version
+commit:   9fbecdf
+subject:  Resolve "Move howtos into course"
 date:     2026-10-27
 ```
 
-Previously caught up to 754b4e2cece8da407e5fd052bd56e9ffa00f0b44
-(2026-10-26).
+Previously caught up to 8bb6efc756bb8c7b3c60e6f5d19d27844bf4d81e
+(2026-10-27).
 
-1 more upstream commit remains to port after this one (as of this pass):
-`9fbecdf` (move howtos into course).
+This is the last commit on `origin/main` at the time of this porting
+pass (`myst` and `origin/main` point to the same commit), so the MyST
+port is fully caught up as of this pass.
 
 When resuming, fetch upstream and use
 `git -C <repo> diff 94eb476..<new-ref> -- <foo>.tex` per file to identify
@@ -3233,3 +3234,177 @@ Build-verified: enumerator unchanged (`39`, same slot as the plain
 MyST-side equivalent (the port has never tracked this value; `myst.yml`
 has no version field tied to it), noted here only for the historical
 record.
+
+### 71. Appendices "How-tos" chapter dissolved into "Development environment" and "Syntax"/"Types" chapters, `env_cargo.md` split into 10 standalone Cargo pages, from `9fbecdf`
+
+The biggest structural change in this porting wave. Upstream's whole
+point: the `common` submodule's howto pages (previously parked in a
+standalone Appendices chapter, cross-referenced from wherever they were
+needed) now get inlined at the point in the course where they're first
+relevant, and the old monolithic `env_cargo.tex` ("Cargo", a single
+continuous shell session walking through init → build → run → deps →
+test → check → lint → fix) gets split into 10 independent,
+self-contained pages (each starting its own fresh `cargo init --bin
+foo` session, since a standalone page can no longer assume a shared
+session with its siblings).
+
+**`chap_environment.md`** (plain, unprefixed "Development environment"
+chapter since item 67) splits into two `\PrefixedChapter{Development
+environment}{...}` chapters:
+
+- **"Development environment (i) - Installing & compiling"**
+  (`chap_environment.md` renamed to
+  `chap_environment_i_installing_compiling.md`, `git mv` + retitle):
+  unchanged children `env_intro.md`/`env_install.md`/`env_compiler.md`.
+- **"Development environment (ii) - Cargo"** (new
+  `chap_environment_ii_cargo.md`): 14 children, all new or moved (see
+  below). Filename choice: kept the existing `environment` stem rather
+  than spelling out `development_environment`, since the chapter file
+  already existed under that shorter name before gaining a prefix.
+
+**`env_cargo.md`** (`git rm`, its whole content redistributed) splits
+into:
+
+- **`cargo_intro.md`** ("Introduction"): the `cargo` overview paragraph
+  + `tab-cargo-subcmds` sub-commands table, unchanged.
+- **`cargo_crates.md`** ("Crates", anchor `(chp-app-inst)=` — inherits
+  the old `(chp-howto-...)`-free `chp:AppInst` label, which upstream
+  moves from the old "Installing an application" *subsection* heading
+  onto this *whole new page's* `\section` heading): the `tab-rust-apps`
+  table + the "see Install a crate with Cargo" cross-reference,
+  unchanged in substance.
+- **`cargo_init.md`**, **`cargo_build.md`**, **`cargo_run.md`**,
+  **`cargo_deps.md`**, **`cargo_tests.md`**, **`cargo_check.md`**,
+  **`cargo_lint.md`**, **`cargo_fix.md`** (all new, one per former
+  `env_cargo.md` subsection): each gains its own `cargo init --bin
+  foo`(`; cd foo`) setup cell at the top — visible where upstream's
+  `[start]` (no `hide`) marks it (`cargo_init`/`cargo_build`/
+  `cargo_run`/`cargo_check`), hidden (`:tags: [remove-cell]`) where
+  upstream marks `[start,hide]` and bundles writing a fresh
+  `src/main.rs` into the same hidden cell (`cargo_deps`/`cargo_tests`/
+  `cargo_lint`/`cargo_fix`). Every one of the 8 pages' full command
+  sequence was independently re-run end-to-end against a real `cargo`
+  (fresh `mktemp -d` per page, matching `bash-setup.sh`'s own per-page
+  isolation) to confirm the split didn't silently depend on state left
+  over from a previous subsection in the old combined file — all 8
+  verified clean (`cargo_lint`'s pedantic-clippy hint, `cargo_fix`'s
+  `mut`-removal, `cargo_deps`'s `colour` crate resolving and running,
+  etc., all reproduced exactly). `cargo_fix.md`'s hidden git-commit
+  cell drops the old combined file's redundant `git init .` and
+  `tests` pathspec (this standalone page never creates a `tests`
+  folder, and `cargo init` already creates the git repo on its own —
+  upstream's own new `cargo_fix.tex` confirms both drops).
+  `cargo_deps.md` keeps the `first-cargo-project` exercise (unchanged
+  label, so `sol_cargo.md`'s existing solution link still resolves).
+
+**Renamed howto pages** (`git mv`, all formerly Appendices children of
+the now-dissolved `chap_howto.md`), each becoming a `chap_environment_ii_cargo.md`
+child:
+
+- `howto_cargo_inst_crate.md` → **`cargo_inst_crate.md`**: drops its
+  `:::{warning} To review` banner entirely (upstream finalizes it, no
+  replacement marker), anchor `(chp-howto-cargo-inst-crate)=` →
+  `(chp-cargo-inst-crate)=`.
+- `howto_missing_tools.md` → **`missing_rust_tools.md`**: title
+  "Missing tools" → "Missing Rust tools", anchor
+  `(chp-howto-missing-tools)=` → `(chp-missing-rust-tools)=`, table
+  name `tab-missing-tools` → `tab-missing-rust-tools` (mirrors
+  upstream's own label rename, `chp:MissingTools`/`tab:MissingTools` →
+  `chp:MissingRustTools`/`tab:MissingRustTools`).
+- `howto_path.md` → **`env_var_path.md`**: pure rename, content
+  untouched; anchor `(chp-howto-path)=` → `(chp-env-var-path)=` (for
+  consistency with the new filename — upstream's own LaTeX label,
+  `chp:PathEnvVar`, doesn't actually change, but the project's MyST
+  anchors have never been required to mirror LaTeX label text 1:1,
+  e.g. `chp-byte`/`chp-word`/`chp-naming` from item 62 are MyST-only
+  inventions too).
+- `howto_naming.md` → **`naming_conventions.md`**: pure rename, no
+  anchor change needed (`(chp-naming)=`, from item 62, was already
+  filename-independent).
+- `howto_sizes.md` → **`mem_sizes.md`**: pure rename, no anchor change
+  needed (`(chp-byte)=`/`(chp-word)=`, from item 62, likewise already
+  filename-independent). Inserted as the first child of "Types (i) -
+  Base types", right before `numbers.md`.
+- `howto_naming.md` → `naming_conventions.md` inserted as the first
+  child of "Syntax (i)", right before `syntax.md`.
+
+**`howto_env_vars.md` → `env_vars.md`** (`git mv`, reusing the name
+just vacated below): the renamed howto page also gets its content
+extended — 2 new cells inserted before "Here is an example in Bash for
+setting an environment variable" (`echo $HOME`, `echo $PATH`, both
+re-verified), demoting the old first cell (`export MY_VAR=...`) from
+`seq-start` to `seq-cont`. Anchor `(chp-howto-env-vars)=` →
+`(chp-envvars)=` — this reuses the *exact* anchor the old I/O-chapter
+stub (item 67) used to carry, since upstream's own LaTeX label
+(`chp:envvar` → `chp:EnvVars`) now matches what that other file's label
+used to be (see next paragraph). Fixed the two inbound cross-references
+that pointed at the old anchor name: `gen_fct.md` (mirrors upstream's
+own `gen_fct.tex` edit, `\autoref{chp:envvar}` →
+`\autoref{chp:EnvVars}`) and `course_bash_ex.md`'s two "Missing tools"
+links (mirrors the `common` submodule's own `course_bash_ex.tex` edit).
+
+**The old `env_vars.md`** (the I/O-chapter `std::env::var()` TODO stub
+from item 67, `\label{chp:EnvVars}`) is renamed to **`env_vars_access.md`**
+first (`git mv`, done *before* the swap above, to free up the
+`env_vars.md` name): title "Environment variables" → "Accessing
+environment variables", anchor `(chp-envvars)=` → `(chp-envvarsaccess)=`,
+mirroring upstream's exact rename (`env_vars.tex` → `env_vars_access.tex`,
+`\label{chp:EnvVars}` → `\label{chp:EnvVarsAccess}`, same section-title
+change). `env.md`'s own cross-reference ("Environment variables related
+functions will be covered in...") is updated to point at the new anchor
+and link text, mirroring upstream's own `env.tex` edit
+(`\autoref{chp:EnvVars}` → `\autoref{chp:EnvVarsAccess}`).
+
+**`chap_howto.md`** (the now-empty Appendices "How-tos" chapter wrapper)
+is `git rm`'d, matching the item 64/66/67/68 precedent for a dissolved
+chapter.
+
+**`sol_mem.md`**: the "Two ways of accessing a value by index" solution
+fixes a real bug — the LaTeX source's `let a = v[0];` cell was *supposed*
+to demonstrate the *borrowing* fix but never actually added the `&`,
+so it was still attempting to move a non-`Copy` value out of the vector
+(the exact error being explained!). Upstream now writes `let a =
+&v[0];` with a new "Here is the *borrowing* solution:" lead-in sentence;
+mirrored exactly, and the cell's `:tags: [raises-exception]` is dropped
+since it genuinely no longer panics. However the straight port (bare
+trailing `a`, matching upstream's LaTeX listing literally) hit a real
+evcxr limitation on the first build attempt: `a` is a `&v[0]` borrow
+with a non-`'static` lifetime, and evcxr refuses to persist it as a
+top-level binding ("contains a reference with a non-static lifetime so
+can't be persisted"). Wrapping in `{ }` (the project's usual fix for
+this exact failure family) isn't enough by itself here, since the
+block's own trailing-expression return would then try to return a
+reference into data (`v`) that's dropped at the end of that same
+block — fixed instead by ending the block with `println!("{a}");`
+(printing `a` from *inside* its own scope, rather than attempting to
+return or persist it), re-verified end-to-end (prints `abc`). Upstream's commit
+also deletes an entire "Iterating over a vector's items" subsection
+(`\label{sol:VecIter}`) from `sol_mem.tex` — this was never ported to
+MyST in the first place (confirmed: `sol_mem.md` never had a matching
+subsection), so there is nothing to remove on our side. Side note,
+out of scope for this commit: `vec.md`'s `vec-iter` exercise still
+links to a `#vec-iter-solution` anchor that has never existed in
+`sol_mem.md`, and upstream's `vec.tex` *itself* still references the
+now-doubly-deleted `\autoref{sol:VecIter}` even after this commit — a
+pre-existing dangling cross-reference on both sides that this commit
+doesn't touch and that MyST's link-checker apparently doesn't flag
+(possibly because `{exercise}`/`{solution}` labels resolve differently
+than plain `{numref}` targets); left as-is, matching upstream's own
+unresolved state, not something to invent a fix for here.
+
+**`traits.md`** — a correction that actually belongs to item 67
+(`e9b02bf`), caught late while cross-checking that commit's full file
+list against this later commit's unrelated `gen_fct.tex`/`sol_mem.tex`
+changes: `rustalias.sty`'s `\CmpModule`→`\ModCmp` and `\OpsModule`→`\ModOps`
+renames (noted in item 67 as "cosmetic, no MyST action needed") were
+wrongly assumed text-preserving. They're not: the *old* macros embedded
+the word "module" inside their own link text ("cmp" linked, followed by
+plain " module"), while the *new* ones only link the bare module path
+("std::cmp"/"std::ops") and `traits.tex` now spells "module" out
+separately after each — so the *visible* wording actually changes from
+"the comparison operators from the cmp module" / "inside the ops
+module" to "...from the std::cmp module" / "...inside the std::ops
+module". Fixed in `traits.md` now rather than going back to amend the
+already-pushed-forward item-67 commit (several commits have since
+built on top of it; a rebase to fix it there would be riskier than
+carrying the correction forward here, where it was actually caught).

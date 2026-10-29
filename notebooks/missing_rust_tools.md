@@ -1,5 +1,5 @@
-(chp-howto-missing-tools)=
-# Missing tools
+(chp-missing-rust-tools)=
+# Missing Rust tools
 
 :::{warning} To review
 :class: readiness-toreview
@@ -9,7 +9,7 @@
 This chapter lists in a table the various tools that may be used in
 bash examples.
 In case your system is missing one tool, refer to
-{numref}`tab-missing-tools` to known which package provides it.
+{numref}`tab-missing-rust-tools` to known which package provides it.
 
 The table's columns have the following meaning:
 
@@ -21,10 +21,10 @@ The table's columns have the following meaning:
 - **macOS / Homebrew**: The package in which the command is available.
 - **Cargo**: The crate in which the command is available. To install a
   crate with `cargo` see
-  [Install a crate with Cargo](#chp-howto-cargo-inst-crate).
+  [Install a crate with Cargo](#chp-cargo-inst-crate).
 
 ```{list-table} How to install a missing tool
-:name: tab-missing-tools
+:name: tab-missing-rust-tools
 :header-rows: 1
 :align: center
 

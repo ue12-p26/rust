@@ -95,7 +95,7 @@ Now we apply it on a list of characters:
 Write a generic function that:
 
 - Takes the name of an environment variable. See
-  [Environment variables](#chp-howto-env-vars) about environment
+  [Environment variables](#chp-envvars) about environment
   variables.
 - Takes a default value.
 - Tries to read the environment variable's value and convert it into a
