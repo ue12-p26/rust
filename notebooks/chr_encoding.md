@@ -26,7 +26,7 @@ it is a 7-bit encoding that defines 128 symbols and control codes.
 
 The main drawback of the ASCII is that it is US-centric. That is why
 [Extended ASCII](https://en.wikipedia.org/wiki/Extended_ASCII)
-encodings, like [Latin-1](https://en.wikipedia.org/wiki/ISO/IEC_8859-1),
+encodings, like [Latin-1](https://en.wikipedia.org/wiki/ISO%2FIEC_8859-1),
 had been developped, using the remaining 128 values on a 8-bit value.
 However, each language defining its own encoding on values from `0x80`
 to `0xff`, reading a pure text file (i.e.: without encoding information)

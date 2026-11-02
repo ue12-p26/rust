@@ -32,6 +32,9 @@ to *search* for a crate and how to *install* it.
 * - [eza](https://crates.io/crates/eza)
   - `eza`
   - Replacement for `ls`.
+* - [dz6](https://crates.io/crates/dz6)
+  - `dz6`
+  - Hexadecimal editor. Replacement of `hexedit`.
 * - [fd-find](https://crates.io/crates/fd-find)
   - `fd`
   - Replacement for `find`.

@@ -64,12 +64,12 @@ This porting wave was made against:
 
 ```
 upstream: git@gitlab.com:cnrgh/teaching/rust-class.git
-commit:   9fbecdf
-subject:  Resolve "Move howtos into course"
-date:     2026-10-27
+commit:   a0d96ed
+subject:  Resolve "Corrections after class 29-10-2026"
+date:     2026-10-31
 ```
 
-Previously caught up to 8bb6efc756bb8c7b3c60e6f5d19d27844bf4d81e
+Previously caught up to 9fbecdf860f3f52f6c7e86011a12ef3f29df7712
 (2026-10-27).
 
 This is the last commit on `origin/main` at the time of this porting
@@ -3408,3 +3408,86 @@ module". Fixed in `traits.md` now rather than going back to amend the
 already-pushed-forward item-67 commit (several commits have since
 built on top of it; a rebase to fix it there would be riskier than
 carrying the correction forward here, where it was actually caught).
+
+### 72. `env_install.md` rewritten with per-OS install paths (Linux/macOS/Windows), small corrections across `array.md`/`cargo_crates.md`/`coll_summary.md`/`course_rust_ex.md`/`tagged_union.md`, from `a0d96ed`
+
+This commit also bumps the `common` submodule
+(`370a211`→`b111dda`, three commits: `8613166` "Move aliases to
+rust-class. Add links", `acc2446` "New aliases", `b111dda` "Add GCC and
+LLVM"). Those three commits move several Rust/course-specific macros
+(`\rustfoundation`, `\rustc`, `\cargotoml`, `\rustup`, `\rusttoolchain`,
+`\cratesio`, `\rustlings`, `\crate`, `\module`, `\pub`) out of the
+shared `common/alias.sty` and into the superproject's own
+`rustalias.sty` (already created at `e9b02bf`, item 67), and otherwise
+turn a large number of previously plain-text tool/editor/OS macros
+(`\VSCode`, `\RustRover`, `\homebrew`, `\Linux`, `\Microsoft`,
+`\Jetbrains`, `\GCC`, `\LLVM`, `\PowerShell`, `\Xcode...`, etc.) into
+`\href{}`-wrapped links. This is purely a shared-infrastructure
+refactor: no rendered text changes anywhere **except** where a file
+actually touched in this commit now uses one of the newly-hrefed
+macros (reflected below in `env_install.md`). We deliberately did
+**not** sweep the rest of the already-ported corpus to add links to
+every pre-existing occurrence of "Microsoft", "Homebrew", "Linux", etc.
+— that would be an unbounded, judgment-free rewrite of content outside
+this commit's actual diff; it only matters here because `env_install.md`
+is itself being rewritten wholesale in this same commit.
+
+**`env_install.md`** (superproject `env_install.tex`) is almost
+entirely rewritten. Old structure was a thin "rustup" section plus an
+"IDEs" section with "VSCode"/"Rover" sub-subsections. New structure:
+an intro listing the three install methods (`rustup`, VS Code,
+RustRover), then one `## Linux` / `## macOS` / `## Windows` section
+each walking through installing `rustup` *and* both IDEs for that
+platform, then a `## Rustup usage` section (the old "rustup" content,
+basically unchanged: `rustup default stable` / `cargo --version` /
+`rustup update`), and finally an empty `## IDEs` heading with no body
+— upstream leaves this dangling (the old VSCode/Rover subsections were
+absorbed into the per-OS sections above), so we mirror that rather
+than inventing content for it.
+
+Two cross-references from the Linux/macOS sections ("Once `rustup` is
+installed, go to … for the next instructions") are **genuinely broken
+upstream**: the LaTeX source writes `\label{chp:RustupUsage}` (a
+no-op, invisible label — the same string as the subsection's own
+label) instead of `\ref{}`/`\autoref{}`, so the compiled PDF literally
+reads "go to  for the next instructions" with a dangling blank. This
+is a real upstream bug, not a stylistic choice (unlike the earlier
+`\namedsockets`/`\namedpipes` typo in item 67, which we rendered
+verbatim) — an invisible label can't be mirrored as "dangling" text in
+MyST without looking actively broken, so we rendered the clearly
+intended link instead: `[Rustup usage](#chp-rustup-usage)`, with a new
+anchor `(chp-rustup-usage)=` added on the "Rustup usage" heading.
+
+The Windows section's `cargo new foo` / `cd foo` / `cargo build` /
+`cargo run` block has no `[disable]` option upstream (unlike `rustup
+default stable` and `rustup update`, both kept as disabled/
+skip-execution cells, matching the pre-existing convention), so it and
+the new `cargo --version` cell are both real, kernel-verified
+execution cells (`:class: dark-background full-color-output`, no
+`seq-*` needed since each is a standalone one-shot block). Added a
+hidden `source bash-setup.sh` setup cell at the top of the page (it
+had none before, since the old page had no live commands besides the
+already-disabled `rustup default stable`).
+
+Elsewhere:
+- **`array.md`**: reworded the "array of four `i32` integers" intro
+  line, and added two new executed examples: setting just the first
+  value's type (`let a = [-8i16, 4, 6];`) and mutating an array element
+  in place (`let mut a = [1, 2, 3, 4]; a[1] = 15;`), both kernel-verified.
+- **`cargo_crates.md`**: added a `dz6` row (hex editor, replacement for
+  `hexedit`) to the crates table, placed exactly where upstream inserts
+  it (between `eza` and `fd-find`, not alphabetically before `eza`/
+  `du-dust` — matched upstream's own ordering rather than
+  re-alphabetizing).
+- **`coll_summary.md`**: added a "Memory" column (stack/stack/heap) to
+  the Tuple/Array/Vector composite-types table.
+- **`course_rust_ex.md`** + **`fct_main.md`**: a new `:::{important}`
+  box explaining that `main()` is the entry point, cross-referencing
+  the "The main() function" chapter. `fct_main.md`'s heading had no
+  MyST anchor yet (upstream added `\label{chp:MainFct}` on
+  `fct_main.tex`'s own heading in this same commit) — added
+  `(chp-main-fct)=` to match.
+- **`tagged_union.md`**: the "Automaton State" exercise now names the
+  enum type explicitly (`State`) in its wording — the solution
+  (`sol_enum.md`) already used that name, so this is a wording-only
+  alignment, no code change.

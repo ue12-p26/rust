@@ -43,7 +43,7 @@ index `0`. Thus the first element is always at index `0`.
     array of the same size.
 :::
 
-Here is an array of four `i32` integers:
+Here is an array of four integers, with default type `i32`:
 
 ```{code-cell} rust
 let a = [1, 2, 3, 4];
@@ -55,6 +55,22 @@ array size:
 
 ```{code-cell} rust
 let a: [i16; 3] = [-8, 4, 6];
+a
+```
+
+Or we may set the type of the first value:
+
+```{code-cell} rust
+let a = [-8i16, 4, 6];
+a
+```
+
+An array has a fixed size. We cannot remove or add elements from/to it.
+However we can make it *mutable* in order to modify its elements:
+
+```{code-cell} rust
+let mut a = [1, 2, 3, 4];
+a[1] = 15;
 a
 ```
 

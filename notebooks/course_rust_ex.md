@@ -29,6 +29,14 @@ Example:
 println!("Hello!");
 ```
 
+:::{important} The main() function
+The `main()` function is the entry point of a program. It contains the
+instructions that will be written at the start of the generated binary.
+These are those instructions that will be *executed first* when running
+a binary.
+See [The main() function](#chp-main-fct) about the `main()` function.
+:::
+
 Such an example cannot be compiled *as-is*.
 It needs to be wrapped inside a `main()` function, as following:
 

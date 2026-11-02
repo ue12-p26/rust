@@ -37,8 +37,8 @@ enum MyError {
 :label: automaton-state
 :enumerated: true
 
-1. Implement an `enum` that represents the states of an automaton:
-   `Start`, `Stage1`, `Stage2`, `Stage3`, `Stop`.
+1. Implement an `enum` type named `State` that represents the states
+   of an automaton: `Start`, `Stage1`, `Stage2`, `Stage3`, `Stop`.
 2. Write a function `next_state()` that takes a state and returns the
    next. The order of the state is their order of definition. The next
    state after `Stop` is `Start`.

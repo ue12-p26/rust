@@ -23,21 +23,25 @@ that summarizes the most commonly used composite types in Rust:
 * - Type
   - Fixed size?
   - Homogeneous?
+  - Memory
   - Read n-th
   - Write n-th
 * - Tuple `(T1, T2, ...)`
   - yes
   - no
+  - stack
   - `t.0`
   - `t.0 = v;`
 * - Array `[T; N]`
   - yes
   - yes
+  - stack
   - `a[i]`
   - `a[i] = v;`
 * - Vector `Vec<T>`
   - no
   - yes
+  - heap
   - `v[i]`
   - `v[i] = v;`
 :::
